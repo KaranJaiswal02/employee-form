@@ -6,7 +6,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenu
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 
-export default function page() {
+export default function Page() {
     const [formData, setFormData] = useState({
         name: "",
         fatherName: "",
