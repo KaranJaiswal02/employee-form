@@ -5,6 +5,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
+import IAPIResponse from '@/types/responseType'
+import { IEmployeeJoinForm } from '@/models/empjoin_form'
 
 export default function Page() {
     const [formData, setFormData] = useState({
@@ -41,9 +43,9 @@ export default function Page() {
 
 
     const handleCheckboxChange = () => {
-        if(isChecked) {
+        if (isChecked) {
             setFormData(prev => ({ ...prev, perAddress: "", perDistrict: "", perState: "", perPincode: "" }));
-        }else{
+        } else {
             setFormData(prev => ({ ...prev, perAddress: formData.currAddress, perDistrict: formData.district, perState: formData.state, perPincode: formData.pincode }));
         }
         setIsChecked(!isChecked);
@@ -52,42 +54,79 @@ export default function Page() {
     const signatureChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
+            if (!file.type.startsWith("image/")) {
+                alert("Only image files are allowed.");
+                return;
+            }
+
+            if (file.size > 1024 * 512) {
+                alert("File size must be less than 500KB.");
+                return;
+            }
+
             const reader = new FileReader();
             reader.onloadend = () => {
-                setFormData(prev => ({ ...prev, signature: reader.result }));
+                const base64String = reader.result as string;
+                const base64Content = base64String.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
+
+                // console.log(base64Content);
+                setFormData(prev => ({ ...prev, signature: base64Content }));
             };
             reader.readAsDataURL(file);
         }
     };
 
-    const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log("Form Data: ", formData);
-        // form submit to backend
-        // alert("Form submitted successfully!");
-        setFormData({
-            name: "",
-            fatherName: "",
-            designation: "",
-            dob: "",
-            currAddress: "",
-            district: "",
-            state: "",
-            pincode: "",
-            perAddress: "",
-            perDistrict: "",
-            perState: "",
-            perPincode: "",
-            companyName: "",
-            companyAddress: "",
-            department: "",
-            bankName: "",
-            accountNumber: "",
-            ifsc: "",
-            dateOfJoining: "",
-            signature: null,
-        });
-    }
+        // console.log("Form Data: ", formData);
+
+        try {
+            const response = await fetch("/api/empjoin-form", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formData),
+            });
+
+            const result : IAPIResponse<IEmployeeJoinForm> = await response.json();
+
+            console.log(result)
+            if (!result.success) {
+                alert("Error: " + result.message);
+                return;
+            }
+            // console.log(result.data);
+            alert("Form submitted successfully!");
+
+            setFormData({
+                name: "",
+                fatherName: "",
+                designation: "",
+                dob: "",
+                currAddress: "",
+                district: "",
+                state: "",
+                pincode: "",
+                perAddress: "",
+                perDistrict: "",
+                perState: "",
+                perPincode: "",
+                companyName: "",
+                companyAddress: "",
+                department: "",
+                bankName: "",
+                accountNumber: "",
+                ifsc: "",
+                dateOfJoining: "",
+                signature: null,
+            });
+        } catch (error) {
+            console.error("Error submitting form:", error);
+            alert("Failed to submit the form. Please try again.");
+        }
+    };
+
 
     return (
         <form onSubmit={submitForm} className="p-6 max-w-3xl mx-auto my-10 bg-white shadow-md rounded-lg">
@@ -167,7 +206,7 @@ export default function Page() {
                 </div>
                 <div className="flex flex-col">
                     <label htmlFor="signature">Signature</label>
-                    <Input id="signature" type="file" onChange={signatureChangeHandler} />
+                    <Input id="signature" accept="image/*" type="file" onChange={signatureChangeHandler} />
                 </div>
             </div>
             <Button type='submit' className="mt-6 w-full">Submit</Button>
