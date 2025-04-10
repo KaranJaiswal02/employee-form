@@ -1,60 +1,211 @@
-"use client"
-import { useState } from 'react'
+"use client";
 
-export default function Page() {
-    const [formData, setFormData] = useState({
-            name: "",
-            fathername: "",
-            dob: "",
-            sex: "",
-            maritalstatus: "",
-            address: "",
-    });
-    const [isChecked, setIsChecked] = useState(false);
+import React, { useState } from "react";
+// import EmployerCertification from "./page2";
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement >) => {
-        const { id, value } = e.target as HTMLInputElement; 
-        setFormData(prev => ({ ...prev, [id]: value }));
+// export default function Page() {
+//   return (
+//     <>
+//       <NominationForm />
+//       <EmployerCertification />
+//     </>
+//   );
+// }
+
+interface Nominee {
+    name: string;
+    address: string;
+    relationship: string;
+    dob: string;
+    share: string;
+    guardian: string;
+}
+
+export default function NominationForm() {
+    const [nominees, setNominees] = useState<Nominee[]>([
+        { name: "", address: "", relationship: "", dob: "", share: "", guardian: "" },
+    ]);
+
+    const handleChange = (index: number, field: keyof Nominee, value: string) => {
+        const updated = [...nominees];
+        updated[index][field] = value;
+        setNominees(updated);
     };
 
-    const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log("Form Data: ", formData);
-        // Perform form submission logic here (e.g., send data to an API)
+    const addRow = () => {
+        setNominees([
+            ...nominees,
+            { name: "", address: "", relationship: "", dob: "", share: "", guardian: "" },
+        ]);
+    };
+
+    const removeRow = (index: number) => {
+        const updated = nominees.filter((_, i) => i !== index);
+        setNominees(updated);
     };
 
     return (
-        <form onSubmit={submitForm} className="p-6 max-w-3xl mx-auto my-10 bg-white shadow-md rounded-lg">
-            <h2 className="text-2xl font-bold mb-4">Declaration Form</h2>
-            <div className="mb-4">
-                <label htmlFor="name" className="block text-gray-700 font-semibold mb-2">Name of the applicant making nomination:</label>
-                <input type="text" id="name" value={formData.name} onChange={handleInputChange} className="border border-gray-300 rounded-lg p-2 w-full" required />
+        <form className="max-w-5xl mx-auto bg-white p-10 text-black border border-gray-300 rounded-md font-serif space-y-6">
+            {/* Form Header */}
+            <div className="text-center">
+                <h2 className="font-bold text-lg">FORM I</h2>
+                <p className="text-sm">[See Rule 3]</p>
+                <h3 className="font-semibold text-base underline mt-2">
+                    Nomination and Declaration Form
+                </h3>
             </div>
-            <div className="mb-4">
-                <label htmlFor="fatherName" className="block text-gray-700 font-semibold mb-2">Father's Name:</label>
-                <input type="text" id="fatherName" value={formData.fathername} onChange={handleInputChange} className="border border-gray-300 rounded-lg p-2 w-full" required />
-            </div>
-            <div className="mb-4">
-                <label htmlFor="dob" className="block text-gray-700 font-semibold mb-2">Date of Birth:</label>
-                <input type="date" id="dob" value={formData.dob} onChange={handleInputChange} className="border border-gray-300 rounded-lg p-2 w-full" required />
-            </div>
-            <div className="mb-4">
-                <label htmlFor='maritalStatus' className="block text-gray-700 font-semibold mb-2">Marital Status:</label>
-                <select id="maritalStatus" value={formData.maritalstatus} onChange={handleInputChange} className="border border-gray-300 rounded-lg p-2 w-full" required>
-                    <option value="">Select</option>
-                    <option value="Single">Single</option>
-                    <option value="Married">Married</option>
-                    <option value="Divorced">Divorced</option>
-                    <option value="Widowed">Widowed</option>
-                </select>
-            </div>
-            <div className="mb-4">
-                <label htmlFor="address" className="block text-gray-700 font-semibold mb-2">Address:</label>
-                <textarea id="address" value={formData.address} onChange={handleInputChange} className="border border-gray-300 rounded-lg p-2 w-full" required></textarea>
-            </div>
-        <p className="text-gray-700 mb-4">I hereby nominated the person(s)/cancel the nomination made by me previously and nominated the person(s) mentioned below to receive any amountdue to me from the employer, in event to my death:</p>
-        </form>
-        
 
-    )
+            {/* Static Inputs */}
+            <div className="space-y-4 text-sm">
+                <div className="flex items-center gap-4">
+                    <label className="w-64 font-medium">1. Name of person making nomination:</label>
+                    <input
+                        type="text"
+                        placeholder="(In Block letters)"
+                        className="flex-1 border border-gray-400 px-2 py-1"
+                    />
+                </div>
+                <div className="flex items-center gap-4">
+                    <label className="w-64 font-medium">2. Father’s/Husband’s Name:</label>
+                    <input type="text" className="flex-1 border border-gray-400 px-2 py-1" />
+                </div>
+                <div className="flex items-center gap-4">
+                    <label className="w-64 font-medium">3. Date of Birth:</label>
+                    <input type="date" className="flex-1 border border-gray-400 px-2 py-1" />
+                </div>
+                <div className="flex items-center gap-4">
+                    <label className="w-64 font-medium">4. Sex:</label>
+                    <select className="flex-1 border border-gray-400 px-2 py-1">
+                        <option value="">Select</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div className="flex items-center gap-4">
+                    <label className="w-64 font-medium">5. Marital Status:</label>
+                    <select className="flex-1 border border-gray-400 px-2 py-1">
+                        <option value="">Select</option>
+                        <option>Single</option>
+                        <option>Married</option>
+                        <option>Divorced</option>
+                        <option>Widowed</option>
+                    </select>
+                </div>
+                <div className="flex items-start gap-4">
+                    <label className="w-64 font-medium mt-1">6. Address:</label>
+                    <div className="flex-1 space-y-2">
+                        <textarea
+                            placeholder="Permanent"
+                            className="w-full border border-gray-400 px-2 py-1"
+                            rows={2}
+                        />
+                        <textarea
+                            placeholder="Temporary"
+                            className="w-full border border-gray-400 px-2 py-1"
+                            rows={2}
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <p className="text-sm mt-6">
+                I hereby nominated the person(s)/cancel the nomination made by me previously and nominate the person(s)
+                mentioned below to receive any amount due to me from the employer, in the event of my death:
+            </p>
+
+            {/* Dynamic Nominee Table */}
+            <div className="overflow-x-auto mt-4">
+                <table className="w-full border border-black text-sm text-center">
+                    <thead className="bg-gray-100">
+                        <tr>
+                            <th className="border border-black px-2 py-1">Name of Nominee</th>
+                            <th className="border border-black px-2 py-1">Address</th>
+                            <th className="border border-black px-2 py-1">Relationship</th>
+                            <th className="border border-black px-2 py-1">Date of Birth</th>
+                            <th className="border border-black px-2 py-1">Share Amount</th>
+                            <th className="border border-black px-2 py-1">Guardian Info (if minor)</th>
+                            <th className="border border-black px-2 py-1">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {nominees.map((nominee, index) => (
+                            <tr key={index}>
+                                <td className="border border-black px-2 py-1">
+                                    <input
+                                        type="text"
+                                        className="w-full px-1 py-1 border border-gray-300"
+                                        value={nominee.name}
+                                        onChange={(e) => handleChange(index, "name", e.target.value)}
+                                    />
+                                </td>
+                                <td className="border border-black px-2 py-1">
+                                    <input
+                                        type="text"
+                                        className="w-full px-1 py-1 border border-gray-300"
+                                        value={nominee.address}
+                                        onChange={(e) => handleChange(index, "address", e.target.value)}
+                                    />
+                                </td>
+                                <td className="border border-black px-2 py-1">
+                                    <input
+                                        type="text"
+                                        className="w-full px-1 py-1 border border-gray-300"
+                                        value={nominee.relationship}
+                                        onChange={(e) => handleChange(index, "relationship", e.target.value)}
+                                    />
+                                </td>
+                                <td className="border border-black px-2 py-1">
+                                    <input
+                                        type="date"
+                                        className="w-full px-1 py-1 border border-gray-300"
+                                        value={nominee.dob}
+                                        onChange={(e) => handleChange(index, "dob", e.target.value)}
+                                    />
+                                </td>
+                                <td className="border border-black px-2 py-1">
+                                    <input
+                                        type="text"
+                                        className="w-full px-1 py-1 border border-gray-300"
+                                        value={nominee.share}
+                                        onChange={(e) => handleChange(index, "share", e.target.value)}
+                                    />
+                                </td>
+                                <td className="border border-black px-2 py-1">
+                                    <textarea
+                                        rows={2}
+                                        className="w-full px-1 py-1 border border-gray-300"
+                                        value={nominee.guardian}
+                                        onChange={(e) => handleChange(index, "guardian", e.target.value)}
+                                    />
+                                </td>
+                                <td className="border border-black px-2 py-1">
+                                    {nominees.length > 1 && (
+                                        <button
+                                            type="button"
+                                            onClick={() => removeRow(index)}
+                                            className="text-red-600 font-semibold"
+                                        >
+                                            Remove
+                                        </button>
+                                    )}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
+                <div className="text-right mt-4">
+                    <button
+                        type="button"
+                        onClick={addRow}
+                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                    >
+                        + Add Nominee
+                    </button>
+                </div>
+            </div>
+        </form>
+    );
 }
+
