@@ -75,7 +75,7 @@ export default function EmpForm2()
     };
 
     return (
-        <form onSubmit={submitForm} className="p-6 max-w-3xl mx-auto my-10 bg-white shadow-md rounded-lg">
+        <div >
             <h2 className="text-2xl font-bold mb-4"><i>TO BE FILLED BY HR</i></h2>
             <div className="mb-4">
                 <label htmlFor="ecode" className="block text-gray-700 font-semibold mb-2">E. CODE</label>
@@ -232,7 +232,7 @@ export default function EmpForm2()
             <label htmlFor="percentage3" className="block text-gray-700 font-semibold mb-2">PERCENTAGE:</label>
             <input type="text" id="percentage3" value={formData.percentage3} onChange={handleInputChange} className="border border-gray-300 rounded-lg p-2 w-full" required />
 
-        </form>
+        </div>
 
     )
 }

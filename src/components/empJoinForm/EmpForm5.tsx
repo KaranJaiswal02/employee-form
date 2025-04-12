@@ -44,7 +44,7 @@ export default function EmpForm5() {
     };
 
     return (
-        <div className="p-6 max-w-4xl mx-auto text-sm font-serif">
+        <div>
             <div className="text-right font-semibold">Annexure 5</div>
             <h1 className="text-center font-bold text-lg underline my-2">
                 MEDICLAIM PROPOSAL
@@ -160,11 +160,8 @@ export default function EmpForm5() {
                 </tbody>
             </table>
 
-            <button
-                onClick={addRow}
-                className="mt-2 bg-blue-500 text-white px-3 py-1 rounded"
-            >
-                ➕ Add Row
+            <button onClick={addRow} className="mt-2 text-blue-600 underline cursor-pointer">
+                + Add Row
             </button>
 
             {/* Footer */}

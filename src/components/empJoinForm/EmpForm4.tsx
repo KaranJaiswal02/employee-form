@@ -67,7 +67,7 @@ export default function EmpForm4() {
 
 
     return (
-        <div className="max-w-4xl mx-auto p-8 border border-black bg-white text-black">
+        <div>
             <div className="text-right text-sm font-semibold mb-2">Annexure 3</div>
             <h2 className="text-center font-bold underline text-lg mb-6">
                 FAMILY DECLARATION FORM
@@ -153,7 +153,7 @@ export default function EmpForm4() {
                         ))}
                     </tbody>
                 </table>
-                <button onClick={addFamilyRow} className="mt-2 text-blue-600 underline">
+                <button onClick={addFamilyRow} className="mt-2 text-blue-600 underline cursor-pointer">
                     + Add Row
                 </button>
             </div>
@@ -224,7 +224,7 @@ export default function EmpForm4() {
                         ))}
                     </tbody>
                 </table>
-                <button onClick={addNomineeRow} className="mt-2 text-blue-600 underline">
+                <button onClick={addNomineeRow} className="mt-2 text-blue-600 underline cursor-pointer">
                     + Add Row
                 </button>
             </div>

@@ -108,7 +108,7 @@ export default function EmpForm1() {
 
 
     return (
-        <form onSubmit={submitForm} className="p-6 max-w-3xl mx-auto my-10 bg-white shadow-md rounded-lg">
+        <div>
             <h2 className="text-xl font-semibold mb-4">Employee Joining Form</h2>
             <div className="grid grid-cols-2 gap-4">
                 <div className="flex flex-col">
@@ -189,6 +189,6 @@ export default function EmpForm1() {
                 </div>
             </div>
             <Button type='submit' className="mt-6 w-full">Submit</Button>
-        </form>
+        </div>
     );
 }

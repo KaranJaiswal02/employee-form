@@ -2,7 +2,7 @@ import React from "react";
 
 export default function EmpForm3() {
     return (
-        <div className="max-w-4xl mx-auto">
+        <div>
             <div className="p-6 space-y-6 text-sm font-sans">
                 {/* EDUCATIONAL QUALIFICATION */}
                 <h2 className="font-bold uppercase">
