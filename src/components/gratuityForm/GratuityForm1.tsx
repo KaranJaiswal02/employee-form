@@ -1,8 +1,33 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
+
+interface Nominee {
+  name: string;
+  relationship: string;
+  age: number;
+  proportion: number;
+}
+
+interface FormData {
+  name: string;
+  date: string;
+  nominee: Nominee[];
+}
 
 export default function GratuityForm1() {
+
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    date: "",
+    nominee: [{
+      name: "",
+      relationship: "",
+      age: 0,
+      proportion: 0,
+    }]
+  });
+
   return (
     <div>
       <h2 className="text-center text-base font-bold uppercase mb-2">
@@ -22,6 +47,7 @@ export default function GratuityForm1() {
         I, Shri/Shrimati/Kumari{" "}
         <input
           type="text"
+          value={formData.name}
           className="border-b border-black w-72 mx-2"
           placeholder="Name in full here"
           required
@@ -52,7 +78,7 @@ export default function GratuityForm1() {
         </li>
         <li>
           I have excluded my husband from my family by a notice dated{" "}
-          <input type="date" className="border-b border-black w-40 inline-block" /> to the
+          <input type="date" value={formData.date} className="border-b border-black w-40 inline-block" /> to the
           controlling authority in terms of the provison to clause (h) of Section 2 of the said Act.
         </li>
         <li>Nomination made herein invalidates my previous nomination.</li>
@@ -74,22 +100,22 @@ export default function GratuityForm1() {
           </tr>
         </thead>
         <tbody>
-          {[1, 2, 3].map((row) => (
-            <tr key={row}>
+          {formData.nominee.map((row, i) => (
+            <tr key={i}>
               <td className="border border-black p-2">
-                <input type="text" className="w-full" placeholder={`Nominee ${row} Full Name & Address`} />
+                <input type="text" value={row.name} className="w-full" placeholder={`Nominee ${row} Full Name & Address`} />
               </td>
               <td className="border border-black p-2">
-                <input type="text" className="w-full" placeholder="Relationship" />
+                <input type="text" value={row.relationship} className="w-full" placeholder="Relationship" />
               </td>
               <td className="border border-black p-2">
-                <input type="number" className="w-full" placeholder="Age" />
+                <input type="number" value={row.age} className="w-full" placeholder="Age" />
               </td>
               <td className="border border-black p-2">
-                <input type="number" className="w-full" placeholder="Proportion (e.g., 100%)" />
+                <input type="number" value={row.proportion} className="w-full" placeholder="Proportion (e.g., 100%)" />
               </td>
             </tr>
-            
+
           ))}
         </tbody>
       </table>
