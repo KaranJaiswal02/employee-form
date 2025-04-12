@@ -2,9 +2,9 @@
 
 import React from "react";
 
-export default function GratuityFormF() {
+export default function GratuityForm1() {
   return (
-    <div className="bg-white text-black p-8 max-w-4xl mx-auto text-sm border border-gray-400 rounded-md">
+    <div>
       <h2 className="text-center text-base font-bold uppercase mb-2">
         Payment of Gratuity (Central) Rules
       </h2>
