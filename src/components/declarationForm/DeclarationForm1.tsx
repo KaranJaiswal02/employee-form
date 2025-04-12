@@ -21,7 +21,7 @@ interface Nominee {
     guardian: string;
 }
 
-export default function NominationForm() {
+export default function DeclarationForm1() {
     const [nominees, setNominees] = useState<Nominee[]>([
         { name: "", address: "", relationship: "", dob: "", share: "", guardian: "" },
     ]);

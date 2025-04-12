@@ -329,6 +329,7 @@ export default function GratuityFormFStatement() {
 
             <h4 className="font-bold text-center">Declaration by Witnesses</h4>
             <p>Nomination signed/thumb-impressed before me</p>
+            <p>Name in full and Full address of witnesses. </p>
             <div className="grid grid-cols-2 gap-4 mt-4">
                 <div>
                     <ol className="list-decimal list-inside space-y-4">

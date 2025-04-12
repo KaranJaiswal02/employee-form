@@ -89,9 +89,12 @@ export default function GratuityFormF() {
                 <input type="number" className="w-full" placeholder="Proportion (e.g., 100%)" />
               </td>
             </tr>
+            
           ))}
         </tbody>
       </table>
+      <hr className="my-6 border-black" />
+
     </div>
   );
 }

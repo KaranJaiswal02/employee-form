@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 //import IAPIResponse from '@/types/responseType'
 
-export default function Page() 
+export default function EmpForm2() 
 {
     const [formData, setFormData] = useState({
         name: "",
