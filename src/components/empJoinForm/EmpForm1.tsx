@@ -188,7 +188,6 @@ export default function EmpForm1() {
                     <Input id="signature" accept="image/*" type="file" onChange={signatureChangeHandler} />
                 </div>
             </div>
-            <Button type='submit' className="mt-6 w-full">Submit</Button>
         </div>
     );
 }

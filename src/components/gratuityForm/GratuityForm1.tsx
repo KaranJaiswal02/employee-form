@@ -1,32 +1,29 @@
 "use client";
 
-import { useState } from "react";
-
-interface Nominee {
-  name: string;
-  relationship: string;
-  age: number;
-  proportion: number;
-}
-
-interface FormData {
-  name: string;
-  date: string;
-  nominee: Nominee[];
-}
+import { grauFormData } from "@/hooks/Atoms";
+import { useAtom } from "jotai";
 
 export default function GratuityForm1() {
 
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    date: "",
-    nominee: [{
-      name: "",
-      relationship: "",
-      age: 0,
-      proportion: 0,
-    }]
-  });
+  const [formData, setFormData] = useAtom(grauFormData);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleNomineeChange = (index: number, field: string, value: string | number) => {
+    setFormData((prevFormData) => {
+      const updatedNominees = [...prevFormData.nominee];
+      updatedNominees[index] = {
+        ...updatedNominees[index],
+        [field]: field === "age" || field === "proportion" ? Number(value) : value,
+      };
+      return {
+        ...prevFormData,
+        nominee: updatedNominees,
+      };
+    });
+  };  
 
   return (
     <div>
@@ -51,6 +48,9 @@ export default function GratuityForm1() {
           className="border-b border-black w-72 mx-2"
           placeholder="Name in full here"
           required
+          name="name"
+          onChange={handleChange}
+
         //given as the required prop in this code snippet, may not be queired or not work on submission
         />
         whose particulars are given in the statement below, hereby nominate the person(s)
@@ -78,7 +78,9 @@ export default function GratuityForm1() {
         </li>
         <li>
           I have excluded my husband from my family by a notice dated{" "}
-          <input type="date" value={formData.date} className="border-b border-black w-40 inline-block" /> to the
+          <input type="date" value={formData.noticedate} className="border-b border-black w-40 inline-block"
+            onChange={handleChange} name="noticedate" required
+          /> to the
           controlling authority in terms of the provison to clause (h) of Section 2 of the said Act.
         </li>
         <li>Nomination made herein invalidates my previous nomination.</li>
@@ -103,19 +105,26 @@ export default function GratuityForm1() {
           {formData.nominee.map((row, i) => (
             <tr key={i}>
               <td className="border border-black p-2">
-                <input type="text" value={row.name} className="w-full" placeholder={`Nominee ${row} Full Name & Address`} />
+                <input type="text" value={row.name} className="w-full" placeholder={`Full Name & Address`}
+                  onChange={(e)=> handleNomineeChange(i, "name", e.target.value)}
+                />
               </td>
               <td className="border border-black p-2">
-                <input type="text" value={row.relationship} className="w-full" placeholder="Relationship" />
+                <input type="text" value={row.relationship} className="w-full" placeholder="Relationship"
+                  onChange={(e)=> handleNomineeChange(i, "relationship", e.target.value)}
+                />
               </td>
               <td className="border border-black p-2">
-                <input type="number" value={row.age} className="w-full" placeholder="Age" />
+                <input type="number" value={row.age} className="w-full" placeholder="Age"
+                  onChange={(e)=> handleNomineeChange(i, "age", e.target.value)}
+                />
               </td>
               <td className="border border-black p-2">
-                <input type="number" value={row.proportion} className="w-full" placeholder="Proportion (e.g., 100%)" />
+                <input type="number" value={row.proportion} className="w-full" placeholder="Proportion (e.g., 100%)"
+                  onChange={(e)=> handleNomineeChange(i, "proportion", e.target.value)}
+                />
               </td>
             </tr>
-
           ))}
         </tbody>
       </table>

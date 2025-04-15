@@ -1,11 +1,13 @@
 "use client";
-import GratuityForm1 from '@/components/gratuityForm/GratuityForm1'
-import GratuityForm2 from '@/components/gratuityForm/GratuityForm2'
+import Nomination1 from '@/components/nominationrevisedform/Nomination1'
+import Nomination2 from '@/components/nominationrevisedform/Nomination2'
+
+import { Button } from "@/components/ui/button";
+import { useAtom } from "jotai";
+import { useRouter } from "next/navigation";
+import React , {useEffect} from "react";
+import { nominationFormData } from "@/hooks/Atoms";
 import { empFormData, grauFormData } from '@/hooks/Atoms';
-import { useAtom } from 'jotai';
-import React, { useEffect } from 'react'
-import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 
 export default function Page() {
     const [formData, setFormData] = useAtom(grauFormData);
@@ -19,8 +21,8 @@ export default function Page() {
     return (
         <div className='w-full px-auto py-5'>
             <div className="bg-white text-black p-8 max-w-4xl mx-auto text-sm border border-gray-400 rounded-md">
-                <GratuityForm1 />
-                <GratuityForm2 />
+                <Nomination1 />
+                <Nomination2 />
             </div>
         </div>
     )
