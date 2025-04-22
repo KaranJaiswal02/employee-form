@@ -45,7 +45,7 @@ export default function DeclarationForm1() {
     };
 
     return (
-        <form className="max-w-5xl mx-auto bg-white p-10 text-black border border-gray-300 rounded-md font-serif space-y-6">
+        <div >
             {/* Form Header */}
             <div className="text-center">
                 <h2 className="font-bold text-lg">FORM I</h2>
@@ -197,15 +197,15 @@ export default function DeclarationForm1() {
 
                 <div className="text-right mt-4">
                     <button
-                        type="button"
-                        onClick={addRow}
-                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                    >
-                        + Add Nominee
-                    </button>
+                    type="button"
+                    onClick={addRow}
+                    className="px-4 py-1 bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
+                >
+                    + Add Nominee
+                </button>
                 </div>
             </div>
-        </form>
+        </div>
     );
 }
 

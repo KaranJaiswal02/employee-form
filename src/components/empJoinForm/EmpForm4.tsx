@@ -142,18 +142,22 @@ export default function EmpForm4() {
                                     />
                                 </td>
                                 <td className="border border-black">
-                                    <button
+                                {index !== 0 && (<button
                                         onClick={() => removeFamilyRow(index)}
-                                        className="text-red-600 font-semibold"
+                                        className="text-red-600 font-semibold cursor-pointer"
                                     >
-                                        ✕
-                                    </button>
+                                        ❌
+                                    </button>)}
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <button onClick={addFamilyRow} className="mt-2 text-blue-600 underline cursor-pointer">
+                <button
+                    type="button"
+                    onClick={addFamilyRow}
+                    className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
+                >
                     + Add Row
                 </button>
             </div>
@@ -213,18 +217,22 @@ export default function EmpForm4() {
                                     />
                                 </td>
                                 <td className="border border-black">
-                                    <button
+                                {index !== 0 && (<button
                                         onClick={() => removeNomineeRow(index)}
-                                        className="text-red-600 font-semibold"
+                                        className="text-red-600 font-semibold cursor-pointer"
                                     >
-                                        ✕
-                                    </button>
+                                        ❌
+                                    </button>)}
                                 </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-                <button onClick={addNomineeRow} className="mt-2 text-blue-600 underline cursor-pointer">
+                <button
+                    type="button"
+                    onClick={addNomineeRow}
+                    className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
+                >
                     + Add Row
                 </button>
             </div>

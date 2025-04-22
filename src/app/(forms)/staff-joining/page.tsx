@@ -11,15 +11,15 @@ import { useRouter } from 'next/navigation';
 import React from 'react'
 
 export default function page() {
-  const [empFormData1, setEmpFormData1] = useAtom(empFormData);
+  const [empFormData1] = useAtom(empFormData);
   const router = useRouter();
 
   const dummyDBCall = () => true;
 
-  const submitEmpDataForm = (e : React.FormEvent<HTMLFormElement>) => {
+  const submitEmpDataForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (dummyDBCall()) {
-      router.push("/gratuity-form")
+      router.push("/idcard-form")
     }
     else {
       alert("Form Submission Failed!");
@@ -27,12 +27,16 @@ export default function page() {
   }
   return (
     <form onSubmit={submitEmpDataForm} className="p-6 max-w-4xl mx-auto my-10 bg-white shadow-md rounded-lg">
-        <EmpForm1 />
-        <EmpForm2 />
-        <EmpForm3 />
-        <EmpForm4 />
-        <EmpForm5 />
-        <Button type='submit' className="mt-6 w-full">Submit</Button>
+      <EmpForm1 />
+      <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
+      <EmpForm2 />
+      <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
+      <EmpForm3 />
+      <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
+      <EmpForm4 />
+      <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
+      <EmpForm5 />
+      <Button type='submit' className="mt-6 w-full">Submit</Button>
     </form>
   )
 }

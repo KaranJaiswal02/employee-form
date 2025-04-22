@@ -1,24 +1,20 @@
 "use client";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAtom } from 'jotai';
+import { bankMandateFormData } from '@/hooks/Atoms';
+import { Button } from '@/components/ui/button';
 
 export default function BankMandateForm() {
-    const [formData, setFormData] = useState({
-        name: '',
-        employeeCode: '',
-        category: '',
-        address: '',
-        email: '',
-        pan: '',
-        bankName: '',
-        branchPlace: '',
-        branchCity: '',
-        pincode: '',
-        accountType: '',
-        accountNumber: '',
-        ifscCode: '',
-        place: '',
-        date: '',
-    });
+    const router = useRouter();
+    const [formData, setFormData] = useAtom(bankMandateFormData);
+
+    useEffect(() => {
+        setFormData(prev => ({
+            ...prev,
+            date: new Date().toISOString().split('T')[0],
+        }));
+    },[])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
@@ -33,13 +29,19 @@ export default function BankMandateForm() {
         e.preventDefault();
         // Add form submission logic here
         console.log('Form submitted:', formData);
-        // You might want to add validation before submission
+        // Dummy DB call simulation
+        const dummyDBCall = () => true;
+        if (dummyDBCall()) {
+            router.push("/nomination-declaration-form1"); // Redirect to a thank you page or another page
+        } else {
+            alert("Form Submission Failed!");
+        }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-4 md:p-8 border border-black bg-white text-sm">
+        <form onSubmit={handleSubmit} className="max-w-4xl border border-gray-400 rounded-md my-4 mx-auto p-4 md:p-8 bg-white text-sm">
             <div className="flex justify-between items-start mb-4">
-                <img src="/your-logo-path.png" alt="Company Logo" className="h-12" />
+                <img src="/assets/images/logo.png" alt="Company Logo" className="h-8" />
                 <span className="font-semibold">Annexure</span>
             </div>
 
@@ -267,14 +269,9 @@ export default function BankMandateForm() {
 
             <div className="text-right font-bold mt-6 mb-4">SIGNATURE</div>
 
-            <div className="flex justify-center mt-8">
-                <button 
-                    type="submit" 
-                    className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-                >
-                    Submit Form
-                </button>
-            </div>
+            <div className="flex justify-center mt-6">
+          <Button type="submit" className="w-full cursor-pointer">Submit</Button>
+        </div>
         </form>
     );
 }

@@ -2,7 +2,7 @@
 
 export default function DeclarationForm1() {
     return (
-        <div className="max-w-5xl mx-auto bg-white p-10 text-black border border-gray-300 rounded-md font-serif space-y-6 mt-8 text-sm">
+        <div>
             {/* Certification Statements */}
             <ol className="list-decimal space-y-2 ml-6">
                 <li>

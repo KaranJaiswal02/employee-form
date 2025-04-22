@@ -92,19 +92,8 @@ export default function EPFNominationForm() {
         }
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        const completeFormData = {
-            ...formData,
-            nominees,
-            familyMembers
-        };
-        console.log('Form submitted:', completeFormData);
-        // Add your form submission logic here
-    };
-
     return (
-        <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-4 md:p-8 border border-black bg-white text-sm">
+        <div>
             <h1 className="text-center font-bold text-lg mb-2">(FORM 2 REVISED)</h1>
             <h2 className="text-center font-bold text-lg mb-6">NOMINATION AND DECLARATION FORM FOR UNEXEMPTED/EXEMPTED ESTABLISHMENTS</h2>
 
@@ -312,14 +301,14 @@ export default function EPFNominationForm() {
                                         </div>
                                     </td>
                                     <td className="border border-black p-1 text-center">
-                                        <button
+                                        {nominees.length > 1 && (<button
                                             type="button"
                                             onClick={() => removeNominee(index)}
-                                            className="text-red-500 hover:text-red-700"
+                                            className="text-red-500 hover:text-red-700 cursor-pointer"
                                             disabled={nominees.length <= 1}
                                         >
-                                            Remove
-                                        </button>
+                                            ❌
+                                        </button>)}
                                     </td>
                                 </tr>
                             ))}
@@ -330,7 +319,7 @@ export default function EPFNominationForm() {
                 <button
                     type="button"
                     onClick={addNominee}
-                    className="px-4 py-1 bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
+                    className="px-4 py-1 cursor-pointer bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
                 >
                     + Add Nominee
                 </button>
@@ -433,14 +422,14 @@ export default function EPFNominationForm() {
                                         />
                                     </td>
                                     <td className="border border-black p-1 text-center">
-                                        <button
+                                        { familyMembers.length > 1 &&(<button
                                             type="button"
                                             onClick={() => removeFamilyMember(index)}
-                                            className="text-red-500 hover:text-red-700"
+                                            className="text-red-500 hover:text-red-700 cursor-pointer"
                                             disabled={familyMembers.length <= 1}
                                         >
-                                            Remove
-                                        </button>
+                                            ❌
+                                        </button>)}
                                     </td>
                                 </tr>
                             ))}
@@ -451,7 +440,7 @@ export default function EPFNominationForm() {
                 <button
                     type="button"
                     onClick={addFamilyMember}
-                    className="px-4 py-1 bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
+                    className="px-4 py-1 cursor-pointer bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
                 >
                     + Add Family Member
                 </button>
@@ -465,6 +454,6 @@ export default function EPFNominationForm() {
                     Submit Form
                 </button>
             </div> */}
-        </form>
+        </div>
     );
 }

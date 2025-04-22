@@ -111,7 +111,6 @@ export default function EmpForm5() {
                                     onChange={(e) =>
                                         handleChange(index, "name", e.target.value)
                                     }
-                                    disabled={index === 0}
                                 />
                             </td>
                             <td className="border border-black p-1">
@@ -136,7 +135,7 @@ export default function EmpForm5() {
                             </td>
                             <td className="border border-black p-1">
                                 <input
-                                    type="text"
+                                    type="number"
                                     value={row.age}
                                     className="w-full outline-none"
                                     onChange={(e) => handleChange(index, "age", e.target.value)}
@@ -144,23 +143,30 @@ export default function EmpForm5() {
                             </td>
                             <td className="border border-black p-1">
                                 <input
-                                    type="text"
+                                    type="number"
                                     value={row.amount}
                                     className="w-full outline-none"
                                     onChange={(e) => handleChange(index, "amount", e.target.value)}
                                 />
                             </td>
-                            <td className="border border-black p-1 text-center">
+                            <td className="border border-black text-center">
                                 {index !== 0 && (
-                                    <button onClick={() => removeRow(index)}>❌</button>
-                                )}
+                                    <button
+                                        onClick={() => removeRow(index)}
+                                        className="text-red-600 font-semibold cursor-pointer"
+                                    >
+                                        ❌
+                                    </button>)}
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-
-            <button onClick={addRow} className="mt-2 text-blue-600 underline cursor-pointer">
+            <button
+                type="button"
+                onClick={addRow}
+                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
+            >
                 + Add Row
             </button>
 

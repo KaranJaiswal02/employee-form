@@ -26,22 +26,9 @@ export default function EPFNominationFormPart2() {
     setNominee(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const formData = {
-      hasNoFamily,
-      nominee,
-      subscriberDate,
-      employerName,
-      employerDate,
-      establishmentDetails
-    };
-    console.log('Form submitted:', formData);
-    // Add your form submission logic here
-  };
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-4xl mx-auto p-4 md:p-8 border border-black bg-white text-sm">
+    <div className="max-w-4xl mx-auto p-4 md:p-8 border border-black bg-white text-sm">
       {/* First Declaration */}
       <div className="mb-6">
         <div className="flex items-start gap-2 mb-4">
@@ -135,14 +122,14 @@ export default function EPFNominationFormPart2() {
         <h3 className="font-bold text-center mb-4">CERTIFICATE BY EMPLOYER</h3>
 
         <p className="mb-4">
-          Certified that the above declaration and nomination has been signed / thumb impressed before me by Shri / Smt./ Miss 
+          Certified that the above declaration and nomination has been signed / thumb impressed before me by Shri / Smt./ Miss
           <input
             type="text"
             value={employerName}
             onChange={(e) => setEmployerName(e.target.value)}
             className="border-b border-black outline-none mx-2 w-48"
             placeholder="Name"
-          /> 
+          />
           employed in my establishment after he/she has read the entries / the entries have been read over to him/her by me and got confirmed by him/her.
         </p>
 
@@ -188,14 +175,14 @@ export default function EPFNominationFormPart2() {
         </div>
       </div>
 
-      <div className="flex justify-center mt-8">
+      {/* <div className="flex justify-center mt-8">
         <button
           type="submit"
           className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
         >
           Submit Form
         </button>
-      </div>
-    </form>
+      </div> */}
+    </div>
   );
 }
