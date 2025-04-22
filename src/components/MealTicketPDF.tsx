@@ -2,14 +2,14 @@
 
 import { useRef, useState } from "react";
 import { Button } from "./ui/button";
-
 type MealTicketPDFProps = {
   name: string;
   month: string;
+  year: string;
   noOfDays: number;
 };
 
-export default function MealTicketPDF({ name, month, noOfDays }: MealTicketPDFProps) {
+export default function MealTicketPDF({ name, month,year, noOfDays }: MealTicketPDFProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -49,19 +49,20 @@ export default function MealTicketPDF({ name, month, noOfDays }: MealTicketPDFPr
       {/* Only this part will go to PDF */}
       <div
         ref={contentRef}
-        className="grid grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 justify-items-center p-4 bg-white"
+        className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-3 justify-items-center p-4 bg-white"
       >
-        {Array.from({ length: noOfDays }).map((_, index) => (
+
+        {Array.from({ length: noOfDays=28 }).map((_, index) => (
           <div
             key={index}
-            className="w-44 h-32 border border-gray-400 rounded-md bg-white shadow-sm p-2 flex flex-col justify-between relative"
+            className="w-40 h-27 border border-gray-400 rounded-md bg-white shadow-sm p-2 flex flex-col justify-between relative"
           >
             <div className="absolute top-1 right-2 text-[15px] font-semibold text-gray-500">
-               #{index + 1}
+              #{index + 1}
             </div>
             <div className="flex justify-center">
               <img
-                src="/assets/images/SL India Software Center.png" // make sure this path works!
+                src="/assets/images/SL India Software Center copy.png" // make sure this path works!
                 className="w-60 h-12 object-contain"
                 alt="Logo"
                 onError={(e) => {
@@ -73,7 +74,7 @@ export default function MealTicketPDF({ name, month, noOfDays }: MealTicketPDFPr
               {name}
             </div>
             <div className="text-center text-[12px] text-gray-600">
-              {month}
+              {month} {year}
             </div>
           </div>
         ))}
