@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { nominationForm2Data } from "@/hooks/Atoms";
+import { bankMandateFormData, nominationForm1Data, nominationForm2Data } from "@/hooks/Atoms";
 import { empFormData, grauFormData } from '@/hooks/Atoms';
 
 export default function Page() {
@@ -14,14 +14,21 @@ export default function Page() {
     const [empFormData1] = useAtom(empFormData);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [nominationForm1] = useAtom(nominationForm1Data);
+    const [bankMandateForm] = useAtom(bankMandateFormData);
+
 
     // Initialize form data with employee name
     useEffect(() => {
         setFormData(prev => ({
             ...prev,
-            name: empFormData1.name || ''
+            //name: empFormData1.name || '',
+            dob: empFormData1.dob || '',
+            marriagestatus: nominationForm1.maritalStatus || '',
+            accountNo: bankMandateForm.accountNumber || '',
+            
         }));
-    }, [empFormData1.name, setFormData]);
+    }, []);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

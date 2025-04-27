@@ -38,6 +38,7 @@ export default function Page() {
       name: empFormData1.name || "",
       fathersName: empFormData1.fatherName || "",
       dob: empFormData1.dob || "",
+      address: empFormData1.perAddress || "",
       
     }));
   },[])

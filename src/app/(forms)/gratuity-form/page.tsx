@@ -1,7 +1,7 @@
 "use client";
 import GratuityForm1 from '@/components/gratuityForm/GratuityForm1'
 import GratuityForm2 from '@/components/gratuityForm/GratuityForm2'
-import { empFormData, grauFormData } from '@/hooks/Atoms';
+import { empFormData, grauFormData, nominationForm1Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation';
@@ -12,12 +12,18 @@ export default function Page() {
     const router = useRouter()
     const [formData, setFormData] = useAtom(grauFormData);
     const [empFormData1] = useAtom(empFormData);
+    const [nominationform1] = useAtom(nominationForm1Data);
     useEffect(() => {
         setFormData(prev => ({
             ...prev,
-            name: empFormData1.name
+            name: empFormData1.name || "",
+            department: empFormData1.department || "",
+            marriagestatus: nominationform1.maritalStatus || "",
+            
         }))
     }, [])
+
+
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         console.log(formData)
