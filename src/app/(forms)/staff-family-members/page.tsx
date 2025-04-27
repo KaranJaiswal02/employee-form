@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import React, { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { empFormData, staffFamilyFormData } from "@/hooks/Atoms";
+import { empFormData, formStatusus, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { set } from "mongoose";
 
@@ -36,6 +36,7 @@ export default function MedicalInsuranceForm() {
     const router = useRouter();
     const [formData, setFormData] = useAtom<FormData>(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
+    const [formStatus, setFormStatus] = useAtom(formStatusus);
 
     const calculateAge = (dob: string) => {
         const birthDate = new Date(dob);
@@ -57,7 +58,7 @@ export default function MedicalInsuranceForm() {
             dob: form1data.dob || "",
             department: form1data.department || "",
             perAddress: form1data.currAddress || "",
-            age : calculateAge(form1data.dob) || 0,
+            age: calculateAge(form1data.dob) || 0,
         }));
     }, []);
 
@@ -74,15 +75,29 @@ export default function MedicalInsuranceForm() {
         });
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(formData);
-        // Dummy DB call simulation
-        const dummyDBCall = () => true;
-        if (dummyDBCall()) {
-            router.push("/bank-mandate"); // Redirect to the next form
-        } else {
-            alert("Form Submission Failed!");
+        const response = await fetch("/api/staff-family-members", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+        if (response.status === 201) {
+            setFormStatus((prevStatus) => ({
+                ...prevStatus,
+                form3: {
+                    ...prevStatus.form2,
+                    status: "done",
+                },
+            }));
+            router.push("/bank-mandate");
+        }
+        else {
+            const responseData = await response.json();
+            alert(responseData.errorMessage);
         }
     };
 

@@ -30,12 +30,12 @@ export default function page() {
     if(response.status === 201) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
-        form2: {
+        form1: {
             ...prevStatus.form2,
             status: "done",
         },
     }));
-      router.push("/staff-family-members");
+      router.push("/idcard-form");
     }
     else {
       const responseData = await response.json();
