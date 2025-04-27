@@ -28,6 +28,8 @@ export const empFormData = atom({
   percontactNumber: "",
   companylocation: "",
   date: currentDate,
+  sameAsCurrent: false,
+
 
 })
 
