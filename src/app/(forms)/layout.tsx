@@ -79,7 +79,7 @@ export default function FormLayout({
                 </div>
 
                 {/* Bottom section - Toggle Button */}
-                <div className="mt-6">
+                <div className="mt-6 hidden">
                     <div className="flex items-center space-x-3">
                         <span className="text-gray-800 dark:text-gray-200 font-medium">
                             {isDarkMode ? "🌙" : "☀️"}
