@@ -223,7 +223,7 @@ export const staffFamilyFormData = atom({
   name: '',
   department: '',
   dob: '',
-  age: '',
+  age: 0,
   maritalStatus: '',
   spouseName: '',
   spouseDob: '',

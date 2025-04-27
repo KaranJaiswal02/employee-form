@@ -17,7 +17,7 @@ type FormData = {
     name: string;
     department: string;
     dob: string;
-    age: string;
+    age: number;
     maritalStatus: string;
     spouseName: string;
     spouseDob: string;
@@ -36,15 +36,29 @@ export default function MedicalInsuranceForm() {
     const router = useRouter();
     const [formData, setFormData] = useAtom<FormData>(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
-    
+
+    const calculateAge = (dob: string) => {
+        const birthDate = new Date(dob);
+        const today = new Date();
+        let age = today.getFullYear() - birthDate.getFullYear();
+        const monthDiff = today.getMonth() - birthDate.getMonth();
+        const dayDiff = today.getDate() - birthDate.getDate();
+        // Adjust if birthday hasn't occurred yet this year
+        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+            age--;
+        }
+        return age;
+    }
+
     useEffect(() => {
-        setFormData( (prev) => ({
+        setFormData((prev) => ({
             ...prev,
             name: form1data.name || "",
             dob: form1data.dob || "",
             department: form1data.department || "",
-            perAddress: form1data.perAddress || "",
-    }));
+            perAddress: form1data.currAddress || "",
+            age : calculateAge(form1data.dob) || 0,
+        }));
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -102,6 +116,7 @@ export default function MedicalInsuranceForm() {
                                 onChange={handleChange}
                                 className="w-full"
                                 placeholder="Employee Name"
+                                disabled={true}
                             />
                         </td>
                     </tr>
@@ -117,6 +132,7 @@ export default function MedicalInsuranceForm() {
                                 onChange={handleChange}
                                 className="w-full"
                                 placeholder="Department"
+                                disabled={true}
                             />
                         </td>
                         <td className="p-2 border border-black">DOB</td>
@@ -127,6 +143,7 @@ export default function MedicalInsuranceForm() {
                                 value={formData.dob}
                                 onChange={handleChange}
                                 className="w-full"
+                                disabled={true}
                             />
                         </td>
                         <td className="p-2 border border-black">AGE</td>
@@ -138,6 +155,7 @@ export default function MedicalInsuranceForm() {
                                 onChange={handleChange}
                                 className="w-full"
                                 placeholder="Age"
+                                disabled={true}
                             />
                         </td>
                     </tr>
@@ -309,6 +327,7 @@ export default function MedicalInsuranceForm() {
                                 onChange={handleChange}
                                 className="w-full h-16"
                                 placeholder="Full Address"
+                                disabled={true}
                             ></textarea>
                         </td>
                     </tr>
