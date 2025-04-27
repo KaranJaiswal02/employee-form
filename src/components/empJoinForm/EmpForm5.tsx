@@ -4,7 +4,6 @@ import { useAtom } from "jotai";
 import { empFormData } from "@/hooks/Atoms";
 import { useEffect } from "react";
 
-
 type MemberRow = {
     name: string;
     relationship: string;
@@ -14,38 +13,62 @@ type MemberRow = {
 };
 
 export default function EmpForm5() {
+    const [empData] = useAtom(empFormData);
+    const [formData, setFormData] = useState({
+        name: empData.name || "",
+        code: "",
+        grade: "",
+        dept: "",
+        date: "",
+    });
     const [rows, setRows] = useState<MemberRow[]>([
         {
-            name: " ",
+            name: empData.name || "",
             relationship: "SELF",
             dob: "",
             age: "",
             amount: "",
         },
     ]);
-    
 
-    const handleChange = (
+    useEffect(() => {
+        // Update the name in the first row when empData.name changes
+        setRows(prevRows => {
+            const updated = [...prevRows];
+            if (updated.length > 0) {
+                updated[0] = { ...updated[0], name: empData.name || "" };
+            }
+            return updated;
+        });
+    }, [empData.name]);
+
+    const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleRowChange = (
         index: number,
         field: keyof MemberRow,
         value: string
     ) => {
-        const updated = [...rows];
-        updated[index][field] = value;
-        setRows(updated);
+        setRows(prev => {
+            const updated = [...prev];
+            updated[index] = { ...updated[index], [field]: value };
+            return updated;
+        });
     };
 
     const addRow = () => {
-        setRows([
-            ...rows,
+        setRows(prev => [
+            ...prev,
             { name: "", relationship: "", dob: "", age: "", amount: "" },
         ]);
     };
 
     const removeRow = (index: number) => {
         if (index === 0) return; // prevent removal of SELF row
-        const updated = rows.filter((_, i) => i !== index);
-        setRows(updated);
+        setRows(prev => prev.filter((_, i) => i !== index));
     };
 
     return (
@@ -57,38 +80,42 @@ export default function EmpForm5() {
 
             <div className="grid grid-cols-2 gap-4 mb-6">
                 <div>
-                    <label className="font-semibold">
-                        NAME:
-                    </label>
+                    <label className="font-semibold">NAME:</label>
                     <input
                         type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleFormChange}
                         className="ml-2 border-b border-black outline-none"
                     />
                 </div>
                 <div>
-                    <label className="font-semibold">
-                        CODE:
-                    </label>
+                    <label className="font-semibold">CODE:</label>
                     <input
                         type="text"
+                        name="code"
+                        value={formData.code}
+                        onChange={handleFormChange}
                         className="ml-2 border-b border-black outline-none"
                     />
                 </div>
                 <div>
-                    <label className="font-semibold">
-                        GRADE:
-                    </label>
+                    <label className="font-semibold">GRADE:</label>
                     <input
                         type="text"
+                        name="grade"
+                        value={formData.grade}
+                        onChange={handleFormChange}
                         className="ml-2 border-b border-black outline-none"
                     />
                 </div>
                 <div>
-                    <label className="font-semibold">
-                        DEPT:
-                    </label>
+                    <label className="font-semibold">DEPT:</label>
                     <input
                         type="text"
+                        name="dept"
+                        value={formData.dept}
+                        onChange={handleFormChange}
                         className="ml-2 border-b border-black outline-none"
                     />
                 </div>
@@ -122,7 +149,7 @@ export default function EmpForm5() {
                                     value={row.name}
                                     className="w-full outline-none"
                                     onChange={(e) =>
-                                        handleChange(index, "name", e.target.value)
+                                        handleRowChange(index, "name", e.target.value)
                                     }
                                 />
                             </td>
@@ -132,7 +159,7 @@ export default function EmpForm5() {
                                     value={row.relationship}
                                     className="w-full outline-none"
                                     onChange={(e) =>
-                                        handleChange(index, "relationship", e.target.value)
+                                        handleRowChange(index, "relationship", e.target.value)
                                     }
                                     disabled={index === 0}
                                 />
@@ -142,7 +169,7 @@ export default function EmpForm5() {
                                     type="date"
                                     value={row.dob}
                                     className="w-full outline-none"
-                                    onChange={(e) => handleChange(index, "dob", e.target.value)}
+                                    onChange={(e) => handleRowChange(index, "dob", e.target.value)}
                                 />
                             </td>
                             <td className="border border-black p-1">
@@ -150,7 +177,7 @@ export default function EmpForm5() {
                                     type="number"
                                     value={row.age}
                                     className="w-full outline-none"
-                                    onChange={(e) => handleChange(index, "age", e.target.value)}
+                                    onChange={(e) => handleRowChange(index, "age", e.target.value)}
                                 />
                             </td>
                             <td className="border border-black p-1">
@@ -158,7 +185,7 @@ export default function EmpForm5() {
                                     type="number"
                                     value={row.amount}
                                     className="w-full outline-none"
-                                    onChange={(e) => handleChange(index, "amount", e.target.value)}
+                                    onChange={(e) => handleRowChange(index, "amount", e.target.value)}
                                 />
                             </td>
                             <td className="border border-black text-center">
@@ -189,7 +216,10 @@ export default function EmpForm5() {
                 <div className="flex items-center">
                     <span className="font-semibold">Date:</span>
                     <input
-                        type="text"
+                        type="date"
+                        name="date"
+                        value={formData.date}
+                        onChange={handleFormChange}
                         className="border-b border-black outline-none ml-2"
                     />
                 </div>
