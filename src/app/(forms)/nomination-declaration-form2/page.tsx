@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { nominationFormData } from "@/hooks/Atoms";
+import { nominationForm2Data } from "@/hooks/Atoms";
 import { empFormData, grauFormData } from '@/hooks/Atoms';
 
 export default function Page() {
@@ -27,6 +27,7 @@ export default function Page() {
         e.preventDefault();
         setIsSubmitting(true);
         setError(null); // Reset error state
+        console.log(formData);
         // dummy db call simulation
         const dummyDBCall = () => {
             // Simulate a successful submission

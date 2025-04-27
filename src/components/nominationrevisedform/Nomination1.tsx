@@ -18,8 +18,23 @@ type FamilyMember = {
     relationship: string;
 };
 
+type FormData = {
+    name: string;
+    fathersName: string;
+    surname: string;
+    dob: string;
+    accountNo: string;
+    sex: string;
+    maritalStatus: string;
+    address: string;
+    hasNoFamily: boolean;
+    hasDependentParents: boolean;
+    nominees: Nominee[];
+    familyMembers: FamilyMember[];
+};
+
 export default function EPFNominationForm() {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<FormData>({
         name: '',
         fathersName: '',
         surname: '',
@@ -30,15 +45,13 @@ export default function EPFNominationForm() {
         address: '',
         hasNoFamily: false,
         hasDependentParents: false,
+        nominees: [
+            { name: '', address: '', relationship: '', dob: '', share: '', guardianName: '', guardianAddress: '' },
+        ],
+        familyMembers: [
+            { name: '', address: '', age: '', relationship: '' },
+        ]
     });
-
-    const [nominees, setNominees] = useState<Nominee[]>([
-        { name: '', address: '', relationship: '', dob: '', share: '', guardianName: '', guardianAddress: '' },
-    ]);
-
-    const [familyMembers, setFamilyMembers] = useState<FamilyMember[]>([
-        { name: '', address: '', age: '', relationship: '' },
-    ]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target;
@@ -51,44 +64,62 @@ export default function EPFNominationForm() {
     };
 
     const handleNomineeChange = (index: number, field: keyof Nominee, value: string) => {
-        const updatedNominees = [...nominees];
+        const updatedNominees = [...formData.nominees];
         updatedNominees[index] = {
             ...updatedNominees[index],
             [field]: value
         };
-        setNominees(updatedNominees);
+        setFormData(prev => ({
+            ...prev,
+            nominees: updatedNominees
+        }));
     };
 
     const handleFamilyMemberChange = (index: number, field: keyof FamilyMember, value: string) => {
-        const updatedFamilyMembers = [...familyMembers];
+        const updatedFamilyMembers = [...formData.familyMembers];
         updatedFamilyMembers[index] = {
             ...updatedFamilyMembers[index],
             [field]: value
         };
-        setFamilyMembers(updatedFamilyMembers);
+        setFormData(prev => ({
+            ...prev,
+            familyMembers: updatedFamilyMembers
+        }));
     };
 
     const addNominee = () => {
-        setNominees([...nominees, { name: '', address: '', relationship: '', dob: '', share: '', guardianName: '', guardianAddress: '' }]);
+        setFormData(prev => ({
+            ...prev,
+            nominees: [...prev.nominees, { name: '', address: '', relationship: '', dob: '', share: '', guardianName: '', guardianAddress: '' }]
+        }));
     };
 
     const addFamilyMember = () => {
-        setFamilyMembers([...familyMembers, { name: '', address: '', age: '', relationship: '' }]);
+        setFormData(prev => ({
+            ...prev,
+            familyMembers: [...prev.familyMembers, { name: '', address: '', age: '', relationship: '' }]
+        }));
     };
 
     const removeNominee = (index: number) => {
-        if (nominees.length > 1) {
-            const updatedNominees = [...nominees];
+        if (formData.nominees.length > 1) {
+            const updatedNominees = [...formData.nominees];
             updatedNominees.splice(index, 1);
-            setNominees(updatedNominees);
+            setFormData(prev => ({
+                ...prev,
+                nominees: updatedNominees
+            }));
         }
     };
 
     const removeFamilyMember = (index: number) => {
-        if (familyMembers.length > 1) {
-            const updatedFamilyMembers = [...familyMembers];
+        if (formData.familyMembers.length > 1) {
+            const updatedFamilyMembers = [...formData.familyMembers];
             updatedFamilyMembers.splice(index, 1);
-            setFamilyMembers(updatedFamilyMembers);
+            setFormData(prev => ({
+                ...prev,
+                familyMembers: updatedFamilyMembers
+            }));
         }
     };
 
@@ -112,7 +143,7 @@ export default function EPFNominationForm() {
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className="border-b border-black outline-none uppercase"
+                            className="border-b border-black outline-none"
                             placeholder="Name"
                             required
                         />
@@ -121,7 +152,7 @@ export default function EPFNominationForm() {
                             name="fathersName"
                             value={formData.fathersName}
                             onChange={handleChange}
-                            className="border-b border-black outline-none uppercase"
+                            className="border-b border-black outline-none"
                             placeholder="Father's/Husband's Name"
                             required
                         />
@@ -130,7 +161,7 @@ export default function EPFNominationForm() {
                             name="surname"
                             value={formData.surname}
                             onChange={handleChange}
-                            className="border-b border-black outline-none uppercase"
+                            className="border-b border-black outline-none"
                             placeholder="Surname"
                             required
                         />
@@ -235,7 +266,7 @@ export default function EPFNominationForm() {
                             </tr>
                         </thead>
                         <tbody>
-                            {nominees.map((nominee, index) => (
+                            {formData.nominees.map((nominee, index) => (
                                 <tr key={index}>
                                     <td className="border border-black p-1">
                                         <input
@@ -301,11 +332,11 @@ export default function EPFNominationForm() {
                                         </div>
                                     </td>
                                     <td className="border border-black p-1 text-center">
-                                        {nominees.length > 1 && (<button
+                                        {formData.nominees.length > 1 && (<button
                                             type="button"
                                             onClick={() => removeNominee(index)}
                                             className="text-red-500 hover:text-red-700 cursor-pointer"
-                                            disabled={nominees.length <= 1}
+                                            disabled={formData.nominees.length <= 1}
                                         >
                                             ❌
                                         </button>)}
@@ -380,7 +411,7 @@ export default function EPFNominationForm() {
                             </tr>
                         </thead>
                         <tbody>
-                            {familyMembers.map((member, index) => (
+                            {formData.familyMembers.map((member, index) => (
                                 <tr key={index}>
                                     <td className="border border-black p-1 text-center">{index + 1}</td>
                                     <td className="border border-black p-1">
@@ -422,11 +453,11 @@ export default function EPFNominationForm() {
                                         />
                                     </td>
                                     <td className="border border-black p-1 text-center">
-                                        { familyMembers.length > 1 &&(<button
+                                        { formData.familyMembers.length > 1 &&(<button
                                             type="button"
                                             onClick={() => removeFamilyMember(index)}
                                             className="text-red-500 hover:text-red-700 cursor-pointer"
-                                            disabled={familyMembers.length <= 1}
+                                            disabled={formData.familyMembers.length <= 1}
                                         >
                                             ❌
                                         </button>)}
@@ -445,15 +476,6 @@ export default function EPFNominationForm() {
                     + Add Family Member
                 </button>
             </div>
-
-            {/* <div className="flex justify-center mt-8">
-                <button
-                    type="submit"
-                    className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-                >
-                    Submit Form
-                </button>
-            </div> */}
         </div>
     );
 }

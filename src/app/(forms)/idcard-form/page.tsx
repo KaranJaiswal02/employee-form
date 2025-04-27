@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -11,13 +11,25 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { idCardFormData } from "@/hooks/Atoms";
+import { empFormData, idCardFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 
 export default function Page() {
   const router = useRouter();
   const [formData, setFormData] = useAtom(idCardFormData);
+  const [empFormData1] = useAtom(empFormData);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      name: empFormData1.name || "",
+      fatherName: empFormData1.fatherName || "",
+      designation: empFormData1.designation || "",
+      dob: empFormData1.dob || "",
+      currAddress: empFormData1.currAddress || "",
+    }));
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -36,6 +48,7 @@ export default function Page() {
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(formData);
     // Dummy DB call simulation
     const dummyDBCall = () => true;
     if (dummyDBCall()) {
@@ -172,11 +185,6 @@ export default function Page() {
             SIGNATURE
           </div>
           <div className="w-5/6 px-2 flex items-center">
-            <Input
-              id="signature"
-              value={formData.signature}
-              onChange={handleInputChange}
-            />
           </div>
         </div>
       </div>

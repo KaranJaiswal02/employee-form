@@ -1,5 +1,7 @@
 import { atom } from 'jotai';
 
+const currentDate = new Date().toISOString().split('T')[0];
+
 export const empFormData = atom({
   name: "",
   fatherName: "",
@@ -20,7 +22,6 @@ export const empFormData = atom({
   accountNumber: "",
   ifsc: "",
   dateOfJoining: "",
-  signature: null as string | ArrayBuffer | null,
 })
 
 export const grauFormData = atom({
@@ -59,13 +60,29 @@ export const grauFormData = atom({
   district: "",
   state: "",
   place: "",
-  date: "",
+  date: currentDate,
   witness1name: "",
   witness2name: "",
   currdate: "",
 })
 
-export const nominationFormData = atom({
+export const nominationForm1Data = atom({
+  name: "",
+  fathersName: "",
+  dob: "",
+  sex: "",
+  maritalStatus: "",
+  permanentAddress: "",
+  currentAddress: "",
+  nominees: [
+    { name: "", address: "", relationship: "", dob: "", share: "", guardian: "" },
+  ],
+  place: "",
+  date: currentDate,
+  establishmentAddress: ""
+})
+
+export const nominationForm2Data = atom({
   name: '',
   fathersName: '',
   surname: '',
@@ -91,7 +108,6 @@ export const nominationFormData = atom({
     age: '',
     relationship: ''
   }],
-
   nominee: {
     name: '',
     address: '',
@@ -121,7 +137,7 @@ export const bankMandateFormData = atom({
   accountNumber: '',
   ifscCode: '',
   place: '',
-  date: '',
+  date: currentDate,
 })
 
 export const idCardFormData = atom({
@@ -135,7 +151,6 @@ export const idCardFormData = atom({
   bloodGroup: "",
   dateOfJoining: "",
   contactnumber: "",
-  signature: "",
 })
 
 export const staffFamilyFormData = atom({
@@ -158,5 +173,5 @@ export const staffFamilyFormData = atom({
   motherDob: '',
   mobileNumber: '',
   address: '',
-  date: ''
+  date: currentDate
 })

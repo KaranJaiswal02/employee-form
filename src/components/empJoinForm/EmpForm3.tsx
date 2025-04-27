@@ -96,8 +96,6 @@ export default function EmpForm3() {
                     </div>
                 </div>
 
-
-
                 {/* DO YOU KNOW ANYONE */}
                 <div>
                     <strong>

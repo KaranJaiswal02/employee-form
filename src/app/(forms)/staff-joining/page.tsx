@@ -18,9 +18,11 @@ export default function page() {
 
   const submitEmpDataForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(empFormData1);
     if (dummyDBCall()) {
       router.push("/idcard-form")
     }
+     
     else {
       alert("Form Submission Failed!");
     }

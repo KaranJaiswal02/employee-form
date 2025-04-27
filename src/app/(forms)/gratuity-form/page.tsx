@@ -20,6 +20,7 @@ export default function Page() {
     }, [])
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
+        console.log(formData)
         // Dummy DB call simulation
         // Replace this with actual form submission logic
         const dummyDBCall = () => true

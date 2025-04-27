@@ -1,51 +1,66 @@
 "use client";
 import React, { useState } from 'react';
 
-type Nominee = {
-  name: string;
-  address: string;
-  dob: string;
-  relationship: string;
+type nominationForm2Data = {
+  nominee: {
+    name: string;
+    address: string;
+    dob: string;
+    relationship: string;
+  };
+  subscriberDate: string;
+  employerName: string;
+  employerDate: string;
+  establishmentDetails: string;
+  place: string;
+  certificationDate: string;
 };
 
 export default function EPFNominationFormPart2() {
-  const [hasNoFamily, setHasNoFamily] = useState(false);
-  const [nominee, setNominee] = useState<Nominee>({
-    name: '',
-    address: '',
-    dob: '',
-    relationship: ''
+  const [formData, setFormData] = useState<nominationForm2Data>({
+    nominee: {
+      name: '',
+      address: '',
+      dob: '',
+      relationship: ''
+    },
+    subscriberDate: '',
+    employerName: '',
+    employerDate: '',
+    establishmentDetails: '',
+    place: '',
+    certificationDate: ''
   });
-  const [subscriberDate, setSubscriberDate] = useState('');
-  const [employerName, setEmployerName] = useState('');
-  const [employerDate, setEmployerDate] = useState('');
-  const [establishmentDetails, setEstablishmentDetails] = useState('');
 
   const handleNomineeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setNominee(prev => ({ ...prev, [name]: value }));
+    setFormData(prev => ({
+      ...prev,
+      nominee: {
+        ...prev.nominee,
+        [name]: value
+      }
+    }));
   };
 
+  const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-4 md:p-8 border border-black bg-white text-sm">
       {/* First Declaration */}
       <div className="mb-6">
         <div className="flex items-start gap-2 mb-4">
-          <input
-            type="checkbox"
-            id="hasNoFamily"
-            checked={hasNoFamily}
-            onChange={(e) => setHasNoFamily(e.target.checked)}
-            className="mt-1"
-          />
-          <label htmlFor="hasNoFamily">
-            Certified that I have no family as defined in para 2 (vii) of the Employees' Family Pension Scheme 1995 and should I acquire a family hereafter I shall furnish Particulars there on in the above form.
-          </label>
+          Certified that I have no family as defined in para 2 (vii) of the Employees' Family Pension Scheme 1995 and should I acquire a family hereafter I shall furnish Particulars thereon in the above form.
         </div>
 
         <p className="mb-4">
-          I hereby nominate the following person for receiving the monthly widow pension (admissible under para 16 2 (a) (i) & (ii) in the event of my death without leaving any eligible family member for receiving pension.
+          I hereby nominate the following person for receiving the monthly widow pension (admissible under para 16 2 (a) (i) & (ii)) in the event of my death without leaving any eligible family member for receiving pension.
         </p>
 
         {/* Nominee Table */}
@@ -64,7 +79,7 @@ export default function EPFNominationFormPart2() {
                   <input
                     type="text"
                     name="name"
-                    value={nominee.name}
+                    value={formData.nominee.name}
                     onChange={handleNomineeChange}
                     className="w-full outline-none border-b border-gray-300 mb-1"
                     placeholder="Name"
@@ -72,7 +87,7 @@ export default function EPFNominationFormPart2() {
                   <input
                     type="text"
                     name="address"
-                    value={nominee.address}
+                    value={formData.nominee.address}
                     onChange={handleNomineeChange}
                     className="w-full outline-none"
                     placeholder="Address"
@@ -82,7 +97,7 @@ export default function EPFNominationFormPart2() {
                   <input
                     type="date"
                     name="dob"
-                    value={nominee.dob}
+                    value={formData.nominee.dob}
                     onChange={handleNomineeChange}
                     className="w-full outline-none"
                   />
@@ -91,7 +106,7 @@ export default function EPFNominationFormPart2() {
                   <input
                     type="text"
                     name="relationship"
-                    value={nominee.relationship}
+                    value={formData.nominee.relationship}
                     onChange={handleNomineeChange}
                     className="w-full outline-none"
                   />
@@ -106,8 +121,9 @@ export default function EPFNominationFormPart2() {
             <label>Date:</label>
             <input
               type="date"
-              value={subscriberDate}
-              onChange={(e) => setSubscriberDate(e.target.value)}
+              name="subscriberDate"
+              value={formData.subscriberDate}
+              onChange={handleFieldChange}
               className="border-b border-black outline-none"
             />
           </div>
@@ -125,8 +141,9 @@ export default function EPFNominationFormPart2() {
           Certified that the above declaration and nomination has been signed / thumb impressed before me by Shri / Smt./ Miss
           <input
             type="text"
-            value={employerName}
-            onChange={(e) => setEmployerName(e.target.value)}
+            name="employerName"
+            value={formData.employerName}
+            onChange={handleFieldChange}
             className="border-b border-black outline-none mx-2 w-48"
             placeholder="Name"
           />
@@ -138,8 +155,9 @@ export default function EPFNominationFormPart2() {
             <label>Date:</label>
             <input
               type="date"
-              value={employerDate}
-              onChange={(e) => setEmployerDate(e.target.value)}
+              name="employerDate"
+              value={formData.employerDate}
+              onChange={handleFieldChange}
               className="border-b border-black outline-none"
             />
           </div>
@@ -151,8 +169,9 @@ export default function EPFNominationFormPart2() {
         <div className="mb-4">
           <p>Name & address of the Factory / Establishment</p>
           <textarea
-            value={establishmentDetails}
-            onChange={(e) => setEstablishmentDetails(e.target.value)}
+            name="establishmentDetails"
+            value={formData.establishmentDetails}
+            onChange={handleFieldChange}
             className="w-full border-b border-black outline-none h-16"
           />
         </div>
@@ -162,6 +181,9 @@ export default function EPFNominationFormPart2() {
             <label>Place:</label>
             <input
               type="text"
+              name="place"
+              value={formData.place}
+              onChange={handleFieldChange}
               className="border-b border-black outline-none w-32"
             />
           </div>
@@ -169,20 +191,14 @@ export default function EPFNominationFormPart2() {
             <label>Date:</label>
             <input
               type="date"
+              name="certificationDate"
+              value={formData.certificationDate}
+              onChange={handleFieldChange}
               className="border-b border-black outline-none"
             />
           </div>
         </div>
       </div>
-
-      {/* <div className="flex justify-center mt-8">
-        <button
-          type="submit"
-          className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
-        >
-          Submit Form
-        </button>
-      </div> */}
     </div>
   );
 }

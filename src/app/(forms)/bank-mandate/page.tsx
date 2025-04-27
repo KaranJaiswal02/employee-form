@@ -2,19 +2,22 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAtom } from 'jotai';
-import { bankMandateFormData } from '@/hooks/Atoms';
+import { bankMandateFormData, empFormData } from '@/hooks/Atoms';
 import { Button } from '@/components/ui/button';
 
 export default function BankMandateForm() {
     const router = useRouter();
     const [formData, setFormData] = useAtom(bankMandateFormData);
+    const [formData1] = useAtom(empFormData);
 
     useEffect(() => {
-        setFormData(prev => ({
+        setFormData((prev) => ({
             ...prev,
-            date: new Date().toISOString().split('T')[0],
-        }));
-    },[])
+            name: formData1.name || "",
+            address: formData1.perAddress || "",
+        
+    }));
+} ,[])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
@@ -28,7 +31,7 @@ export default function BankMandateForm() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Add form submission logic here
-        console.log('Form submitted:', formData);
+        console.log(formData);
         // Dummy DB call simulation
         const dummyDBCall = () => true;
         if (dummyDBCall()) {

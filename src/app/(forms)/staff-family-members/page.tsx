@@ -1,9 +1,10 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React, { useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { staffFamilyFormData } from "@/hooks/Atoms";
+import { empFormData, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
+import { set } from "mongoose";
 
 type Child = {
     name: string;
@@ -34,6 +35,17 @@ type FormData = {
 export default function MedicalInsuranceForm() {
     const router = useRouter();
     const [formData, setFormData] = useAtom<FormData>(staffFamilyFormData);
+    const [form1data] = useAtom(empFormData);
+    
+    useEffect(() => {
+        setFormData( (prev) => ({
+            ...prev,
+            name: form1data.name || "",
+            dob: form1data.dob || "",
+            department: form1data.department || "",
+            perAddress: form1data.perAddress || "",
+    }));
+    }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -50,7 +62,7 @@ export default function MedicalInsuranceForm() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
+        console.log(formData);
         // Dummy DB call simulation
         const dummyDBCall = () => true;
         if (dummyDBCall()) {

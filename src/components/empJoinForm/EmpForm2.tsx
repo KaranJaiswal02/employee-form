@@ -95,31 +95,6 @@ export default function EmpForm2() {
                     <p className="text-sm">(To be filled by the employee on the date of joining)</p>
                 </div>
             </div>
-
-            {/* HR Section */}
-            {/* <h4 className="text-lg font-bold mb-4 border-b border-black pb-2">TO BE FILLED BY HR.</h4>
-            <div className="grid grid-cols-5 gap-2 mb-8 border border-black p-2">
-                <div className="font-semibold text-center border-r border-black">E. CODE</div>
-                <div className="font-semibold text-center border-r border-black">P.F. NO.</div>
-                <div className="font-semibold text-center border-r border-black">DEPARTMENT</div>
-                <div className="font-semibold text-center border-r border-black">FUNCTION</div>
-                <div className="font-semibold text-center">LEVEL</div>
-                <div className="h-8 border-t border-black">
-                    <input type="text" className="w-full h-full px-1 border-none focus:outline-none" />
-                </div>
-                <div className="h-8 border-t border-black">
-                    <input type="text" className="w-full h-full px-1 border-none focus:outline-none" />
-                </div>
-                <div className="h-8 border-t border-black">
-                    <input type="text" className="w-full h-full px-1 border-none focus:outline-none" />
-                </div>
-                <div className="h-8 border-t border-black">
-                    <input type="text" className="w-full h-full px-1 border-none focus:outline-none" />
-                </div>
-                <div className="h-8 border-t border-black">
-                    <input type="text" className="w-full h-full px-1 border-none focus:outline-none" />
-                </div>
-            </div> */}
             {/* HR Section - Accurate Table Layout */}
             <h4 className="text-lg font-bold mb-2 border-b border-black pb-1">TO BE FILLED BY HR</h4>
 
