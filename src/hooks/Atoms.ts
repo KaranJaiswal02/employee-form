@@ -22,6 +22,13 @@ export const empFormData = atom({
   accountNumber: "",
   ifsc: "",
   dateOfJoining: "",
+  currstdcode: "",
+  currcontactNumber: "",
+  perstdcode: "",
+  percontactNumber: "",
+  companylocation: "",
+  date: currentDate,
+
 })
 
 export const grauFormData = atom({
@@ -198,7 +205,7 @@ export const formStatusus = atom({
     status: "pending",
   },
   form5: {
-    name: "Nomination & declaration(Form 1)",
+    name: "Form 1 Nomination & declaration",
     url: "/nomination-declaration-form1",
     status: "pending",
   },

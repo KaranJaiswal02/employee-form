@@ -88,17 +88,17 @@ export default function EmpForm1() {
                 </div>
           
                 <div className="grid grid-cols-3 gap-4 mb-2">
-                  <Input id="district" placeholder="Dist." onChange={handleChange} />
-                  <Input id="state" placeholder="State" onChange={handleChange} />
-                  <Input id="pincode" placeholder="PIN" onChange={handleChange} />
+                  <Input type='text' id="district" value={empFormData1.currAddress} placeholder="Dist." onChange={handleChange} />
+                  <Input type='text' id="state" value={empFormData1.state} placeholder="State" onChange={handleChange} />
+                  <Input type='text' id="pincode" value={empFormData1.pincode} placeholder="PIN" onChange={handleChange} />
                 </div>
           
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div className="flex items-center gap-2">
                     <span>Tel: STD Code:</span>
-                    <Input className="w-20" />
+                    <Input type='text' id='stdcode' value={empFormData1.currstdcode} className="w-20" />
                     <span>Number:</span>
-                    <Input className="flex-1" />
+                    <Input  type='number' id='contactnumber' value={empFormData1.currcontactNumber} className="flex-1" />
                   </div>
                 </div>
           
@@ -108,17 +108,17 @@ export default function EmpForm1() {
                 </div>
           
                 <div className="grid grid-cols-3 gap-4 mb-2">
-                  <Input placeholder="Dist." />
-                  <Input placeholder="State" />
-                  <Input placeholder="PIN" />
+                  <Input type='text' id='district' value={empFormData1.perDistrict} placeholder="Dist." />
+                  <Input type='text' id='state' value={empFormData1.perState} placeholder="State" />
+                  <Input type='text' id='pincode' value={empFormData1.perPincode} placeholder="PIN" />
                 </div>
           
                 <div className="grid grid-cols-2 gap-4">
                   <div className="flex items-center gap-2">
                     <span>Tel: STD Code:</span>
-                    <Input className="w-20" />
+                    <Input type='text' id='stdcode' value={empFormData1.perstdcode} className="w-20" />
                     <span>Number:</span>
-                    <Input className="flex-1" />
+                    <Input  type='number' id='contactnumber' value={empFormData1.percontactNumber} className="flex-1" />
                   </div>
                 </div>
               </div>
@@ -127,15 +127,15 @@ export default function EmpForm1() {
               <div className="grid grid-cols-3 gap-4 mb-6">
                 <div className="col-span-2 flex items-center gap-2">
                   <span>Company Name:</span>
-                  <Input className="flex-1" />
+                  <Input type='text' id='companyname' value={empFormData1.companyName} className="flex-1" />
                 </div>
                 <div className="flex items-center gap-2">
                   <span>Location:</span>
-                  <Input className="flex-1" />
+                  <Input type='text' id='location' value={empFormData1.companylocation} className="flex-1" />
                 </div>
                 <div className="flex items-center gap-2">
                   <span>Deptt:</span>
-                  <Input className="flex-1" />
+                  <Input  type='text' id='dept' value={empFormData1.department} className="flex-1" />
                 </div>
               </div>
           
@@ -143,11 +143,11 @@ export default function EmpForm1() {
               <div className="grid grid-cols-2 gap-4 mb-6">
                 <div className="flex items-center gap-2">
                   <span>Bank A/c No:</span>
-                  <Input className="flex-1" />
+                  <Input  type='text' id='bankaccount' value={empFormData1.accountNumber} className="flex-1" />
                 </div>
                 <div className="flex items-center gap-2">
                   <span>Bank Name :</span>
-                  <Input className="flex-1" />
+                  <Input  type='text' id='bankname' value={empFormData1.bankName} className="flex-1" />
                 </div>
               </div>
           
@@ -168,18 +168,18 @@ export default function EmpForm1() {
               <div className="flex justify-between mb-6">
                 <div className="flex items-center gap-2">
                   <span>Date:</span>
-                  <Input type="date" className="w-40" />
+                  <Input type="date" id='date' value={empFormData1.date} className="w-40" />
                 </div>
-                <div className="flex items-center gap-2">
-                  <span>Signature:</span>
-                  <Input type="file" accept="image/*" className="w-40" />
+                <div className="w-48 border-t border-black text-center pt-2">
+                  <span>Signature </span>
+                  {/* <Input type="file" accept="image/*" className="w-40" /> */}
                 </div>
               </div>
-          
+            
               {/* Certification */}
               <div className="space-y-4">
-                <p>Certified that Mr./Ms. <span className="underline">_________</span> has joined on <span className="underline">_________</span></p>
-                <div className="flex justify-between">
+                <p>Certified that Mr./Ms. <span className="underline">________________________</span> has joined on <span className="underline">___________</span></p>
+                <div className="flex justify-between pt-7">
                   <div className="w-48 border-t border-black text-center pt-2">
                     Signature of Reporting In charge
                   </div>
