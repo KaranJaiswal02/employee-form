@@ -14,7 +14,7 @@ type Child = {
 
 type FormData = {
     empNo: string;
-    empName: string;
+    name: string;
     department: string;
     dob: string;
     age: string;
@@ -97,8 +97,8 @@ export default function MedicalInsuranceForm() {
                         <td className="p-2 border border-black" colSpan={4}>
                             <input
                                 type="text"
-                                name="empName"
-                                value={formData.empName}
+                                name="name"
+                                value={formData.name}
                                 onChange={handleChange}
                                 className="w-full"
                                 placeholder="Employee Name"
