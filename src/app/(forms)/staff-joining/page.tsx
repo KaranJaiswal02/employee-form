@@ -11,18 +11,18 @@ import { useRouter } from 'next/navigation';
 import React from 'react'
 
 export default function page() {
-  const [empFormData1] = useAtom(empFormData);
+  const [fromData] = useAtom(empFormData);
   const router = useRouter();
 
   const dummyDBCall = () => true;
 
   const submitEmpDataForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(empFormData1);
+    console.log(fromData);
     if (dummyDBCall()) {
       router.push("/idcard-form")
     }
-     
+
     else {
       alert("Form Submission Failed!");
     }

@@ -81,13 +81,24 @@ export const empFormData = atom({
   hobbies: "",
   knowsSomeone: "",
   references: [
-      { name: "", address: "", phone: "" },
-      { name: "", address: "", phone: "" }
+    { name: "", address: "", phone: "" },
+    { name: "", address: "", phone: "" }
   ],
   convictionDetails: "",
   place: "",
   familyMembers: [{ name: "", relationship: "", dob: "", age: "" }],
   nominees: [{ name: "", relationship: "", dob: "", percentage: "" }],
+  code: "",
+  grade: "",
+  members: [
+    {
+      name: "",
+      relationship: "SELF",
+      dob: "",
+      age: "",
+      amount: "",
+    },
+  ],
 })
 
 export const grauFormData = atom({
