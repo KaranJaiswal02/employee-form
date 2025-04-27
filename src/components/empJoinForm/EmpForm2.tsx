@@ -1,101 +1,15 @@
 "use client"
-import { useEffect, useState } from 'react'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import { useRouter } from 'next/navigation'
 import { empFormData } from '@/hooks/Atoms'
 import { useAtom } from 'jotai'
 //import IAPIResponse from '@/types/responseType'
 
 export default function EmpForm2() {
-    const router = useRouter()
-    const [formData, setFormData] = useState({
-        eCode: '',
-        pfNo: '',
-        department: '',
-        function: '',
-        level: '',
-
-        // Employee Section
-        firstName: '',
-        middleName: '',
-        surname: '',
-        designation: '',
-        familyMemberName: '',
-        familyMemberOccupation: '',
-        dob: '',
-        sex: '',
-        bloodGroup: '',
-        nationality: '',
-        presentAddress1: '',
-        presentAddress2: '',
-        presentDistrict: '',
-        presentState: '',
-        presentPin: '',
-        presentStdCode: '',
-        presentPhone: '',
-        permanentAddress1: '',
-        permanentAddress2: '',
-        permanentDistrict: '',
-        permanentState: '',
-        permanentPin: '',
-        permanentStdCode: '',
-        permanentPhone: '',
-        maritalStatus: '',
-        spouseName: '',
-        spouseDob: '',
-        anniversaryDate: '',
-        spouseBloodGroup: '',
-        spouseEducation: '',
-        spouseWorking: '',
-        emergencyContactName: '',
-        emergencyContactPhone: '',
-        emergencyContactRelationship: '',
-        gratuityNominee1Percent: '',
-        gratuityNominee1Name: '',
-        gratuityNominee2Percent: '',
-        gratuityNominee2Name: '',
-        pfNominee1Percent: '',
-        pfNominee1Name: '',
-        pfNominee2Percent: '',
-        pfNominee2Name: '',
-        pfNominee3Percent: '',
-        pfNominee3Name: '',
-        // Languages would need a more complex structure
-
-    });
-
-    const [isChecked, setIsChecked] = useState(false);
-    const [empFormData1] = useAtom(empFormData);
-
-    useEffect(() => {
-        setFormData((prev) => ({
-            ...prev,
-            date: empFormData1.date || '',
-        }));
-    }
-    , []);
+    const [formData, setFormData] = useAtom(empFormData);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target as HTMLInputElement;
         setFormData(prev => ({ ...prev, [name]: value }));
-    };
-    type Child = {
-        id: string;
-        serialNo: string;
-        name: string;
-        dob: string;
-        sex: string;
-    };
-
-    const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        console.log("Form Data: ", formData);
-        // Perform form submission logic here (e.g., send data to an API)
-        router.push('/declaration-form')
+        console.log(formData)
     };
 
     return (
@@ -123,12 +37,12 @@ export default function EmpForm2() {
                     <div className="w-[20%] p-1 text-center font-semibold">LEVEL</div>
                 </div>
                 <div className="flex border-t border-black">
-                    {(['eCode', 'pfNo', 'department', 'function', 'level'] as Array<keyof typeof formData>).map((field) => (
+                    {(['eCode', 'pfNo', 'department', 'function', 'level'] as Array<keyof typeof formData>).map((field: keyof typeof formData) => (
                         <div key={field} className="w-[20%] border-r border-black last:border-r-0">
                             <input
                                 type="text"
                                 name={field}
-                                value={formData[field]}
+                                value={typeof formData[field] === 'string' || typeof formData[field] === 'number' ? formData[field] : ''}
                                 onChange={handleChange}
                                 className="w-full h-8 px-1 border-none focus:outline-none"
                             />

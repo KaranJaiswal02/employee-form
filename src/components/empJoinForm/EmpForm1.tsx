@@ -158,7 +158,7 @@ export default function EmpForm1() {
               id="perAddress"
               value={empFormData1.perAddress}
               onChange={handleChange}
-              disabled={empFormData1.sameAsCurrent}
+              disabled={isChecked}
             />
           </div>
 
@@ -169,7 +169,7 @@ export default function EmpForm1() {
               value={empFormData1.perDistrict}
               placeholder="Dist."
               onChange={handleChange}
-              disabled={empFormData1.sameAsCurrent}
+              disabled={isChecked}
             />
             <Input
               type="text"
@@ -177,7 +177,7 @@ export default function EmpForm1() {
               value={empFormData1.perState}
               placeholder="State"
               onChange={handleChange}
-              disabled={empFormData1.sameAsCurrent}
+              disabled={isChecked}
             />
             <Input
               type="text"
@@ -185,34 +185,34 @@ export default function EmpForm1() {
               value={empFormData1.perPincode}
               placeholder="PIN"
               onChange={handleChange}
-              disabled={empFormData1.sameAsCurrent}
+              disabled={isChecked}
             />
+          </div>
+
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="flex items-center gap-2">
+              <span>Tel: STD Code:</span>
+              <Input
+                type="text"
+                id="perstdcode"
+                value={empFormData1.perstdcode}
+                onChange={handleChange}
+                className="w-20"
+                disabled={isChecked}
+              />
+              <span>Number:</span>
+              <Input
+                type="number"
+                id="percontactNumber"
+                value={empFormData1.percontactNumber}
+                onChange={handleChange}
+                className="flex-1"
+                disabled={isChecked}
+              />
+            </div>
           </div>
         </div>)}
-
-        <div className="grid grid-cols-2 gap-4">
-          <div className="flex items-center gap-2">
-            <span>Tel: STD Code:</span>
-            <Input
-              type="text"
-              id="perstdcode"
-              value={empFormData1.perstdcode}
-              onChange={handleChange}
-              className="w-20"
-              disabled={empFormData1.sameAsCurrent}
-            />
-            <span>Number:</span>
-            <Input
-              type="number"
-              id="percontactNumber"
-              value={empFormData1.percontactNumber}
-              onChange={handleChange}
-              className="flex-1"
-              disabled={empFormData1.sameAsCurrent}
-            />
-          </div>
-        </div>
-
 
 
       </div>

@@ -1,27 +1,9 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
 import { useAtom } from "jotai";
 import { empFormData } from "@/hooks/Atoms";
 
 
 export default function EmpForm3() {
-    const [formData, setFormData] = useState({
-        // Correct way to initialize nested arrays
-        education: Array.from({ length: 5 }, () => Array(6).fill("")),
-        employment: Array.from({ length: 4 }, () => Array(6).fill("")),
-
-        games: "",
-        ncc: "",
-        hobbies: "",
-        knowsSomeone: "",
-        references: [
-            { name: "", address: "", phone: "" },
-            { name: "", address: "", phone: "" }
-        ],
-        convictionDetails: "",
-        date: "",
-        place: ""
-    });
+    const [formData, setFormData] = useAtom(empFormData);
 
     const handleEducationChange = (row: number, col: number, value: string) => {
         setFormData(prev => {
