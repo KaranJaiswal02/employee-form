@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { empFormData, idCardFormData } from "@/hooks/Atoms";
+import { empFormData, formStatusus, idCardFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 
 export default function Page() {
@@ -19,6 +19,7 @@ export default function Page() {
   const [formData, setFormData] = useAtom(idCardFormData);
   const [empFormData1] = useAtom(empFormData);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [formStatus,setFormStatus] = useAtom(formStatusus);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -38,23 +39,43 @@ export default function Page() {
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handlePhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setPhotoPreview(URL.createObjectURL(file));
-      setFormData((prev) => ({ ...prev, photo: file }));
+      // Convert image to base64
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setPhotoPreview(base64String);
+        setFormData((prev) => ({ ...prev, photo: base64String }));
+      };
+      reader.readAsDataURL(file);
     }
   };
 
-  const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
+  const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
-    // Dummy DB call simulation
-    const dummyDBCall = () => true;
-    if (dummyDBCall()) {
+    const response = await fetch("/api/idcard-form", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    if(response.status === 201) {
+      setFormStatus((prevStatus) => ({
+        ...prevStatus,
+        form2: {
+            ...prevStatus.form2,
+            status: "done",
+        },
+    }));
       router.push("/staff-family-members");
-    } else {
-      alert("Form Submission Failed!");
+    }
+    else {
+      const responseData = await response.json();
+      alert(responseData.errorMessage);
     }
   };
 
@@ -76,6 +97,7 @@ export default function Page() {
             ["DOJ", "dateOfJoining", "date"],
             ["BLOOD GROUP", "bloodGroup"],
             ["FATHER NAME", "fatherName"],
+            ["YEAR", "year"],
           ].map(([label, id, type]) => (
             <div key={id} className="flex border-b border-black h-12">
               <div className="w-1/3 border-r border-black font-semibold px-2 flex items-center">
@@ -120,6 +142,8 @@ export default function Page() {
                     value={(formData as any)[id]}
                     onChange={handleInputChange}
                     className="w-full"
+                    min={id === "year" ? "2000" : undefined}
+                    max={id === "year" ? "2100" : undefined}
                   />
                 )}
               </div>
@@ -128,7 +152,7 @@ export default function Page() {
         </div>
 
         {/* PHOTO COLUMN */}
-        <div className="row-span-8 border border-black flex items-center justify-center">
+        <div className="row-span-9 border border-black flex items-center justify-center">
           <label className="w-32 h-40 border-2 border-gray-400 text-center flex items-center justify-center text-xs cursor-pointer relative">
             {photoPreview ? (
               <img
@@ -144,10 +168,10 @@ export default function Page() {
               accept="image/*"
               onChange={handlePhotoChange}
               className="opacity-0 absolute inset-0 cursor-pointer"
+              required
             />
           </label>
         </div>
-
 
         {/* ADDRESS ROW */}
         <div className="col-span-3 border-t border-black h-24 flex">
@@ -175,6 +199,7 @@ export default function Page() {
               value={formData.contactnumber}
               onChange={handleInputChange}
               type="tel"
+              pattern="[0-9]{10}"
             />
           </div>
         </div>
@@ -185,6 +210,7 @@ export default function Page() {
             SIGNATURE
           </div>
           <div className="w-5/6 px-2 flex items-center">
+            {/* Signature upload could be added here similarly to photo upload */}
           </div>
         </div>
       </div>

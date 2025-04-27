@@ -148,17 +148,19 @@ export const bankMandateFormData = atom({
 })
 
 export const idCardFormData = atom({
-  name: "",
-  fatherName: "",
-  designation: "",
-  dob: "",
-  currAddress: "",
-  empcode: "",
-  department: "",
-  bloodGroup: "",
-  dateOfJoining: "",
-  contactnumber: "",
-})
+    name: "",
+    fatherName: "",
+    designation: "",
+    dob: "",
+    currAddress: "",
+    empcode: "",
+    department: "",
+    bloodGroup: "",
+    dateOfJoining: "",
+    contactnumber: "",
+    photo: null as string | null,
+    year: new Date().getFullYear().toString(),
+  })
 
 export const staffFamilyFormData = atom({
   empNo: '',
