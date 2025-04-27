@@ -85,7 +85,9 @@ export const empFormData = atom({
       { name: "", address: "", phone: "" }
   ],
   convictionDetails: "",
-  place: ""
+  place: "",
+  familyMembers: [{ name: "", relationship: "", dob: "", age: "" }],
+  nominees: [{ name: "", relationship: "", dob: "", percentage: "" }],
 })
 
 export const grauFormData = atom({

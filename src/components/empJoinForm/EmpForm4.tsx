@@ -2,71 +2,85 @@
 import React, { useState } from "react";
 import { useAtom } from "jotai";
 import { empFormData } from "@/hooks/Atoms";
-import { useEffect } from "react";
-// ✅ Define types for each row
-type FamilyRow = {
-    name: string;
-    relationship: string;
-    dob: string;
-    age: string;
-};
 
-type NomineeRow = {
+type FormData = {
+    companyName: string;
     name: string;
-    relationship: string;
-    dob: string;
-    percentage: string;
+    designation: string;
+    dateOfJoining: string;
+    familyMembers: {
+        name: string;
+        relationship: string;
+        dob: string;
+        age: string;
+    }[];
+    nominees: {
+        name: string;
+        relationship: string;
+        dob: string;
+        percentage: string;
+    }[];
+    date: string;
 };
 
 export default function EmpForm4() {
-    const [familyRows, setFamilyRows] = useState<FamilyRow[]>([
-        { name: '', relationship: '', dob: '', age: '' },
-    ]);
+    const [formData, setFormData] = useAtom(empFormData);
 
-    const [nomineeRows, setNomineeRows] = useState<NomineeRow[]>([
-        { name: '', relationship: '', dob: '', percentage: '' },
-    ]);
+    const handleChange = (field: keyof FormData, value: string) => {
+        setFormData(prev => ({ ...prev, [field]: value }));
+    };
 
-    // ✅ Now 'field' is typed correctly using keyof
     const handleFamilyChange = (
         index: number,
-        field: keyof FamilyRow,
+        field: keyof FormData['familyMembers'][0],
         value: string
     ) => {
-        const updated = [...familyRows];
-        updated[index][field] = value;
-        setFamilyRows(updated);
+        setFormData(prev => {
+            const updatedFamily = [...prev.familyMembers];
+            updatedFamily[index][field] = value;
+            return { ...prev, familyMembers: updatedFamily };
+        });
     };
 
     const handleNomineeChange = (
         index: number,
-        field: keyof NomineeRow,
+        field: keyof FormData['nominees'][0],
         value: string
     ) => {
-        const updated = [...nomineeRows];
-        updated[index][field] = value;
-        setNomineeRows(updated);
+        setFormData(prev => {
+            const updatedNominees = [...prev.nominees];
+            updatedNominees[index][field] = value;
+            return { ...prev, nominees: updatedNominees };
+        });
     };
 
     const addFamilyRow = () => {
-        setFamilyRows([...familyRows, { name: '', relationship: '', dob: '', age: '' }]);
+        setFormData(prev => ({
+            ...prev,
+            familyMembers: [...prev.familyMembers, { name: "", relationship: "", dob: "", age: "" }]
+        }));
     };
 
     const addNomineeRow = () => {
-        setNomineeRows([...nomineeRows, { name: '', relationship: '', dob: '', percentage: '' }]);
+        setFormData(prev => ({
+            ...prev,
+            nominees: [...prev.nominees, { name: "", relationship: "", dob: "", percentage: "" }]
+        }));
     };
 
     const removeFamilyRow = (index: number) => {
-        const updated = familyRows.filter((_, i) => i !== index);
-        setFamilyRows(updated);
+        setFormData(prev => ({
+            ...prev,
+            familyMembers: prev.familyMembers.filter((_, i) => i !== index)
+        }));
     };
 
     const removeNomineeRow = (index: number) => {
-        const updated = nomineeRows.filter((_, i) => i !== index);
-        setNomineeRows(updated);
+        setFormData(prev => ({
+            ...prev,
+            nominees: prev.nominees.filter((_, i) => i !== index)
+        }));
     };
-
-
 
     return (
         <div>
@@ -78,19 +92,39 @@ export default function EmpForm4() {
             <div className="space-y-4 text-sm">
                 <div className="flex justify-between">
                     <label className="w-1/3">Name of the Company</label>
-                    <input type="text" className="border-b border-black flex-grow ml-4" />
+                    <input
+                        type="text"
+                        className="border-b border-black flex-grow ml-4"
+                        value={formData.companyName}
+                        onChange={(e) => handleChange('companyName', e.target.value)}
+                    />
                 </div>
 
                 <div className="flex justify-between">
                     <label className="w-1/3">Employee Name</label>
-                    <input type="text" className="border-b border-black flex-grow ml-4" />
+                    <input
+                        type="text"
+                        className="border-b border-black flex-grow ml-4"
+                        value={formData.name}
+                        onChange={(e) => handleChange('name', e.target.value)}
+                    />
                 </div>
 
                 <div className="flex justify-between items-center">
                     <label className="w-1/3">Designation</label>
-                    <input type="text" className="border-b border-black w-[35%]" />
+                    <input
+                        type="text"
+                        className="border-b border-black w-[35%]"
+                        value={formData.designation}
+                        onChange={(e) => handleChange('designation', e.target.value)}
+                    />
                     <label className="ml-6">Date of Joining</label>
-                    <input type="date" className="border-b border-black w-[30%]" />
+                    <input
+                        type="date"
+                        className="border-b border-black w-[30%]"
+                        value={formData.dateOfJoining}
+                        onChange={(e) => handleChange('dateOfJoining', e.target.value)}
+                    />
                 </div>
             </div>
 
@@ -108,7 +142,7 @@ export default function EmpForm4() {
                         </tr>
                     </thead>
                     <tbody>
-                        {familyRows.map((row, index) => (
+                        {formData.familyMembers.map((row, index) => (
                             <tr key={index}>
                                 <td className="border border-black">{index + 1}</td>
                                 <td className="border border-black">
@@ -144,12 +178,14 @@ export default function EmpForm4() {
                                     />
                                 </td>
                                 <td className="border border-black">
-                                    {index !== 0 && (<button
-                                        onClick={() => removeFamilyRow(index)}
-                                        className="text-red-600 font-semibold cursor-pointer"
-                                    >
-                                        ❌
-                                    </button>)}
+                                    {index !== 0 && (
+                                        <button
+                                            onClick={() => removeFamilyRow(index)}
+                                            className="text-red-600 font-semibold cursor-pointer"
+                                        >
+                                            ❌
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         ))}
@@ -183,7 +219,7 @@ export default function EmpForm4() {
                         </tr>
                     </thead>
                     <tbody>
-                        {nomineeRows.map((row, index) => (
+                        {formData.nominees.map((row, index) => (
                             <tr key={index}>
                                 <td className="border border-black">{index + 1}</td>
                                 <td className="border border-black">
@@ -219,12 +255,14 @@ export default function EmpForm4() {
                                     />
                                 </td>
                                 <td className="border border-black">
-                                    {index !== 0 && (<button
-                                        onClick={() => removeNomineeRow(index)}
-                                        className="text-red-600 font-semibold cursor-pointer"
-                                    >
-                                        ❌
-                                    </button>)}
+                                    {index !== 0 && (
+                                        <button
+                                            onClick={() => removeNomineeRow(index)}
+                                            className="text-red-600 font-semibold cursor-pointer"
+                                        >
+                                            ❌
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         ))}
@@ -242,7 +280,12 @@ export default function EmpForm4() {
             {/* Footer */}
             <div className="mt-8 flex justify-between items-end">
                 <div>
-                    Date: <input type="date" className="border-b border-black ml-2" />
+                    Date: <input
+                        type="date"
+                        className="border-b border-black ml-2"
+                        value={formData.date}
+                        onChange={(e) => handleChange('date', e.target.value)}
+                    />
                 </div>
                 <div className="text-right">
                     <div className="border-t border-black w-64 mx-auto mt-6"></div>
