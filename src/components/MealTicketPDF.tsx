@@ -1,83 +1,174 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Button } from "./ui/button";
-type MealTicketPDFProps = {
+
+type MealTicketGeneratorProps = {
   name: string;
   month: string;
-  year: string;
   noOfDays: number;
+  year?: number;
+  onReset?: () => void;
 };
 
-export default function MealTicketPDF({ name, month,year, noOfDays }: MealTicketPDFProps) {
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [isLoading, setIsLoading] = useState(false);
+export default function MealTicketGenerator({ 
+  name, 
+  month,
+  year = new Date().getFullYear(),
+  noOfDays, 
+  onReset 
+}: MealTicketGeneratorProps) {
+  const [isGenerating, setIsGenerating] = useState(false);
 
-  const handleDownload = async () => {
-    if (!contentRef.current) return;
-    if (typeof window === "undefined") return;
-
-    setIsLoading(true);
-    try {
-      const html2pdf = (await import("html2pdf.js")).default;
-
-      const opt = {
-        margin: 0,
-        filename: `${name}_Meal_Tickets.pdf`,
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true },
-        jsPDF: { unit: "in", format: "a4", orientation: "portrait" },
-      };
-
-      await html2pdf().set(opt).from(contentRef.current).save();
-
-    } catch (error) {
-      console.error("PDF generation failed:", error);
-    } finally {
-      setIsLoading(false);
+  const generateAndPrintTickets = () => {
+    setIsGenerating(true);
+    
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      setIsGenerating(false);
+      return;
     }
+
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Meal Tickets - ${name}</title>
+          <style>
+            @page {
+              size: A4;
+              margin: 5mm;
+            }
+            body {
+              margin: 0;
+              padding: 0;
+              font-family: Arial, sans-serif;
+              -webkit-print-color-adjust: exact;
+            }
+            .ticket-container {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: 12px;
+              padding: 16px;
+            }
+            @media (min-width: 768px) {
+              .ticket-container {
+                grid-template-columns: repeat(4, 1fr);
+              }
+            }
+            @media (min-width: 1024px) {
+              .ticket-container {
+                grid-template-columns: repeat(6, 1fr);
+              }
+            }
+            .ticket {
+              width: 160px;
+              height: 108px;
+              border: 1px solid #d1d5db;
+              border-radius: 0.375rem;
+              background-color: white;
+              box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+              padding: 8px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              position: relative;
+              page-break-inside: avoid;
+            }
+            .ticket-number {
+              position: absolute;
+              top: 4px;
+              right: 8px;
+              font-size: 15px;
+              font-weight: 600;
+              color: #6b7280;
+            }
+            .logo-container {
+              display: flex;
+              justify-content: center;
+              height: 48px;
+            }
+            .logo {
+              width: 165px;
+              object-fit: contain;
+            }
+            .name {
+              text-align: center;
+              font-size: 13px;
+              font-weight: 600;
+              color: #1f2937;
+              margin: 4px 0;
+            }
+            .month {
+              text-align: center;
+              font-size: 12px;
+              color: #4b5563;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="ticket-container">
+            ${Array.from({ length: noOfDays }).map((_, index) => `
+              <div class="ticket">
+                <div class="ticket-number">#${index + 1}</div>
+                <div class="logo-container">
+                  <img 
+                    src="/assets/images/SL India Software Center copy.png" 
+                    class="logo" 
+                    alt="Logo"
+                    onerror="this.src='https://via.placeholder.com/64'"
+                  />
+                </div>
+                <div class="name">${name}</div>
+                <div class="month">${month} ${year}</div>
+              </div>
+            `).join('')}
+          </div>
+          <script>
+            window.onload = function() {
+              setTimeout(() => {
+                window.print();
+                setTimeout(() => {
+                  window.close();
+                }, 300);
+              }, 200);
+            };
+          </script>
+        </body>
+      </html>
+    `);
+
+    printWindow.document.close();
+    setIsGenerating(false);
   };
 
   return (
-    <div className="p-4">
-      <div className="flex justify-center mb-4">
-        <Button onClick={handleDownload} className="cursor-pointer" disabled={isLoading}>
-          {isLoading ? "Preparing PDF..." : "Download Meal Tickets"}
-        </Button>
+    <div className="space-y-4">
+      <div className="p-4 border rounded-lg bg-gray-50">
+        <h2 className="font-semibold">Preview Details:</h2>
+        <p>Name: {name}</p>
+        <p>Month: {month}</p>
+        <p>Year: {year}</p>
+        <p>Number of Tickets: {noOfDays}</p>
       </div>
-
-      {/* Only this part will go to PDF */}
-      <div
-        ref={contentRef}
-        className="grid grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-3 justify-items-center p-4 bg-white"
-      >
-
-        {Array.from({ length: noOfDays=28 }).map((_, index) => (
-          <div
-            key={index}
-            className="w-40 h-27 border border-gray-400 rounded-md bg-white shadow-sm p-2 flex flex-col justify-between relative"
+      
+      <div className="flex gap-2">
+        <Button 
+          onClick={generateAndPrintTickets} 
+          disabled={isGenerating}
+          className="flex-1"
+        >
+          {isGenerating ? "Generating..." : "Generate & Print Tickets"}
+        </Button>
+        {onReset && (
+          <Button 
+            variant="outline" 
+            onClick={onReset}
+            className="flex-1"
           >
-            <div className="absolute top-1 right-2 text-[15px] font-semibold text-gray-500">
-              #{index + 1}
-            </div>
-            <div className="flex justify-center">
-              <img
-                src="/assets/images/SL India Software Center copy.png" // make sure this path works!
-                className="w-60 h-12 object-contain"
-                alt="Logo"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "https://via.placeholder.com/64";
-                }}
-              />
-            </div>
-            <div className="text-center text-[13px] font-semibold text-gray-800">
-              {name}
-            </div>
-            <div className="text-center text-[12px] text-gray-600">
-              {month} {year}
-            </div>
-          </div>
-        ))}
+            Back to Form
+          </Button>
+        )}
       </div>
     </div>
   );

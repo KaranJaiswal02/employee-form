@@ -2,56 +2,26 @@
 import { useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
-import IAPIResponse from '@/types/responseType'
-import { IEmployeeJoinForm } from '@/models/empjoin_form'
-import {empFormData} from '@/hooks/Atoms'
+import { empFormData } from '@/hooks/Atoms'
 import { useAtom } from 'jotai'
 
 export default function EmpForm1() {
-    const [empFormData1, setEmpFormData1] = useAtom(empFormData);
-    const [isChecked, setIsChecked] = useState(false);
+  const [empFormData1, setEmpFormData1] = useAtom(empFormData);
+  const [isChecked, setIsChecked] = useState(false);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { id, value } = e.target as HTMLInputElement;
-        setEmpFormData1(prev => ({ ...prev, [id]: value }));
-    };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target as HTMLInputElement;
+    setEmpFormData1(prev => ({ ...prev, [id]: value }));
+  };
 
-    const handleCheckboxChange = () => {
-        if (isChecked) {
-            setEmpFormData1(prev => ({ ...prev, perAddress: "", perDistrict: "", perState: "", perPincode: "" }));
-        } else {
-            setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode }));
-        }
-        setIsChecked(!isChecked);
-    };
-
-    const signatureChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            if (!file.type.startsWith("image/")) {
-                alert("Only image files are allowed.");
-                return;
-            }
-
-            if (file.size > 1024 * 512) {
-                alert("File size must be less than 500KB.");
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const base64String = reader.result as string;
-                const base64Content = base64String.replace(/^data:image\/(png|jpeg|jpg);base64,/, '');
-
-                // console.log(base64Content);
-                setEmpFormData1(prev => ({ ...prev, signature: base64Content }));
-            };
-            reader.readAsDataURL(file);
-        }
-    };
+  const handleCheckboxChange = () => {
+    if (isChecked) {
+      setEmpFormData1(prev => ({ ...prev, perAddress: "", perDistrict: "", perState: "", perPincode: "" }));
+    } else {
+      setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode }));
+    }
+    setIsChecked(!isChecked);
+  };
 
     return (
             <div className="">
