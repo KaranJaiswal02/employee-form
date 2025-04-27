@@ -1,124 +1,56 @@
-import mongoose, { Schema, Document, models } from "mongoose";
+import mongoose, { Schema, Document, model, models } from 'mongoose';
 
-interface IChild {
+interface Child {
   name: string;
-  gender: "Male" | "Female";
-  dob: Date;
+  gender: string;
+  dob: string;
 }
 
-export interface IMedicalInsuranceForm extends Document {
+export interface StaffFamilyFormData extends Document {
   empNo: string;
-  empName: string;
+  name: string;
   department: string;
-  dob: Date;
-  age: string;
+  dob: string;
+  age: number;
   maritalStatus: string;
-  spouseName?: string;
-  spouseDob: Date;
+  spouseName: string;
+  spouseDob: string;
   numOfChildren: string;
-  children: IChild[];
+  children: Child[];
   fatherName: string;
-  fatherDob: Date;
+  fatherDob: string;
   motherName: string;
-  motherDob: Date;
+  motherDob: string;
   mobileNumber: string;
   address: string;
   date: Date;
 }
 
-const ChildSchema: Schema = new Schema<IChild>({
-  name: {
-    type: String,
-    required: [true, "Child name is required"],
-    trim: true,
-  },
-  gender: {
-    type: String,
-    enum: ["Male", "Female"],
-    required: [true, "Child gender is required"],
-  },
-  dob: {
-    type: Date,
-    required: [true, "Child DOB is required"],
-  },
+const ChildSchema: Schema = new Schema({
+  name: { type: String, required: false, default: '' },
+  gender: { type: String, required: false, default: '' },
+  dob: { type: String, required: false, default: '' },
 });
 
-const MedicalInsuranceFormSchema: Schema = new Schema<IMedicalInsuranceForm>(
-  {
-    empNo: {
-      type: String,
-      required: [true, "Employee number is required"],
-      trim: true,
-    },
-    empName: {
-      type: String,
-      required: [true, "Employee name is required"],
-      trim: true,
-    },
-    department: {
-      type: String,
-      required: [true, "Department is required"],
-      trim: true,
-    },
-    dob: {
-      type: Date,
-      required: [true, "Date of birth is required"],
-    },
-    age: {
-      type: String,
-      required: [true, "Age is required"],
-    },
-    maritalStatus: {
-      type: String,
-      required: [true, "Marital status is required"],
-    },
-    spouseName: {
-      type: String,
-      trim: true,
-    },
-    spouseDob: {
-      type: Date,
-    },
-    numOfChildren: {
-      type: String,
-    },
-    children: {
-      type: [ChildSchema],
-      default: [],
-    },
-    fatherName: {
-      type: String,
-      trim: true,
-    },
-    fatherDob: {
-      type: Date,
-    },
-    motherName: {
-      type: String,
-      trim: true,
-    },
-    motherDob: {
-      type: Date,
-    },
-    mobileNumber: {
-      type: String,
-      trim: true,
-      // match: [/^[0-9]{10}$/, "Invalid mobile number"],
-    },
-    address: {
-      type: String,
-      trim: true,
-    },
-    date: {
-      type: Date,
-      required: [true, "Form date is required"],
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
+const StaffFamilyFormDataSchema: Schema = new Schema({
+  empNo: { type: String, required: true },
+  name: { type: String, required: true },
+  department: { type: String, required: true },
+  dob: { type: String, required: true },
+  age: { type: Number, required: true },
+  maritalStatus: { type: String, required: true },
+  spouseName: { type: String, required: false },
+  spouseDob: { type: String, required: false },
+  numOfChildren: { type: String, required: false },
+  children: { type: [ChildSchema], default: [] },
+  fatherName: { type: String, required: false },
+  fatherDob: { type: String, required: false },
+  motherName: { type: String, required: false },
+  motherDob: { type: String, required: false },
+  mobileNumber: { type: String, required: false },
+  address: { type: String, required: false },
+  date: { type: Date, default: Date.now },
+});
 
-const MedicalInsuranceModel = models.MedicalInsuranceForm || mongoose.model<IMedicalInsuranceForm>( "MedicalInsuranceForm", MedicalInsuranceFormSchema);
-
-export default MedicalInsuranceModel;
+const IempFamilyDataModel = models.StaffFamilyFormData || model<StaffFamilyFormData>('StaffFamilyFormData', StaffFamilyFormDataSchema);
+export default IempFamilyDataModel;
