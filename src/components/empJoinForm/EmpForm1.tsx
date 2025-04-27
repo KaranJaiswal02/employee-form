@@ -13,18 +13,18 @@ export default function EmpForm1() {
     const { id, value } = e.target as HTMLInputElement;
     setEmpFormData1(prev => ({ ...prev, [id]: value }));
     if (isChecked) {
-      setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode }));
+      setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode, perstdcode: empFormData1.currstdcode,percontactNumber: empFormData1.currcontactNumber }));
     }
   };
 
-  // const handleCheckboxChange = () => {
-  //   if (isChecked) {
-  //     setEmpFormData1(prev => ({ ...prev, perAddress: "", perDistrict: "", perState: "", perPincode: "" }));
-  //   } else {
-  //     setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode }));
-  //   }
-  //   setIsChecked(!isChecked);
-  // };
+  const handleCheckboxChange = () => {
+    if (isChecked) {
+      setEmpFormData1(prev => ({ ...prev, perAddress: "", perDistrict: "", perState: "", perPincode: "", perstdcode: "", percontactNumber: "" }));
+    } else {
+      setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode, perstdcode: empFormData1.currstdcode,percontactNumber: empFormData1.currcontactNumber }));
+    }
+    setIsChecked(!isChecked);
+  };
 
   return (
     <div className="">
@@ -142,7 +142,7 @@ export default function EmpForm1() {
             type="checkbox"
             id="sameAsCurrent"
             checked={isChecked}
-            onChange={() => setIsChecked(!isChecked)}
+            onChange={handleCheckboxChange}
             className="w-4 h-4"
           />
           <label htmlFor="sameAsCurrent" className="text-sm">

@@ -164,24 +164,20 @@ export default function EmpForm2() {
             <div className="mb-4">
                 <div className="font-semibold mb-1">PRESENT ADDRESS:</div>
                 <textarea
-                    name="presentAddress1"
-                    value={formData.presentAddress1}
+                    name="currAddress"
+                    value={formData.currAddress}
+                    disabled={true}
                     onChange={handleChange}
                     className="w-full border-b-2 border-black pb-1 focus:outline-none h-8"
-                />
-                <textarea
-                    name="presentAddress2"
-                    value={formData.presentAddress2}
-                    onChange={handleChange}
-                    className="w-full border-b-2 border-black pb-1 focus:outline-none h-8 mt-2"
                 />
                 <div className="grid grid-cols-3 gap-4 mt-2">
                     <div>
                         <span className="text-sm">Dist.</span>
                         <input
                             type="text"
-                            name="presentDistrict"
-                            value={formData.presentDistrict}
+                            name="district"
+                            value={formData.district}
+                            disabled={true}
                             onChange={handleChange}
                             className="w-3/4 border-b border-black focus:outline-none ml-1"
                         />
@@ -190,8 +186,9 @@ export default function EmpForm2() {
                         <span className="text-sm">State</span>
                         <input
                             type="text"
-                            name="presentState"
-                            value={formData.presentState}
+                            name="state"
+                            value={formData.state}
+                            disabled={true}
                             onChange={handleChange}
                             className="w-3/4 border-b border-black focus:outline-none ml-1"
                         />
@@ -200,8 +197,9 @@ export default function EmpForm2() {
                         <span className="text-sm">PIN</span>
                         <input
                             type="text"
-                            name="presentPin"
-                            value={formData.presentPin}
+                            name="pincode"
+                            value={formData.pincode}
+                            disabled={true}
                             onChange={handleChange}
                             className="w-3/4 border-b border-black focus:outline-none ml-1"
                         />
@@ -211,16 +209,18 @@ export default function EmpForm2() {
                     <div className="text-sm">Tel: STD code</div>
                     <input
                         type="text"
-                        name="presentStdCode"
-                        value={formData.presentStdCode}
+                        name="currstdcode"
+                        value={formData.currstdcode}
+                        disabled={true}
                         onChange={handleChange}
                         className="w-16 border-b border-black focus:outline-none mx-1"
                     />
                     <div className="text-sm ml-4">Number</div>
                     <input
                         type="text"
-                        name="presentPhone"
-                        value={formData.presentPhone}
+                        name="currcontactNumber"
+                        value={formData.currcontactNumber}
+                        disabled={true}
                         onChange={handleChange}
                         className="w-24 border-b border-black focus:outline-none mx-1"
                     />
@@ -231,24 +231,20 @@ export default function EmpForm2() {
             <div className="mb-4">
                 <div className="font-semibold mb-1">PERMANENT ADDRESS:</div>
                 <textarea
-                    name="permanentAddress1"
-                    value={formData.permanentAddress1}
+                    name="perAddress"
+                    value={formData.perAddress}
+                    disabled={true}
                     onChange={handleChange}
                     className="w-full border-b-2 border-black pb-1 focus:outline-none h-8"
-                />
-                <textarea
-                    name="permanentAddress2"
-                    value={formData.permanentAddress2}
-                    onChange={handleChange}
-                    className="w-full border-b-2 border-black pb-1 focus:outline-none h-8 mt-2"
                 />
                 <div className="grid grid-cols-3 gap-4 mt-2">
                     <div>
                         <span className="text-sm">Dist.</span>
                         <input
                             type="text"
-                            name="permanentDistrict"
-                            value={formData.permanentDistrict}
+                            name="perDistrict"
+                            value={formData.perDistrict}
+                            disabled={true}
                             onChange={handleChange}
                             className="w-3/4 border-b border-black focus:outline-none ml-1"
                         />
@@ -257,8 +253,9 @@ export default function EmpForm2() {
                         <span className="text-sm">State</span>
                         <input
                             type="text"
-                            name="permanentState"
-                            value={formData.permanentState}
+                            name="perState"
+                            value={formData.perState}
+                            disabled={true}
                             onChange={handleChange}
                             className="w-3/4 border-b border-black focus:outline-none ml-1"
                         />
@@ -267,8 +264,9 @@ export default function EmpForm2() {
                         <span className="text-sm">PIN</span>
                         <input
                             type="text"
-                            name="permanentPin"
-                            value={formData.permanentPin}
+                            name="perPincode"
+                            value={formData.perPincode}
+                            disabled={true}
                             onChange={handleChange}
                             className="w-3/4 border-b border-black focus:outline-none ml-1"
                         />
@@ -278,8 +276,9 @@ export default function EmpForm2() {
                     <div className="text-sm">Tel: STD code</div>
                     <input
                         type="text"
-                        name="permanentStdCode"
-                        value={formData.permanentStdCode}
+                        name="perstdcode"
+                        value={formData.perstdcode}
+                        disabled={true}
                         onChange={handleChange}
                         className="w-16 border-b border-black focus:outline-none mx-1"
                     />
@@ -287,7 +286,8 @@ export default function EmpForm2() {
                     <input
                         type="text"
                         name="permanentPhone"
-                        value={formData.permanentPhone}
+                        value={formData.percontactNumber}
+                        disabled={true}
                         onChange={handleChange}
                         className="w-24 border-b border-black focus:outline-none mx-1"
                     />
