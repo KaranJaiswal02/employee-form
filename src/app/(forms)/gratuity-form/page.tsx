@@ -37,7 +37,7 @@ export default function Page() {
         }
     }
     return (
-        <form onSubmit={handleSubmit} className='bg-white text-black p-8 max-w-4xl mx-auto text-sm border border-gray-400 rounded-md my-4'>
+        <form onSubmit={handleSubmit} className='p-6 max-w-4xl mx-auto bg-white dark:bg-gray-950 shadow-md rounded-lg'>
             <GratuityForm1 />
             <GratuityForm2 />
             <div className="flex justify-center mt-6">

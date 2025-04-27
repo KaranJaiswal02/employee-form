@@ -101,7 +101,7 @@ export default function FormLayout({
             </aside>
 
             {/* Main content */}
-            <main className="flex-1 ml-80 p-10 min-h-screen space-y-20">
+            <main className="flex-1 ml-80 px-4 py-4 min-h-screen space-y-20">
                 {children}
             </main>
         </div>

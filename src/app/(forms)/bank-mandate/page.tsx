@@ -42,7 +42,7 @@ export default function BankMandateForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-4xl border border-gray-400 rounded-md my-4 mx-auto p-4 md:p-8 bg-white text-sm">
+        <form onSubmit={handleSubmit} className="p-6 max-w-4xl mx-auto bg-white dark:bg-gray-950 shadow-md rounded-lg">
             <div className="flex justify-between items-start mb-4">
                 <img src="/assets/images/logo.png" alt="Company Logo" className="h-8" />
                 <span className="font-semibold">Annexure</span>
