@@ -177,11 +177,14 @@ export const staffFamilyFormData = atom({
 })
 
 export const formStatusus = atom({
-  form1: "done",
-  form2: "done",
-  form3: "pending",
-  form4: "pending",
-  form5: "pending",
-  form6: "pending",
-  form7: "pending",
+  form1: {
+      name: "Employee Form",
+      url: "/forms/empForm",
+      status: "pending",
+  },
+  form2: {
+      name: "Gratuity Form",
+      url: "/forms/gratuityForm",
+      status: "pending",
+  },
 })

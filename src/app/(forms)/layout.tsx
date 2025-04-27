@@ -1,14 +1,16 @@
 "use client";
-
 import { formStatusus } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 export default function FormLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const pathname = usePathname()
     const [formStatus] = useAtom(formStatusus);
 
     return (
@@ -20,30 +22,39 @@ export default function FormLayout({
                 </h2>
 
                 <ul className="flex flex-col space-y-2">
-                    {Object.entries(formStatus).map(([formName, status]) => (
-                        <li key={formName}>
-                            <Link
-                                href={`#${formName}`}
-                                className={`flex items-center space-x-3 p-1 rounded-lg transition-colors duration-200 
-                ${status === "done"
-                                        ? "bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800"
-                                        : "hover:bg-gray-100 dark:hover:bg-gray-800"
-                                    }`}
-                            >
-                                <span
-                                    className={`text-xl ${status === "done"
-                                            ? "text-green-500 dark:text-green-400"
-                                            : "text-gray-400 dark:text-gray-500"
+                    {Object.entries(formStatus).map(([key, form]) => {
+                        const isActive = pathname === form.url;
+
+                        return (
+                            <li key={key}>
+                                <Link
+                                    href={form.url}
+                                    className={`flex items-center space-x-3 p-2 rounded-lg transition-colors duration-200 
+                    ${isActive
+                                            ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold"
+                                            : form.status === "done"
+                                                ? "bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800"
+                                                : "hover:bg-gray-100 dark:hover:bg-gray-800"
                                         }`}
                                 >
-                                    {status === "done" ? "✅" : "⭕"}
-                                </span>
-                                <span className="text-gray-700 dark:text-gray-300 font-medium capitalize truncate">
-                                    {formName.replace(/([a-z])([A-Z])/g, "$1 $2")}
-                                </span>
-                            </Link>
-                        </li>
-                    ))}
+                                    <span
+                                        className={`text-xl ${form.status === "done"
+                                                ? "text-green-500 dark:text-green-400"
+                                                : "text-gray-400 dark:text-gray-500"
+                                            }`}
+                                    >
+                                        {form.status === "done" ? "✅" : "⭕"}
+                                    </span>
+                                    <span
+                                        className={`truncate ${isActive ? "font-semibold" : "font-medium"
+                                            }`}
+                                    >
+                                        {form.name}
+                                    </span>
+                                </Link>
+                            </li>
+                        );
+                    })}
                 </ul>
             </aside>
 
