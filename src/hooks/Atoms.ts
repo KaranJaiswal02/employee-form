@@ -220,7 +220,7 @@ export const idCardFormData = atom({
 
 export const staffFamilyFormData = atom({
   empNo: '',
-  empName: '',
+  name: '',
   department: '',
   dob: '',
   age: '',
@@ -250,7 +250,7 @@ export const formStatusus = atom({
   form2: {
     name: "ID Card Form",
     url: "/idcard-form",
-    status: "pending",
+    status: "done",
   },
   form3: {
     name: "Family Members Details",
