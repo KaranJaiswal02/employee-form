@@ -3,63 +3,105 @@ import { formStatusus } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function FormLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const pathname = usePathname()
+    const pathname = usePathname();
     const [formStatus] = useAtom(formStatusus);
+
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    // Check initial mode
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const isDark = document.documentElement.classList.contains("dark");
+            setIsDarkMode(isDark);
+        }
+    }, []);
+
+    // Toggle dark mode
+    const toggleDarkMode = () => {
+        if (typeof window !== "undefined") {
+            document.documentElement.classList.toggle("dark");
+            setIsDarkMode((prev) => !prev);
+        }
+    };
 
     return (
         <div className="flex">
             {/* Sidebar */}
-            <aside className="fixed top-0 left-0 w-64 h-screen bg-white dark:bg-gray-950 shadow-md border-r border-gray-200 dark:border-gray-800 p-6 flex flex-col">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-10 tracking-tight">
-                    📋 Form Progress
-                </h2>
+            <aside className="fixed top-0 left-0 w-80 h-screen bg-white dark:bg-gray-950 shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between">
+                {/* Top section */}
+                <div>
+                    <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-10 tracking-tight">
+                        📋 Form Progress
+                    </h2>
 
-                <ul className="flex flex-col space-y-2">
-                    {Object.entries(formStatus).map(([key, form]) => {
-                        const isActive = pathname === form.url;
+                    <ul className="flex flex-col space-y-2">
+                        {Object.entries(formStatus).map(([key, form]) => {
+                            const isActive = pathname === form.url;
 
-                        return (
-                            <li key={key}>
-                                <Link
-                                    href={form.url}
-                                    className={`flex items-center space-x-3 p-2 rounded-lg transition-colors duration-200 
+                            return (
+                                <li key={key}>
+                                    <Link
+                                        href={form.url}
+                                        className={`flex items-center space-x-3 p-2 rounded-lg transition-colors duration-200 
                     ${isActive
-                                            ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold"
-                                            : form.status === "done"
-                                                ? "bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800"
-                                                : "hover:bg-gray-100 dark:hover:bg-gray-800"
-                                        }`}
-                                >
-                                    <span
-                                        className={`text-xl ${form.status === "done"
-                                                ? "text-green-500 dark:text-green-400"
-                                                : "text-gray-400 dark:text-gray-500"
+                                                ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold"
+                                                : form.status === "done"
+                                                    ? "bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800"
+                                                    : "hover:bg-gray-100 dark:hover:bg-gray-800"
                                             }`}
                                     >
-                                        {form.status === "done" ? "✅" : "⭕"}
-                                    </span>
-                                    <span
-                                        className={`truncate ${isActive ? "font-semibold" : "font-medium"
-                                            }`}
-                                    >
-                                        {form.name}
-                                    </span>
-                                </Link>
-                            </li>
-                        );
-                    })}
-                </ul>
+                                        <span
+                                            className={`text-xl ${form.status === "done"
+                                                    ? "text-green-500 dark:text-green-400"
+                                                    : "text-gray-400 dark:text-gray-500"
+                                                }`}
+                                        >
+                                            {form.status === "done" ? "✅" : "⭕"}
+                                        </span>
+                                        <span
+                                            className={`truncate ${isActive ? "font-semibold" : "font-medium"
+                                                }`}
+                                        >
+                                            {form.name}
+                                        </span>
+                                    </Link>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+
+                {/* Bottom section - Toggle Button */}
+                <div className="mt-6">
+                    <div className="flex items-center space-x-3">
+                        <span className="text-gray-800 dark:text-gray-200 font-medium">
+                            {isDarkMode ? "🌙" : "☀️"}
+                        </span>
+                        <button
+                            onClick={toggleDarkMode}
+                            className="relative inline-flex items-center cursor-pointer w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-700 transition-colors duration-200"
+                        >
+                            <span
+                                className={`inline-block w-6 h-6 bg-white rounded-full shadow-md transform transition-all duration-200 ${isDarkMode ? "translate-x-6" : "translate-x-0"
+                                    }`}
+                            ></span>
+                        </button>
+                        <span className="text-gray-800 dark:text-gray-200 font-medium">
+                            {isDarkMode ? "Light Mode" : "Dark Mode"}
+                        </span>
+                    </div>
+                </div>
             </aside>
 
             {/* Main content */}
-            <main className="flex-1 ml-64 p-10 min-h-screen space-y-20 bg-gray-50 dark:bg-gray-900">
+            <main className="flex-1 ml-80 p-10 min-h-screen space-y-20 bg-gray-50 dark:bg-gray-900">
                 {children}
             </main>
         </div>
