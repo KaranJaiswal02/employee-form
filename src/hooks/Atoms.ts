@@ -179,37 +179,37 @@ export const staffFamilyFormData = atom({
 export const formStatusus = atom({
   form1: {
     name: "STAFF JOINING FORM",
-    url: "/forms/staff-joining",
+    url: "/staff-joining",
     status: "pending",
   },
   form2: {
     name: "ID Card Form",
-    url: "/forms/gratuityForm",
+    url: "/idcard-form",
     status: "pending",
   },
   form3: {
     name: "Family Members Details",
-    url: "/forms/staff-family-members",
+    url: "/staff-family-members",
     status: "pending",
   },
   form4: {
     name: "Bank Mandate Form",
-    url: "/forms/bank-mandate",
+    url: "/bank-mandate",
     status: "pending",
   },
   form5: {
     name: "Nomination & declaration(Form 1)",
-    url: "/forms/nomination-declaration-form1",
+    url: "/nomination-declaration-form1",
     status: "pending",
   },
   form6: {
     name: "Gratuity Form",
-    url: "/forms/gratuity-form",
+    url: "/gratuity-form",
     status: "pending",
   },
   form7: {
     name: "Form 2 Nomination & declaration",
-    url: "/forms/nomination-declaration-form2",
+    url: "/nomination-declaration-form2",
     status: "pending",
   },
 })
