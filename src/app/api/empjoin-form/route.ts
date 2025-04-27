@@ -1,13 +1,13 @@
 import dbConnect from "@/lib/dbConnect";
 import EmpJoinForm from "@/models/empjoin_form";
-import { IEmployeeJoinForm } from "@/models/empjoin_form";
+import { IEmpFormData } from "@/models/empjoin_form";
 import mongoose from "mongoose";
 
 export async function POST(req: Request) {
     await dbConnect();
     
     try {
-        const body: IEmployeeJoinForm = await req.json();
+        const body: IEmpFormData = await req.json();
         // console.log(body)
         
         // Validate request body
