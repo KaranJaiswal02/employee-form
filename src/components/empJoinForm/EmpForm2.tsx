@@ -1,11 +1,13 @@
 "use client"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { useRouter } from 'next/navigation'
+import { empFormData } from '@/hooks/Atoms'
+import { useAtom } from 'jotai'
 //import IAPIResponse from '@/types/responseType'
 
 export default function EmpForm2() {
@@ -67,6 +69,15 @@ export default function EmpForm2() {
     });
 
     const [isChecked, setIsChecked] = useState(false);
+    const [empFormData1] = useAtom(empFormData);
+
+    useEffect(() => {
+        setFormData((prev) => ({
+            ...prev,
+            date: empFormData1.date || '',
+        }));
+    }
+    , []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target as HTMLInputElement;

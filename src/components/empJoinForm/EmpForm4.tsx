@@ -1,6 +1,8 @@
 "use client";
-import { useState } from "react";
-
+import React, { useState } from "react";
+import { useAtom } from "jotai";
+import { empFormData } from "@/hooks/Atoms";
+import { useEffect } from "react";
 // ✅ Define types for each row
 type FamilyRow = {
     name: string;
@@ -142,7 +144,7 @@ export default function EmpForm4() {
                                     />
                                 </td>
                                 <td className="border border-black">
-                                {index !== 0 && (<button
+                                    {index !== 0 && (<button
                                         onClick={() => removeFamilyRow(index)}
                                         className="text-red-600 font-semibold cursor-pointer"
                                     >
@@ -217,7 +219,7 @@ export default function EmpForm4() {
                                     />
                                 </td>
                                 <td className="border border-black">
-                                {index !== 0 && (<button
+                                    {index !== 0 && (<button
                                         onClick={() => removeNomineeRow(index)}
                                         className="text-red-600 font-semibold cursor-pointer"
                                     >
