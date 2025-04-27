@@ -175,3 +175,13 @@ export const staffFamilyFormData = atom({
   address: '',
   date: currentDate
 })
+
+export const formStatusus = atom({
+  form1: "done",
+  form2: "done",
+  form3: "pending",
+  form4: "pending",
+  form5: "pending",
+  form6: "pending",
+  form7: "pending",
+})
