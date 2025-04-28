@@ -100,9 +100,9 @@ export default function Page() {
             ["YEAR", "year"],
           ].map(([label, id, type]) => (
             <div key={id} className="flex border-b border-black h-12">
-              <div className="w-1/3 border-r border-black font-semibold px-2 flex items-center">
+              <label htmlFor={id} className="w-1/3 border-r border-black font-semibold px-2 flex items-center">
                 {label}
-              </div>
+              </label>
               <div className="w-2/3 flex items-center px-2">
                 {id === "bloodGroup" ? (
                   <DropdownMenu>
@@ -175,9 +175,9 @@ export default function Page() {
 
         {/* ADDRESS ROW */}
         <div className="col-span-3 border-t border-black h-24 flex">
-          <div className="w-1/6 border-r border-black px-2 font-semibold flex items-center">
+          <label htmlFor="currAddress" className="w-1/6 border-r border-black px-2 font-semibold flex items-center">
             ADDRESS
-          </div>
+          </label>
           <div className="w-5/6 px-2">
             <Textarea
               id="currAddress"
@@ -190,15 +190,15 @@ export default function Page() {
 
         {/* CONTACT NUMBER */}
         <div className="col-span-3 border-t border-black h-12 flex">
-          <div className="w-1/6 border-r border-black px-2 font-semibold flex items-center">
+          <label htmlFor="contactnumber" className="w-1/6 border-r border-black px-2 font-semibold flex items-center">
             CONTACT NUMBER
-          </div>
+          </label>
           <div className="w-5/6 px-2 flex items-center">
             <Input
               id="contactnumber"
               value={formData.contactnumber}
               onChange={handleInputChange}
-              type="tel"
+              type="number"
               pattern="[0-9]{10}"
             />
           </div>
