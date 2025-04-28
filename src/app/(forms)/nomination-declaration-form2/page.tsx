@@ -23,7 +23,6 @@ export default function Page() {
             lastName: formData1.surname || "",
             middleName: formData1.middleName || "",
             maritalStatus: formData1.maritalStatus || "",
-
         }));
     }, [])
 

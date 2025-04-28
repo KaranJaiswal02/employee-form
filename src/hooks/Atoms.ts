@@ -168,8 +168,8 @@ export const nominationForm2Data = atom({
     dob: '',
     relationship: ''
   },
-  subscriberDate: '',
-  employerDate: '',
+  subscriberDate: currentDate,
+  employerDate: currentDate,
   establishmentDetails: '',
   place: '',
   date: currentDate,
