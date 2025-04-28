@@ -40,6 +40,7 @@ export default function Page() {
       dob: empFormData1.dob || "",
       curraddress: empFormData1.currAddress || "",
       peraddress: empFormData1.perAddress || "",
+      maritalStatus: empFormData1.maritalStatus || "",
       
     }));
   },[])
@@ -116,10 +117,11 @@ export default function Page() {
             <input
               type="text"
               name="name"
-              value={formData.name}
+              value={empFormData1.name}
               onChange={handleChange}
               placeholder="Your Name"
               className="flex-1 border border-gray-400 px-2 py-1"
+              disabled={true}
             />
           </div>
           <div className="flex items-center gap-4">
@@ -127,10 +129,11 @@ export default function Page() {
             <input
               type="text"
               name="fathersName"
-              value={formData.fathersName}
+              value={empFormData1.fatherName}
               placeholder="Your Father's or Husband's Name"
               onChange={handleChange}
               className="flex-1 border border-gray-400 px-2 py-1"
+              disabled={true}
             />
           </div>
           <div className="flex items-center gap-4">

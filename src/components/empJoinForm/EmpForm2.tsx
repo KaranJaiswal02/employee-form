@@ -305,7 +305,7 @@ export default function EmpForm2() {
                             checked={formData.maritalStatus === 'Married'}
                             onChange={handleChange}
                             className="mr-1"
-                        /> MARRIED
+                        /> Single
                     </label>
                     <label className="ml-4">
                         <input
@@ -315,7 +315,27 @@ export default function EmpForm2() {
                             checked={formData.maritalStatus === 'Single'}
                             onChange={handleChange}
                             className="mr-1"
-                        /> SINGLE
+                        /> Married
+                    </label>
+                    <label className="ml-4">
+                        <input
+                            type="radio"
+                            name="maritalStatus"
+                            value="Single"
+                            checked={formData.maritalStatus === 'Single'}
+                            onChange={handleChange}
+                            className="mr-1"
+                        /> Divorced
+                    </label>
+                    <label className="ml-4">
+                        <input
+                            type="radio"
+                            name="maritalStatus"
+                            value="Single"
+                            checked={formData.maritalStatus === 'Single'}
+                            onChange={handleChange}
+                            className="mr-1"
+                        /> Widowed
                     </label>
                 </div>
             </div>
