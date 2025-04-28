@@ -95,6 +95,7 @@ export default function EmpForm3() {
                             ))}
                             <td className="border border-black">
                                 {formData.education.length > 1 && (<button
+                                    type="button"
                                     className="text-red-600 font-semibold cursor-pointer"
                                     onClick={() => removeEducationRow(i)}
                                 >
@@ -105,13 +106,13 @@ export default function EmpForm3() {
                     ))}
                 </tbody>
             </table>
-                <button
-                    type="button"
-                    onClick={addEducationRow}
-                    className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
-                >
-                    + Add Row
-                </button>
+            <button
+                type="button"
+                onClick={addEducationRow}
+                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
+            >
+                + Add Row
+            </button>
 
             {/* EMPLOYMENT RECORD */}
             <h2 className="font-bold uppercase mt-4">
@@ -144,6 +145,7 @@ export default function EmpForm3() {
                             ))}
                             <td className="border border-black">
                                 {formData.employment.length > 1 && (<button
+                                    type="button"
                                     className="text-red-600 font-semibold cursor-pointer"
                                     onClick={() => removeEmploymentRow(i)}
                                 >
@@ -265,6 +267,7 @@ export default function EmpForm3() {
                         className="border-b border-black inline-block"
                         value={formData.date}
                         onChange={(e) => handleChange("date", e.target.value)}
+                        disabled={true}
                     />
                 </div>
                 <div>

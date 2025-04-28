@@ -97,6 +97,7 @@ export default function EmpForm4() {
                         className="border-b border-black flex-grow ml-4"
                         value={formData.companyName}
                         onChange={(e) => handleChange('companyName', e.target.value)}
+                        disabled={true}
                     />
                 </div>
 
@@ -107,6 +108,7 @@ export default function EmpForm4() {
                         className="border-b border-black flex-grow ml-4"
                         value={formData.name}
                         onChange={(e) => handleChange('name', e.target.value)}
+                        disabled={true}
                     />
                 </div>
 
@@ -180,6 +182,7 @@ export default function EmpForm4() {
                                 <td className="border border-black">
                                     {index !== 0 && (
                                         <button
+                                            type="button"
                                             onClick={() => removeFamilyRow(index)}
                                             className="text-red-600 font-semibold cursor-pointer"
                                         >
@@ -257,6 +260,7 @@ export default function EmpForm4() {
                                 <td className="border border-black">
                                     {index !== 0 && (
                                         <button
+                                            type="button"
                                             onClick={() => removeNomineeRow(index)}
                                             className="text-red-600 font-semibold cursor-pointer"
                                         >
@@ -285,6 +289,7 @@ export default function EmpForm4() {
                         className="border-b border-black ml-2"
                         value={formData.date}
                         onChange={(e) => handleChange('date', e.target.value)}
+                        disabled={true}
                     />
                 </div>
                 <div className="text-right">
