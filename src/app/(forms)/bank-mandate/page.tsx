@@ -102,6 +102,8 @@ export default function BankMandateForm() {
                                 value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData]}
                                 className="flex-1 border-b border-black sm:ml-4 resize-none h-16"
                                 required
+                                disabled={label === 'Address' || label === 'Name'}
+
                             />
                         ) : (
                             <input
@@ -111,6 +113,7 @@ export default function BankMandateForm() {
                                 value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData]}
                                 className="flex-1 border-b border-black sm:ml-4"
                                 required
+                                disabled={label === 'Address' || label === 'Name'}
                             />
                         )}
                     </div>
@@ -126,6 +129,7 @@ export default function BankMandateForm() {
                         required
                     />
                 </div>
+
                 <div className="flex flex-col sm:flex-row">
                     <label htmlFor="pan" className="w-72">6. Permanent Account Number</label>
                     <input
@@ -302,6 +306,6 @@ export default function BankMandateForm() {
             <div className="flex justify-center mt-6">
                 <Button type="submit" className="w-full cursor-pointer">Submit</Button>
             </div>
-        </form>
+        </form >
     );
 }

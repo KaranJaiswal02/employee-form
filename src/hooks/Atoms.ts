@@ -201,6 +201,7 @@ export const bankMandateFormData = atom({
   ifscCode: '',
   place: '',
   date: currentDate,
+  
 })
 
 export const idCardFormData = atom({
