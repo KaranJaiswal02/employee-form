@@ -1,43 +1,32 @@
 "use client";
+import { nominationForm2Data } from '@/hooks/Atoms';
+import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 
 type nominationForm2Data = {
-  nominee: {
+  pension_nominee: {
     name: string;
     address: string;
     dob: string;
     relationship: string;
   };
   subscriberDate: string;
-  employerName: string;
+  name: string;
   employerDate: string;
   establishmentDetails: string;
   place: string;
-  certificationDate: string;
+  date: string;
 };
 
 export default function EPFNominationFormPart2() {
-  const [formData, setFormData] = useState<nominationForm2Data>({
-    nominee: {
-      name: '',
-      address: '',
-      dob: '',
-      relationship: ''
-    },
-    subscriberDate: '',
-    employerName: '',
-    employerDate: '',
-    establishmentDetails: '',
-    place: '',
-    certificationDate: ''
-  });
+  const [formData, setFormData] = useAtom(nominationForm2Data);
 
   const handleNomineeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      nominee: {
-        ...prev.nominee,
+      pension_nominee: {
+        ...prev.pension_nominee,
         [name]: value
       }
     }));
@@ -63,12 +52,12 @@ export default function EPFNominationFormPart2() {
           I hereby nominate the following person for receiving the monthly widow pension (admissible under para 16 2 (a) (i) & (ii)) in the event of my death without leaving any eligible family member for receiving pension.
         </p>
 
-        {/* Nominee Table */}
+        {/* pension_Nominee Table */}
         <div className="overflow-x-auto mb-6">
           <table className="w-full border border-black text-sm">
             <thead>
               <tr className="bg-gray-100">
-                <th className="border border-black p-2">Name and Address of the nominee</th>
+                <th className="border border-black p-2">Name and Address of the pension_nominee</th>
                 <th className="border border-black p-2">Date of Birth</th>
                 <th className="border border-black p-2">Relationship with member</th>
               </tr>
@@ -79,7 +68,7 @@ export default function EPFNominationFormPart2() {
                   <input
                     type="text"
                     name="name"
-                    value={formData.nominee.name}
+                    value={formData.pension_nominee.name}
                     onChange={handleNomineeChange}
                     className="w-full outline-none border-b border-gray-300 mb-1"
                     placeholder="Name"
@@ -87,7 +76,7 @@ export default function EPFNominationFormPart2() {
                   <input
                     type="text"
                     name="address"
-                    value={formData.nominee.address}
+                    value={formData.pension_nominee.address}
                     onChange={handleNomineeChange}
                     className="w-full outline-none"
                     placeholder="Address"
@@ -97,7 +86,7 @@ export default function EPFNominationFormPart2() {
                   <input
                     type="date"
                     name="dob"
-                    value={formData.nominee.dob}
+                    value={formData.pension_nominee.dob}
                     onChange={handleNomineeChange}
                     className="w-full outline-none"
                   />
@@ -106,7 +95,7 @@ export default function EPFNominationFormPart2() {
                   <input
                     type="text"
                     name="relationship"
-                    value={formData.nominee.relationship}
+                    value={formData.pension_nominee.relationship}
                     onChange={handleNomineeChange}
                     className="w-full outline-none"
                   />
@@ -141,8 +130,8 @@ export default function EPFNominationFormPart2() {
           Certified that the above declaration and nomination has been signed / thumb impressed before me by Shri / Smt./ Miss
           <input
             type="text"
-            name="employerName"
-            value={formData.employerName}
+            name="name"
+            value={formData.name}
             onChange={handleFieldChange}
             className="border-b border-black outline-none mx-2 w-48"
             placeholder="Name"
@@ -161,7 +150,7 @@ export default function EPFNominationFormPart2() {
               className="border-b border-black outline-none"
             />
           </div>
-          <div className="w-64 border-t border-black text-center pt-2">
+          <div className="w-64 border-t border-black text-center pt-2 mt-4">
             Signature of the employer or other authorised officer of the establishment
           </div>
         </div>
@@ -172,7 +161,7 @@ export default function EPFNominationFormPart2() {
             name="establishmentDetails"
             value={formData.establishmentDetails}
             onChange={handleFieldChange}
-            className="w-full border-b border-black outline-none h-16"
+            className="w-full border-b border-black outline-none h-12"
           />
         </div>
 
@@ -191,8 +180,8 @@ export default function EPFNominationFormPart2() {
             <label>Date:</label>
             <input
               type="date"
-              name="certificationDate"
-              value={formData.certificationDate}
+              name="date"
+              value={formData.date}
               onChange={handleFieldChange}
               className="border-b border-black outline-none"
             />

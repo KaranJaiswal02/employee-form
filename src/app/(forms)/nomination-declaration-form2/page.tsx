@@ -4,56 +4,24 @@ import Nomination2 from '@/components/nominationrevisedform/Nomination2';
 import { Button } from "@/components/ui/button";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import { bankMandateFormData, nominationForm1Data, nominationForm2Data } from "@/hooks/Atoms";
-import { empFormData, grauFormData } from '@/hooks/Atoms';
+import { nominationForm2Data } from '@/hooks/Atoms';
 
 export default function Page() {
     const router = useRouter();
-    const [formData, setFormData] = useAtom(grauFormData);
-    const [empFormData1] = useAtom(empFormData);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const [nominationForm1] = useAtom(nominationForm1Data);
-    const [bankMandateForm] = useAtom(bankMandateFormData);
+    const [formData, setFormData] = useAtom(nominationForm2Data);
 
-
-    // Initialize form data with employee name
-    useEffect(() => {
-        setFormData(prev => ({
-            ...prev,
-            //name: empFormData1.name || '',
-            dob: empFormData1.dob || '',
-            marriagestatus: nominationForm1.maritalStatus || '',
-            accountNo: bankMandateForm.accountNumber || '',
-            
-        }));
-    }, []);
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setError(null); // Reset error state
-        console.log(formData);
-        // dummy db call simulation
-        const dummyDBCall = () => {
-            // Simulate a successful submission
-            return true;
-        }
-        try {
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+            e.preventDefault()
+            console.log(formData)
+            // Dummy DB call simulation
+            // Replace this with actual form submission logic
+            const dummyDBCall = () => true
             if (dummyDBCall()) {
-                router.push('/thank-you');
+                router.push('/thank-you')
             } else {
-                throw new Error("Form Submission Failed!");
+                alert('Form Submission Failed!')
             }
         }
-        catch (err) {
-            setError(err instanceof Error ? err.message : "An unknown error occurred");
-        }
-        finally {
-            setIsSubmitting(false);
-        }
-    };
 
     return (
 

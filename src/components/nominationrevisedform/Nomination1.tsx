@@ -1,4 +1,6 @@
 "use client";
+import { nominationForm2Data } from '@/hooks/Atoms';
+import { useAtom } from 'jotai';
 import React, { useState } from 'react';
 
 type Nominee = {
@@ -29,29 +31,12 @@ type FormData = {
     address: string;
     hasNoFamily: boolean;
     hasDependentParents: boolean;
-    nominees: Nominee[];
+    credit_nominees: Nominee[];
     familyMembers: FamilyMember[];
 };
 
 export default function EPFNominationForm() {
-    const [formData, setFormData] = useState<FormData>({
-        name: '',
-        fathersName: '',
-        surname: '',
-        dob: '',
-        accountNo: '',
-        sex: '',
-        maritalStatus: '',
-        address: '',
-        hasNoFamily: false,
-        hasDependentParents: false,
-        nominees: [
-            { name: '', address: '', relationship: '', dob: '', share: '', guardianName: '', guardianAddress: '' },
-        ],
-        familyMembers: [
-            { name: '', address: '', age: '', relationship: '' },
-        ]
-    });
+    const [formData, setFormData] = useAtom(nominationForm2Data);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value, type } = e.target;
@@ -64,14 +49,14 @@ export default function EPFNominationForm() {
     };
 
     const handleNomineeChange = (index: number, field: keyof Nominee, value: string) => {
-        const updatedNominees = [...formData.nominees];
-        updatedNominees[index] = {
-            ...updatedNominees[index],
+        const updatedcredit_nominees = [...formData.credit_nominees];
+        updatedcredit_nominees[index] = {
+            ...updatedcredit_nominees[index],
             [field]: value
         };
         setFormData(prev => ({
             ...prev,
-            nominees: updatedNominees
+            credit_nominees: updatedcredit_nominees
         }));
     };
 
@@ -90,7 +75,7 @@ export default function EPFNominationForm() {
     const addNominee = () => {
         setFormData(prev => ({
             ...prev,
-            nominees: [...prev.nominees, { name: '', address: '', relationship: '', dob: '', share: '', guardianName: '', guardianAddress: '' }]
+            credit_nominees: [...prev.credit_nominees, { name: '', address: '', relationship: '', dob: '', share: '', guardianName: '', guardianAddress: '' }]
         }));
     };
 
@@ -102,12 +87,12 @@ export default function EPFNominationForm() {
     };
 
     const removeNominee = (index: number) => {
-        if (formData.nominees.length > 1) {
-            const updatedNominees = [...formData.nominees];
-            updatedNominees.splice(index, 1);
+        if (formData.credit_nominees.length > 1) {
+            const updatedcredit_nominees = [...formData.credit_nominees];
+            updatedcredit_nominees.splice(index, 1);
             setFormData(prev => ({
                 ...prev,
-                nominees: updatedNominees
+                credit_nominees: updatedcredit_nominees
             }));
         }
     };
@@ -266,7 +251,7 @@ export default function EPFNominationForm() {
                             </tr>
                         </thead>
                         <tbody>
-                            {formData.nominees.map((nominee, index) => (
+                            {formData.credit_nominees.map((nominee, index) => (
                                 <tr key={index}>
                                     <td className="border border-black p-1">
                                         <input
@@ -332,11 +317,11 @@ export default function EPFNominationForm() {
                                         </div>
                                     </td>
                                     <td className="border border-black p-1 text-center">
-                                        {formData.nominees.length > 1 && (<button
+                                        {formData.credit_nominees.length > 1 && (<button
                                             type="button"
                                             onClick={() => removeNominee(index)}
                                             className="text-red-500 hover:text-red-700 cursor-pointer"
-                                            disabled={formData.nominees.length <= 1}
+                                            disabled={formData.credit_nominees.length <= 1}
                                         >
                                             ❌
                                         </button>)}

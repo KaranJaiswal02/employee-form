@@ -156,33 +156,23 @@ export const nominationForm2Data = atom({
   address: '',
   hasNoFamily: false,
   hasDependentParents: false,
-  nominees: [{
-    name: '',
-    address: '',
-    relationship: '',
-    dob: '',
-    share: '',
-    guardianName: '',
-    guardianAddress: ''
-  }],
-  familyMembers: [{
-    name: '',
-    address: '',
-    age: '',
-    relationship: ''
-  }],
-  nominee: {
+  credit_nominees: [
+    { name: '', address: '', relationship: '', dob: '', share: '', guardianName: '', guardianAddress: '' },
+  ],
+  familyMembers: [
+    { name: '', address: '', age: '', relationship: '' },
+  ],
+  pension_nominee: {
     name: '',
     address: '',
     dob: '',
     relationship: ''
   },
   subscriberDate: '',
-  employerName: '',
   employerDate: '',
   establishmentDetails: '',
   place: '',
-  certificationDate: ''
+  date: currentDate,
 });
 
 export const bankMandateFormData = atom({
@@ -201,7 +191,6 @@ export const bankMandateFormData = atom({
   ifscCode: '',
   place: '',
   date: currentDate,
-  
 })
 
 export const idCardFormData = atom({
