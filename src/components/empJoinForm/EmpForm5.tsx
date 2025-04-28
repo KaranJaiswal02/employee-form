@@ -56,7 +56,7 @@ export default function EmpForm5() {
     };
 
     const removeMember = (index: number) => {
-        if (index === 0) return; // prevent removal of SELF row
+        if (index === 0) return;
         setFormData(prev => ({
             ...prev,
             members: prev.members.filter((_, i) => i !== index)
@@ -119,7 +119,7 @@ export default function EmpForm5() {
             </p>
 
             {/* Table */}
-            <table className="w-full border border-black text-sm mb-4">
+            <table className="w-full border border-black text-sm">
                 <thead className="bg-gray-100">
                     <tr>
                         <th className="border border-black p-1 font-semibold">Sl. No</th>
@@ -198,7 +198,7 @@ export default function EmpForm5() {
             <button
                 type="button"
                 onClick={addMember}
-                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm font-semibold"
+                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
             >
                 + Add Row
             </button>

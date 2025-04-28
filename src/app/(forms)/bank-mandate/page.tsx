@@ -16,7 +16,6 @@ export default function BankMandateForm() {
             ...prev,
             name: formData1.name || "",
             address: formData1.perAddress || "",
-
         }));
     }, [])
 
