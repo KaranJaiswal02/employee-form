@@ -103,7 +103,6 @@ export default function BankMandateForm() {
                                 className="flex-1 border-b border-black sm:ml-4 resize-none h-16"
                                 required
                                 disabled={label === 'Address' || label === 'Name'}
-
                             />
                         ) : (
                             <input

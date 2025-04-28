@@ -38,7 +38,7 @@ export default function Page() {
       name: empFormData1.name || "",
       fathersName: empFormData1.fatherName || "",
       dob: empFormData1.dob || "",
-      address: empFormData1.perAddress || "",
+      //address: empFormData1.perAddress || "",
       
     }));
   },[])
@@ -178,7 +178,7 @@ export default function Page() {
                 name="permanentAddress"
                 value={formData.permanentAddress}
                 onChange={handleChange}
-                placeholder="Permanent"
+                placeholder="Permanent Address"
                 className="w-full border border-gray-400 px-2 py-1"
                 rows={2}
               />
@@ -186,7 +186,7 @@ export default function Page() {
                 name="currentAddress"
                 value={formData.currentAddress}
                 onChange={handleChange}
-                placeholder="Current"
+                placeholder="Current Address"
                 className="w-full border border-gray-400 px-2 py-1"
                 rows={2}
               />
