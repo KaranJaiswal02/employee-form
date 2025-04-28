@@ -167,11 +167,11 @@ export const nominationForm2Data = atom({
     dob: '',
     relationship: ''
   },
-  subscriberDate: '',
-  employerDate: '',
+  //subscriberDate: '',
+  //employerDate: '',
   establishmentDetails: '',
   place: '',
-  date: currentDate,
+  //date: currentDate,
 });
 
 export const bankMandateFormData = atom({

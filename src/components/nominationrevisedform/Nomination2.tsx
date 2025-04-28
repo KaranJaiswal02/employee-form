@@ -1,7 +1,9 @@
 "use client";
 import { nominationForm2Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
-import React, { useState } from 'react';
+import React, { use, useState } from 'react';
+import { grauFormData }  from '@/hooks/Atoms';
+import { useEffect } from 'react';
 
 type nominationForm2Data = {
   pension_nominee: {
@@ -20,6 +22,14 @@ type nominationForm2Data = {
 
 export default function EPFNominationFormPart2() {
   const [formData, setFormData] = useAtom(nominationForm2Data);
+  const [grauFormData1] = useAtom(grauFormData);
+
+  useEffect(() => {
+    setFormData((prev) => ({
+      ...prev,
+      date: grauFormData1.date,
+    }));
+  }, []);
 
   const handleNomineeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -111,7 +121,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="subscriberDate"
-              value={formData.subscriberDate}
+              value={grauFormData1.date}
               onChange={handleFieldChange}
               className="border-b border-black outline-none"
             />
@@ -145,7 +155,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="employerDate"
-              value={formData.employerDate}
+              value={grauFormData1.date}
               onChange={handleFieldChange}
               className="border-b border-black outline-none"
             />
@@ -181,7 +191,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="date"
-              value={formData.date}
+              value={grauFormData1.date}
               onChange={handleFieldChange}
               className="border-b border-black outline-none"
             />
