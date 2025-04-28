@@ -56,7 +56,7 @@ export default function EmpForm5() {
     };
 
     const removeMember = (index: number) => {
-        if (index === 0) return; // prevent removal of SELF row
+        if (index === 0) return;
         setFormData(prev => ({
             ...prev,
             members: prev.members.filter((_, i) => i !== index)

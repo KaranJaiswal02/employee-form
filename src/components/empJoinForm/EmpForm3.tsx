@@ -1,14 +1,13 @@
 import { useAtom } from "jotai";
 import { empFormData } from "@/hooks/Atoms";
 
-
 export default function EmpForm3() {
     const [formData, setFormData] = useAtom(empFormData);
 
     const handleEducationChange = (row: number, col: number, value: string) => {
         setFormData(prev => {
             const updated = [...prev.education];
-            updated[row] = [...updated[row]]; // Create a new array for the row
+            updated[row] = [...updated[row]];
             updated[row][col] = value;
             return { ...prev, education: updated };
         });
@@ -17,7 +16,7 @@ export default function EmpForm3() {
     const handleEmploymentChange = (row: number, col: number, value: string) => {
         setFormData(prev => {
             const updated = [...prev.employment];
-            updated[row] = [...updated[row]]; // Create a new array for the row
+            updated[row] = [...updated[row]];
             updated[row][col] = value;
             return { ...prev, employment: updated };
         });
@@ -35,12 +34,39 @@ export default function EmpForm3() {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
 
+    const addEducationRow = () => {
+        setFormData(prev => ({
+            ...prev,
+            education: [...prev.education, ["", "", "", "", "", ""]],
+        }));
+    };
+
+    const removeEducationRow = (index: number) => {
+        setFormData(prev => ({
+            ...prev,
+            education: prev.education.filter((_, i) => i !== index),
+        }));
+    };
+
+    const addEmploymentRow = () => {
+        setFormData(prev => ({
+            ...prev,
+            employment: [...prev.employment, ["", "", "", "", "", ""]],
+        }));
+    };
+
+    const removeEmploymentRow = (index: number) => {
+        setFormData(prev => ({
+            ...prev,
+            employment: prev.employment.filter((_, i) => i !== index),
+        }));
+    };
+
     return (
         <div className="p-6 space-y-6 text-sm font-sans">
             {/* EDUCATIONAL QUALIFICATION */}
             <h2 className="font-bold uppercase">
-                Educational Qualification{" "}
-                <span className="italic">(Start from highest qualification)</span>
+                Educational Qualification <span className="italic">(Start from highest qualification)</span>
             </h2>
             <table className="table-auto w-full border border-black text-center text-sm">
                 <thead>
@@ -51,12 +77,13 @@ export default function EmpForm3() {
                         <th className="border border-black">To</th>
                         <th className="border border-black">Specialisation</th>
                         <th className="border border-black">Division %</th>
+                        <th className="border border-black">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {formData.education.map((row: string[], i) => (
+                    {formData.education.map((row, i) => (
                         <tr key={i}>
-                            {row.map((cell: string, j) => (
+                            {row.map((cell, j) => (
                                 <td key={j} className="border border-black">
                                     <input
                                         type="text"
@@ -66,15 +93,31 @@ export default function EmpForm3() {
                                     />
                                 </td>
                             ))}
+                            <td className="border border-black">
+                                {formData.education.length > 1 && (<button
+                                    className="text-red-600 font-semibold cursor-pointer"
+                                    onClick={() => removeEducationRow(i)}
+                                >
+                                    ❌
+                                </button>)}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <div className="mt-2">
+                <button
+                    type="button"
+                    onClick={addEducationRow}
+                    className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm font-semibold"
+                >
+                    + Add Row
+                </button>
+            </div>
 
             {/* EMPLOYMENT RECORD */}
-            <h2 className="font-bold uppercase">
-                Employment Record{" "}
-                <span className="italic">(Start from last employment)</span>
+            <h2 className="font-bold uppercase mt-10">
+                Employment Record <span className="italic">(Start from last employment)</span>
             </h2>
             <table className="table-auto w-full border border-black text-center text-sm">
                 <thead>
@@ -85,12 +128,13 @@ export default function EmpForm3() {
                         <th className="border border-black">Designation</th>
                         <th className="border border-black">Last Salary Drawn (CTC)</th>
                         <th className="border border-black">Reason for Leaving</th>
+                        <th className="border border-black">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {formData.employment.map((row, i) => (
                         <tr key={i}>
-                            {row.map((cell: string, j: number) => (
+                            {row.map((cell, j) => (
                                 <td key={j} className="border border-black">
                                     <input
                                         type="text"
@@ -100,17 +144,31 @@ export default function EmpForm3() {
                                     />
                                 </td>
                             ))}
+                            <td className="border border-black">
+                                {formData.employment.length > 1 && (<button
+                                    className="text-red-600 font-semibold cursor-pointer"
+                                    onClick={() => removeEmploymentRow(i)}
+                                >
+                                    ❌
+                                </button>)}
+                            </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <div className="mt-2">
+                <button
+                    type="button"
+                    onClick={addEmploymentRow}
+                    className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm font-semibold"
+                >
+                    + Add Row
+                </button>
+            </div>
 
-            {/* Rest of your form components remain the same */}
-            {/* ... */}
-            {/* Extra-Curricular Activities */}
+            {/* EXTRA-CURRICULAR ACTIVITIES */}
             <h2 className="font-bold uppercase mb-2">
-                Extra-Curricular Activities{" "}
-                <span className="italic">(Give details, achievements, etc)</span>
+                Extra-Curricular Activities <span className="italic">(Give details, achievements, etc)</span>
             </h2>
             <div className="border border-black p-4 rounded-md space-y-2">
                 <div className="flex items-center gap-x-2">
@@ -147,23 +205,7 @@ export default function EmpForm3() {
                 </div>
             </div>
 
-            {/* Do you know anyone */}
-            <div>
-                <strong>
-                    Do you know anyone in SL AP{" "}
-                    <span className="italic">(If yes, name of the person and relation)</span>
-                </strong>
-                <div className="border border-black p-4 cornered-md space-y-2">
-                    <input
-                        type="text"
-                        className="w-full inline-block mt-1"
-                        value={formData.knowsSomeone}
-                        onChange={(e) => handleChange("knowsSomeone", e.target.value)}
-                    />
-                </div>
-            </div>
-
-            {/* References */}
+            {/* REFERENCES */}
             <div>
                 <strong>
                     Name, address and telephone of two references{" "}
@@ -201,7 +243,7 @@ export default function EmpForm3() {
                 </div>
             </div>
 
-            {/* Court Conviction */}
+            {/* COURT CONVICTION */}
             <div>
                 <strong>
                     Have you been convicted by any court? If yes, please give details:
@@ -214,10 +256,9 @@ export default function EmpForm3() {
                 ></textarea>
             </div>
 
-            {/* Affirmation */}
+            {/* AFFIRMATION */}
             <p className="mt-4">
-                I hereby solemnly affirm that the information given by me in this form is true. If
-                any information is found to be false, I will be liable for punitive action.
+                I hereby solemnly affirm that the information given by me in this form is true. If any information is found to be false, I will be liable for punitive action.
             </p>
 
             <div className="flex justify-between mt-4">
