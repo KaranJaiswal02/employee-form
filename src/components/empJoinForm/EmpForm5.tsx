@@ -10,15 +10,6 @@ type MemberRow = {
     amount: string;
 };
 
-type FormData = {
-    name: string;
-    code: string;
-    grade: string;
-    department: string;
-    date: string;
-    members: MemberRow[];
-};
-
 export default function EmpForm5() {
     const [formData, setFormData] = useAtom(empFormData);
 
@@ -78,6 +69,7 @@ export default function EmpForm5() {
                         name="name"
                         value={formData.name}
                         onChange={handleEmployeeInfoChange}
+                        disabled={true}
                         className="ml-2 border-b border-black outline-none"
                     />
                 </div>
@@ -183,6 +175,7 @@ export default function EmpForm5() {
                             <td className="border border-black text-center">
                                 {index !== 0 && (
                                     <button
+                                        type="button"
                                         onClick={() => removeMember(index)}
                                         className="text-red-600 font-semibold cursor-pointer"
                                     >
@@ -212,6 +205,7 @@ export default function EmpForm5() {
                         name="date"
                         value={formData.date}
                         onChange={handleEmployeeInfoChange}
+                        disabled={true}
                         className="border-b border-black outline-none ml-2"
                     />
                 </div>
