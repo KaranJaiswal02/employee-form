@@ -1,6 +1,6 @@
 "use client";
 import { Button } from '@/components/ui/button'
-import { empFormData, nominationForm1Data } from '@/hooks/Atoms';
+import { empFormData, formStatusus, nominationForm1Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from "react";
@@ -31,6 +31,7 @@ interface FormData {
 export default function Page() {
   const router = useRouter()
   const [empFormData1] = useAtom(empFormData);
+    const [formStatus,setFormStatus] = useAtom(formStatusus);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -45,18 +46,31 @@ export default function Page() {
     }));
   },[])
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    console.log(formData)
-    // Dummy DB call simulation
-    // Replace this with actual form submission logic
-    const dummyDBCall = () => true
-    if (dummyDBCall()) {
-      router.push('/gratuity-form')
-    } else {
-      alert('Form Submission Failed!')
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+    const response = await fetch("/api/nomination-declaration-form1", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    if(response.status === 201) {
+      setFormStatus((prevStatus) => ({
+        ...prevStatus,
+        form5: {
+            ...prevStatus.form5,
+            status: "done",
+        },
+    }));
+      router.push("/gratuity-form");
     }
-  }
+    else {
+      const responseData = await response.json();
+      alert(responseData.errorMessage);
+    }
+  };
 
   const [formData, setFormData] = useAtom<FormData>(nominationForm1Data);
 
