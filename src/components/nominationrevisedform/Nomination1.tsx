@@ -51,15 +51,15 @@ export default function EPFNominationForm() {
         }));
     };
 
-    const [empformData1] = useAtom(empFormData);
+    const [formData1] = useAtom(empFormData);
     
      useEffect(() => {
             setFormData((prev) => ({
                 ...prev,
-                name: empformData1.name || "",
-                address: empformData1.perAddress || "",
-                accountNumber: empformData1.accountNumber || "",
-                fathersName: empformData1.fatherName || "",
+                name: formData1.name || "",
+                address: formData1.perAddress || "",
+                accountNumber: formData1.accountNumber || "",
+                fathersName: formData1.fatherName || "",
 
             }));
         }, [])
@@ -147,12 +147,12 @@ export default function EPFNominationForm() {
                             className="border-b border-black outline-none"
                             placeholder="Name"
                             required
-                            disabled={true}
+                            
                         />
                         <input
                             type="text"
                             name="fathersName"
-                            value={empformData1.fatherName}
+                            value={formData.fathersName}
                             onChange={handleChange}
                             className="border-b border-black outline-none"
                             placeholder="Father's/Husband's Name"
