@@ -68,7 +68,7 @@ export default function EmpForm3() {
             <h2 className="font-bold uppercase">
                 Educational Qualification <span className="italic">(Start from highest qualification)</span>
             </h2>
-            <table className="table-auto w-full border border-black text-center text-sm">
+            <table className="table-auto w-full border border-black text-center text-sm mb-0">
                 <thead>
                     <tr className="border border-black bg-gray-100">
                         <th className="border border-black">Examination</th>
@@ -105,21 +105,19 @@ export default function EmpForm3() {
                     ))}
                 </tbody>
             </table>
-            <div className="mt-2">
                 <button
                     type="button"
                     onClick={addEducationRow}
-                    className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm font-semibold"
+                    className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
                 >
                     + Add Row
                 </button>
-            </div>
 
             {/* EMPLOYMENT RECORD */}
-            <h2 className="font-bold uppercase mt-10">
+            <h2 className="font-bold uppercase mt-4">
                 Employment Record <span className="italic">(Start from last employment)</span>
             </h2>
-            <table className="table-auto w-full border border-black text-center text-sm">
+            <table className="table-auto w-full border border-black text-center text-sm mb-0">
                 <thead>
                     <tr className="border border-black bg-gray-100">
                         <th className="border border-black">Name of the Organisation</th>
@@ -156,18 +154,16 @@ export default function EmpForm3() {
                     ))}
                 </tbody>
             </table>
-            <div className="mt-2">
-                <button
-                    type="button"
-                    onClick={addEmploymentRow}
-                    className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm font-semibold"
-                >
-                    + Add Row
-                </button>
-            </div>
+            <button
+                type="button"
+                onClick={addEmploymentRow}
+                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
+            >
+                + Add Row
+            </button>
 
             {/* EXTRA-CURRICULAR ACTIVITIES */}
-            <h2 className="font-bold uppercase mb-2">
+            <h2 className="font-bold uppercase my-4">
                 Extra-Curricular Activities <span className="italic">(Give details, achievements, etc)</span>
             </h2>
             <div className="border border-black p-4 rounded-md space-y-2">
