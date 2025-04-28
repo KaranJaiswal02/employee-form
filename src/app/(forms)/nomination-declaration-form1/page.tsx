@@ -38,7 +38,9 @@ export default function Page() {
       name: empFormData1.name || "",
       fathersName: empFormData1.fatherName || "",
       dob: empFormData1.dob || "",
-      //address: empFormData1.perAddress || "",
+      curraddress: empFormData1.currAddress || "",
+      peraddress: empFormData1.perAddress || "",
+      maritalStatus: empFormData1.maritalStatus || "",
       
     }));
   },[])
@@ -115,10 +117,11 @@ export default function Page() {
             <input
               type="text"
               name="name"
-              value={formData.name}
+              value={empFormData1.name}
               onChange={handleChange}
               placeholder="Your Name"
               className="flex-1 border border-gray-400 px-2 py-1"
+              disabled={true}
             />
           </div>
           <div className="flex items-center gap-4">
@@ -126,10 +129,11 @@ export default function Page() {
             <input
               type="text"
               name="fathersName"
-              value={formData.fathersName}
+              value={empFormData1.fatherName}
               placeholder="Your Father's or Husband's Name"
               onChange={handleChange}
               className="flex-1 border border-gray-400 px-2 py-1"
+              disabled={true}
             />
           </div>
           <div className="flex items-center gap-4">
@@ -176,19 +180,21 @@ export default function Page() {
             <div className="flex-1 space-y-2">
               <textarea
                 name="permanentAddress"
-                value={formData.permanentAddress}
+                value={empFormData1.perAddress}
                 onChange={handleChange}
                 placeholder="Permanent Address"
                 className="w-full border border-gray-400 px-2 py-1"
                 rows={2}
+                disabled={true}
               />
               <textarea
                 name="currentAddress"
-                value={formData.currentAddress}
+                value={empFormData1.currAddress}
                 onChange={handleChange}
                 placeholder="Current Address"
                 className="w-full border border-gray-400 px-2 py-1"
                 rows={2}
+                disabled={true}
               />
             </div>
           </div>
