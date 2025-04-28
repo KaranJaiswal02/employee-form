@@ -2,6 +2,9 @@
 import { nominationForm2Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
 import React, { useState } from 'react';
+import { empFormData } from '@/hooks/Atoms';
+import { useEffect } from 'react';
+
 
 type Nominee = {
     name: string;
@@ -47,6 +50,19 @@ export default function EPFNominationForm() {
             [name]: type === 'checkbox' ? checked : value
         }));
     };
+
+    const [formData1] = useAtom(empFormData);
+    
+     useEffect(() => {
+            setFormData((prev) => ({
+                ...prev,
+                name: formData1.name || "",
+                address: formData1.perAddress || "",
+                accountNumber: formData1.accountNumber || "",
+                fathersName: formData1.fatherName || "",
+
+            }));
+        }, [])
 
     const handleNomineeChange = (index: number, field: keyof Nominee, value: string) => {
         const updatedcredit_nominees = [...formData.credit_nominees];
@@ -120,8 +136,8 @@ export default function EPFNominationForm() {
 
             {/* Personal Information Section */}
             <div className="space-y-4 mb-6">
-                <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">1. Name (IN BLOCK LETTERS):</label>
+                <div className="flex flex-col md:flex-row gap-4" >
+                    <label className="w-full md:w-72 uppercase ">1. Name (IN BLOCK LETTERS):</label>
                     <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
                         <input
                             type="text"
