@@ -2,22 +2,23 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAtom } from 'jotai';
-import { bankMandateFormData, empFormData } from '@/hooks/Atoms';
+import { bankMandateFormData, empFormData, formStatusus } from '@/hooks/Atoms';
 import { Button } from '@/components/ui/button';
 
 export default function BankMandateForm() {
     const router = useRouter();
     const [formData, setFormData] = useAtom(bankMandateFormData);
     const [formData1] = useAtom(empFormData);
+    const [formStatus, setFormStatus] = useAtom(formStatusus);
 
     useEffect(() => {
         setFormData((prev) => ({
             ...prev,
             name: formData1.name || "",
             address: formData1.perAddress || "",
-        
-    }));
-} ,[])
+
+        }));
+    }, [])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
@@ -38,6 +39,32 @@ export default function BankMandateForm() {
             router.push("/nomination-declaration-form1"); // Redirect to a thank you page or another page
         } else {
             alert("Form Submission Failed!");
+        }
+    };
+
+    const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(formData);
+        const response = await fetch("/api/bank-mandate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+        if (response.status === 201) {
+            setFormStatus((prevStatus) => ({
+                ...prevStatus,
+                form4: {
+                    ...prevStatus.form4,
+                    status: "done",
+                },
+            }));
+            router.push("/nomination-declaration-form1");
+        }
+        else {
+            const responseData = await response.json();
+            alert(responseData.errorMessage);
         }
     };
 
@@ -69,20 +96,20 @@ export default function BankMandateForm() {
                             {i + 1}. {label}
                         </label>
                         {label === 'Address' ? (
-                            <textarea 
-                                id={label.toLowerCase().replace(/[^a-z]/gi, '')} 
+                            <textarea
+                                id={label.toLowerCase().replace(/[^a-z]/gi, '')}
                                 onChange={handleChange}
                                 value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData]}
-                                className="flex-1 border-b border-black sm:ml-4 resize-none h-16" 
+                                className="flex-1 border-b border-black sm:ml-4 resize-none h-16"
                                 required
                             />
                         ) : (
-                            <input 
-                                id={label.toLowerCase().replace(/[^a-z]/gi, '')} 
+                            <input
+                                id={label.toLowerCase().replace(/[^a-z]/gi, '')}
                                 type="text"
                                 onChange={handleChange}
                                 value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData]}
-                                className="flex-1 border-b border-black sm:ml-4" 
+                                className="flex-1 border-b border-black sm:ml-4"
                                 required
                             />
                         )}
@@ -90,23 +117,23 @@ export default function BankMandateForm() {
                 ))}
                 <div className="flex flex-col sm:flex-row">
                     <label htmlFor="email" className="w-72">5. Email Id</label>
-                    <input 
-                        id="email" 
-                        type="email" 
+                    <input
+                        id="email"
+                        type="email"
                         onChange={handleChange}
                         value={formData.email}
-                        className="flex-1 border-b border-black sm:ml-4" 
+                        className="flex-1 border-b border-black sm:ml-4"
                         required
                     />
                 </div>
                 <div className="flex flex-col sm:flex-row">
                     <label htmlFor="pan" className="w-72">6. Permanent Account Number</label>
-                    <input 
-                        id="pan" 
-                        type="text" 
+                    <input
+                        id="pan"
+                        type="text"
                         onChange={handleChange}
                         value={formData.pan}
-                        className="flex-1 border-b border-black sm:ml-4" 
+                        className="flex-1 border-b border-black sm:ml-4"
                         required
                     />
                 </div>
@@ -176,26 +203,26 @@ export default function BankMandateForm() {
                                 <div className="flex flex-wrap items-center justify-center gap-4">
                                     <span>Account Type:</span>
                                     <label className="flex items-center">
-                                        <input 
-                                            type="radio" 
-                                            name="accountType" 
-                                            value="Savings" 
-                                            className="mr-1" 
+                                        <input
+                                            type="radio"
+                                            name="accountType"
+                                            value="Savings"
+                                            className="mr-1"
                                             checked={formData.accountType === 'Savings'}
                                             onChange={handleRadioChange}
                                             required
-                                        /> 
+                                        />
                                         Savings
                                     </label>
                                     <label className="flex items-center">
-                                        <input 
-                                            type="radio" 
-                                            name="accountType" 
-                                            value="Current" 
-                                            className="mr-1" 
+                                        <input
+                                            type="radio"
+                                            name="accountType"
+                                            value="Current"
+                                            className="mr-1"
                                             checked={formData.accountType === 'Current'}
                                             onChange={handleRadioChange}
-                                        /> 
+                                        />
                                         Current
                                     </label>
                                 </div>
@@ -248,23 +275,23 @@ export default function BankMandateForm() {
             <div className="flex flex-col sm:flex-row justify-between gap-4 mt-8">
                 <div className="flex items-center gap-2">
                     <label>Place:</label>
-                    <input 
-                        id="place" 
-                        type="text" 
-                        onChange={handleChange} 
+                    <input
+                        id="place"
+                        type="text"
+                        onChange={handleChange}
                         value={formData.place}
-                        className="border-b border-black outline-none flex-1" 
+                        className="border-b border-black outline-none flex-1"
                         required
                     />
                 </div>
                 <div className="flex items-center gap-2">
                     <label>Date:</label>
-                    <input 
-                        id="date" 
-                        type="date" 
-                        onChange={handleChange} 
+                    <input
+                        id="date"
+                        type="date"
+                        onChange={handleChange}
                         value={formData.date}
-                        className="border-b border-black outline-none" 
+                        className="border-b border-black outline-none"
                         required
                     />
                 </div>
@@ -273,8 +300,8 @@ export default function BankMandateForm() {
             <div className="text-right font-bold mt-6 mb-4">SIGNATURE</div>
 
             <div className="flex justify-center mt-6">
-          <Button type="submit" className="w-full cursor-pointer">Submit</Button>
-        </div>
+                <Button type="submit" className="w-full cursor-pointer">Submit</Button>
+            </div>
         </form>
     );
 }

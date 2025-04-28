@@ -89,7 +89,7 @@ export default function MedicalInsuranceForm() {
             setFormStatus((prevStatus) => ({
                 ...prevStatus,
                 form3: {
-                    ...prevStatus.form2,
+                    ...prevStatus.form3,
                     status: "done",
                 },
             }));

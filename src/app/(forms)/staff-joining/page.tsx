@@ -31,7 +31,7 @@ export default function page() {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
         form1: {
-            ...prevStatus.form2,
+            ...prevStatus.form1,
             status: "done",
         },
     }));
