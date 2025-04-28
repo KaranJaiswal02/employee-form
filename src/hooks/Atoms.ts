@@ -146,10 +146,11 @@ export const nominationForm1Data = atom({
 
 export const nominationForm2Data = atom({
   name: '',
-  fathersName: '',
+  middleName : '',
   surname: '',
+  fatherName: '',
   dob: '',
-  accountNo: '',
+  accountNumber: '',
   sex: '',
   maritalStatus: '',
   address: '',
@@ -167,11 +168,11 @@ export const nominationForm2Data = atom({
     dob: '',
     relationship: ''
   },
-  //subscriberDate: '',
-  //employerDate: '',
+  subscriberDate: '',
+  employerDate: '',
   establishmentDetails: '',
   place: '',
-  //date: currentDate,
+  date: currentDate,
 });
 
 export const bankMandateFormData = atom({

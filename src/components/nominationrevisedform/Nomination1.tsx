@@ -23,21 +23,6 @@ type FamilyMember = {
     relationship: string;
 };
 
-type FormData = {
-    name: string;
-    fathersName: string;
-    surname: string;
-    dob: string;
-    accountNo: string;
-    sex: string;
-    maritalStatus: string;
-    address: string;
-    hasNoFamily: boolean;
-    hasDependentParents: boolean;
-    credit_nominees: Nominee[];
-    familyMembers: FamilyMember[];
-};
-
 export default function EPFNominationForm() {
     const [formData, setFormData] = useAtom(nominationForm2Data);
 
@@ -50,23 +35,6 @@ export default function EPFNominationForm() {
             [name]: type === 'checkbox' ? checked : value
         }));
     };
-
-    const [formData1] = useAtom(empFormData);
-
-    useEffect(() => {
-        setFormData((prev) => ({
-            ...prev,
-            address: formData1.perAddress || "",
-            accountNumber: formData1.accountNumber || "",
-            fathersName: formData1.fatherName || "",
-            dob: formData1.dob || "",
-            firstName: formData1.name || "",
-            lastName: formData1.surname || "",
-            middleName: formData1.middleName || "",
-            maritalStatus: formData1.maritalStatus || "",
-
-        }));
-    }, [])
 
     const handleNomineeChange = (index: number, field: keyof Nominee, value: string) => {
         const updatedcredit_nominees = [...formData.credit_nominees];
@@ -146,7 +114,7 @@ export default function EPFNominationForm() {
                         <input
                             type="text"
                             name="name"
-                            value={formData1.name}
+                            value={formData.name}
                             onChange={handleChange}
                             className="border-b border-black outline-none"
                             placeholder="First Name"
@@ -156,7 +124,7 @@ export default function EPFNominationForm() {
                         <input
                             type="text"
                             name="MiddleName"
-                            value={formData1.middleName}
+                            value={formData.middleName}
                             onChange={handleChange}
                             className="border-b border-black outline-none"
                             placeholder="Middle Name"
@@ -166,7 +134,7 @@ export default function EPFNominationForm() {
                         <input
                             type="text"
                             name="surname"
-                            value={formData1.surname}
+                            value={formData.surname}
                             onChange={handleChange}
                             className="border-b border-black outline-none"
                             placeholder="Surname"
@@ -181,7 +149,7 @@ export default function EPFNominationForm() {
                     <input
                         type="text"
                         name="fathersName"
-                        value={formData1.fatherName}
+                        value={formData.fatherName}
                         onChange={handleChange}
                         className="border-b border-black outline-none"
                         placeholder="Father's/Husband's Name"
@@ -194,7 +162,7 @@ export default function EPFNominationForm() {
                     <input
                         type="date"
                         name="dob"
-                        value={formData1.dob}
+                        value={formData.dob}
                         onChange={handleChange}
                         className="flex-1 border-b border-black outline-none"
                         required
@@ -207,7 +175,7 @@ export default function EPFNominationForm() {
                     <input
                         type="text"
                         name="accountNo"
-                        value={formData1.accountNumber}
+                        value={formData.accountNumber}
                         onChange={handleChange}
                         className="flex-1 border-b border-black outline-none"
                         required
@@ -250,7 +218,7 @@ export default function EPFNominationForm() {
                     <input
                         type="text"
                         name="maritalStatus"
-                        value={formData1.maritalStatus}
+                        value={formData.maritalStatus}
                         onChange={handleChange}
                         className="flex-1 border-b border-black outline-none"
                         required

@@ -22,14 +22,6 @@ type nominationForm2Data = {
 
 export default function EPFNominationFormPart2() {
   const [formData, setFormData] = useAtom(nominationForm2Data);
-  const [grauFormData1] = useAtom(grauFormData);
-
-  useEffect(() => {
-    setFormData((prev) => ({
-      ...prev,
-      date: grauFormData1.date,
-    }));
-  }, []);
 
   const handleNomineeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -121,7 +113,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="subscriberDate"
-              value={grauFormData1.date}
+              value={formData.subscriberDate}
               onChange={handleFieldChange}
               className="border-b border-black outline-none"
             />
@@ -155,7 +147,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="employerDate"
-              value={grauFormData1.date}
+              value={formData.employerDate}
               onChange={handleFieldChange}
               className="border-b border-black outline-none"
             />
@@ -191,7 +183,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="date"
-              value={grauFormData1.date}
+              value={formData.date}
               onChange={handleFieldChange}
               className="border-b border-black outline-none"
             />
