@@ -81,7 +81,9 @@ export default function MealTicketGenerator({
               right: 8px;
               font-size: 15px;
               font-weight: 600;
-              color: #6b7280;
+              // color: #6b7280;
+              color: #1f2937;
+              
             }
             .logo-container {
               display: flex;

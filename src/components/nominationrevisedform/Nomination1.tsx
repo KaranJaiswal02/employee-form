@@ -52,17 +52,21 @@ export default function EPFNominationForm() {
     };
 
     const [formData1] = useAtom(empFormData);
-    
-     useEffect(() => {
-            setFormData((prev) => ({
-                ...prev,
-                name: formData1.name || "",
-                address: formData1.perAddress || "",
-                accountNumber: formData1.accountNumber || "",
-                fathersName: formData1.fatherName || "",
 
-            }));
-        }, [])
+    useEffect(() => {
+        setFormData((prev) => ({
+            ...prev,
+            address: formData1.perAddress || "",
+            accountNumber: formData1.accountNumber || "",
+            fathersName: formData1.fatherName || "",
+            dob: formData1.dob || "",
+            firstName: formData1.name || "",
+            lastName: formData1.surname || "",
+            middleName: formData1.middleName || "",
+            maritalStatus: formData1.maritalStatus || "",
+
+        }));
+    }, [])
 
     const handleNomineeChange = (index: number, field: keyof Nominee, value: string) => {
         const updatedcredit_nominees = [...formData.credit_nominees];
@@ -142,60 +146,77 @@ export default function EPFNominationForm() {
                         <input
                             type="text"
                             name="name"
-                            value={formData.name}
+                            value={formData1.name}
                             onChange={handleChange}
                             className="border-b border-black outline-none"
-                            placeholder="Name"
+                            placeholder="First Name"
                             required
-                            
+                            disabled={true}
                         />
                         <input
                             type="text"
-                            name="fathersName"
-                            value={formData.fathersName}
+                            name="MiddleName"
+                            value={formData1.middleName}
                             onChange={handleChange}
                             className="border-b border-black outline-none"
-                            placeholder="Father's/Husband's Name"
+                            placeholder="Middle Name"
                             required
+                            disabled={true}
                         />
                         <input
                             type="text"
                             name="surname"
-                            value={formData.surname}
+                            value={formData1.surname}
                             onChange={handleChange}
                             className="border-b border-black outline-none"
                             placeholder="Surname"
                             required
+                            disabled={true}
                         />
                     </div>
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">2. Date of Birth:</label>
+                    <label className="w-full md:w-72">2. Father's/Husband's Name:</label>
+                    <input
+                        type="text"
+                        name="fathersName"
+                        value={formData1.fatherName}
+                        onChange={handleChange}
+                        className="border-b border-black outline-none"
+                        placeholder="Father's/Husband's Name"
+                        required
+                        disabled={true}
+                    />
+                </div>
+                <div className="flex flex-col md:flex-row gap-4">
+                    <label className="w-full md:w-72">3. Date of Birth:</label>
                     <input
                         type="date"
                         name="dob"
-                        value={formData.dob}
+                        value={formData1.dob}
                         onChange={handleChange}
                         className="flex-1 border-b border-black outline-none"
                         required
+                        disabled={true}
                     />
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">3. Account No:</label>
+                    <label className="w-full md:w-72">4. Account No:</label>
                     <input
                         type="text"
                         name="accountNo"
-                        value={formData.accountNo}
+                        value={formData1.accountNumber}
                         onChange={handleChange}
                         className="flex-1 border-b border-black outline-none"
                         required
+                        disabled={true}
                     />
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">4. Sex:</label>
+                    <label className="w-full md:w-72">5. Sex:</label>
                     <div className="flex-1 flex gap-6">
                         <label className="flex items-center">
                             <input
@@ -224,19 +245,20 @@ export default function EPFNominationForm() {
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">5. Marital Status:</label>
+                    <label className="w-full md:w-72">6. Marital Status:</label>
                     <input
                         type="text"
                         name="maritalStatus"
-                        value={formData.maritalStatus}
+                        value={formData1.maritalStatus}
                         onChange={handleChange}
                         className="flex-1 border-b border-black outline-none"
                         required
+                        disabled={true}
                     />
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">6. Address (Permanent/Temporary):</label>
+                    <label className="w-full md:w-72">7. Address (Permanent/Temporary):</label>
                     <textarea
                         name="address"
                         value={formData.address}
@@ -455,7 +477,7 @@ export default function EPFNominationForm() {
                                         />
                                     </td>
                                     <td className="border border-black p-1 text-center">
-                                        { formData.familyMembers.length > 1 &&(<button
+                                        {formData.familyMembers.length > 1 && (<button
                                             type="button"
                                             onClick={() => removeFamilyMember(index)}
                                             className="text-red-500 hover:text-red-700 cursor-pointer"
