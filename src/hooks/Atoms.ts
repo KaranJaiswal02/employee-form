@@ -126,7 +126,6 @@ export const grauFormData = atom({
   date: currentDate,
   witness1name: "",
   witness2name: "",
-  currdate: "",
 })
 
 export const nominationForm1Data = atom({

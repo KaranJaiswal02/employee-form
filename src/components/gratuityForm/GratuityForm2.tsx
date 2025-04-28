@@ -94,7 +94,7 @@ export default function GratuityForm2() {
                     Place: <input id="place" type="text" value={formData.place} onChange={handleChange} className="border-b border-black w-48 inline-block ml-2" />
                 </p>
                 <p className="mt-2">
-                    Date: <input id="currdate" type="date" value={formData.currdate} onChange={handleDateChange} className="border-b border-black w-48 inline-block ml-2" />
+                    Date: <input id="date" type="date" value={formData.date} onChange={handleDateChange} className="border-b border-black w-48 inline-block ml-2" />
                 </p>
                 <p className="mt-4 text-right font-semibold">Signature/Thumb-impression of the Employee</p>
             </div>
@@ -130,17 +130,17 @@ export default function GratuityForm2() {
                 <div>
                     <ol className="list-decimal list-inside space-y-4">
                         <li>
-                            <input type="text" className="border-b border-black w-full" placeholder="Signature" />
+                            <input disabled={true} type="text" className="border-b border-black w-full" placeholder="Signature" />
                         </li>
                         <li>
-                            <input type="text" className="border-b border-black w-full" placeholder="Signature" />
+                            <input disabled={true} type="text" className="border-b border-black w-full" placeholder="Signature" />
                         </li>
                     </ol>
                 </div>
             </div>
 
-            <p className="mt-4">Place: <input type="text" className="border-b border-black w-48 inline-block ml-2" /></p>
-            <p>Date: <input type="date" value={formData.currdate} disabled className="border-b border-black w-48 inline-block ml-2" /></p>
+            <p className="mt-4">Place: <input type="text" value={formData.place} disabled={true} className="border-b border-black w-48 inline-block ml-2" /></p>
+            <p>Date: <input type="date" value={formData.date} disabled={true} className="border-b border-black w-48 inline-block ml-2" /></p>
 
             <hr className="my-6 border-black" />
 
@@ -156,7 +156,7 @@ export default function GratuityForm2() {
                 Signature of the employer/Officer authorised:{" "}
                 <input type="text" className="border-b border-black w-60 inline-block" />
             </p>
-            <p>Date: <input type="date" value={formData.currdate} disabled className="border-b border-black w-48 inline-block ml-2" /></p>
+            <p>Date: <input type="date" value={formData.date} disabled className="border-b border-black w-48 inline-block ml-2" /></p>
             <p>
                 Name and address of the establishment or rubber stamp thereof:
                 <textarea className="w-full border border-black mt-2 h-20" />
