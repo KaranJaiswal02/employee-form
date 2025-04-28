@@ -1,7 +1,6 @@
-import { Schema, model, Document } from 'mongoose';
+import { Schema, Document, model, models } from 'mongoose';
 
-// Interface for Nominee
-interface INominee {
+interface Nominee {
   name: string;
   address: string;
   relationship: string;
@@ -10,8 +9,7 @@ interface INominee {
   guardian: string;
 }
 
-// Interface for the main document
-interface INominationForm1 extends Document {
+export interface NominationForm1Document extends Document {
   name: string;
   fathersName: string;
   dob: string;
@@ -19,44 +17,34 @@ interface INominationForm1 extends Document {
   maritalStatus: string;
   permanentAddress: string;
   currentAddress: string;
-  nominees: INominee[];
+  nominees: Nominee[];
   place: string;
   date: string;
   establishmentAddress: string;
-  createdAt?: Date;
-  updatedAt?: Date;
 }
 
-// Nominee subdocument schema
-const nomineeSchema = new Schema<INominee>({
+const NomineeSchema: Schema = new Schema({
   name: { type: String, required: true },
   address: { type: String, required: true },
   relationship: { type: String, required: true },
   dob: { type: String, required: true },
   share: { type: String, required: true },
-  guardian: { type: String, required: false } // Optional if nominee is not minor
+  guardian: { type: String, required: true },
 });
 
-// Main schema
-const nominationForm1Schema = new Schema<INominationForm1>({
+const NominationForm1Schema: Schema = new Schema({
   name: { type: String, required: true },
   fathersName: { type: String, required: true },
   dob: { type: String, required: true },
-  sex: { type: String, required: true, enum: ['Male', 'Female', 'Other'] },
-  maritalStatus: { 
-    type: String, 
-    required: true,
-    enum: ['Single', 'Married', 'Divorced', 'Widowed'] 
-  },
+  sex: { type: String, required: true },
+  maritalStatus: { type: String, required: true },
   permanentAddress: { type: String, required: true },
   currentAddress: { type: String, required: true },
-  nominees: [nomineeSchema],
+  nominees: { type: [NomineeSchema], required: true },
   place: { type: String, required: true },
-  date: { type: String, required: true, default: new Date().toISOString().split('T')[0] },
-  establishmentAddress: { type: String, required: true }
-}, {
-  timestamps: true // Adds createdAt and updatedAt automatically
+  date: { type: String, required: true },
+  establishmentAddress: { type: String, required: true },
 });
 
-// Create and export the model
-export const NominationForm1 = model<INominationForm1>('NominationForm1', nominationForm1Schema);
+const NominationForm1DataModel = models.NominationForm1 || model<NominationForm1Document>('NominationForm1', NominationForm1Schema);
+export default NominationForm1DataModel
