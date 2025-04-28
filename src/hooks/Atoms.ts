@@ -146,6 +146,7 @@ export const nominationForm1Data = atom({
 
 export const nominationForm2Data = atom({
   name: '',
+  firstName:'',
   middleName : '',
   surname: '',
   fatherName: '',

@@ -20,9 +20,10 @@ export default function Page() {
             fathersName: formData1.fatherName || "",
             dob: formData1.dob || "",
             firstName: formData1.name || "",
-            lastName: formData1.surname || "",
+            surname: formData1.surname || "",
             middleName: formData1.middleName || "",
             maritalStatus: formData1.maritalStatus || "",
+            sex: formData1.sex || "",
         }));
     }, [])
 

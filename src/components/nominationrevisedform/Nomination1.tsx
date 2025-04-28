@@ -114,7 +114,7 @@ export default function EPFNominationForm() {
                         <input
                             type="text"
                             name="name"
-                            value={formData.name}
+                            value={formData.firstName}
                             onChange={handleChange}
                             className="border-b border-black outline-none"
                             placeholder="First Name"
@@ -184,32 +184,17 @@ export default function EPFNominationForm() {
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">5. Sex:</label>
+                    <label htmlFor='sex' className="w-full md:w-72">5. Sex:</label>
                     <div className="flex-1 flex gap-6">
-                        <label className="flex items-center">
                             <input
-                                type="radio"
+                                type="text"
                                 name="sex"
-                                value="MALE"
-                                checked={formData.sex === 'MALE'}
+                                id='sex'
+                                value={formData.sex}
                                 onChange={handleChange}
-                                className="mr-2"
-                                required
+                                className="flex-1 border-b border-black outline-none"
                                 disabled={true}
                             />
-                            MALE
-                        </label>
-                        <label className="flex items-center">
-                            <input
-                                type="radio"
-                                name="sex"
-                                value="FEMALE"
-                                checked={formData.sex === 'FEMALE'}
-                                onChange={handleChange}
-                                className="mr-2"
-                            />
-                            FEMALE
-                        </label>
                     </div>
                 </div>
 

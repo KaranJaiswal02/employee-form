@@ -118,6 +118,7 @@ export default function EmpForm2() {
                         name="dob"
                         id='dob'
                         value={formData.dob}
+                        disabled={true}
                         onChange={handleChange}
                         className="w-full border-b-2 border-black pb-1 focus:outline-none"
                     />
