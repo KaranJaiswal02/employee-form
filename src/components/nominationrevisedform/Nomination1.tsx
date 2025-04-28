@@ -227,6 +227,7 @@ export default function EPFNominationForm() {
                                 onChange={handleChange}
                                 className="mr-2"
                                 required
+                                disabled={true}
                             />
                             MALE
                         </label>

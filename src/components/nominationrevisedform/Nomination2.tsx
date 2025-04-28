@@ -116,7 +116,7 @@ export default function EPFNominationFormPart2() {
               className="border-b border-black outline-none"
             />
           </div>
-          <div className="w-64 border-t border-black text-center pt-2">
+          <div className="w-64 border-t border-black text-center pt-2 mt-8">
             Signature or thumb impression of the subscriber
           </div>
         </div>
