@@ -31,7 +31,7 @@ interface FormData {
 export default function Page() {
   const router = useRouter()
   const [empFormData1] = useAtom(empFormData);
-    const [_,setFormStatus] = useAtom(formStatusus);
+  const [_,setFormStatus] = useAtom(formStatusus);
 
   useEffect(() => {
     setFormData((prev) => ({

@@ -4,7 +4,6 @@ import { grauFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 
 export default function GratuityForm1() {
-
   const [formData, setFormData] = useAtom(grauFormData);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -23,7 +22,25 @@ export default function GratuityForm1() {
         nominee: updatedNominees,
       };
     });
-  };  
+  };
+
+  const addNominee = () => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      nominee: [
+        ...prevFormData.nominee,
+        { name: "", relationship: "", age: 0, proportion: 0 },
+      ],
+    }));
+  };
+
+  const removeNominee = (index: number) => {
+    if (formData.nominee.length <= 1) return;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      nominee: prevFormData.nominee.filter((_, i) => i !== index),
+    }));
+  };
 
   return (
     <div>
@@ -50,8 +67,6 @@ export default function GratuityForm1() {
           required
           name="name"
           onChange={handleChange}
-
-        //given as the required prop in this code snippet, may not be queired or not work on submission
         />
         whose particulars are given in the statement below, hereby nominate the person(s)
         mentioned below to receive the gratuity payable after my death as also the gratuity
@@ -78,10 +93,16 @@ export default function GratuityForm1() {
         </li>
         <li>
           I have excluded my husband from my family by a notice dated{" "}
-          <input type="date" value={formData.noticedate} className="border-b border-black w-40 inline-block"
-            onChange={handleChange} name="noticedate" required
-          /> to the
-          controlling authority in terms of the provison to clause (h) of Section 2 of the said Act.
+          <input
+            type="date"
+            value={formData.noticedate}
+            className="border-b border-black w-40 inline-block"
+            onChange={handleChange}
+            name="noticedate"
+            required
+          />{" "}
+          to the controlling authority in terms of the provison to clause (h) of Section 2 of the
+          said Act.
         </li>
         <li>Nomination made herein invalidates my previous nomination.</li>
       </ol>
@@ -94,42 +115,75 @@ export default function GratuityForm1() {
             <th className="border border-black p-2 text-center">
               Name in full with full address of nominee(s)
             </th>
-            <th className="border border-black p-2 text-center">Relationship with the employee</th>
-            <th className="border border-black p-2 text-center">Age of nominee</th>
-            <th className="border border-black p-2 text-center">
-              Proportion by which the gratuity will be shared
-            </th>
+            <th className="border border-black p-2 text-center">Relationship</th>
+            <th className="border border-black p-2 text-center">Age</th>
+            <th className="border border-black p-2 text-center">Proportion</th>
+            <th className="border border-black p-2 text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
           {formData.nominee.map((row, i) => (
             <tr key={i}>
               <td className="border border-black p-2">
-                <input type="text" value={row.name} className="w-full" placeholder={`Full Name & Address`}
-                  onChange={(e)=> handleNomineeChange(i, "name", e.target.value)}
+                <input
+                  type="text"
+                  value={row.name}
+                  className="w-full"
+                  placeholder="Full Name & Address"
+                  onChange={(e) => handleNomineeChange(i, "name", e.target.value)}
                 />
               </td>
               <td className="border border-black p-2">
-                <input type="text" value={row.relationship} className="w-full" placeholder="Relationship"
-                  onChange={(e)=> handleNomineeChange(i, "relationship", e.target.value)}
+                <input
+                  type="text"
+                  value={row.relationship}
+                  className="w-full"
+                  placeholder="Relationship"
+                  onChange={(e) => handleNomineeChange(i, "relationship", e.target.value)}
                 />
               </td>
               <td className="border border-black p-2">
-                <input type="number" value={row.age} className="w-full" placeholder="Age"
-                  onChange={(e)=> handleNomineeChange(i, "age", e.target.value)}
+                <input
+                  type="number"
+                  value={row.age}
+                  className="w-full"
+                  placeholder="Age"
+                  onChange={(e) => handleNomineeChange(i, "age", e.target.value)}
                 />
               </td>
               <td className="border border-black p-2">
-                <input type="number" value={row.proportion} className="w-full" placeholder="Proportion (e.g., 100%)"
-                  onChange={(e)=> handleNomineeChange(i, "proportion", e.target.value)}
+                <input
+                  type="number"
+                  value={row.proportion}
+                  className="w-full"
+                  placeholder="Proportion (%)"
+                  onChange={(e) => handleNomineeChange(i, "proportion", e.target.value)}
                 />
+              </td>
+              <td className="border border-black text-center">
+                {formData.nominee.length > 1 && (<button
+                  type="button"
+                  onClick={() => removeNominee(i)}
+                  className="text-red-600 font-semibold"
+                  disabled={formData.nominee.length === 1}
+                >
+                  ❌
+                </button>)}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <hr className="my-6 border-black" />
 
+      <button
+        type="button"
+        onClick={addNominee}
+        className="px-3 py-[1px] my-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
+      >
+        + Add Row
+      </button>
+
+      <hr className="my-6 border-black" />
     </div>
   );
 }

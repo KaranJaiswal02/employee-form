@@ -15,8 +15,6 @@ export default function page() {
   const [_, setFormStatus] = useAtom(formStatusus);
   const router = useRouter();
 
-  const dummyDBCall = () => true;
-
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
