@@ -2,8 +2,9 @@
 import { nominationForm2Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
 import React, { use, useState } from 'react';
-import { grauFormData }  from '@/hooks/Atoms';
+import { grauFormData } from '@/hooks/Atoms';
 import { useEffect } from 'react';
+import { Bold } from 'lucide-react';
 
 type nominationForm2Data = {
   pension_nominee: {
@@ -159,24 +160,29 @@ export default function EPFNominationFormPart2() {
 
         <div className="mb-4">
           <p>Name & address of the Factory / Establishment</p>
-          <textarea
+          {/* <textarea
             name="establishmentDetails"
             value={formData.establishmentDetails}
             onChange={handleFieldChange}
             className="w-full border-b border-black outline-none h-12"
-          />
+          /> */}
+          <p><b>SL AP Private Limited</b><br />
+            Brigade Opus,  4th Floor<br />
+            <b>Building No./Flat No. :</b> Municipal No. 70/401, Survey No. 44/1 and 44/4
+            Kodigehalli Main Road, Hebbal, Bengaluru Urban, Karnataka 560092</p>
         </div>
 
         <div className="flex justify-between">
           <div className="flex items-center gap-2">
             <label>Place:</label>
-            <input
+            {/* <input
               type="text"
               name="place"
               value={formData.place}
               onChange={handleFieldChange}
               className="border-b border-black outline-none w-32"
-            />
+            /> */}
+            <p><b>Bengaluru</b></p>           
           </div>
           <div className="flex items-center gap-2">
             <label>Date:</label>

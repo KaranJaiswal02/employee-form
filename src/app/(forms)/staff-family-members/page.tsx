@@ -57,7 +57,7 @@ export default function MedicalInsuranceForm() {
             name: form1data.name || "",
             dob: form1data.dob || "",
             department: form1data.department || "",
-            perAddress: form1data.currAddress || "",
+            currAddress: form1data.currAddress || "",
             age: calculateAge(form1data.dob) || 0,
         }));
     }, []);
@@ -338,7 +338,7 @@ export default function MedicalInsuranceForm() {
                         <td className="p-2 border border-black" colSpan={5}>
                             <textarea
                                 name="address"
-                                value={formData.address}
+                                value={form1data.currAddress}
                                 onChange={handleChange}
                                 className="w-full h-16"
                                 placeholder="Full Address"
@@ -349,7 +349,7 @@ export default function MedicalInsuranceForm() {
                 </tbody>
             </table>
 
-            <div className="flex justify-between mt-6 text-sm">
+            <div className="flex justify-between mt-7 text-sm">
                 <div>
                     <span className="font-semibold">DATE:</span>
                     <input
@@ -360,12 +360,12 @@ export default function MedicalInsuranceForm() {
                         className="ml-2 border p-1"
                     />
                 </div>
-                <div className="text-right">
-                    <p className="font-semibold">THE EMPLOYEE SIGNATURE</p>
+                <div className="text-right mt-6 "> 
+                    <p className="font-semibold">EMPLOYEE SIGNATURE</p>
                 </div>
             </div>
 
-            <p className="text-xs mt-6 italic text-red-700">
+            <p className="text-xs mt-4 italic text-red-700">
                 Note: Combination of Father & Father in-law / Mother & Mother in law is not allowed
             </p>
             <div className="flex justify-center mt-2">

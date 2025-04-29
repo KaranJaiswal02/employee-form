@@ -306,16 +306,6 @@ export default function EmpForm2() {
                             checked={formData.maritalStatus === 'Married'}
                             onChange={handleChange}
                             className="mr-1"
-                        /> Single
-                    </label>
-                    <label className="ml-4">
-                        <input
-                            type="radio"
-                            name="maritalStatus"
-                            value="Single"
-                            checked={formData.maritalStatus === 'Single'}
-                            onChange={handleChange}
-                            className="mr-1"
                         /> Married
                     </label>
                     <label className="ml-4">
@@ -326,14 +316,24 @@ export default function EmpForm2() {
                             checked={formData.maritalStatus === 'Single'}
                             onChange={handleChange}
                             className="mr-1"
+                        /> Single 
+                    </label>
+                    <label className="ml-4">
+                        <input
+                            type="radio"
+                            name="maritalStatus"
+                            value="Divorced"
+                            checked={formData.maritalStatus === 'Divorced'}
+                            onChange={handleChange}
+                            className="mr-1"
                         /> Divorced
                     </label>
                     <label className="ml-4">
                         <input
                             type="radio"
                             name="maritalStatus"
-                            value="Single"
-                            checked={formData.maritalStatus === 'Single'}
+                            value="Widowed"
+                            checked={formData.maritalStatus === 'Widowed'}
                             onChange={handleChange}
                             className="mr-1"
                         /> Widowed

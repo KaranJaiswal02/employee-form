@@ -13,7 +13,7 @@ export default function EmpForm1() {
     const { id, value } = e.target as HTMLInputElement;
     setEmpFormData1(prev => ({ ...prev, [id]: value }));
     if (isChecked) {
-      setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode, perstdcode: empFormData1.currstdcode,percontactNumber: empFormData1.currcontactNumber }));
+      setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode, perstdcode: empFormData1.currstdcode, percontactNumber: empFormData1.currcontactNumber }));
     }
   };
 
@@ -21,7 +21,7 @@ export default function EmpForm1() {
     if (isChecked) {
       setEmpFormData1(prev => ({ ...prev, perAddress: "", perDistrict: "", perState: "", perPincode: "", perstdcode: "", percontactNumber: "" }));
     } else {
-      setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode, perstdcode: empFormData1.currstdcode,percontactNumber: empFormData1.currcontactNumber }));
+      setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode, perstdcode: empFormData1.currstdcode, percontactNumber: empFormData1.currcontactNumber }));
     }
     setIsChecked(!isChecked);
   };
@@ -114,8 +114,10 @@ export default function EmpForm1() {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="flex items-center gap-2">
+        {/* <div className="flex flex-wrap items-center gap-2">
+          <div className="flex items-center gap-2 w-3/4"> */}
+        <div className="flex flex-wrap cols-2 gap-4">
+          <div className="flex flex-wrap items-center gap-2">
             <span>Tel: STD Code:</span>
             <Input
               type="text"
@@ -130,7 +132,7 @@ export default function EmpForm1() {
               id="currcontactNumber"
               value={empFormData1.currcontactNumber}
               onChange={handleChange}
-              className="flex-1"
+              className="flex-1 min-w-30"
             />
           </div>
         </div>
@@ -190,8 +192,8 @@ export default function EmpForm1() {
           </div>
 
 
-          <div className="grid grid-cols-2 gap-4">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-wrap cols-2 gap-4">
+            <div className="flex flex-wrap items-center gap-2">
               <span>Tel: STD Code:</span>
               <Input
                 type="text"
@@ -207,7 +209,7 @@ export default function EmpForm1() {
                 id="percontactNumber"
                 value={empFormData1.percontactNumber}
                 onChange={handleChange}
-                className="flex-1"
+                className="flex-1 "
                 disabled={isChecked}
               />
             </div>
