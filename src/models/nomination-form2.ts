@@ -47,49 +47,49 @@ export interface INominationForm2 extends Document {
 }
 
 const NomineeSchema = new Schema<Nominee>({
-  name: { type: String, required: true },
-  address: { type: String, required: true },
-  relationship: { type: String, required: true },
-  dob: { type: String, required: true },
-  share: { type: String, required: true },
+  name: { type: String, required: false },
+  address: { type: String, required: false },
+  relationship: { type: String, required: false },
+  dob: { type: String, required: false },
+  share: { type: String, required: false },
   guardianName: { type: String, required: false },
   guardianAddress: { type: String, required: false }
 });
 
 const FamilyMemberSchema = new Schema<FamilyMember>({
-  name: { type: String, required: true },
-  address: { type: String, required: true },
-  age: { type: String, required: true },
-  relationship: { type: String, required: true }
+  name: { type: String, required: false },
+  address: { type: String, required: false },
+  age: { type: String, required: false },
+  relationship: { type: String, required: false }
 });
 
 const SingleNomineeSchema = new Schema<SingleNominee>({
-  name: { type: String, required: true },
-  address: { type: String, required: true },
-  dob: { type: String, required: true },
-  relationship: { type: String, required: true }
+  name: { type: String, required: false },
+  address: { type: String, required: false },
+  dob: { type: String, required: false },
+  relationship: { type: String, required: false }
 });
 
 const NominationForm2Schema = new Schema<INominationForm2>({
-  name: { type: String, required: true },
-  fathersName: { type: String, required: true },
-  surname: { type: String, required: true },
-  dob: { type: String, required: true },
-  accountNo: { type: String, required: true },
-  sex: { type: String, required: true },
-  maritalStatus: { type: String, required: true },
-  address: { type: String, required: true },
-  hasNoFamily: { type: Boolean, required: true },
-  hasDependentParents: { type: Boolean, required: true },
-  nominees: { type: [NomineeSchema], required: true },
-  familyMembers: { type: [FamilyMemberSchema], required: true },
-  nominee: { type: SingleNomineeSchema, required: true },
-  subscriberDate: { type: String, required: true },
-  employerName: { type: String, required: true },
-  employerDate: { type: String, required: true },
-  establishmentDetails: { type: String, required: true },
-  place: { type: String, required: true },
-  certificationDate: { type: String, required: true }
+  name: { type: String, required: false },
+  fathersName: { type: String, required: false },
+  surname: { type: String, required: false },
+  dob: { type: String, required: false },
+  accountNo: { type: String, required: false },
+  sex: { type: String, required: false },
+  maritalStatus: { type: String, required: false },
+  address: { type: String, required: false },
+  hasNoFamily: { type: Boolean, required: false },
+  hasDependentParents: { type: Boolean, required: false },
+  nominees: { type: [NomineeSchema], required: false },
+  familyMembers: { type: [FamilyMemberSchema], required: false },
+  nominee: { type: SingleNomineeSchema, required: false },
+  subscriberDate: { type: String, required: false },
+  employerName: { type: String, required: false },
+  employerDate: { type: String, required: false },
+  establishmentDetails: { type: String, required: false },
+  place: { type: String, required: false },
+  certificationDate: { type: String, required: false }
 });
 
 export default mongoose.model<INominationForm2>('NominationForm2', NominationForm2Schema);
