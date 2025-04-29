@@ -12,7 +12,7 @@ import React from 'react'
 
 export default function page() {
   const [formData] = useAtom(empFormData);
-    const [formStatus,setFormStatus] = useAtom(formStatusus);
+  const [_, setFormStatus] = useAtom(formStatusus);
   const router = useRouter();
 
   const dummyDBCall = () => true;
@@ -27,14 +27,14 @@ export default function page() {
       },
       body: JSON.stringify(formData),
     });
-    if(response.status === 201) {
+    if (response.status === 201) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
         form1: {
-            ...prevStatus.form1,
-            status: "done",
+          ...prevStatus.form1,
+          status: "done",
         },
-    }));
+      }));
       router.push("/idcard-form");
     }
     else {

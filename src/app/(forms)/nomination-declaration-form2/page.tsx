@@ -11,7 +11,7 @@ export default function Page() {
     const router = useRouter();
     const [formData, setFormData] = useAtom(nominationForm2Data);
     const [formData1] = useAtom(empFormData);
-    const [formStatus, setFormStatus] = useAtom(formStatusus);
+    const [_, setFormStatus] = useAtom(formStatusus);
 
     useEffect(() => {
         setFormData((prev) => ({

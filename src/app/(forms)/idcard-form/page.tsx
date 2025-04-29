@@ -19,7 +19,7 @@ export default function Page() {
   const [formData, setFormData] = useAtom(idCardFormData);
   const [empFormData1] = useAtom(empFormData);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
-  const [formStatus,setFormStatus] = useAtom(formStatusus);
+  const [_,setFormStatus] = useAtom(formStatusus);
 
   useEffect(() => {
     setFormData((prev) => ({

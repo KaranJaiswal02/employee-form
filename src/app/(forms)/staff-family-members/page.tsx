@@ -36,7 +36,7 @@ export default function MedicalInsuranceForm() {
     const router = useRouter();
     const [formData, setFormData] = useAtom<FormData>(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
-    const [formStatus, setFormStatus] = useAtom(formStatusus);
+    const [_, setFormStatus] = useAtom(formStatusus);
 
     const calculateAge = (dob: string) => {
         const birthDate = new Date(dob);
