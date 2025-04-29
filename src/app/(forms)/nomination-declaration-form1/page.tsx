@@ -68,7 +68,7 @@ export default function Page() {
     }
     else {
       const responseData = await response.json();
-      alert(responseData.errorMessage);
+      alert(responseData.message);
     }
   };
 

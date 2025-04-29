@@ -20,7 +20,7 @@ export default function page() {
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
-    const response = await fetch("/api/empjoin-form", {
+    const response = await fetch("/api/staff-joining", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export default function page() {
     }
     else {
       const responseData = await response.json();
-      alert(responseData.errorMessage);
+      alert(responseData.message);
     }
   };
 
