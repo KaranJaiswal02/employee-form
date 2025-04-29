@@ -30,7 +30,7 @@ export async function POST(req: Request) {
         let statusCode = 500;
 
         if (error instanceof mongoose.Error.ValidationError) {
-            errorMessage = "Validation Error";
+            errorMessage = `Validation Error: ${error.message}`;
             statusCode = 400;
         } else if (error instanceof SyntaxError) {
             errorMessage = "Invalid JSON format";
