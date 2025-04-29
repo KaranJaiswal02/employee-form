@@ -241,7 +241,7 @@ export const formStatusus = atom({
   form2: {
     name: "ID Card Form",
     url: "/idcard-form",
-    status: "done",
+    status: "pending",
   },
   form3: {
     name: "Family Members Details",
