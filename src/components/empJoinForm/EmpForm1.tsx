@@ -9,6 +9,11 @@ export default function EmpForm1() {
   const [empFormData1, setEmpFormData1] = useAtom(empFormData);
   const [isChecked, setIsChecked] = useState(false);
 
+  const RequiredLabel = ({ children }: { children: string }) => (
+    <label className="block font-medium">
+      {children} <span className="text-red-500">*</span>
+    </label>
+  );
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target as HTMLInputElement;
     setEmpFormData1(prev => ({ ...prev, [id]: value }));
@@ -29,34 +34,37 @@ export default function EmpForm1() {
   return (
     <div className="">
       <h1 className="text-2xl font-bold text-center mb-6">JOINING REPORT</h1>
-
-      {/* Employee Basic Info */}
+      <h6 className="text-1.5xl font-bold text-center mb-6">Employee Basic Info</h6>
+      
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="space-y-1">
-          <label className="block font-medium">Employee Name</label>
+          <label className="block font-medium"><RequiredLabel> Employee Name</RequiredLabel> </label>
           <Input
             type="text"
             id="name"
             value={empFormData1.name}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="space-y-1">
-          <label className="block font-medium">Father's Name</label>
+          <label className="block font-medium"><RequiredLabel> Father's Name</RequiredLabel></label>
           <Input
             type="text"
             id="fatherName"
             value={empFormData1.fatherName}
             onChange={handleChange}
+            required 
           />
         </div>
         <div className="space-y-1">
-          <label className="block font-medium">Designation</label>
+          <label className="block font-medium"><RequiredLabel>Designation</RequiredLabel></label>
           <Input
             type="text"
             id="designation"
             value={empFormData1.designation}
             onChange={handleChange}
+            required
           />
         </div>
       </div>
@@ -66,27 +74,29 @@ export default function EmpForm1() {
 
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="space-y-1">
-            <label className="block">Date of Birth</label>
+            <label className="block"><RequiredLabel>Date of Birth</RequiredLabel> </label>
             <Input
               type="date"
               id="dob"
               value={empFormData1.dob}
               onChange={handleChange}
+              required
             />
           </div>
 
         </div>
 
-        <h3 className="font-bold mb-2">Address for Correspondence</h3>
+        <h3 className="font-bold mb-2"> Address for Correspondence</h3>
 
         {/* Current Address */}
         <div className="mb-2">
-          <label className="block font-medium mb-1">Current Address:</label>
+          <label className="block font-medium mb-1"><RequiredLabel>Current Address:</RequiredLabel></label>
           <Textarea
             rows={2}
             id="currAddress"
             value={empFormData1.currAddress}
             onChange={handleChange}
+            required
           />
         </div>
 
@@ -97,6 +107,7 @@ export default function EmpForm1() {
             value={empFormData1.district}
             placeholder="Dist."
             onChange={handleChange}
+            required
           />
           <Input
             type="text"
@@ -104,18 +115,17 @@ export default function EmpForm1() {
             value={empFormData1.state}
             placeholder="State"
             onChange={handleChange}
+            required
           />
           <Input
-            type="text"
+            type="number"
             id="pincode"
             value={empFormData1.pincode}
             placeholder="PIN"
             onChange={handleChange}
+            required
           />
         </div>
-
-        {/* <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center gap-2 w-3/4"> */}
         <div className="flex flex-wrap cols-2 gap-4">
           <div className="flex flex-wrap items-center gap-2">
             <span>Tel: STD Code:</span>
@@ -125,19 +135,21 @@ export default function EmpForm1() {
               value={empFormData1.currstdcode}
               onChange={handleChange}
               className="w-20"
+              
             />
-            <span>Number:</span>
+            <span><RequiredLabel>Number:</RequiredLabel></span>
             <Input
               type="number"
               id="currcontactNumber"
               value={empFormData1.currcontactNumber}
               onChange={handleChange}
               className="flex-1 min-w-30"
+              required
             />
           </div>
         </div>
 
-        <label className="block font-medium mb-1">Permanent Address:</label>
+        <label className="block font-medium mb-1"><RequiredLabel>Permanent Address:</RequiredLabel></label>
         {/* Same as Current Address Checkbox */}
         <div className="flex items-center gap-2 mb-2">
           <input
@@ -161,6 +173,7 @@ export default function EmpForm1() {
               value={empFormData1.perAddress}
               onChange={handleChange}
               disabled={isChecked}
+            required
             />
           </div>
 
@@ -172,6 +185,7 @@ export default function EmpForm1() {
               placeholder="Dist."
               onChange={handleChange}
               disabled={isChecked}
+              required
             />
             <Input
               type="text"
@@ -180,6 +194,7 @@ export default function EmpForm1() {
               placeholder="State"
               onChange={handleChange}
               disabled={isChecked}
+              required
             />
             <Input
               type="text"
@@ -188,6 +203,7 @@ export default function EmpForm1() {
               placeholder="PIN"
               onChange={handleChange}
               disabled={isChecked}
+              required
             />
           </div>
 
@@ -203,7 +219,7 @@ export default function EmpForm1() {
                 className="w-20"
                 disabled={isChecked}
               />
-              <span>Number:</span>
+              <span><RequiredLabel>Number:</RequiredLabel></span>
               <Input
                 type="number"
                 id="percontactNumber"
@@ -211,6 +227,7 @@ export default function EmpForm1() {
                 onChange={handleChange}
                 className="flex-1 "
                 disabled={isChecked}
+                required
               />
             </div>
           </div>
@@ -222,23 +239,25 @@ export default function EmpForm1() {
       {/* Company Details */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="col-span-2 flex items-center gap-2">
-          <span>Company Name:</span>
+          <span><RequiredLabel>Company Name:</RequiredLabel></span>
           <Input
             type='text'
             id='companyName'
             value={empFormData1.companyName}
             onChange={handleChange}
             className="flex-1"
+            required
           />
         </div>
         <div className="flex items-center gap-2">
-          <span>Location:</span>
+          <span><RequiredLabel>Location:</RequiredLabel></span>
           <Input
             type='text'
             id='companylocation'
             value={empFormData1.companylocation}
             onChange={handleChange}
             className="flex-1"
+            required
           />
         </div>
         <div className="flex items-center gap-2">
@@ -249,6 +268,7 @@ export default function EmpForm1() {
             value={empFormData1.department}
             onChange={handleChange}
             className="flex-1"
+            
           />
         </div>
       </div>
@@ -256,23 +276,25 @@ export default function EmpForm1() {
       {/* Bank Details */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="flex items-center gap-2">
-          <span>Bank A/c No:</span>
+          <span><RequiredLabel>Bank A/c No:</RequiredLabel></span>
           <Input
             type='text'
             id='accountNumber'
             value={empFormData1.accountNumber}
             onChange={handleChange}
             className="flex-1"
+            required
           />
         </div>
         <div className="flex items-center gap-2">
-          <span>Bank Name :</span>
+          <span><RequiredLabel>Bank Name :</RequiredLabel></span>
           <Input
             type='text'
             id='bankName'
             value={empFormData1.bankName}
             onChange={handleChange}
             className="flex-1"
+            required
           />
         </div>
       </div>
