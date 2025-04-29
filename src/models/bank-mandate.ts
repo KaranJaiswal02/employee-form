@@ -19,19 +19,19 @@ export interface BankMandateFormData extends Document {
 }
 
 const BankMandateFormDataSchema: Schema = new Schema({
-  name: { type: String, required: true },
-  employeeCode: { type: String, required: true },
+  name: { type: String, required: false },
+  employeeCode: { type: String, required: false },
   category: { type: String, required: false },
   address: { type: String, required: false },
   email: { type: String, required: false },
   pan: { type: String, required: false },
-  bankName: { type: String, required: true },
+  bankName: { type: String, required: false },
   branchPlace: { type: String, required: false },
   branchCity: { type: String, required: false },
   pincode: { type: String, required: false },
   accountType: { type: String, required: false },
-  accountNumber: { type: String, required: true },
-  ifscCode: { type: String, required: true },
+  accountNumber: { type: String, required: false },
+  ifscCode: { type: String, required: false },
   place: { type: String, required: false },
   date: { type: Date, default: Date.now },
 });

@@ -1,7 +1,7 @@
 "use client";
 import GratuityForm1 from '@/components/gratuityForm/GratuityForm1'
 import GratuityForm2 from '@/components/gratuityForm/GratuityForm2'
-import { empFormData, grauFormData, nominationForm1Data } from '@/hooks/Atoms';
+import { empFormData, formStatusus, grauFormData, nominationForm1Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
 import React, { useEffect } from 'react'
 import { useRouter } from 'next/navigation';
@@ -13,6 +13,7 @@ export default function Page() {
     const [formData, setFormData] = useAtom(grauFormData);
     const [empFormData1] = useAtom(empFormData);
     const [nominationform1] = useAtom(nominationForm1Data);
+    const [_, setFormStatus] = useAtom(formStatusus);
     useEffect(() => {
         setFormData(prev => ({
             ...prev,

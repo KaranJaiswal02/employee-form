@@ -24,26 +24,26 @@ export interface NominationForm1Document extends Document {
 }
 
 const NomineeSchema: Schema = new Schema({
-  name: { type: String, required: true },
-  address: { type: String, required: true },
-  relationship: { type: String, required: true },
-  dob: { type: String, required: true },
-  share: { type: String, required: true },
-  guardian: { type: String, required: true },
+  name: { type: String, required: false },
+  address: { type: String, required: false },
+  relationship: { type: String, required: false },
+  dob: { type: String, required: false },
+  share: { type: String, required: false },
+  guardian: { type: String, required: false },
 });
 
 const NominationForm1Schema: Schema = new Schema({
-  name: { type: String, required: true },
-  fathersName: { type: String, required: true },
-  dob: { type: String, required: true },
-  sex: { type: String, required: true },
-  maritalStatus: { type: String, required: true },
-  permanentAddress: { type: String, required: true },
-  currentAddress: { type: String, required: true },
-  nominees: { type: [NomineeSchema], required: true },
-  place: { type: String, required: true },
-  date: { type: String, required: true },
-  establishmentAddress: { type: String, required: true },
+  name: { type: String, required: false },
+  fathersName: { type: String, required: false },
+  dob: { type: String, required: false },
+  sex: { type: String, required: false },
+  maritalStatus: { type: String, required: false },
+  permanentAddress: { type: String, required: false },
+  currentAddress: { type: String, required: false },
+  nominees: { type: [NomineeSchema], required: false },
+  place: { type: String, required: false },
+  date: { type: String, required: false },
+  establishmentAddress: { type: String, required: false },
 });
 
 const NominationForm1DataModel = models.NominationForm1 || model<NominationForm1Document>('NominationForm1', NominationForm1Schema);

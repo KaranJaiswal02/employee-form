@@ -4,13 +4,14 @@ import Nomination2 from '@/components/nominationrevisedform/Nomination2';
 import { Button } from "@/components/ui/button";
 import { useAtom } from "jotai";
 import { useRouter } from "next/navigation";
-import { empFormData, nominationForm2Data } from '@/hooks/Atoms';
+import { empFormData, formStatusus, nominationForm2Data } from '@/hooks/Atoms';
 import { useEffect } from 'react';
 
 export default function Page() {
     const router = useRouter();
     const [formData, setFormData] = useAtom(nominationForm2Data);
     const [formData1] = useAtom(empFormData);
+    const [_, setFormStatus] = useAtom(formStatusus);
 
     useEffect(() => {
         setFormData((prev) => ({
@@ -27,18 +28,31 @@ export default function Page() {
         }));
     }, [])
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        console.log(formData)
-        // Dummy DB call simulation
-        // Replace this with actual form submission logic
-        const dummyDBCall = () => true
-        if (dummyDBCall()) {
-            router.push('/thank-you')
-        } else {
-            alert('Form Submission Failed!')
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(formData);
+        const response = await fetch("/api/nomination-declaration-form2", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+        if (response.status === 201) {
+            setFormStatus((prevStatus) => ({
+                ...prevStatus,
+                form7: {
+                    ...prevStatus.form7,
+                    status: "done",
+                },
+            }));
+            router.push("/thank-you");
         }
-    }
+        else {
+            const responseData = await response.json();
+            alert(responseData.message);
+        }
+    };
 
     return (
 

@@ -36,7 +36,7 @@ export default function MedicalInsuranceForm() {
     const router = useRouter();
     const [formData, setFormData] = useAtom<FormData>(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
-    const [formStatus, setFormStatus] = useAtom(formStatusus);
+    const [_, setFormStatus] = useAtom(formStatusus);
 
     const calculateAge = (dob: string) => {
         const birthDate = new Date(dob);
@@ -44,7 +44,6 @@ export default function MedicalInsuranceForm() {
         let age = today.getFullYear() - birthDate.getFullYear();
         const monthDiff = today.getMonth() - birthDate.getMonth();
         const dayDiff = today.getDate() - birthDate.getDate();
-        // Adjust if birthday hasn't occurred yet this year
         if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
             age--;
         }
@@ -97,7 +96,7 @@ export default function MedicalInsuranceForm() {
         }
         else {
             const responseData = await response.json();
-            alert(responseData.errorMessage);
+            alert(responseData.message);
         }
     };
 

@@ -31,7 +31,7 @@ interface FormData {
 export default function Page() {
   const router = useRouter()
   const [empFormData1] = useAtom(empFormData);
-    const [formStatus,setFormStatus] = useAtom(formStatusus);
+  const [_,setFormStatus] = useAtom(formStatusus);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -68,7 +68,7 @@ export default function Page() {
     }
     else {
       const responseData = await response.json();
-      alert(responseData.errorMessage);
+      alert(responseData.message);
     }
   };
 

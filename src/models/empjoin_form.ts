@@ -103,31 +103,31 @@ export interface IEmpFormData extends Document {
 }
 
 const ReferenceSchema = new Schema<Reference>({
-    name: { type: String, required: true },
-    address: { type: String, required: true },
-    phone: { type: String, required: true },
+    name: { type: String, required: false },
+    address: { type: String, required: false },
+    phone: { type: String, required: false },
 });
 
 const FamilyMemberSchema = new Schema<FamilyMember>({
-    name: { type: String, required: true },
-    relationship: { type: String, required: true },
-    dob: { type: String, required: true },
-    age: { type: String, required: true },
+    name: { type: String, required: false },
+    relationship: { type: String, required: false },
+    dob: { type: String, required: false },
+    age: { type: String, required: false },
 });
 
 const NomineeSchema = new Schema<Nominee>({
-    name: { type: String, required: true },
-    relationship: { type: String, required: true },
-    dob: { type: String, required: true },
-    percentage: { type: String, required: true },
+    name: { type: String, required: false },
+    relationship: { type: String, required: false },
+    dob: { type: String, required: false },
+    percentage: { type: String, required: false },
 });
 
 const MemberSchema = new Schema<Member>({
-    name: { type: String, required: true },
-    relationship: { type: String, required: true },
-    dob: { type: String, required: true },
-    age: { type: String, required: true },
-    amount: { type: String, required: true },
+    name: { type: String, required: false },
+    relationship: { type: String, required: false },
+    dob: { type: String, required: false },
+    age: { type: String, required: false },
+    amount: { type: String, required: false },
 });
 
 const EmpFormDataSchema = new Schema<IEmpFormData>({

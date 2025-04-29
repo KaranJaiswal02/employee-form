@@ -17,18 +17,18 @@ export interface IdCardFormData extends Document {
 
 const idCardFormDataSchema: Schema = new Schema(
   {
-    name: { type: String, required: true },
-    fatherName: { type: String, required: true },
-    designation: { type: String, required: true },
-    dob: { type: String, required: true },
-    currAddress: { type: String, required: true },
-    empcode: { type: String, required: true },
-    department: { type: String, required: true },
-    bloodGroup: { type: String, required: true },
-    dateOfJoining: { type: String, required: true },
-    contactnumber: { type: String, required: true },
+    name: { type: String, required: false },
+    fatherName: { type: String, required: false },
+    designation: { type: String, required: false },
+    dob: { type: String, required: false },
+    currAddress: { type: String, required: false },
+    empcode: { type: String, required: false },
+    department: { type: String, required: false },
+    bloodGroup: { type: String, required: false },
+    dateOfJoining: { type: String, required: false },
+    contactnumber: { type: String, required: false },
     photo: { type: String, default: null },
-    year: { type: String, required: true },
+    year: { type: String, required: false },
   }
 );
 

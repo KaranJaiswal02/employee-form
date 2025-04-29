@@ -12,34 +12,32 @@ import React from 'react'
 
 export default function page() {
   const [formData] = useAtom(empFormData);
-    const [formStatus,setFormStatus] = useAtom(formStatusus);
+  const [_, setFormStatus] = useAtom(formStatusus);
   const router = useRouter();
-
-  const dummyDBCall = () => true;
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
-    const response = await fetch("/api/empjoin-form", {
+    const response = await fetch("/api/staff-joining", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     });
-    if(response.status === 201) {
+    if (response.status === 201) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
         form1: {
-            ...prevStatus.form1,
-            status: "done",
+          ...prevStatus.form1,
+          status: "done",
         },
-    }));
+      }));
       router.push("/idcard-form");
     }
     else {
       const responseData = await response.json();
-      alert(responseData.errorMessage);
+      alert(responseData.message);
     }
   };
 

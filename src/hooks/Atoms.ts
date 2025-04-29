@@ -97,18 +97,6 @@ export const grauFormData = atom({
       age: 0,
       proportion: 0,
     },
-    {
-      name: "",
-      relationship: "",
-      age: 0,
-      proportion: 0,
-    },
-    {
-      name: "",
-      relationship: "",
-      age: 0,
-      proportion: 0,
-    }
   ],
   sex: "",
   religion: "",
@@ -241,7 +229,7 @@ export const formStatusus = atom({
   form2: {
     name: "ID Card Form",
     url: "/idcard-form",
-    status: "done",
+    status: "pending",
   },
   form3: {
     name: "Family Members Details",

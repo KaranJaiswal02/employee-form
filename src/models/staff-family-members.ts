@@ -33,12 +33,12 @@ const ChildSchema: Schema = new Schema({
 });
 
 const StaffFamilyFormDataSchema: Schema = new Schema({
-  empNo: { type: String, required: true },
-  name: { type: String, required: true },
-  department: { type: String, required: true },
-  dob: { type: String, required: true },
-  age: { type: Number, required: true },
-  maritalStatus: { type: String, required: true },
+  empNo: { type: String, required: false },
+  name: { type: String, required: false },
+  department: { type: String, required: false },
+  dob: { type: String, required: false },
+  age: { type: Number, required: false },
+  maritalStatus: { type: String, required: false },
   spouseName: { type: String, required: false },
   spouseDob: { type: String, required: false },
   numOfChildren: { type: String, required: false },
