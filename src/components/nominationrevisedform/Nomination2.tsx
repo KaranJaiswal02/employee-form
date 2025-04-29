@@ -159,17 +159,11 @@ export default function EPFNominationFormPart2() {
         </div>
 
         <div className="mb-4">
-          <p>Name & address of the Factory / Establishment</p>
-          {/* <textarea
-            name="establishmentDetails"
-            value={formData.establishmentDetails}
-            onChange={handleFieldChange}
-            className="w-full border-b border-black outline-none h-12"
-          /> */}
+          <p>Name & address of the Factory / Establishment:</p>
           <p><b>SL AP Private Limited</b><br />
             Brigade Opus,  4th Floor<br />
-            <b>Building No./Flat No. :</b> Municipal No. 70/401, Survey No. 44/1 and 44/4
-            Kodigehalli Main Road, Hebbal, Bengaluru Urban, Karnataka 560092</p>
+            Municipal No. 70/401, Survey No. 44/1 and 44/4
+            Kodigehalli Main Road, Hebbal,<br/> Bengaluru Urban, Karnataka 560092</p>
         </div>
 
         <div className="flex justify-between">

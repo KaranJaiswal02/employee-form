@@ -91,7 +91,13 @@ export default function GratuityForm2() {
 
             <div className="mt-6">
                 <p>
-                    Place: <input id="place" type="text" value={formData.place} onChange={handleChange} className="border-b border-black w-48 inline-block ml-2" />
+                    Place:  
+                    {/* <input id="place"
+                    type="text" 
+                    value={formData.place} 
+                    onChange={handleChange} 
+                    className="border-b border-black w-48 inline-block ml-2" /> */}
+                    <b> Bengaluru</b>
                 </p>
                 <p className="mt-2">
                     Date: <input id="date" type="date" value={formData.date} onChange={handleDateChange} className="border-b border-black w-48 inline-block ml-2" />
@@ -140,7 +146,7 @@ export default function GratuityForm2() {
             </div>
 
             <p className="mt-4">Place: <input type="text" value={formData.place} disabled={true} className="border-b border-black w-48 inline-block ml-2" /></p>
-            <p>Date: <input type="date" value={formData.date} disabled={true} className="border-b border-black w-48 inline-block ml-2" /></p>
+            <p>Date: <input type="date" value={formData.date}  className="border-b border-black w-48 inline-block ml-2" /></p>
 
             <hr className="my-6 border-black" />
 
@@ -154,12 +160,19 @@ export default function GratuityForm2() {
             </p>
             <p className="mt-2">
                 Signature of the employer/Officer authorised:{" "}
-                <input type="text" className="border-b border-black w-60 inline-block" />
+                <div className="border-b border-black w-60 inline-block mt-2 " />
+                
             </p>
-            <p>Date: <input type="date" value={formData.date} disabled className="border-b border-black w-48 inline-block ml-2" /></p>
+            <p>Date: <input type="date" value={formData.date} disabled className="border-b border-black w-48 inline-block ml-2 mt-2 mb-2 " /></p>
             <p>
                 Name and address of the establishment or rubber stamp thereof:
-                <textarea className="w-full border border-black mt-2 h-20" />
+                < div className="w-full mt-2 h-25" > 
+                {/* < div className="w-full border border-black mt-2 h-25" ></div> */}
+                <p><b>SL AP Private Limited</b><br />
+                    Brigade Opus,  4th Floor<br />
+                    Municipal No. 70/401, Survey No. 44/1 and 44/4
+                    Kodigehalli Main Road, Hebbal,<br/> Bengaluru Urban, Karnataka 560092</p>
+                    </div>
             </p>
 
             <hr className="my-6 border-black" />
