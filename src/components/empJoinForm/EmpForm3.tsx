@@ -13,6 +13,11 @@ export default function EmpForm3() {
         });
     };
 
+    const RequiredLabel = ({ children }: { children: string }) => (
+        <label className="block font-medium">
+            {children} <span className="text-red-500">*</span>
+        </label>
+    );
     const handleEmploymentChange = (row: number, col: number, value: string) => {
         setFormData(prev => {
             const updated = [...prev.employment];
@@ -66,7 +71,7 @@ export default function EmpForm3() {
         <div className="p-6 space-y-6 text-sm font-sans">
             {/* EDUCATIONAL QUALIFICATION */}
             <h2 className="font-bold uppercase">
-                Educational Qualification <span className="italic">(Start from highest qualification)</span>
+             Educational Qualification<span className="italic"><RequiredLabel>(Start from highest qualification)</RequiredLabel></span>
             </h2>
             <table className="table-auto w-full border border-black text-center text-sm mb-0">
                 <thead>
@@ -90,6 +95,7 @@ export default function EmpForm3() {
                                         className="w-full p-1"
                                         value={cell}
                                         onChange={(e) => handleEducationChange(i, j, e.target.value)}
+                                        required={j === 0} // Make the first column required
                                     />
                                 </td>
                             ))}
@@ -170,35 +176,39 @@ export default function EmpForm3() {
             </h2>
             <div className="border border-black p-4 rounded-md space-y-2">
                 <div className="flex items-center gap-x-2">
-                    <label htmlFor="games">Games / Sports:</label>
+                    <label htmlFor="games"><RequiredLabel>Games / Sports:</RequiredLabel></label>
                     <input
                         id="games"
                         type="text"
                         className="border-b border-black flex-1"
                         value={formData.games}
                         onChange={(e) => handleChange("games", e.target.value)}
+                        required
                     />
                 </div>
 
                 <div className="flex items-center gap-x-2">
-                    <label htmlFor="ncc">NCC etc.:</label>
+                    <label htmlFor="ncc"><RequiredLabel>NCC etc.:</RequiredLabel></label>
                     <input
                         id="ncc"
                         type="text"
                         className="border-b border-black flex-1"
                         value={formData.ncc}
                         onChange={(e) => handleChange("ncc", e.target.value)}
+                        placeholder="NCC, NSS, etc., if not applicable, write N/A"
+                        required
                     />
                 </div>
 
                 <div className="flex items-center gap-x-2">
-                    <label htmlFor="hobbies">Hobbies & Other Interests:</label>
+                    <label htmlFor="hobbies"><RequiredLabel>Hobbies & Other Interests:</RequiredLabel></label>
                     <input
                         id="hobbies"
                         type="text"
                         className="border-b border-black flex-1"
                         value={formData.hobbies}
                         onChange={(e) => handleChange("hobbies", e.target.value)}
+                        required
                     />
                 </div>
             </div>
@@ -207,7 +217,7 @@ export default function EmpForm3() {
             <div>
                 <strong>
                     Name, address and telephone of two references{" "}
-                    <span className="italic">(Other than relatives)</span>
+                    <span className="italic">(Other than relatives) </span>
                 </strong>
                 <div className="border border-black p-4 cornered-md space-y-2">
                     <div className="grid grid-cols-2 gap-4 mt-2">
@@ -220,6 +230,7 @@ export default function EmpForm3() {
                                     className="border-b border-black w-full mt-1"
                                     value={ref.name}
                                     onChange={(e) => handleReferenceChange(idx, "name", e.target.value)}
+                                    
                                 />
                                 <input
                                     type="text"
@@ -227,6 +238,7 @@ export default function EmpForm3() {
                                     className="border-b border-black w-full mt-1"
                                     value={ref.address}
                                     onChange={(e) => handleReferenceChange(idx, "address", e.target.value)}
+                                    
                                 />
                                 <input
                                     type="text"
@@ -234,6 +246,7 @@ export default function EmpForm3() {
                                     className="border-b border-black w-full mt-1"
                                     value={ref.phone}
                                     onChange={(e) => handleReferenceChange(idx, "phone", e.target.value)}
+                                    
                                 />
                             </div>
                         ))}
@@ -244,13 +257,15 @@ export default function EmpForm3() {
             {/* COURT CONVICTION */}
             <div>
                 <strong>
-                    Have you been convicted by any court? If yes, please give details:
+                    <RequiredLabel>Have you been convicted by any court? If yes, please give details:</RequiredLabel>
                 </strong>
                 <textarea
                     className="w-full border border-black mt-2 p-2"
                     rows={3}
                     value={formData.convictionDetails}
                     onChange={(e) => handleChange("convictionDetails", e.target.value)}
+                    placeholder="If not applicable, write No"
+                    required
                 ></textarea>
             </div>
 
@@ -278,6 +293,7 @@ export default function EmpForm3() {
                         value={formData.place}
                         onChange={(e) => handleChange("place", e.target.value)}
                     />
+                    
                 </div>
                 <div className="text-right">
                     ______________________ <br />

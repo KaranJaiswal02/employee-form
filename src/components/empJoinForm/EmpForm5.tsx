@@ -21,6 +21,12 @@ export default function EmpForm5() {
         }));
     };
 
+    const RequiredLabel = ({ children }: { children: string }) => (
+        <label className="block font-medium">
+            {children} <span className="text-red-500">*</span>
+        </label>
+    );
+
     const handleMemberChange = (
         index: number,
         field: keyof MemberRow,
@@ -61,7 +67,7 @@ export default function EmpForm5() {
                 MEDICLAIM PROPOSAL
             </h2>
 
-            <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-2 gap-3 mb-6">
                 <div>
                     <label className="font-semibold">NAME:</label>
                     <input
@@ -70,7 +76,7 @@ export default function EmpForm5() {
                         value={formData.name}
                         onChange={handleEmployeeInfoChange}
                         disabled={true}
-                        className="ml-2 border-b border-black outline-none"
+                        className="ml-0 border-b border-black outline-none"
                     />
                 </div>
                 <div>
@@ -93,16 +99,21 @@ export default function EmpForm5() {
                         className="ml-2 border-b border-black outline-none"
                     />
                 </div>
-                <div>
-                    <label className="font-semibold">department:</label>
+
+                <div className="w-1 flex items-end gap-2 mb-4">
+                    <label className=" font-semibold whitespace-nowrap">
+                        <RequiredLabel>Deptt:</RequiredLabel>
+                    </label>
                     <input
                         type="text"
-                        name="department"
+                        id="department"
                         value={formData.department}
                         onChange={handleEmployeeInfoChange}
-                        className="ml-2 border-b border-black outline-none"
+                        className=" flex-1 border-b border-black pb-1 focus:outline-none "
+                        required
                     />
                 </div>
+
             </div>
 
             <p className="mb-4">
@@ -218,7 +229,7 @@ export default function EmpForm5() {
             <div className="mt-6 text-xs">
                 <p className="font-bold">Note:</p>
                 <p className="mt-1">
-                    1) Please refer to Appointment letter/Revision letter for eligibility
+                    Please refer to Appointment letter/Revision letter for eligibility
                 </p>
             </div>
         </div>

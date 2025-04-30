@@ -5,10 +5,10 @@ import { useAtom } from 'jotai'
 
 const RequiredLabel = ({ children }: { children: string }) => (
     <label className="block font-medium">
-      {children} <span className="text-red-500">*</span>
+        {children} <span className="text-red-500">*</span>
     </label>
-  );
-  
+);
+
 export default function EmpForm2() {
     const [formData, setFormData] = useAtom(empFormData);
 
@@ -18,7 +18,7 @@ export default function EmpForm2() {
         console.log(formData)
     };
 
-    
+
 
     return (
         <div className="">
@@ -73,6 +73,7 @@ export default function EmpForm2() {
                         onChange={handleChange}
                         className="w-1/3 border-b-2 border-black pb-1 focus:outline-none mr-2"
                         placeholder="First"
+
                     />
                     <input
                         type="text"
@@ -93,30 +94,36 @@ export default function EmpForm2() {
                 </div>
             </div>
 
-            {/* Designation */}
-            <div className="mb-4">
-                <div className="font-semibold mb-1"><RequiredLabel>DESIGNATION</RequiredLabel></div>
-                <input
-                    type="text"
-                    name="designation"
-                    value={formData.designation}
-                    onChange={handleChange}
-                    className="w-full border-b-2 border-black pb-1 focus:outline-none"
-                    required
-                />
-            </div>
+            <div className="mb-4 flex gap-16">
+                {/* Designation - Left Side */}
+                <div className="w-1/3">
+                    <div className="font-semibold mb-1">
+                        <RequiredLabel>DESIGNATION</RequiredLabel>
+                    </div>
+                    <input
+                        type="text"
+                        name="designation"
+                        value={formData.designation}
+                        onChange={handleChange}
+                        className="w-full border-b-2 border-black pb-1 focus:outline-none"
+                        required
+                    />
+                </div>
 
-            {/* Family Details */}
-            <div className="mb-4">
-                <div className="font-semibold mb-1"><RequiredLabel>FATHER/MOTHER'S NAME & OCCUPATION</RequiredLabel> </div>
-                <input
-                    type="text"
-                    name="familyMemberName"
-                    value={formData.familyMemberName}
-                    onChange={handleChange}
-                    className="w-full border-b-2 border-black pb-1 focus:outline-none"
-                    required
-                />
+                {/* Father's/Mother's Name & Occupation - Right Side */}
+                <div className="w-2/3">
+                    <div className="font-semibold mb-1">
+                        <RequiredLabel>FATHER/MOTHER'S NAME & OCCUPATION</RequiredLabel>
+                    </div>
+                    <input
+                        type="text"
+                        name="familyMemberName"
+                        value={formData.familyMemberName}
+                        onChange={handleChange}
+                        className="w-3/4 border-b-2 border-black pb-1 focus:outline-none"
+                        required
+                    />
+                </div>
             </div>
 
             {/* Personal Details Grid */}
@@ -177,13 +184,13 @@ export default function EmpForm2() {
 
             {/* Address Section */}
             <div className="mb-4">
-                <div className="font-semibold mb-1"><RequiredLabel>PRESENT ADDRESS:</RequiredLabel></div>
+                <div className="font-semibold mb-1"><RequiredLabel>CURRENT ADDRESS:</RequiredLabel></div>
                 <textarea
                     name="currAddress"
                     value={formData.currAddress}
                     disabled={true}
                     onChange={handleChange}
-                    className="w-full border-b-2 border-black pb-1 focus:outline-none h-8"
+                    className="w-3/5 border-b-2 border-black pb-1 focus:outline-none h-8"
                     required
                 />
                 <div className="grid grid-cols-3 gap-4 mt-2">
@@ -255,7 +262,7 @@ export default function EmpForm2() {
                     value={formData.perAddress}
                     disabled={true}
                     onChange={handleChange}
-                    className="w-full border-b-2 border-black pb-1 focus:outline-none h-8"
+                    className="w-3/5 border-b-2 border-black pb-1 focus:outline-none h-8"
                     required
                 />
                 <div className="grid grid-cols-3 gap-4 mt-2">
@@ -330,7 +337,7 @@ export default function EmpForm2() {
                             checked={formData.maritalStatus === 'Married'}
                             onChange={handleChange}
                             className="mr-1"
-                            
+
                         /> Married
                     </label>
                     <label className="ml-4">
@@ -341,8 +348,8 @@ export default function EmpForm2() {
                             checked={formData.maritalStatus === 'Single'}
                             onChange={handleChange}
                             className="mr-1"
-                            
-                        /> Single 
+
+                        /> Single
                     </label>
                     <label className="ml-4">
                         <input
@@ -458,7 +465,7 @@ export default function EmpForm2() {
                             name="emergencyContactName"
                             value={formData.emergencyContactName}
                             onChange={handleChange}
-                            className="w-full border-b border-black focus:outline-none"
+                            className="w-3/4 border-b border-black focus:outline-none"
                             required
                         />
                     </div>
@@ -469,7 +476,7 @@ export default function EmpForm2() {
                             name="emergencyContactPhone"
                             value={formData.emergencyContactPhone}
                             onChange={handleChange}
-                            className="w-full border-b border-black focus:outline-none"
+                            className="w-3/4 border-b border-black focus:outline-none"
                             required
                         />
                     </div>
@@ -481,7 +488,7 @@ export default function EmpForm2() {
                         name="emergencyContactRelationship"
                         value={formData.emergencyContactRelationship}
                         onChange={handleChange}
-                        className="w-full border-b border-black focus:outline-none"
+                        className="w-2/5 border-b border-black focus:outline-none"
                         required
                     />
                 </div>
@@ -490,7 +497,7 @@ export default function EmpForm2() {
             {/* Other Information */}
             <div className="mb-6">
                 <div className="font-semibold mb-2">OTHER INFORMATION:</div>
-                <div className="text-sm"><RequiredLabel>Gratuity NOMINEE:</RequiredLabel></div>
+                <div className="text-sm"><RequiredLabel>Gratuity NOMINEE (atleast one):</RequiredLabel></div>
                 <div className="flex items-center">
                     <span className="mr-2">1</span>
                     <input
@@ -508,7 +515,7 @@ export default function EmpForm2() {
                         name="gratuityNominee1Name"
                         value={formData.gratuityNominee1Name}
                         onChange={handleChange}
-                        className="w-full border-b border-black focus:outline-none ml-2"
+                        className="w-3/4 border-b border-black focus:outline-none ml-2"
                         placeholder='Name'
                         required
                     />
@@ -529,11 +536,11 @@ export default function EmpForm2() {
                         name="gratuityNominee2Name"
                         value={formData.gratuityNominee2Name}
                         onChange={handleChange}
-                        className="w-full border-b border-black focus:outline-none ml-2"
+                        className="w-3/4 border-b border-black focus:outline-none ml-2"
                         placeholder='Name'
                     />
                 </div>
-                <div className="text-sm mt-1"><RequiredLabel>P.F. NOMINEE:</RequiredLabel></div>
+                <div className="text-sm mt-1"><RequiredLabel>P.F. NOMINEE (atleast one):</RequiredLabel></div>
                 <div className="flex items-center">
                     <span className="mr-2">1</span>
                     <input
@@ -551,7 +558,7 @@ export default function EmpForm2() {
                         name="pfNominee1Name"
                         value={formData.pfNominee1Name}
                         onChange={handleChange}
-                        className="w-full border-b border-black focus:outline-none ml-2"
+                        className="w-3/4 border-b border-black focus:outline-none ml-2"
                         placeholder='Name'
                         required
                     />
@@ -572,7 +579,7 @@ export default function EmpForm2() {
                         name="pfNominee2Name"
                         value={formData.pfNominee2Name}
                         onChange={handleChange}
-                        className="w-full border-b border-black focus:outline-none ml-2"
+                        className="w-3/4 border-b border-black focus:outline-none ml-2"
                         placeholder='Name'
                     />
                 </div>
@@ -592,7 +599,7 @@ export default function EmpForm2() {
                         name="pfNominee3Name"
                         value={formData.pfNominee3Name}
                         onChange={handleChange}
-                        className="w-full border-b border-black focus:outline-none ml-2"
+                        className="w-3/4 border-b border-black focus:outline-none ml-2"
                         placeholder='Name'
                     />
                 </div>

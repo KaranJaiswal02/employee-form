@@ -19,6 +19,12 @@ export default function BankMandateForm() {
         }));
     }, [])
 
+    const RequiredLabel = ({ children }: { children: string }) => (
+        <label className="block ">
+          {children} <span className="text-red-500">*</span>
+        </label>
+      );
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
         setFormData(prev => ({ ...prev, [id]: value }));
@@ -117,7 +123,7 @@ export default function BankMandateForm() {
                     </div>
                 ))}
                 <div className="flex flex-col sm:flex-row">
-                    <label htmlFor="email" className="w-72">5. Email Id</label>
+                    <label htmlFor="email" className="w-72"><RequiredLabel>5. Email Id</RequiredLabel></label>
                     <input
                         id="email"
                         type="email"
@@ -129,7 +135,7 @@ export default function BankMandateForm() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row">
-                    <label htmlFor="pan" className="w-72">6. Permanent Account Number</label>
+                    <label htmlFor="pan" className="w-72"><RequiredLabel>6. Permanent Account Number</RequiredLabel></label>
                     <input
                         id="pan"
                         type="text"
@@ -141,7 +147,7 @@ export default function BankMandateForm() {
                 </div>
             </div>
 
-            <p className="mb-2">7. Particulars of bank:</p>
+            <p className="mb-2"><RequiredLabel>7. Particulars of bank:</RequiredLabel></p>
 
             <div className="overflow-x-auto">
                 <table className="w-full border border-black text-sm">
@@ -203,7 +209,7 @@ export default function BankMandateForm() {
                         <tr>
                             <td className="border border-black p-2" colSpan={4}>
                                 <div className="flex flex-wrap items-center justify-center gap-4">
-                                    <span>Account Type:</span>
+                                    <span><RequiredLabel>Account Type:</RequiredLabel></span>
                                     <label className="flex items-center">
                                         <input
                                             type="radio"
@@ -232,8 +238,10 @@ export default function BankMandateForm() {
                         </tr>
 
                         <tr>
-                            <td className="border border-black p-2" colSpan={4}>
-                                Account Number (as appearing in the cheque book):
+                            <td className="border border-black p-2" colSpan={4}><RequiredLabel>
+                            Account Number (as appearing in the cheque book):
+                            </RequiredLabel>
+                                
                                 <input
                                     id="accountNumber"
                                     type="text"
@@ -248,7 +256,7 @@ export default function BankMandateForm() {
 
                         <tr>
                             <td className="border border-black p-2" colSpan={4}>
-                                IFSC Code:
+                                <RequiredLabel>IFSC Code:</RequiredLabel>
                                 <input
                                     id="ifscCode"
                                     type="text"

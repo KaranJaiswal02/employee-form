@@ -38,6 +38,12 @@ export default function MedicalInsuranceForm() {
     const [form1data] = useAtom(empFormData);
     const [_, setFormStatus] = useAtom(formStatusus);
 
+    const RequiredLabel = ({ children }: { children: string }) => (
+        <label className="block ">
+          {children} <span className="text-red-500">*</span>
+        </label>
+      );
+
     const calculateAge = (dob: string) => {
         const birthDate = new Date(dob);
         const today = new Date();
@@ -176,7 +182,7 @@ export default function MedicalInsuranceForm() {
 
                     <tr className="border border-black">
                         <td></td>
-                        <td className="p-2 border border-black">MARITAL STATUS</td>
+                        <td className="p-2 border border-black"><RequiredLabel>MARITAL STATUS</RequiredLabel></td>
                         <td className="p-2 border border-black" colSpan={5}>
                             <input
                                 type="text"
@@ -224,7 +230,7 @@ export default function MedicalInsuranceForm() {
                                 value={formData.numOfChildren}
                                 onChange={handleChange}
                                 className="w-full"
-                                placeholder="Number of Children"
+                                placeholder="Number of Children, if none, enter 0"
                             />
                         </td>
                     </tr>
@@ -268,7 +274,7 @@ export default function MedicalInsuranceForm() {
 
                     <tr className="border border-black">
                         <td className="p-2 border border-black">6</td>
-                        <td className="p-2 border border-black">FATHER NAME / FATHER-IN-LAW</td>
+                        <td className="p-2 border border-black"><RequiredLabel>FATHER NAME / FATHER-IN-LAW</RequiredLabel></td>
                         <td className="p-2 border border-black" colSpan={3}>
                             <input
                                 type="text"
@@ -279,7 +285,7 @@ export default function MedicalInsuranceForm() {
                                 placeholder="Father or Father-in-law Name"
                             />
                         </td>
-                        <td className="p-2 border border-black">DOB</td>
+                        <td className="p-2 border border-black"><RequiredLabel>DOB</RequiredLabel></td>
                         <td className="p-2 border border-black">
                             <input
                                 type="date"
@@ -293,7 +299,7 @@ export default function MedicalInsuranceForm() {
 
                     <tr className="border border-black">
                         <td className="p-2 border border-black">7</td>
-                        <td className="p-2 border border-black">MOTHER NAME / MOTHER-IN-LAW</td>
+                        <td className="p-2 border border-black"><RequiredLabel>MOTHER NAME / MOTHER-IN-LAW</RequiredLabel></td>
                         <td className="p-2 border border-black" colSpan={3}>
                             <input
                                 type="text"
@@ -304,7 +310,7 @@ export default function MedicalInsuranceForm() {
                                 placeholder="Mother or Mother-in-law Name"
                             />
                         </td>
-                        <td className="p-2 border border-black">DOB</td>
+                        <td className="p-2 border border-black"><RequiredLabel>DOB</RequiredLabel></td>
                         <td className="p-2 border border-black">
                             <input
                                 type="date"
@@ -318,7 +324,7 @@ export default function MedicalInsuranceForm() {
 
                     <tr className="border border-black">
                         <td className="p-2 border border-black">8</td>
-                        <td className="p-2 border border-black">MOBILE NUMBER</td>
+                        <td className="p-2 border border-black"><RequiredLabel>MOBILE NUMBER</RequiredLabel></td>
                         <td className="p-2 border border-black" colSpan={5}>
                             <input
                                 type="tel"
@@ -333,7 +339,7 @@ export default function MedicalInsuranceForm() {
 
                     <tr className="border border-black">
                         <td className="p-2 border border-black">9</td>
-                        <td className="p-2 border border-black">ADDRESS</td>
+                        <td className="p-2 border border-black"><RequiredLabel>ADDRESS</RequiredLabel></td>
                         <td className="p-2 border border-black" colSpan={5}>
                             <textarea
                                 name="address"

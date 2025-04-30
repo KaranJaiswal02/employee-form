@@ -30,6 +30,12 @@ export default function EmpForm4() {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
 
+    const RequiredLabel = ({ children }: { children: string }) => (
+        <label className="block font-medium">
+            {children} <span className="text-red-500">*</span>
+        </label>
+    );
+
     const handleFamilyChange = (
         index: number,
         field: keyof FormData['familyMembers'][0],
@@ -113,19 +119,21 @@ export default function EmpForm4() {
                 </div>
 
                 <div className="flex justify-between items-center">
-                    <label className="w-1/3">Designation</label>
+                    <label className="w-1/3"><RequiredLabel>Designation</RequiredLabel></label>
                     <input
                         type="text"
                         className="border-b border-black w-[35%]"
                         value={formData.designation}
                         onChange={(e) => handleChange('designation', e.target.value)}
+                        required
                     />
-                    <label className="ml-6">Date of Joining</label>
+                    <label className="ml-6"><RequiredLabel>Date of Joining</RequiredLabel></label>
                     <input
                         type="date"
                         className="border-b border-black w-[30%]"
                         value={formData.dateOfJoining}
                         onChange={(e) => handleChange('dateOfJoining', e.target.value)}
+                        required
                     />
                 </div>
             </div>
@@ -141,6 +149,7 @@ export default function EmpForm4() {
                             <th className="border border-black px-2">Date of Birth</th>
                             <th className="border border-black px-2">Age</th>
                             <th className="border border-black px-2">Action</th>
+                            
                         </tr>
                     </thead>
                     <tbody>

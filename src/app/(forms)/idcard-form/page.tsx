@@ -28,7 +28,7 @@ export default function Page() {
       fatherName: empFormData1.fatherName || "",
       designation: empFormData1.designation || "",
       dob: empFormData1.dob || "",
-      currAddress: empFormData1.currAddress || "",
+      // currAddress: empFormData1.currAddress || "",
     }));
   }, []);
 
@@ -102,6 +102,7 @@ export default function Page() {
             <div key={id} className="flex border-b border-black h-12">
               <label htmlFor={id} className="w-1/3 border-r border-black font-semibold px-2 flex items-center">
                 {label}
+                
               </label>
               <div className="w-2/3 flex items-center px-2">
                 {id === "bloodGroup" ? (
@@ -164,7 +165,7 @@ export default function Page() {
               <span className="text-sm">Upload Photo</span>
             )}
             <input
-              type="file"
+              type="file" 
               accept="image/*"
               onChange={handlePhotoChange}
               className="opacity-0 absolute inset-0 cursor-pointer"
