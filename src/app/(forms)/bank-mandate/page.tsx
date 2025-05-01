@@ -78,7 +78,7 @@ export default function BankMandateForm() {
             </div>
 
             <div className="space-y-3 mb-4">
-                {['Name', 'Employee Code', 'Category(CT/DT/STAFF)', 'Address'].map((label, i) => (
+                {/* {['Name', 'Employee Code', 'Category(CT/DT/STAFF)', 'Address'].map((label, i) => (
                     <div key={i} className="flex flex-col sm:flex-row">
                         <label htmlFor={label.toLowerCase().replace(/[^a-z]/gi, '')} className="w-72">
                             {i + 1}. {label}
@@ -104,7 +104,65 @@ export default function BankMandateForm() {
                             />
                         )}
                     </div>
-                ))}
+                ))} */}
+                <div className="flex flex-col sm:flex-row">
+                    <label htmlFor="name" className="w-72">
+                        1. Name
+                    </label>
+                    <input
+                        id="name"
+                        type="text"
+                        onChange={handleChange}
+                        value={formData.name || ""}
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4"
+                        required
+                        disabled={true}
+                    />
+                </div>
+
+                <div className="flex flex-col sm:flex-row">
+                    <label htmlFor="employeeCode" className="w-72">
+                        2. Employee Code
+                    </label>
+                    <input
+                        id="employeeCode"
+                        type="text"
+                        onChange={handleChange}
+                        value={formData.employeeCode || ""}
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4"
+                        required
+                        disabled={false}
+                    />
+                </div>
+
+                <div className="flex flex-col sm:flex-row">
+                    <label htmlFor="categoryctdtstaff" className="w-72">
+                        3. Category(CT/DT/STAFF)
+                    </label>
+                    <input
+                        id="categoryctdtstaff"
+                        type="text"
+                        onChange={handleChange}
+                        value={formData.categoryctdtstaff || ""}
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4"
+                        required
+                        disabled={false}
+                    />
+                </div>
+
+                <div className="flex flex-col sm:flex-row">
+                    <label htmlFor="address" className="w-72">
+                        4. Address
+                    </label>
+                    <textarea
+                        id="address"
+                        onChange={handleChange}
+                        value={formData.address || ""}
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4 resize-none h-16"
+                        required
+                        disabled={true}
+                    />
+                </div>
                 <div className="flex flex-col sm:flex-row">
                     <label htmlFor="email" className="w-72"><RequiredLabel>5. Email Id</RequiredLabel></label>
                     <input
@@ -222,9 +280,9 @@ export default function BankMandateForm() {
 
                         <tr>
                             <td className="border border-black dark:border-white p-2" colSpan={4}><RequiredLabel>
-                            Account Number (as appearing in the cheque book):
+                                Account Number (as appearing in the cheque book):
                             </RequiredLabel>
-                                
+
                                 <input
                                     id="accountNumber"
                                     type="text"

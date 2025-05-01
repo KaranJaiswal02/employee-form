@@ -183,6 +183,7 @@ export const bankMandateFormData = atom({
   ifscCode: '',
   place: '',
   date: currentDate,
+  categoryctdtstaff: '',
 })
 
 export const idCardFormData = atom({
