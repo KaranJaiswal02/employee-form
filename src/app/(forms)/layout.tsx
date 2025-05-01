@@ -2,7 +2,7 @@
 import { formStatusus } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 
 export default function FormLayout({
@@ -14,6 +14,7 @@ export default function FormLayout({
     const [formStatus] = useAtom(formStatusus);
 
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const router = useRouter();
 
     // Check initial mode
     useEffect(() => {
@@ -21,7 +22,11 @@ export default function FormLayout({
             const isDark = document.documentElement.classList.contains("dark");
             setIsDarkMode(isDark);
         }
-    }, []);
+        const token = localStorage.getItem('token');
+        if (!token) {
+            router.push('/sign-in');
+        }
+    }, [router,isDarkMode]);
 
     // Toggle dark mode
     const toggleDarkMode = () => {
@@ -59,8 +64,8 @@ export default function FormLayout({
                                     >
                                         <span
                                             className={`text-xl ${form.status === "done"
-                                                    ? "text-green-500 dark:text-green-400"
-                                                    : "text-gray-400 dark:text-gray-500"
+                                                ? "text-green-500 dark:text-green-400"
+                                                : "text-gray-400 dark:text-gray-500"
                                                 }`}
                                         >
                                             {form.status === "done" ? "✅" : "⭕"}
