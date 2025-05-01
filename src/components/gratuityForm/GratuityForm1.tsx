@@ -29,7 +29,7 @@ export default function GratuityForm1() {
       ...prevFormData,
       nominee: [
         ...prevFormData.nominee,
-        { name: "", relationship: "", age: 0, proportion: 0 },
+        { name: "", relationship: "", age: null, proportion: null },
       ],
     }));
   };
@@ -145,7 +145,7 @@ export default function GratuityForm1() {
               <td className="border border-black p-2">
                 <input
                   type="number"
-                  value={row.age}
+                  value={row.age || ''}
                   className="w-full"
                   placeholder="Age"
                   onChange={(e) => handleNomineeChange(i, "age", e.target.value)}
@@ -154,7 +154,7 @@ export default function GratuityForm1() {
               <td className="border border-black p-2">
                 <input
                   type="number"
-                  value={row.proportion}
+                  value={row.proportion || ''}
                   className="w-full"
                   placeholder="Proportion (%)"
                   onChange={(e) => handleNomineeChange(i, "proportion", e.target.value)}

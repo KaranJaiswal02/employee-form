@@ -50,6 +50,9 @@ const StaffFamilyFormDataSchema: Schema = new Schema({
   mobileNumber: { type: String, required: false },
   address: { type: String, required: false },
   date: { type: Date, default: Date.now },
+},
+{
+    timestamps: true,
 });
 
 const IempFamilyDataModel = models.StaffFamilyFormData || model<StaffFamilyFormData>('StaffFamilyFormData', StaffFamilyFormDataSchema);

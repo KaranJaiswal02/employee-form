@@ -92,6 +92,9 @@ const NominationForm2Schema = new Schema<NominationForm2Document>({
   establishmentDetails: { type: String, required: false },
   place: { type: String, required: false },
   date: { type: Date, required: false },
+},
+{
+    timestamps: true,
 });
 
 const NominationForm2DataModel = models.NominationForm2 || model<NominationForm2Document>('NominationForm2', NominationForm2Schema);

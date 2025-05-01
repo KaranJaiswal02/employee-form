@@ -95,8 +95,8 @@ export const grauFormData = atom({
     {
       name: "",
       relationship: "",
-      age: 0,
-      proportion: 0,
+      age: null,
+      proportion: null,
     },
   ],
   sex: "",

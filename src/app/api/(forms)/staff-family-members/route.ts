@@ -1,30 +1,27 @@
 import dbConnect from "@/lib/dbConnect";
-import EmpJoinForm from "@/models/empjoin_form";
-import { IEmpFormData } from "@/models/empjoin_form";
+import IempFamilyDataModel from "@/models/forms/staff-family-members";
+import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
 import mongoose from "mongoose";
 
 export async function POST(req: Request) {
     await dbConnect();
     
     try {
-        const body: IEmpFormData = await req.json();
-        // console.log(body)
-        
-        // Validate request body
+        const body: StaffFamilyFormData = await req.json();
         if (!body) {
             return Response.json({ message: "Invalid request data" }, { status: 400 });
         }
 
-        const empJoinForm = new EmpJoinForm(body);
-        const savedEmpJoinForm = await empJoinForm.save();
+        const familyForm = new IempFamilyDataModel(body);
+        const savedFamilyForm = await familyForm.save();
         
         return Response.json({ 
-            message: "Employee Join Form submitted successfully", 
-            data: savedEmpJoinForm 
+            message: "Family Member Form submitted successfully", 
+            data: savedFamilyForm 
         }, { status: 201 });
         
     } catch (error) {
-        console.log("Error in POST /empjoin-form:", error);
+        console.log("Error in POST /idcard-form:", error);
         
         let errorMessage = "Internal Server Error";
         let statusCode = 500;

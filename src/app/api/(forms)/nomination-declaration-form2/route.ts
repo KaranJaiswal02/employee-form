@@ -1,23 +1,26 @@
 import dbConnect from "@/lib/dbConnect";
-import IempFamilyDataModel from "@/models/staff-family-members";
-import { StaffFamilyFormData } from "@/models/staff-family-members";
+import NominationForm2DataModel from "@/models/forms/nomination-form2";
+import { NominationForm2Document } from "@/models/forms/nomination-form2";
 import mongoose from "mongoose";
 
 export async function POST(req: Request) {
     await dbConnect();
     
     try {
-        const body: StaffFamilyFormData = await req.json();
+        const body: NominationForm2Document = await req.json();
+        // console.log(body)
+        
+        // Validate request body
         if (!body) {
             return Response.json({ message: "Invalid request data" }, { status: 400 });
         }
 
-        const familyForm = new IempFamilyDataModel(body);
-        const savedFamilyForm = await familyForm.save();
+        const nominationForm2Data = new NominationForm2DataModel(body);
+        const savedNominationForm2Data = await nominationForm2Data.save();
         
         return Response.json({ 
-            message: "Family Member Form submitted successfully", 
-            data: savedFamilyForm 
+            message: "Nomination Form 2 submitted successfully", 
+            data: savedNominationForm2Data 
         }, { status: 201 });
         
     } catch (error) {

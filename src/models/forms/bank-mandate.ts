@@ -34,6 +34,9 @@ const BankMandateFormDataSchema: Schema = new Schema({
   ifscCode: { type: String, required: false },
   place: { type: String, required: false },
   date: { type: Date, default: Date.now },
+},
+{
+    timestamps: true,
 });
 
 const IbankMandateDataModel = models.BankMandateFormData || model<BankMandateFormData>('BankMandateFormData', BankMandateFormDataSchema);

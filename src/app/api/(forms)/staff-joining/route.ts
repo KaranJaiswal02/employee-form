@@ -1,13 +1,13 @@
 import dbConnect from "@/lib/dbConnect";
-import NominationForm2DataModel from "@/models/nomination-form2";
-import { NominationForm2Document } from "@/models/nomination-form2";
+import EmpJoinForm from "@/models/forms/empjoin_form";
+import { IEmpFormData } from "@/models/forms/empjoin_form";
 import mongoose from "mongoose";
 
 export async function POST(req: Request) {
     await dbConnect();
     
     try {
-        const body: NominationForm2Document = await req.json();
+        const body: IEmpFormData = await req.json();
         // console.log(body)
         
         // Validate request body
@@ -15,16 +15,16 @@ export async function POST(req: Request) {
             return Response.json({ message: "Invalid request data" }, { status: 400 });
         }
 
-        const nominationForm2Data = new NominationForm2DataModel(body);
-        const savedNominationForm2Data = await nominationForm2Data.save();
+        const empJoinForm = new EmpJoinForm(body);
+        const savedEmpJoinForm = await empJoinForm.save();
         
         return Response.json({ 
-            message: "Nomination Form 2 submitted successfully", 
-            data: savedNominationForm2Data 
+            message: "Employee Join Form submitted successfully", 
+            data: savedEmpJoinForm 
         }, { status: 201 });
         
     } catch (error) {
-        console.log("Error in POST /idcard-form:", error);
+        console.log("Error in POST /empjoin-form:", error);
         
         let errorMessage = "Internal Server Error";
         let statusCode = 500;
