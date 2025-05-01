@@ -116,7 +116,7 @@ export default function EPFNominationForm() {
                             name="name"
                             value={formData.firstName}
                             onChange={handleChange}
-                            className="border-b border-black outline-none"
+                            className="border-b border-black dark:border-white outline-none"
                             placeholder="First Name"
                             required
                             disabled={true}
@@ -126,7 +126,7 @@ export default function EPFNominationForm() {
                             name="MiddleName"
                             value={formData.middleName}
                             onChange={handleChange}
-                            className="border-b border-black outline-none"
+                            className="border-b border-black dark:border-white outline-none"
                             placeholder="Middle Name"
                             required
                             disabled={true}
@@ -136,7 +136,7 @@ export default function EPFNominationForm() {
                             name="surname"
                             value={formData.surname}
                             onChange={handleChange}
-                            className="border-b border-black outline-none"
+                            className="border-b border-black dark:border-white outline-none"
                             placeholder="Surname"
                             required
                             disabled={true}
@@ -151,7 +151,7 @@ export default function EPFNominationForm() {
                         name="fathersName"
                         value={formData.fatherName}
                         onChange={handleChange}
-                        className="border-b border-black outline-none"
+                        className="border-b border-black dark:border-white outline-none"
                         placeholder="Father's/Husband's Name"
                         required
                         disabled={true}
@@ -164,7 +164,7 @@ export default function EPFNominationForm() {
                         name="dob"
                         value={formData.dob}
                         onChange={handleChange}
-                        className="flex-1 border-b border-black outline-none"
+                        className="flex-1 border-b border-black dark:border-white outline-none"
                         required
                         disabled={true}
                     />
@@ -177,7 +177,7 @@ export default function EPFNominationForm() {
                         name="accountNo"
                         value={formData.accountNumber}
                         onChange={handleChange}
-                        className="flex-1 border-b border-black outline-none"
+                        className="flex-1 border-b border-black dark:border-white outline-none"
                         required
                         disabled={true}
                     />
@@ -192,7 +192,7 @@ export default function EPFNominationForm() {
                                 id='sex'
                                 value={formData.sex}
                                 onChange={handleChange}
-                                className="flex-1 border-b border-black outline-none"
+                                className="flex-1 border-b border-black dark:border-white outline-none"
                                 disabled={true}
                             />
                     </div>
@@ -205,7 +205,7 @@ export default function EPFNominationForm() {
                         name="maritalStatus"
                         value={formData.maritalStatus}
                         onChange={handleChange}
-                        className="flex-1 border-b border-black outline-none"
+                        className="flex-1 border-b border-black dark:border-white outline-none"
                         required
                         disabled={true}
                     />
@@ -217,7 +217,7 @@ export default function EPFNominationForm() {
                         name="address"
                         value={formData.address}
                         onChange={handleChange}
-                        className="flex-1 border-b border-black outline-none h-16"
+                        className="flex-1 border-b border-black dark:border-white outline-none h-16"
                         required
                     />
                 </div>
@@ -231,22 +231,22 @@ export default function EPFNominationForm() {
                 </p>
 
                 <div className="overflow-x-auto">
-                    <table className="w-full border border-black text-sm mb-4">
+                    <table className="w-full border border-black dark:border-white text-sm mb-4">
                         <thead>
-                            <tr className="bg-gray-100">
-                                <th className="border border-black p-2">Name of the Nominee(s)</th>
-                                <th className="border border-black p-2">Address</th>
-                                <th className="border border-black p-2">Nominee's relationship with the member</th>
-                                <th className="border border-black p-2">Date of Birth</th>
-                                <th className="border border-black p-2">Total amount or share of accumulations in Provident Funds to be paid to each nominee</th>
-                                <th className="border border-black p-2">If the nominee is minor, name and address of the guardian who may receive the amount during the minority of the nominee</th>
-                                <th className="border border-black p-2">Action</th>
+                            <tr className="bg-gray-100 dark:bg-gray-800">
+                                <th className="border border-black dark:border-white p-2">Name of the Nominee(s)</th>
+                                <th className="border border-black dark:border-white p-2">Address</th>
+                                <th className="border border-black dark:border-white p-2">Nominee's relationship with the member</th>
+                                <th className="border border-black dark:border-white p-2">Date of Birth</th>
+                                <th className="border border-black dark:border-white p-2">Total amount or share of accumulations in Provident Funds to be paid to each nominee</th>
+                                <th className="border border-black dark:border-white p-2">If the nominee is minor, name and address of the guardian who may receive the amount during the minority of the nominee</th>
+                                <th className="border border-black dark:border-white p-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {formData.credit_nominees.map((nominee, index) => (
                                 <tr key={index}>
-                                    <td className="border border-black p-1">
+                                    <td className="border border-black dark:border-white p-1">
                                         <input
                                             type="text"
                                             value={nominee.name}
@@ -255,7 +255,7 @@ export default function EPFNominationForm() {
                                             required
                                         />
                                     </td>
-                                    <td className="border border-black p-1">
+                                    <td className="border border-black dark:border-white p-1">
                                         <input
                                             type="text"
                                             value={nominee.address}
@@ -264,7 +264,7 @@ export default function EPFNominationForm() {
                                             required
                                         />
                                     </td>
-                                    <td className="border border-black p-1">
+                                    <td className="border border-black dark:border-white p-1">
                                         <input
                                             type="text"
                                             value={nominee.relationship}
@@ -273,7 +273,7 @@ export default function EPFNominationForm() {
                                             required
                                         />
                                     </td>
-                                    <td className="border border-black p-1">
+                                    <td className="border border-black dark:border-white p-1">
                                         <input
                                             type="date"
                                             value={nominee.dob}
@@ -282,7 +282,7 @@ export default function EPFNominationForm() {
                                             required
                                         />
                                     </td>
-                                    <td className="border border-black p-1">
+                                    <td className="border border-black dark:border-white p-1">
                                         <input
                                             type="text"
                                             value={nominee.share}
@@ -291,7 +291,7 @@ export default function EPFNominationForm() {
                                             required
                                         />
                                     </td>
-                                    <td className="border border-black p-1">
+                                    <td className="border border-black dark:border-white p-1">
                                         <div className="flex flex-col gap-1">
                                             <input
                                                 type="text"
@@ -309,7 +309,7 @@ export default function EPFNominationForm() {
                                             />
                                         </div>
                                     </td>
-                                    <td className="border border-black p-1 text-center">
+                                    <td className="border border-black dark:border-white p-1 text-center">
                                         {formData.credit_nominees.length > 1 && (<button
                                             type="button"
                                             onClick={() => removeNominee(index)}
@@ -364,7 +364,7 @@ export default function EPFNominationForm() {
                 </div>
 
                 <div className="flex justify-end mb-8">
-                    <div className="w-64 border-t border-black text-center pt-2">
+                    <div className="w-64 border-t border-black dark:border-white text-center pt-2">
                         Signature/thumb impression of the subscriber
                     </div>
                 </div>
@@ -378,21 +378,21 @@ export default function EPFNominationForm() {
                 </p>
 
                 <div className="overflow-x-auto">
-                    <table className="w-full border border-black text-sm mb-4">
+                    <table className="w-full border border-black dark:border-white text-sm mb-4">
                         <thead>
-                            <tr className="bg-gray-100">
-                                <th className="border border-black p-2">Sr. No</th>
-                                <th className="border border-black p-2">Name & Address of the Family Member</th>
-                                <th className="border border-black p-2">Age</th>
-                                <th className="border border-black p-2">Relationship with the member</th>
-                                <th className="border border-black p-2">Action</th>
+                            <tr className="bg-gray-100 dark:bg-gray-800">
+                                <th className="border border-black dark:border-white p-2">Sr. No</th>
+                                <th className="border border-black dark:border-white p-2">Name & Address of the Family Member</th>
+                                <th className="border border-black dark:border-white p-2">Age</th>
+                                <th className="border border-black dark:border-white p-2">Relationship with the member</th>
+                                <th className="border border-black dark:border-white p-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {formData.familyMembers.map((member, index) => (
                                 <tr key={index}>
-                                    <td className="border border-black p-1 text-center">{index + 1}</td>
-                                    <td className="border border-black p-1">
+                                    <td className="border border-black dark:border-white p-1 text-center">{index + 1}</td>
+                                    <td className="border border-black dark:border-white p-1">
                                         <div className="flex flex-col gap-1">
                                             <input
                                                 type="text"
@@ -412,7 +412,7 @@ export default function EPFNominationForm() {
                                             />
                                         </div>
                                     </td>
-                                    <td className="border border-black p-1">
+                                    <td className="border border-black dark:border-white p-1">
                                         <input
                                             type="text"
                                             value={member.age}
@@ -421,7 +421,7 @@ export default function EPFNominationForm() {
                                             required
                                         />
                                     </td>
-                                    <td className="border border-black p-1">
+                                    <td className="border border-black dark:border-white p-1">
                                         <input
                                             type="text"
                                             value={member.relationship}
@@ -430,7 +430,7 @@ export default function EPFNominationForm() {
                                             required
                                         />
                                     </td>
-                                    <td className="border border-black p-1 text-center">
+                                    <td className="border border-black dark:border-white p-1 text-center">
                                         {formData.familyMembers.length > 1 && (<button
                                             type="button"
                                             onClick={() => removeFamilyMember(index)}

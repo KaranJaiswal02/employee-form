@@ -111,7 +111,7 @@ export default function GratuityForm1() {
 
       <table className="w-full border border-black text-left text-sm">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-gray-100 dark:bg-gray-800">
             <th className="border border-black p-2 text-center">
               Name in full with full address of nominee(s)
             </th>

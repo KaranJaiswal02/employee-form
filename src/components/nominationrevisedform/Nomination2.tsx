@@ -44,7 +44,7 @@ export default function EPFNominationFormPart2() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-4 md:p-8 border border-black bg-white text-sm">
+    <div className="max-w-4xl mx-auto p-4 md:p-8 border border-black dark:border-white text-sm">
       {/* First Declaration */}
       <div className="mb-6">
         <div className="flex items-start gap-2 mb-4">
@@ -57,17 +57,17 @@ export default function EPFNominationFormPart2() {
 
         {/* pension_Nominee Table */}
         <div className="overflow-x-auto mb-6">
-          <table className="w-full border border-black text-sm">
+          <table className="w-full border border-black dark:border-white text-sm">
             <thead>
-              <tr className="bg-gray-100">
-                <th className="border border-black p-2">Name and Address of the pension_nominee</th>
-                <th className="border border-black p-2">Date of Birth</th>
-                <th className="border border-black p-2">Relationship with member</th>
+              <tr className="bg-gray-100 dark:bg-gray-800">
+                <th className="border border-black dark:border-white p-2">Name and Address of the pension_nominee</th>
+                <th className="border border-black dark:border-white p-2">Date of Birth</th>
+                <th className="border border-black dark:border-white p-2">Relationship with member</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="border border-black p-1">
+                <td className="border border-black dark:border-white p-1">
                   <input
                     type="text"
                     name="name"
@@ -85,7 +85,7 @@ export default function EPFNominationFormPart2() {
                     placeholder="Address"
                   />
                 </td>
-                <td className="border border-black p-1">
+                <td className="border border-black dark:border-white p-1">
                   <input
                     type="date"
                     name="dob"
@@ -94,7 +94,7 @@ export default function EPFNominationFormPart2() {
                     className="w-full outline-none"
                   />
                 </td>
-                <td className="border border-black p-1">
+                <td className="border border-black dark:border-white p-1">
                   <input
                     type="text"
                     name="relationship"
@@ -116,17 +116,17 @@ export default function EPFNominationFormPart2() {
               name="subscriberDate"
               value={formData.subscriberDate}
               onChange={handleFieldChange}
-              className="border-b border-black outline-none"
+              className="border-b border-black dark:border-white outline-none"
             />
           </div>
-          <div className="w-64 border-t border-black text-center pt-2 mt-8">
+          <div className="w-64 border-t border-black dark:border-white text-center pt-2 mt-8">
             Signature or thumb impression of the subscriber
           </div>
         </div>
       </div>
 
       {/* Employer Certificate */}
-      <div className="border-t-2 border-black pt-4">
+      <div className="border-t-2 border-black dark:border-white pt-4">
         <h3 className="font-bold text-center mb-4">CERTIFICATE BY EMPLOYER</h3>
 
         <p className="mb-4">
@@ -136,7 +136,7 @@ export default function EPFNominationFormPart2() {
             name="name"
             value={formData.name}
             onChange={handleFieldChange}
-            className="border-b border-black outline-none mx-2 w-48"
+            className="border-b border-black dark:border-white outline-none mx-2 w-48"
             placeholder="Name"
           />
           employed in my establishment after he/she has read the entries / the entries have been read over to him/her by me and got confirmed by him/her.
@@ -150,10 +150,10 @@ export default function EPFNominationFormPart2() {
               name="employerDate"
               value={formData.employerDate}
               onChange={handleFieldChange}
-              className="border-b border-black outline-none"
+              className="border-b border-black dark:border-white outline-none"
             />
           </div>
-          <div className="w-64 border-t border-black text-center pt-2 mt-4">
+          <div className="w-64 border-t border-black dark:border-white text-center pt-2 mt-4">
             Signature of the employer or other authorised officer of the establishment
           </div>
         </div>
@@ -174,7 +174,7 @@ export default function EPFNominationFormPart2() {
               name="place"
               value={formData.place}
               onChange={handleFieldChange}
-              className="border-b border-black outline-none w-32"
+              className="border-b border-black dark:border-white outline-none w-32"
             /> */}
             <p><b>Bengaluru</b></p>           
           </div>
@@ -185,7 +185,7 @@ export default function EPFNominationFormPart2() {
               name="date"
               value={formData.date}
               onChange={handleFieldChange}
-              className="border-b border-black outline-none"
+              className="border-b border-black dark:border-white outline-none"
             />
           </div>
         </div>

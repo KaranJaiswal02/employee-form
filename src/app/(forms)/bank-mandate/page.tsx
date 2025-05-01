@@ -100,7 +100,7 @@ export default function BankMandateForm() {
                                 id={label.toLowerCase().replace(/[^a-z]/gi, '')}
                                 onChange={handleChange}
                                 value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData]}
-                                className="flex-1 border-b border-black sm:ml-4 resize-none h-16"
+                                className="flex-1 border-b border-black dark:border-white sm:ml-4 resize-none h-16"
                                 required
                                 disabled={label === 'Address' || label === 'Name'}
                             />
@@ -110,7 +110,7 @@ export default function BankMandateForm() {
                                 type="text"
                                 onChange={handleChange}
                                 value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData]}
-                                className="flex-1 border-b border-black sm:ml-4"
+                                className="flex-1 border-b border-black dark:border-white sm:ml-4"
                                 required
                                 disabled={label === 'Address' || label === 'Name'}
                             />
@@ -124,7 +124,7 @@ export default function BankMandateForm() {
                         type="email"
                         onChange={handleChange}
                         value={formData.email}
-                        className="flex-1 border-b border-black sm:ml-4"
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4"
                         required
                     />
                 </div>
@@ -136,7 +136,7 @@ export default function BankMandateForm() {
                         type="text"
                         onChange={handleChange}
                         value={formData.pan}
-                        className="flex-1 border-b border-black sm:ml-4"
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4"
                         required
                     />
                 </div>
@@ -145,11 +145,11 @@ export default function BankMandateForm() {
             <p className="mb-2"><RequiredLabel>7. Particulars of bank:</RequiredLabel></p>
 
             <div className="overflow-x-auto">
-                <table className="w-full border border-black text-sm">
+                <table className="w-full border border-black dark:border-white text-sm">
                     <tbody>
                         <tr className="flex flex-col md:flex-row">
-                            <td className="border border-black p-2 md:w-1/2 flex items-center justify-center">Bank Name</td>
-                            <td className="border border-black p-2 md:w-1/2">
+                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">Bank Name</td>
+                            <td className="border border-black dark:border-white p-2 md:w-1/2">
                                 <input
                                     id="bankName"
                                     type="text"
@@ -160,8 +160,8 @@ export default function BankMandateForm() {
                                     required
                                 />
                             </td>
-                            <td className="border border-black p-2 md:w-1/2 flex items-center justify-center">Branch Place</td>
-                            <td className="border border-black p-2 md:w-1/2">
+                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">Branch Place</td>
+                            <td className="border border-black dark:border-white p-2 md:w-1/2">
                                 <input
                                     id="branchPlace"
                                     type="text"
@@ -175,8 +175,8 @@ export default function BankMandateForm() {
                         </tr>
 
                         <tr className="flex flex-col md:flex-row">
-                            <td className="border border-black p-2 md:w-1/2 flex items-center justify-center">Branch City</td>
-                            <td className="border border-black p-2 md:w-1/2">
+                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">Branch City</td>
+                            <td className="border border-black dark:border-white p-2 md:w-1/2">
                                 <input
                                     id="branchCity"
                                     type="text"
@@ -187,8 +187,8 @@ export default function BankMandateForm() {
                                     required
                                 />
                             </td>
-                            <td className="border border-black p-2 md:w-1/2 flex items-center justify-center">Pin Code</td>
-                            <td className="border border-black p-2 md:w-1/2">
+                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">Pin Code</td>
+                            <td className="border border-black dark:border-white p-2 md:w-1/2">
                                 <input
                                     id="pincode"
                                     type="text"
@@ -202,7 +202,7 @@ export default function BankMandateForm() {
                         </tr>
 
                         <tr>
-                            <td className="border border-black p-2" colSpan={4}>
+                            <td className="border border-black dark:border-white p-2" colSpan={4}>
                                 <div className="flex flex-wrap items-center justify-center gap-4">
                                     <span><RequiredLabel>Account Type:</RequiredLabel></span>
                                     <label className="flex items-center">
@@ -233,14 +233,14 @@ export default function BankMandateForm() {
                         </tr>
 
                         <tr>
-                            <td className="border border-black p-2" colSpan={4}><RequiredLabel>
+                            <td className="border border-black dark:border-white p-2" colSpan={4}><RequiredLabel>
                             Account Number (as appearing in the cheque book):
                             </RequiredLabel>
                                 
                                 <input
                                     id="accountNumber"
                                     type="text"
-                                    className="w-full mt-2 outline-none border-t border-black"
+                                    className="w-full mt-2 outline-none border-t border-black dark:border-white"
                                     placeholder="Enter Account Number"
                                     onChange={handleChange}
                                     value={formData.accountNumber}
@@ -250,12 +250,12 @@ export default function BankMandateForm() {
                         </tr>
 
                         <tr>
-                            <td className="border border-black p-2" colSpan={4}>
+                            <td className="border border-black dark:border-white p-2" colSpan={4}>
                                 <RequiredLabel>IFSC Code:</RequiredLabel>
                                 <input
                                     id="ifscCode"
                                     type="text"
-                                    className="w-full mt-2 outline-none border-t border-black"
+                                    className="w-full mt-2 outline-none border-t border-black dark:border-white"
                                     placeholder="Enter IFSC Code"
                                     onChange={handleChange}
                                     value={formData.ifscCode}
@@ -285,7 +285,7 @@ export default function BankMandateForm() {
                         type="text"
                         onChange={handleChange}
                         value={formData.place}
-                        className="border-b border-black outline-none flex-1"
+                        className="border-b border-black dark:border-white outline-none flex-1"
                         required
                     />
                 </div>
@@ -296,7 +296,7 @@ export default function BankMandateForm() {
                         type="date"
                         onChange={handleChange}
                         value={formData.date}
-                        className="border-b border-black outline-none"
+                        className="border-b border-black dark:border-white outline-none"
                         required
                     />
                 </div>
