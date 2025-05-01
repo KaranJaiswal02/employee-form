@@ -29,6 +29,9 @@ const idCardFormDataSchema: Schema = new Schema(
     contactnumber: { type: String, required: false },
     photo: { type: String, default: null },
     year: { type: String, required: false },
+  },
+  {
+      timestamps: true,
   }
 );
 

@@ -44,6 +44,9 @@ const NominationForm1Schema: Schema = new Schema({
   place: { type: String, required: false },
   date: { type: String, required: false },
   establishmentAddress: { type: String, required: false },
+},
+{
+    timestamps: true,
 });
 
 const NominationForm1DataModel = models.NominationForm1 || model<NominationForm1Document>('NominationForm1', NominationForm1Schema);

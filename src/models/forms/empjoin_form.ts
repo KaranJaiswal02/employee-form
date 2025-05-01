@@ -226,6 +226,9 @@ const EmpFormDataSchema = new Schema<IEmpFormData>({
         required: false,
         default: []
     },
+},
+{
+    timestamps: true,
 });
 
 const EmpJoinForm = models.EmpFormData || model<IEmpFormData>("EmpFormData", EmpFormDataSchema);
