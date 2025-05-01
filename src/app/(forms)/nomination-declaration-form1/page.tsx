@@ -181,11 +181,11 @@ export default function Page() {
               onChange={handleChange}
               className="flex-1 border-b-1 border-black dark:border-white px-2 py-1"
             >
-              <option value="">Select</option>
-              <option value="Single">Single</option>
-              <option value="Married">Married</option>
-              <option value="Divorced">Divorced</option>
-              <option value="Widowed">Widowed</option>
+              <option className='bg-white dark:bg-gray-800' value="">Select</option>
+              <option className='bg-white dark:bg-gray-800' value="Single">Single</option>
+              <option className='bg-white dark:bg-gray-800' value="Married">Married</option>
+              <option className='bg-white dark:bg-gray-800' value="Divorced">Divorced</option>
+              <option className='bg-white dark:bg-gray-800' value="Widowed">Widowed</option>
             </select>
           </div>
           <div className="flex items-start gap-4">
