@@ -23,26 +23,14 @@ export default function BankMandateForm() {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
         setFormData(prev => ({ ...prev, [id]: value }));
+        console.log(formData)
     };
 
     const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData(prev => ({ ...prev, accountType: e.target.value }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        // Add form submission logic here
-        console.log(formData);
-        // Dummy DB call simulation
-        const dummyDBCall = () => true;
-        if (dummyDBCall()) {
-            router.push("/nomination-declaration-form1"); // Redirect to a thank you page or another page
-        } else {
-            alert("Form Submission Failed!");
-        }
-    };
-
-    const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(formData);
         const response = await fetch("/api/bank-mandate", {
