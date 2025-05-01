@@ -4,6 +4,7 @@ import { IGratuityForm } from "@/models/forms/gratuity-form";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import IAPIResponse from "@/types/responseType";
+import { User } from "@/models/user/user";
 
 export async function POST(req: NextRequest) {
     await dbConnect();
@@ -48,6 +49,11 @@ export async function POST(req: NextRequest) {
             const newForm = new IGratuityFormModel({ ...body, userId: actualUserId });
             result = await newForm.save();
         }
+
+        await User.updateOne(
+            { _id: actualUserId },
+            { $set: { gratuityForm: result._id } }
+        );
 
         const response: IAPIResponse = {
             success: true,
