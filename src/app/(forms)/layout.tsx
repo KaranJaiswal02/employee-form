@@ -83,20 +83,19 @@ export default function FormLayout({
                 {/* Bottom section */}
                 <div className="mt-6 space-y-4">
                     {/* Dark Mode Toggle */}
-                    <div className="flex items-center justify-center space-x-3">
+                    <div onClick={toggleDarkMode} className="flex items-center justify-center space-x-3 cursor-pointer">
                         <button
-                            onClick={toggleDarkMode}
-                            className="relative inline-flex items-center cursor-pointer w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-700 transition-colors duration-200"
+                            className="relative inline-flex items-center w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-700 transition-colors duration-200"
                         >
                             <span
                                 className={`inline-block w-6 h-6 bg-white rounded-full shadow-md transform transition-all duration-200 ${isDarkMode ? "translate-x-6" : "translate-x-0"
                                     }`}
                             ></span>
                         </button>
-                        <span className="text-gray-800 dark:text-gray-200 font-medium">
+                        <span  className="text-gray-800 dark:text-gray-200 font-medium">
                             {isDarkMode ? <FaRegMoon /> : <FiSun />}
                         </span>
-                        <span className="text-gray-800 dark:text-gray-200 font-medium">
+                        <span  className="text-gray-800 dark:text-gray-200 font-medium">
                             {isDarkMode ? "Dark Mode" : "Light Mode"}
                         </span>
                     </div>
