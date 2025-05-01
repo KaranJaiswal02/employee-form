@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
             password: hashedPassword,
         });
 
-        const token = signJwt({ id: newUser._id });
+        const token = signJwt({ id: newUser._id ,role : newUser.role}, '7d');
 
         const response: IAPIResponse = {
             success: true,

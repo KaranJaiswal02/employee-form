@@ -40,15 +40,14 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(response, { status: 401 });
         }
 
-        const token = signJwt({ id: user._id });
+        const token = signJwt({ id: user._id ,role : user.role}, '7d');
 
         const response: IAPIResponse = {
             success: true,
             message: 'Signed in successfully',
             errors: [],
             data: {
-                token,
-                userId: user._id,
+                token
             },
         };
         return NextResponse.json(response, { status: 200 });
