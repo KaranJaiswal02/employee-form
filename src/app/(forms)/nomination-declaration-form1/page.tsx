@@ -31,7 +31,7 @@ interface FormData {
 export default function Page() {
   const router = useRouter()
   const [empFormData1] = useAtom(empFormData);
-  const [_,setFormStatus] = useAtom(formStatusus);
+  const [_, setFormStatus] = useAtom(formStatusus);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -43,7 +43,7 @@ export default function Page() {
       peraddress: empFormData1.perAddress || "",
       maritalStatus: empFormData1.maritalStatus || "",
     }));
-  },[])
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,14 +55,14 @@ export default function Page() {
       },
       body: JSON.stringify(formData),
     });
-    if(response.status === 201) {
+    if (response.status === 201) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
         form5: {
-            ...prevStatus.form5,
-            status: "done",
+          ...prevStatus.form5,
+          status: "done",
         },
-    }));
+      }));
       router.push("/gratuity-form");
     }
     else {
@@ -222,7 +222,7 @@ export default function Page() {
         <div className="overflow-x-auto mt-4">
           <table className="w-full border border-black dark:border-white text-sm text-center">
             <thead className="">
-              <tr>
+              <tr className="bg-gray-100 dark:bg-gray-800">
                 <th className="border border-black dark:border-white px-2 py-1">Name of Nominee</th>
                 <th className="border border-black dark:border-white px-2 py-1">Address</th>
                 <th className="border border-black dark:border-white px-2 py-1">Relationship</th>
@@ -288,9 +288,9 @@ export default function Page() {
                       <button
                         type="button"
                         onClick={() => removeNominee(index)}
-                        className="text-red-600 font-semibold"
+                        className="text-red-600 font-semibold cursor-pointer"
                       >
-                        Remove
+                        ❌
                       </button>
                     )}
                   </td>

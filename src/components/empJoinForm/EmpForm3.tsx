@@ -67,11 +67,11 @@ export default function EmpForm3() {
         <div className="p-6 space-y-6 text-sm font-sans">
             {/* EDUCATIONAL QUALIFICATION */}
             <h2 className="font-bold uppercase">
-             Educational Qualification<span className="italic"><RequiredLabel>(Start from highest qualification)</RequiredLabel></span>
+                Educational Qualification<span className="italic"><RequiredLabel>(Start from highest qualification)</RequiredLabel></span>
             </h2>
             <table className="table-auto w-full border border-black dark:border-white text-center text-sm mb-0">
                 <thead>
-                    <tr className="border border-black dark:border-white">
+                <tr className="bg-gray-100 dark:bg-gray-800">
                         <th className="border border-black dark:border-white">Examination</th>
                         <th className="border border-black dark:border-white">University / Institute</th>
                         <th className="border border-black dark:border-white">From</th>
@@ -122,7 +122,7 @@ export default function EmpForm3() {
             </h2>
             <table className="table-auto w-full border border-black dark:border-white text-center text-sm mb-0">
                 <thead>
-                    <tr className="border border-black dark:border-white">
+                <tr className="bg-gray-100 dark:bg-gray-800">
                         <th className="border border-black dark:border-white">Name of the Organisation</th>
                         <th className="border border-black dark:border-white">From</th>
                         <th className="border border-black dark:border-white">To</th>
@@ -226,7 +226,7 @@ export default function EmpForm3() {
                                     className="border-b border-black dark:border-white w-full mt-1"
                                     value={ref.name}
                                     onChange={(e) => handleReferenceChange(idx, "name", e.target.value)}
-                                    
+
                                 />
                                 <input
                                     type="text"
@@ -234,7 +234,7 @@ export default function EmpForm3() {
                                     className="border-b border-black dark:border-white w-full mt-1"
                                     value={ref.address}
                                     onChange={(e) => handleReferenceChange(idx, "address", e.target.value)}
-                                    
+
                                 />
                                 <input
                                     type="text"
@@ -242,7 +242,7 @@ export default function EmpForm3() {
                                     className="border-b border-black dark:border-white w-full mt-1"
                                     value={ref.phone}
                                     onChange={(e) => handleReferenceChange(idx, "phone", e.target.value)}
-                                    
+
                                 />
                             </div>
                         ))}
@@ -289,7 +289,7 @@ export default function EmpForm3() {
                         value={formData.place}
                         onChange={(e) => handleChange("place", e.target.value)}
                     />
-                    
+
                 </div>
                 <div className="text-right">
                     ______________________ <br />

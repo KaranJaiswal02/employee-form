@@ -117,7 +117,7 @@ export default function DeclarationForm1() {
             {/* Dynamic Nominee Table */}
             <div className="overflow-x-auto mt-4">
                 <table className="w-full border border-black text-sm text-center">
-                    <thead className="bg-gray-100">
+                    <thead className="bg-gray-100 dark:bg-gray-800">
                         <tr>
                             <th className="border border-black px-2 py-1">Name of Nominee</th>
                             <th className="border border-black px-2 py-1">Address</th>
