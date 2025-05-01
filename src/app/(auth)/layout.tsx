@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { FiSun } from "react-icons/fi";
+import { FaRegMoon } from "react-icons/fa";
 
 export default function RootLayout({
     children,
@@ -14,7 +16,7 @@ export default function RootLayout({
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            const isDark = document.body.classList.contains("dark");
+            const isDark = document.documentElement.classList.contains("dark");
             setIsDarkMode(isDark);
         }
         const token = localStorage.getItem('token');
@@ -25,7 +27,7 @@ export default function RootLayout({
 
     const toggleDarkMode = () => {
         if (typeof window !== "undefined") {
-            document.body.classList.toggle("dark");
+            document.documentElement.classList.toggle("dark");
             setIsDarkMode((prev) => !prev);
         }
     };
@@ -38,10 +40,7 @@ export default function RootLayout({
                     <Link href="/" className="text-xl font-semibold text-gray-800 dark:text-white">
                         Employee Forms
                     </Link>
-                    <div className="flex items-center space-x-3">
-                        <span className="text-gray-800 dark:text-gray-200 font-medium">
-                            {isDarkMode ? "🌙" : "☀️"}
-                        </span>
+                    <div className="flex items-center justify-center space-x-3">
                         <button
                             onClick={toggleDarkMode}
                             className="relative inline-flex items-center cursor-pointer w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-700 transition-colors duration-200"
@@ -52,7 +51,10 @@ export default function RootLayout({
                             ></span>
                         </button>
                         <span className="text-gray-800 dark:text-gray-200 font-medium">
-                            {isDarkMode ? "Light Mode" : "Dark Mode"}
+                            {isDarkMode ? <FaRegMoon /> : <FiSun />}
+                        </span>
+                        <span className="text-gray-800 dark:text-gray-200 font-medium">
+                            {isDarkMode ? "Dark Mode" : "Light Mode"}
                         </span>
                     </div>
                 </div>
