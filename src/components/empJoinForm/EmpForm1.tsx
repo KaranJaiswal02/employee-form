@@ -4,16 +4,12 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { empFormData } from '@/hooks/Atoms'
 import { useAtom } from 'jotai'
+import RequiredLabel from '../RequiredLabel'
 
 export default function EmpForm1() {
   const [empFormData1, setEmpFormData1] = useAtom(empFormData);
   const [isChecked, setIsChecked] = useState(false);
 
-  const RequiredLabel = ({ children }: { children: string }) => (
-    <label className="block font-medium">
-      {children} <span className="text-red-500">*</span>
-    </label>
-  );
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target as HTMLInputElement;
     setEmpFormData1(prev => ({ ...prev, [id]: value }));

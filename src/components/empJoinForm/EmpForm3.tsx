@@ -1,5 +1,6 @@
 import { useAtom } from "jotai";
 import { empFormData } from "@/hooks/Atoms";
+import RequiredLabel from "../RequiredLabel";
 
 export default function EmpForm3() {
     const [formData, setFormData] = useAtom(empFormData);
@@ -13,11 +14,6 @@ export default function EmpForm3() {
         });
     };
 
-    const RequiredLabel = ({ children }: { children: string }) => (
-        <label className="block font-medium">
-            {children} <span className="text-red-500">*</span>
-        </label>
-    );
     const handleEmploymentChange = (row: number, col: number, value: string) => {
         setFormData(prev => {
             const updated = [...prev.employment];

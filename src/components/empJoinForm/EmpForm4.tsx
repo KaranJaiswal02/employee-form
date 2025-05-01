@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useAtom } from "jotai";
 import { empFormData } from "@/hooks/Atoms";
+import RequiredLabel from "../RequiredLabel";
 
 type FormData = {
     companyName: string;
@@ -29,12 +30,6 @@ export default function EmpForm4() {
     const handleChange = (field: keyof FormData, value: string) => {
         setFormData(prev => ({ ...prev, [field]: value }));
     };
-
-    const RequiredLabel = ({ children }: { children: string }) => (
-        <label className="block font-medium">
-            {children} <span className="text-red-500">*</span>
-        </label>
-    );
 
     const handleFamilyChange = (
         index: number,

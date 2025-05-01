@@ -1,13 +1,7 @@
 "use client"
 import { empFormData } from '@/hooks/Atoms'
 import { useAtom } from 'jotai'
-//import IAPIResponse from '@/types/responseType'
-
-const RequiredLabel = ({ children }: { children: string }) => (
-    <label className="block font-medium">
-        {children} <span className="text-red-500">*</span>
-    </label>
-);
+import RequiredLabel from '../RequiredLabel';
 
 export default function EmpForm2() {
     const [formData, setFormData] = useAtom(empFormData);
@@ -17,8 +11,6 @@ export default function EmpForm2() {
         setFormData(prev => ({ ...prev, [name]: value }));
         console.log(formData)
     };
-
-
 
     return (
         <div className="">
