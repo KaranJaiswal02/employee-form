@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
-import IempFamilyDataModel from "@/models/staff-family-members";
-import { StaffFamilyFormData } from "@/models/staff-family-members";
+import IempFamilyDataModel from "@/models/forms/staff-family-members";
+import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
 import mongoose from "mongoose";
 
 export async function POST(req: Request) {

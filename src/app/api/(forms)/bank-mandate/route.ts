@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
-import IbankMandateDataModel from "@/models/bank-mandate";
-import { BankMandateFormData } from "@/models/bank-mandate";
+import IbankMandateDataModel from "@/models/forms/bank-mandate";
+import { BankMandateFormData } from "@/models/forms/bank-mandate";
 import mongoose from "mongoose";
 
 export async function POST(req: Request) {

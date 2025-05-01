@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
-import NominationForm1DataModel from "@/models/nomination-form1";
-import { NominationForm1Document } from "@/models/nomination-form1";
+import NominationForm1DataModel from "@/models/forms/nomination-form1";
+import { NominationForm1Document } from "@/models/forms/nomination-form1";
 import mongoose from "mongoose";
 
 export async function POST(req: Request) {

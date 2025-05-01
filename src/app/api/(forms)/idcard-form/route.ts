@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
-import IdCardFormDataModel from "@/models/idcard-form";
-import { IdCardFormData } from "@/models/idcard-form";
+import IdCardFormDataModel from "@/models/forms/idcard-form";
+import { IdCardFormData } from "@/models/forms/idcard-form";
 import mongoose from "mongoose";
 
 export async function POST(req: Request) {

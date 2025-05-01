@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
-import EmpJoinForm from "@/models/empjoin_form";
-import { IEmpFormData } from "@/models/empjoin_form";
+import EmpJoinForm from "@/models/forms/empjoin_form";
+import { IEmpFormData } from "@/models/forms/empjoin_form";
 import mongoose from "mongoose";
 
 export async function POST(req: Request) {
