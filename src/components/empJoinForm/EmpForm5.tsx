@@ -1,6 +1,7 @@
 "use client";
 import { useAtom } from "jotai";
 import { empFormData } from "@/hooks/Atoms";
+import RequiredLabel from "../RequiredLabel";
 
 type MemberRow = {
     name: string;
@@ -20,12 +21,6 @@ export default function EmpForm5() {
             [name]: value
         }));
     };
-
-    const RequiredLabel = ({ children }: { children: string }) => (
-        <label className="block font-medium">
-            {children} <span className="text-red-500">*</span>
-        </label>
-    );
 
     const handleMemberChange = (
         index: number,

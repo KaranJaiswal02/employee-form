@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { bankMandateFormData, empFormData, formStatusus } from '@/hooks/Atoms';
 import { Button } from '@/components/ui/button';
+import RequiredLabel from '@/components/RequiredLabel';
 
 export default function BankMandateForm() {
     const router = useRouter();
@@ -18,12 +19,6 @@ export default function BankMandateForm() {
             address: formData1.perAddress || "",
         }));
     }, [])
-
-    const RequiredLabel = ({ children }: { children: string }) => (
-        <label className="block ">
-          {children} <span className="text-red-500">*</span>
-        </label>
-      );
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;

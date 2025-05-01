@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { empFormData, formStatusus, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { set } from "mongoose";
+import RequiredLabel from "@/components/RequiredLabel";
 
 type Child = {
     name: string;
@@ -37,12 +38,6 @@ export default function MedicalInsuranceForm() {
     const [formData, setFormData] = useAtom<FormData>(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
     const [_, setFormStatus] = useAtom(formStatusus);
-
-    const RequiredLabel = ({ children }: { children: string }) => (
-        <label className="block ">
-          {children} <span className="text-red-500">*</span>
-        </label>
-      );
 
     const calculateAge = (dob: string) => {
         const birthDate = new Date(dob);
@@ -365,7 +360,7 @@ export default function MedicalInsuranceForm() {
                         className="ml-2 border p-1"
                     />
                 </div>
-                <div className="text-right mt-6 "> 
+                <div className="text-right mt-6 ">
                     <p className="font-semibold">EMPLOYEE SIGNATURE</p>
                 </div>
             </div>
