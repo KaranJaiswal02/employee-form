@@ -40,7 +40,6 @@ export default function EmpForm1() {
           <input
             type="text"
             id="name"
-            name='name'
             value={empFormData1.name}
             onChange={handleChange}
             className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
