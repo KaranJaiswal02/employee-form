@@ -143,9 +143,9 @@ export default function EmpForm2() {
                         className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none bg-transparent"
                         required
                     >
-                        <option value=""></option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option className='bg-white dark:bg-black' value="">Select...</option>
+                        <option className='bg-white dark:bg-black' value="Male">Male</option>
+                        <option className='bg-white dark:bg-black' value="Female">Female</option>
                     </select>
                 </div>
                 <div>
