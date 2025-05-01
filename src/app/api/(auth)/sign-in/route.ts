@@ -1,58 +1,48 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/dbConnect';
 import { User } from '@/models/user/user';
-import IAPIResponse from '@/types/responseType';
 import { signJwt } from '@/lib/jwt';
+import { NextRequest, NextResponse } from 'next/server';
+import IAPIResponse from '@/types/responseType';
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<IAPIResponse>
-) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({
-            success: false,
-            message: 'Method Not Allowed',
-            errors: ['Only POST method is allowed'],
-        });
-    }
-
-    const { email, password } = req.body;
+export async function POST(req: NextRequest) {
+    const { email, password } = await req.json();
 
     if (!email || !password) {
-        return res.status(400).json({
+        const response: IAPIResponse = {
             success: false,
             message: 'Validation Error',
             errors: ['Email and password are required'],
-        });
+        };
+        return NextResponse.json(response, { status: 400 });
     }
 
     try {
         await dbConnect();
 
         const user = await User.findOne({ email });
-
         if (!user) {
-            return res.status(401).json({
+            const response: IAPIResponse = {
                 success: false,
                 message: 'Invalid Credentials',
                 errors: ['Email or password is incorrect'],
-            });
+            };
+            return NextResponse.json(response, { status: 401 });
         }
 
         const isMatch = await bcrypt.compare(password, user.password);
-
         if (!isMatch) {
-            return res.status(401).json({
+            const response: IAPIResponse = {
                 success: false,
                 message: 'Invalid Credentials',
                 errors: ['Email or password is incorrect'],
-            });
+            };
+            return NextResponse.json(response, { status: 401 });
         }
 
         const token = signJwt({ id: user._id });
 
-        return res.status(200).json({
+        const response: IAPIResponse = {
             success: true,
             message: 'Signed in successfully',
             errors: [],
@@ -60,13 +50,24 @@ export default async function handler(
                 token,
                 userId: user._id,
             },
-        });
+        };
+        return NextResponse.json(response, { status: 200 });
     } catch (error) {
         console.error('[Signin Error]', error);
-        return res.status(500).json({
+
+        let errorMessage = 'Internal Server Error';
+        let statusCode = 500;
+
+        if (error instanceof SyntaxError) {
+            errorMessage = 'Invalid JSON format';
+            statusCode = 400;
+        }
+
+        const response: IAPIResponse = {
             success: false,
-            message: 'Internal Server Error',
+            message: errorMessage,
             errors: ['Something went wrong during signin'],
-        });
+        };
+        return NextResponse.json(response, { status: statusCode });
     }
 }

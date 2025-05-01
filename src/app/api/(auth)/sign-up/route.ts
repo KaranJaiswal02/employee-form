@@ -1,30 +1,20 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/dbConnect';
 import { User } from '@/models/user/user';
-import IAPIResponse from '@/types/responseType';
 import { signJwt } from '@/lib/jwt';
+import { NextRequest, NextResponse } from 'next/server';
+import IAPIResponse from '@/types/responseType';
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<IAPIResponse>
-) {
-    if (req.method !== 'POST') {
-        return res.status(405).json({
-            success: false,
-            message: 'Method Not Allowed',
-            errors: ['Only POST method is allowed'],
-        });
-    }
-
-    const { email, password } = req.body;
+export async function POST(req: NextRequest) {
+    const { email, password } = await req.json();
 
     if (!email || !password) {
-        return res.status(400).json({
+        const response: IAPIResponse = {
             success: false,
             message: 'Validation Error',
             errors: ['Email and password are required'],
-        });
+        };
+        return NextResponse.json(response, { status: 400 });
     }
 
     try {
@@ -32,11 +22,12 @@ export default async function handler(
 
         const existingUser = await User.findOne({ email });
         if (existingUser) {
-            return res.status(409).json({
+            const response: IAPIResponse = {
                 success: false,
                 message: 'User already exists',
-                errors: ['An account with this email already exists'],
-            });
+                errors: ['Email is already registered'],
+            };
+            return NextResponse.json(response, { status: 409 });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -48,20 +39,23 @@ export default async function handler(
 
         const token = signJwt({ id: newUser._id });
 
-        return res.status(201).json({
+        const response: IAPIResponse = {
             success: true,
             message: 'User created successfully',
             errors: [],
             data: {
                 token,
             },
-        });
+        };
+        return NextResponse.json(response, { status: 201 });
     } catch (error) {
         console.error('[Signup Error]', error);
-        return res.status(500).json({
+
+        const response: IAPIResponse = {
             success: false,
             message: 'Internal Server Error',
-            errors: ['Something went wrong during signup'],
-        });
+            errors: ['An error occurred while creating the user'],
+        };
+        return NextResponse.json(response, { status: 500 });
     }
 }
