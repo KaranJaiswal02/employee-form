@@ -5,6 +5,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { empFormData } from '@/hooks/Atoms'
 import { useAtom } from 'jotai'
 import RequiredLabel from '../RequiredLabel'
+import { Label } from '../ui/label'
+import { Checkbox } from '../ui/checkbox'
 
 export default function EmpForm1() {
   const [empFormData1, setEmpFormData1] = useAtom(empFormData);
@@ -31,34 +33,38 @@ export default function EmpForm1() {
     <div className="">
       <h1 className="text-2xl font-bold text-center mb-6">JOINING REPORT</h1>
       <h6 className="text-1.5xl font-bold text-center mb-6">Employee Basic Info</h6>
-      
+
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="space-y-1">
-          <label className="block font-medium"><RequiredLabel> Employee Name</RequiredLabel> </label>
-          <Input
+          <RequiredLabel><label htmlFor='name' className="block font-medium">Employee Name </label></RequiredLabel>
+          <input
             type="text"
             id="name"
+            name='name'
             value={empFormData1.name}
             onChange={handleChange}
+            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             required
           />
         </div>
         <div className="space-y-1">
           <label className="block font-medium"><RequiredLabel> Father's Name</RequiredLabel></label>
-          <Input
+          <input
             type="text"
             id="fatherName"
             value={empFormData1.fatherName}
+            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             onChange={handleChange}
-            required 
+            required
           />
         </div>
         <div className="space-y-1">
           <label className="block font-medium"><RequiredLabel>Designation</RequiredLabel></label>
-          <Input
+          <input
             type="text"
             id="designation"
             value={empFormData1.designation}
+            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             onChange={handleChange}
             required
           />
@@ -71,11 +77,12 @@ export default function EmpForm1() {
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="space-y-1">
             <label className="block"><RequiredLabel>Date of Birth</RequiredLabel> </label>
-            <Input
+            <input
               type="date"
               id="dob"
               value={empFormData1.dob}
               onChange={handleChange}
+              className="border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
               required
             />
           </div>
@@ -87,54 +94,58 @@ export default function EmpForm1() {
         {/* Current Address */}
         <div className="mb-2">
           <label className="block font-medium mb-1"><RequiredLabel>Current Address:</RequiredLabel></label>
-          <Textarea
+          <textarea
             rows={2}
             id="currAddress"
             value={empFormData1.currAddress}
+            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             onChange={handleChange}
             required
           />
         </div>
 
         <div className="grid grid-cols-3 gap-4 mb-2">
-          <Input
+          <input
             type="text"
             id="district"
             value={empFormData1.district}
             placeholder="Dist."
             onChange={handleChange}
+            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             required
           />
-          <Input
+          <input
             type="text"
             id="state"
             value={empFormData1.state}
             placeholder="State"
             onChange={handleChange}
+            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             required
           />
-          <Input
+          <input
             type="number"
             id="pincode"
             value={empFormData1.pincode}
             placeholder="PIN"
             onChange={handleChange}
+            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             required
           />
         </div>
         <div className="flex flex-wrap cols-2 gap-4">
           <div className="flex flex-wrap items-center gap-2">
             <span>Tel: STD Code:</span>
-            <Input
+            <input
               type="text"
               id="currstdcode"
               value={empFormData1.currstdcode}
               onChange={handleChange}
-              className="w-20"
-              
+              className="w-20 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+
             />
             <span><RequiredLabel>Number:</RequiredLabel></span>
-            <Input
+            <input
               type="number"
               id="currcontactNumber"
               value={empFormData1.currcontactNumber}
@@ -148,56 +159,52 @@ export default function EmpForm1() {
         <label className="block font-medium mb-1"><RequiredLabel>Permanent Address:</RequiredLabel></label>
         {/* Same as Current Address Checkbox */}
         <div className="flex items-center gap-2 mb-2">
-          <input
-            type="checkbox"
-            id="sameAsCurrent"
-            checked={isChecked}
-            onChange={handleCheckboxChange}
-            className="w-4 h-4"
-          />
-          <label htmlFor="sameAsCurrent" className="text-sm">
-            Same as Current Address
-          </label>
+          <Checkbox id="sameAsCurrent" checked={isChecked} onCheckedChange={handleCheckboxChange} />
+          <Label htmlFor="sameAsCurrent" className="text-sm">Same as Current Address</Label>
         </div>
 
         {/* Permanent Address */}
         {!isChecked && (<div>
           <div className="mb-2">
-            <Textarea
+            <textarea
               rows={2}
               id="perAddress"
               value={empFormData1.perAddress}
               onChange={handleChange}
               disabled={isChecked}
-            required
+              className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+              required
             />
           </div>
 
           <div className="grid grid-cols-3 gap-4 mb-2">
-            <Input
+            <input
               type="text"
               id="perDistrict"
               value={empFormData1.perDistrict}
               placeholder="Dist."
               onChange={handleChange}
+              className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
               disabled={isChecked}
               required
             />
-            <Input
+            <input
               type="text"
               id="perState"
               value={empFormData1.perState}
               placeholder="State"
               onChange={handleChange}
+              className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
               disabled={isChecked}
               required
             />
-            <Input
+            <input
               type="text"
               id="perPincode"
               value={empFormData1.perPincode}
               placeholder="PIN"
               onChange={handleChange}
+              className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
               disabled={isChecked}
               required
             />
@@ -207,64 +214,61 @@ export default function EmpForm1() {
           <div className="flex flex-wrap cols-2 gap-4">
             <div className="flex flex-wrap items-center gap-2">
               <span>Tel: STD Code:</span>
-              <Input
+              <input
                 type="text"
                 id="perstdcode"
                 value={empFormData1.perstdcode}
                 onChange={handleChange}
-                className="w-20"
+                className="w-20 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
                 disabled={isChecked}
               />
               <span><RequiredLabel>Number:</RequiredLabel></span>
-              <Input
+              <input
                 type="number"
                 id="percontactNumber"
                 value={empFormData1.percontactNumber}
                 onChange={handleChange}
-                className="flex-1 "
+                className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
                 disabled={isChecked}
                 required
               />
             </div>
           </div>
         </div>)}
-
-
       </div>
 
       {/* Company Details */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="col-span-2 flex items-center gap-2">
           <span><RequiredLabel>Company Name:</RequiredLabel></span>
-          <Input
+          <input
             type='text'
             id='companyName'
             value={empFormData1.companyName}
             onChange={handleChange}
-            className="flex-1"
+            className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             required
           />
         </div>
         <div className="flex items-center gap-2">
           <span><RequiredLabel>Location:</RequiredLabel></span>
-          <Input
+          <input
             type='text'
             id='companylocation'
             value={empFormData1.companylocation}
             onChange={handleChange}
-            className="flex-1"
+            className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             required
           />
         </div>
         <div className="flex items-center gap-2">
           <span>Deptt:</span>
-          <Input
+          <input
             type='text'
             id='department'
             value={empFormData1.department}
             onChange={handleChange}
-            className="flex-1"
-            
+            className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
           />
         </div>
       </div>
@@ -273,23 +277,23 @@ export default function EmpForm1() {
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="flex items-center gap-2">
           <span><RequiredLabel>Bank A/c No:</RequiredLabel></span>
-          <Input
+          <input
             type='text'
             id='accountNumber'
             value={empFormData1.accountNumber}
             onChange={handleChange}
-            className="flex-1"
+            className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             required
           />
         </div>
         <div className="flex items-center gap-2">
           <span><RequiredLabel>Bank Name :</RequiredLabel></span>
-          <Input
+          <input
             type='text'
             id='bankName'
             value={empFormData1.bankName}
             onChange={handleChange}
-            className="flex-1"
+            className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             required
           />
         </div>
@@ -312,7 +316,7 @@ export default function EmpForm1() {
       <div className="flex justify-between mb-6">
         <div className="flex items-center gap-2">
           <span>Date:</span>
-          <Input
+          <input
             type="date"
             id='date'
             value={empFormData1.date}
@@ -322,7 +326,7 @@ export default function EmpForm1() {
         </div>
         <div className="w-48 border-t border-black text-center pt-2">
           <span>Signature </span>
-          {/* <Input type="file" accept="image/*" className="w-40" /> */}
+          {/* <input type="file" accept="image/*" className="w-40" /> */}
         </div>
       </div>
 
