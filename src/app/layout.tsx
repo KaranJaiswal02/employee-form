@@ -13,10 +13,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`bg-gray-200 text-gray-900 font-sans antialiased dark:bg-gray-900 dark:text-gray-200`}
-      >
-        {children}
+      <body className="dark">
+        <div className={`bg-gray-200 text-gray-900 font-sans antialiased dark:bg-gray-900 dark:text-gray-200`}>
+          {children}
+        </div>
       </body>
     </html>
   );

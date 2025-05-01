@@ -17,7 +17,7 @@ export default function FormLayout({
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            const isDark = document.documentElement.classList.contains("dark");
+            const isDark = document.body.classList.contains("dark");
             setIsDarkMode(isDark);
         }
         const token = localStorage.getItem('token');
@@ -28,7 +28,7 @@ export default function FormLayout({
 
     const toggleDarkMode = () => {
         if (typeof window !== "undefined") {
-            document.documentElement.classList.toggle("dark");
+            document.body.classList.toggle("dark");
             setIsDarkMode((prev) => !prev);
         }
     };
@@ -100,7 +100,7 @@ export default function FormLayout({
                     {/* Logout Button */}
                     <button
                         onClick={handleLogout}
-                        className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+                        className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors cursor-pointer"
                     >
                         Logout
                     </button>

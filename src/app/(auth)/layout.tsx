@@ -14,7 +14,7 @@ export default function RootLayout({
 
     useEffect(() => {
         if (typeof window !== "undefined") {
-            const isDark = document.documentElement.classList.contains("dark");
+            const isDark = document.body.classList.contains("dark");
             setIsDarkMode(isDark);
         }
         const token = localStorage.getItem('token');
@@ -25,7 +25,7 @@ export default function RootLayout({
 
     const toggleDarkMode = () => {
         if (typeof window !== "undefined") {
-            document.documentElement.classList.toggle("dark");
+            document.body.classList.toggle("dark");
             setIsDarkMode((prev) => !prev);
         }
     };
