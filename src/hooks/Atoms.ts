@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+import build from 'next/dist/build';
 
 const currentDate = new Date().toISOString().split('T')[0];
 
@@ -104,6 +105,7 @@ export const grauFormData = atom({
   department: "",
   post: "",
   dateofappointment: "",
+  building: "",
   village: "",
   thana: "",
   subdivision: "",
