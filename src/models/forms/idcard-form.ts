@@ -1,6 +1,7 @@
-import { Document, Schema, model, models } from "mongoose";
+import { Document, Schema, Types, model, models } from "mongoose";
 
 export interface IdCardFormData extends Document {
+  userId: Types.ObjectId;
   name: string;
   fatherName: string;
   designation: string;
@@ -17,6 +18,7 @@ export interface IdCardFormData extends Document {
 
 const idCardFormDataSchema: Schema = new Schema(
   {
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     name: { type: String, required: false },
     fatherName: { type: String, required: false },
     designation: { type: String, required: false },
@@ -31,7 +33,7 @@ const idCardFormDataSchema: Schema = new Schema(
     year: { type: String, required: false },
   },
   {
-      timestamps: true,
+    timestamps: true,
   }
 );
 

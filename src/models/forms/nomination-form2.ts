@@ -1,4 +1,4 @@
-import { Schema, Document, model, models } from 'mongoose';
+import { Schema, Document, model, models, Types } from 'mongoose';
 
 interface CreditNominee {
   name: string;
@@ -25,6 +25,7 @@ interface PensionNominee {
 }
 
 export interface NominationForm2Document extends Document {
+  userId: Types.ObjectId;
   name: string;
   firstName: string;
   middleName: string;
@@ -72,6 +73,7 @@ const PensionNomineeSchema = new Schema<PensionNominee>({
 });
 
 const NominationForm2Schema = new Schema<NominationForm2Document>({
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   name: { type: String, required: false },
   firstName: { type: String, required: false },
   middleName: { type: String, required: false },
@@ -93,9 +95,9 @@ const NominationForm2Schema = new Schema<NominationForm2Document>({
   place: { type: String, required: false },
   date: { type: Date, required: false },
 },
-{
+  {
     timestamps: true,
-});
+  });
 
 const NominationForm2DataModel = models.NominationForm2 || model<NominationForm2Document>('NominationForm2', NominationForm2Schema);
 export default NominationForm2DataModel;

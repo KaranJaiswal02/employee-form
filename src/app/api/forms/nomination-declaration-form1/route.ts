@@ -9,9 +9,25 @@ export async function POST(req: NextRequest) {
     await dbConnect();
 
     try {
+        const xUserId = req.headers.get("x-userid");
+        const staffId = req.headers.get("userid");
+        const role = req.headers.get("x-userrole");
+
+        const actualUserId = role === "admin" ? staffId : xUserId;
+
+        if (!actualUserId) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized",
+                    errors: ["User ID is missing from headers"],
+                },
+                { status: 401 }
+            );
+        }
+
         const body: NominationForm1Document = await req.json();
-        
-        // Validate request body
+
         if (!body) {
             const response: IAPIResponse = {
                 success: false,
@@ -21,26 +37,33 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(response, { status: 400 });
         }
 
-        // Create new Nomination Form 1 entry
-        const nominationForm1Data = new NominationForm1DataModel(body);
-        const savedNominationForm1Data = await nominationForm1Data.save();
+        // Check if nomination form 1 already exists for this user
+        const existingForm = await NominationForm1DataModel.findOne({ userId: actualUserId });
+
+        let result;
+        if (existingForm) {
+            await NominationForm1DataModel.updateOne({ userId: actualUserId }, { $set: body });
+            result = await NominationForm1DataModel.findOne({ userId: actualUserId });
+        } else {
+            const newForm = new NominationForm1DataModel({ ...body, userId: actualUserId });
+            result = await newForm.save();
+        }
 
         const response: IAPIResponse = {
             success: true,
-            message: "Nomination Form 1 submitted successfully",
+            message: "Nomination Form 1 saved successfully",
             errors: [],
-            data: savedNominationForm1Data,
+            data: result,
         };
-        return NextResponse.json(response, { status: 201 });
+        return NextResponse.json(response, { status: 200 });
 
     } catch (error) {
-        console.log("Error in POST /nomination-form1:", error);
-        
+        console.error("Error in POST /nomination-form1:", error);
+
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];
         let statusCode = 500;
 
-        // Handle validation and syntax errors
         if (error instanceof mongoose.Error.ValidationError) {
             errorMessage = "Validation Error";
             errorDetails = [error.message];

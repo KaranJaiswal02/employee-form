@@ -29,7 +29,7 @@ interface Member {
 }
 
 export interface IEmpFormData extends Document {
-    userId : Types.ObjectId;
+    userId: Types.ObjectId;
     name: string;
     fatherName: string;
     designation: string;
@@ -229,9 +229,9 @@ const EmpFormDataSchema = new Schema<IEmpFormData>({
         default: []
     },
 },
-{
-    timestamps: true,
-});
+    {
+        timestamps: true,
+    });
 
 const EmpJoinForm = models.EmpFormData || model<IEmpFormData>("EmpFormData", EmpFormDataSchema);
 export default EmpJoinForm;

@@ -1,6 +1,7 @@
-import { Schema, Document, model, models } from 'mongoose';
+import { Schema, Document, model, models, Types } from 'mongoose';
 
 export interface BankMandateFormData extends Document {
+  userId: Types.ObjectId;
   name: string;
   employeeCode: string;
   category: string;
@@ -19,6 +20,7 @@ export interface BankMandateFormData extends Document {
 }
 
 const BankMandateFormDataSchema: Schema = new Schema({
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   name: { type: String, required: false },
   employeeCode: { type: String, required: false },
   category: { type: String, required: false },
@@ -35,9 +37,9 @@ const BankMandateFormDataSchema: Schema = new Schema({
   place: { type: String, required: false },
   date: { type: Date, default: Date.now },
 },
-{
+  {
     timestamps: true,
-});
+  });
 
 const IbankMandateDataModel = models.BankMandateFormData || model<BankMandateFormData>('BankMandateFormData', BankMandateFormDataSchema);
 export default IbankMandateDataModel

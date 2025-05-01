@@ -9,9 +9,25 @@ export async function POST(req: NextRequest) {
     await dbConnect();
 
     try {
+        const xUserId = req.headers.get("x-userid");
+        const staffId = req.headers.get("userid");
+        const role = req.headers.get("x-userrole");
+
+        const actualUserId = role === "admin" ? staffId : xUserId;
+
+        if (!actualUserId) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized",
+                    errors: ["User ID is missing from headers"],
+                },
+                { status: 401 }
+            );
+        }
+
         const body: BankMandateFormData = await req.json();
 
-        // Validate the body data
         if (!body) {
             const response: IAPIResponse = {
                 success: false,
@@ -21,27 +37,33 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(response, { status: 400 });
         }
 
-        // Create new Bank Mandate Form entry
-        const bankMandateForm = new IbankMandateDataModel(body);
-        const savedBankMandateForm = await bankMandateForm.save();
+        // Check if a form already exists for this user
+        const existingForm = await IbankMandateDataModel.findOne({ userId: actualUserId });
+
+        let result;
+        if (existingForm) {
+            await IbankMandateDataModel.updateOne({ userId: actualUserId }, { $set: body });
+            result = await IbankMandateDataModel.findOne({ userId: actualUserId });
+        } else {
+            const newForm = new IbankMandateDataModel({ ...body, userId: actualUserId });
+            result = await newForm.save();
+        }
 
         const response: IAPIResponse = {
             success: true,
-            message: "Bank Mandate Form submitted successfully",
+            message: "Gratuity Form saved successfully",
             errors: [],
-            data: savedBankMandateForm,
+            data: result,
         };
-        return NextResponse.json(response, { status: 201 });
+        return NextResponse.json(response, { status: 200 });
 
     } catch (error) {
-        console.log("Error in POST /bank-mandate-form:", error);
+        console.log("Error in POST /gratuity-form:", error);
 
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];
-
         let statusCode = 500;
 
-        // Handle validation and syntax errors
         if (error instanceof mongoose.Error.ValidationError) {
             errorMessage = "Validation Error";
             errorDetails = [error.message];
