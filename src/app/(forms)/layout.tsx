@@ -12,11 +12,9 @@ export default function FormLayout({
 }>) {
     const pathname = usePathname();
     const [formStatus] = useAtom(formStatusus);
-
     const [isDarkMode, setIsDarkMode] = useState(false);
     const router = useRouter();
 
-    // Check initial mode
     useEffect(() => {
         if (typeof window !== "undefined") {
             const isDark = document.documentElement.classList.contains("dark");
@@ -26,9 +24,8 @@ export default function FormLayout({
         if (!token) {
             router.push('/sign-in');
         }
-    }, [router,isDarkMode]);
+    }, [router, isDarkMode]);
 
-    // Toggle dark mode
     const toggleDarkMode = () => {
         if (typeof window !== "undefined") {
             document.documentElement.classList.toggle("dark");
@@ -36,20 +33,21 @@ export default function FormLayout({
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        router.push('/sign-in');
+    };
+
     return (
         <div className="flex">
-            {/* Sidebar */}
             <aside className="fixed top-0 left-0 w-80 h-screen bg-white dark:bg-gray-950 shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between">
-                {/* Top section */}
                 <div>
                     <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-10 tracking-tight">
                         📋 Form Progress
                     </h2>
-
                     <ul className="flex flex-col space-y-2">
                         {Object.entries(formStatus).map(([key, form]) => {
                             const isActive = pathname === form.url;
-
                             return (
                                 <li key={key}>
                                     <Link
@@ -62,18 +60,13 @@ export default function FormLayout({
                                                     : "hover:bg-gray-100 dark:hover:bg-gray-800"
                                             }`}
                                     >
-                                        <span
-                                            className={`text-xl ${form.status === "done"
-                                                ? "text-green-500 dark:text-green-400"
-                                                : "text-gray-400 dark:text-gray-500"
-                                                }`}
-                                        >
+                                        <span className={`text-xl ${form.status === "done"
+                                            ? "text-green-500 dark:text-green-400"
+                                            : "text-gray-400 dark:text-gray-500"
+                                            }`}>
                                             {form.status === "done" ? "✅" : "⭕"}
                                         </span>
-                                        <span
-                                            className={`truncate ${isActive ? "font-semibold" : "font-medium"
-                                                }`}
-                                        >
+                                        <span className={`truncate ${isActive ? "font-semibold" : "font-medium"}`}>
                                             {form.name}
                                         </span>
                                     </Link>
@@ -83,9 +76,10 @@ export default function FormLayout({
                     </ul>
                 </div>
 
-                {/* Bottom section - Toggle Button */}
-                <div className="mt-6 hidden">
-                    <div className="flex items-center space-x-3">
+                {/* Bottom section */}
+                <div className="mt-6 space-y-4">
+                    {/* Dark Mode Toggle */}
+                    {/* <div className="flex items-center space-x-3">
                         <span className="text-gray-800 dark:text-gray-200 font-medium">
                             {isDarkMode ? "🌙" : "☀️"}
                         </span>
@@ -101,11 +95,18 @@ export default function FormLayout({
                         <span className="text-gray-800 dark:text-gray-200 font-medium">
                             {isDarkMode ? "Light Mode" : "Dark Mode"}
                         </span>
-                    </div>
+                    </div> */}
+
+                    {/* Logout Button */}
+                    <button
+                        onClick={handleLogout}
+                        className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+                    >
+                        Logout
+                    </button>
                 </div>
             </aside>
 
-            {/* Main content */}
             <main className="flex-1 ml-80 px-4 py-4 min-h-screen space-y-20">
                 {children}
             </main>
