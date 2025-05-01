@@ -24,7 +24,6 @@ export default function Page() {
         }))
     }, [])
 
-
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         console.log(formData)
@@ -32,7 +31,7 @@ export default function Page() {
         // Replace this with actual form submission logic
         const dummyDBCall = () => true
         if (dummyDBCall()) {
-            router.push('/gratuity-form2')
+            router.push('/nomination-declaration-form2')
         } else {
             alert('Form Submission Failed!')
         }
