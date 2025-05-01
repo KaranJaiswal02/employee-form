@@ -37,8 +37,8 @@ export default function Page() {
         if(response.status === 201) {
           setFormStatus((prevStatus) => ({
             ...prevStatus,
-            form5: {
-                ...prevStatus.form5,
+            form6: {
+                ...prevStatus.form6,
                 status: "done",
             },
         }));

@@ -99,7 +99,7 @@ export default function BankMandateForm() {
                             <textarea
                                 id={label.toLowerCase().replace(/[^a-z]/gi, '')}
                                 onChange={handleChange}
-                                value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData]}
+                                value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData] ||""}
                                 className="flex-1 border-b border-black dark:border-white sm:ml-4 resize-none h-16"
                                 required
                                 disabled={label === 'Address' || label === 'Name'}
