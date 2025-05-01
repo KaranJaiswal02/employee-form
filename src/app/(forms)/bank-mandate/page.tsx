@@ -109,7 +109,7 @@ export default function BankMandateForm() {
                                 id={label.toLowerCase().replace(/[^a-z]/gi, '')}
                                 type="text"
                                 onChange={handleChange}
-                                value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData]}
+                                value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData] || ""}
                                 className="flex-1 border-b border-black dark:border-white sm:ml-4"
                                 required
                                 disabled={label === 'Address' || label === 'Name'}
