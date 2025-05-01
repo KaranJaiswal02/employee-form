@@ -24,18 +24,33 @@ export default function Page() {
         }))
     }, [])
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        console.log(formData)
-        // Dummy DB call simulation
-        // Replace this with actual form submission logic
-        const dummyDBCall = () => true
-        if (dummyDBCall()) {
-            router.push('/nomination-declaration-form2')
-        } else {
-            alert('Form Submission Failed!')
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log(formData);
+        const response = await fetch("/api/gratuity-form", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        if(response.status === 201) {
+          setFormStatus((prevStatus) => ({
+            ...prevStatus,
+            form5: {
+                ...prevStatus.form5,
+                status: "done",
+            },
+        }));
+          router.push("/nomination-declaration-form2");
         }
-    }
+        else {
+          const responseData = await response.json();
+          alert(responseData.message);
+        }
+      };
+
+    
     return (
         <form onSubmit={handleSubmit} className='p-6 max-w-4xl mx-auto bg-white dark:bg-gray-950 shadow-md rounded-lg'>
             <GratuityForm1 />
