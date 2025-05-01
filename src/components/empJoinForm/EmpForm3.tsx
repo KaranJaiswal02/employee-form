@@ -69,23 +69,23 @@ export default function EmpForm3() {
             <h2 className="font-bold uppercase">
              Educational Qualification<span className="italic"><RequiredLabel>(Start from highest qualification)</RequiredLabel></span>
             </h2>
-            <table className="table-auto w-full border border-black text-center text-sm mb-0">
+            <table className="table-auto w-full border border-black dark:border-white text-center text-sm mb-0">
                 <thead>
-                    <tr className="border border-black bg-gray-100">
-                        <th className="border border-black">Examination</th>
-                        <th className="border border-black">University / Institute</th>
-                        <th className="border border-black">From</th>
-                        <th className="border border-black">To</th>
-                        <th className="border border-black">Specialisation</th>
-                        <th className="border border-black">Division %</th>
-                        <th className="border border-black">Actions</th>
+                    <tr className="border border-black dark:border-white">
+                        <th className="border border-black dark:border-white">Examination</th>
+                        <th className="border border-black dark:border-white">University / Institute</th>
+                        <th className="border border-black dark:border-white">From</th>
+                        <th className="border border-black dark:border-white">To</th>
+                        <th className="border border-black dark:border-white">Specialisation</th>
+                        <th className="border border-black dark:border-white">Division %</th>
+                        <th className="border border-black dark:border-white">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {formData.education.map((row, i) => (
                         <tr key={i}>
                             {row.map((cell, j) => (
-                                <td key={j} className="border border-black">
+                                <td key={j} className="border border-black dark:border-white">
                                     <input
                                         type="text"
                                         className="w-full p-1"
@@ -95,7 +95,7 @@ export default function EmpForm3() {
                                     />
                                 </td>
                             ))}
-                            <td className="border border-black">
+                            <td className="border border-black dark:border-white">
                                 {formData.education.length > 1 && (<button
                                     type="button"
                                     className="text-red-600 font-semibold cursor-pointer"
@@ -111,7 +111,7 @@ export default function EmpForm3() {
             <button
                 type="button"
                 onClick={addEducationRow}
-                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
+                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm"
             >
                 + Add Row
             </button>
@@ -120,23 +120,23 @@ export default function EmpForm3() {
             <h2 className="font-bold uppercase mt-4">
                 Employment Record <span className="italic">(Start from last employment)</span>
             </h2>
-            <table className="table-auto w-full border border-black text-center text-sm mb-0">
+            <table className="table-auto w-full border border-black dark:border-white text-center text-sm mb-0">
                 <thead>
-                    <tr className="border border-black bg-gray-100">
-                        <th className="border border-black">Name of the Organisation</th>
-                        <th className="border border-black">From</th>
-                        <th className="border border-black">To</th>
-                        <th className="border border-black">Designation</th>
-                        <th className="border border-black">Last Salary Drawn (CTC)</th>
-                        <th className="border border-black">Reason for Leaving</th>
-                        <th className="border border-black">Actions</th>
+                    <tr className="border border-black dark:border-white">
+                        <th className="border border-black dark:border-white">Name of the Organisation</th>
+                        <th className="border border-black dark:border-white">From</th>
+                        <th className="border border-black dark:border-white">To</th>
+                        <th className="border border-black dark:border-white">Designation</th>
+                        <th className="border border-black dark:border-white">Last Salary Drawn (CTC)</th>
+                        <th className="border border-black dark:border-white">Reason for Leaving</th>
+                        <th className="border border-black dark:border-white">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {formData.employment.map((row, i) => (
                         <tr key={i}>
                             {row.map((cell, j) => (
-                                <td key={j} className="border border-black">
+                                <td key={j} className="border border-black dark:border-white">
                                     <input
                                         type="text"
                                         className="w-full p-1"
@@ -145,7 +145,7 @@ export default function EmpForm3() {
                                     />
                                 </td>
                             ))}
-                            <td className="border border-black">
+                            <td className="border border-black dark:border-white">
                                 {formData.employment.length > 1 && (<button
                                     type="button"
                                     className="text-red-600 font-semibold cursor-pointer"
@@ -161,7 +161,7 @@ export default function EmpForm3() {
             <button
                 type="button"
                 onClick={addEmploymentRow}
-                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
+                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm"
             >
                 + Add Row
             </button>
@@ -170,13 +170,13 @@ export default function EmpForm3() {
             <h2 className="font-bold uppercase my-4">
                 Extra-Curricular Activities <span className="italic">(Give details, achievements, etc)</span>
             </h2>
-            <div className="border border-black p-4 rounded-md space-y-2">
+            <div className="border border-black dark:border-white p-4 rounded-md space-y-2">
                 <div className="flex items-center gap-x-2">
                     <label htmlFor="games"><RequiredLabel>Games / Sports:</RequiredLabel></label>
                     <input
                         id="games"
                         type="text"
-                        className="border-b border-black flex-1"
+                        className="border-b border-black dark:border-white flex-1"
                         value={formData.games}
                         onChange={(e) => handleChange("games", e.target.value)}
                         required
@@ -188,7 +188,7 @@ export default function EmpForm3() {
                     <input
                         id="ncc"
                         type="text"
-                        className="border-b border-black flex-1"
+                        className="border-b border-black dark:border-white flex-1"
                         value={formData.ncc}
                         onChange={(e) => handleChange("ncc", e.target.value)}
                         placeholder="NCC, NSS, etc., if not applicable, write N/A"
@@ -201,7 +201,7 @@ export default function EmpForm3() {
                     <input
                         id="hobbies"
                         type="text"
-                        className="border-b border-black flex-1"
+                        className="border-b border-black dark:border-white flex-1"
                         value={formData.hobbies}
                         onChange={(e) => handleChange("hobbies", e.target.value)}
                         required
@@ -215,7 +215,7 @@ export default function EmpForm3() {
                     Name, address and telephone of two references{" "}
                     <span className="italic">(Other than relatives) </span>
                 </strong>
-                <div className="border border-black p-4 cornered-md space-y-2">
+                <div className="border border-black dark:border-white p-4 cornered-md space-y-2">
                     <div className="grid grid-cols-2 gap-4 mt-2">
                         {formData.references.map((ref, idx) => (
                             <div key={idx}>
@@ -223,7 +223,7 @@ export default function EmpForm3() {
                                 <input
                                     type="text"
                                     placeholder="Name"
-                                    className="border-b border-black w-full mt-1"
+                                    className="border-b border-black dark:border-white w-full mt-1"
                                     value={ref.name}
                                     onChange={(e) => handleReferenceChange(idx, "name", e.target.value)}
                                     
@@ -231,7 +231,7 @@ export default function EmpForm3() {
                                 <input
                                     type="text"
                                     placeholder="Address"
-                                    className="border-b border-black w-full mt-1"
+                                    className="border-b border-black dark:border-white w-full mt-1"
                                     value={ref.address}
                                     onChange={(e) => handleReferenceChange(idx, "address", e.target.value)}
                                     
@@ -239,7 +239,7 @@ export default function EmpForm3() {
                                 <input
                                     type="text"
                                     placeholder="Phone"
-                                    className="border-b border-black w-full mt-1"
+                                    className="border-b border-black dark:border-white w-full mt-1"
                                     value={ref.phone}
                                     onChange={(e) => handleReferenceChange(idx, "phone", e.target.value)}
                                     
@@ -256,7 +256,7 @@ export default function EmpForm3() {
                     <RequiredLabel>Have you been convicted by any court? If yes, please give details:</RequiredLabel>
                 </strong>
                 <textarea
-                    className="w-full border border-black mt-2 p-2"
+                    className="w-full border border-black dark:border-white mt-2 p-2"
                     rows={3}
                     value={formData.convictionDetails}
                     onChange={(e) => handleChange("convictionDetails", e.target.value)}
@@ -275,7 +275,7 @@ export default function EmpForm3() {
                     DATE:{" "}
                     <input
                         type="date"
-                        className="border-b border-black inline-block"
+                        className="border-b border-black dark:border-white inline-block"
                         value={formData.date}
                         onChange={(e) => handleChange("date", e.target.value)}
                         disabled={true}
@@ -285,7 +285,7 @@ export default function EmpForm3() {
                     PLACE:{" "}
                     <input
                         type="text"
-                        className="border-b border-black inline-block w-40"
+                        className="border-b border-black dark:border-white inline-block w-40"
                         value={formData.place}
                         onChange={(e) => handleChange("place", e.target.value)}
                     />

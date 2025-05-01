@@ -42,7 +42,6 @@ export default function Page() {
       curraddress: empFormData1.currAddress || "",
       peraddress: empFormData1.perAddress || "",
       maritalStatus: empFormData1.maritalStatus || "",
-      
     }));
   },[])
 
@@ -134,7 +133,7 @@ export default function Page() {
               value={empFormData1.name}
               onChange={handleChange}
               placeholder="Your Name"
-              className="flex-1 border border-gray-400 px-2 py-1"
+              className="flex-1 border-b-1 border-black dark:border-white px-2 py-1"
               disabled={true}
             />
           </div>
@@ -146,7 +145,7 @@ export default function Page() {
               value={empFormData1.fatherName}
               placeholder="Your Father's or Husband's Name"
               onChange={handleChange}
-              className="flex-1 border border-gray-400 px-2 py-1"
+              className="flex-1 border-b-1 border-black dark:border-white px-2 py-1"
               disabled={true}
             />
           </div>
@@ -157,7 +156,7 @@ export default function Page() {
               name="dob"
               value={formData.dob}
               onChange={handleChange}
-              className="flex-1 border border-gray-400 px-2 py-1"
+              className="flex-1 border-b-1 border-black dark:border-white px-2 py-1"
             />
           </div>
           <div className="flex items-center gap-4">
@@ -166,7 +165,7 @@ export default function Page() {
               name="sex"
               value={formData.sex}
               onChange={handleChange}
-              className="flex-1 border border-gray-400 px-2 py-1"
+              className="flex-1 border-b-1 border-black dark:border-white px-2 py-1"
             >
               <option value="">Select</option>
               <option value="Male">Male</option>
@@ -180,7 +179,7 @@ export default function Page() {
               name="maritalStatus"
               value={formData.maritalStatus}
               onChange={handleChange}
-              className="flex-1 border border-gray-400 px-2 py-1"
+              className="flex-1 border-b-1 border-black dark:border-white px-2 py-1"
             >
               <option value="">Select</option>
               <option value="Single">Single</option>
@@ -197,7 +196,7 @@ export default function Page() {
                 value={empFormData1.perAddress}
                 onChange={handleChange}
                 placeholder="Permanent Address"
-                className="w-full border border-gray-400 px-2 py-1"
+                className="w-full border-b-1 border-black dark:border-white px-2 py-1"
                 rows={2}
                 disabled={true}
               />
@@ -206,7 +205,7 @@ export default function Page() {
                 value={empFormData1.currAddress}
                 onChange={handleChange}
                 placeholder="Current Address"
-                className="w-full border border-gray-400 px-2 py-1"
+                className="w-full border-b-1 border-black dark:border-white px-2 py-1"
                 rows={2}
                 disabled={true}
               />
@@ -221,22 +220,22 @@ export default function Page() {
 
         {/* Dynamic Nominee Table */}
         <div className="overflow-x-auto mt-4">
-          <table className="w-full border border-black text-sm text-center">
-            <thead className="bg-gray-100">
+          <table className="w-full border border-black dark:border-white text-sm text-center">
+            <thead className="">
               <tr>
-                <th className="border border-black px-2 py-1">Name of Nominee</th>
-                <th className="border border-black px-2 py-1">Address</th>
-                <th className="border border-black px-2 py-1">Relationship</th>
-                <th className="border border-black px-2 py-1">Date of Birth</th>
-                <th className="border border-black px-2 py-1">Share Amount</th>
-                <th className="border border-black px-2 py-1">Guardian Info (if minor)</th>
-                <th className="border border-black px-2 py-1">Action</th>
+                <th className="border border-black dark:border-white px-2 py-1">Name of Nominee</th>
+                <th className="border border-black dark:border-white px-2 py-1">Address</th>
+                <th className="border border-black dark:border-white px-2 py-1">Relationship</th>
+                <th className="border border-black dark:border-white px-2 py-1">Date of Birth</th>
+                <th className="border border-black dark:border-white px-2 py-1">Share Amount</th>
+                <th className="border border-black dark:border-white px-2 py-1">Guardian Info (if minor)</th>
+                <th className="border border-black dark:border-white px-2 py-1">Action</th>
               </tr>
             </thead>
             <tbody>
               {formData.nominees.map((nominee, index) => (
                 <tr key={index}>
-                  <td className="border border-black px-2 py-1">
+                  <td className="border border-black dark:border-white px-2 py-1">
                     <input
                       type="text"
                       className="w-full px-1 py-1 border border-gray-300"
@@ -244,7 +243,7 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "name", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black px-2 py-1">
+                  <td className="border border-black dark:border-white px-2 py-1">
                     <input
                       type="text"
                       className="w-full px-1 py-1 border border-gray-300"
@@ -252,7 +251,7 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "address", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black px-2 py-1">
+                  <td className="border border-black dark:border-white px-2 py-1">
                     <input
                       type="text"
                       className="w-full px-1 py-1 border border-gray-300"
@@ -260,7 +259,7 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "relationship", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black px-2 py-1">
+                  <td className="border border-black dark:border-white px-2 py-1">
                     <input
                       type="date"
                       className="w-full px-1 py-1 border border-gray-300"
@@ -268,7 +267,7 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "dob", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black px-2 py-1">
+                  <td className="border border-black dark:border-white px-2 py-1">
                     <input
                       type="text"
                       className="w-full px-1 py-1 border border-gray-300"
@@ -276,7 +275,7 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "share", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black px-2 py-1">
+                  <td className="border border-black dark:border-white px-2 py-1">
                     <textarea
                       rows={2}
                       className="w-full px-1 py-1 border border-gray-300"
@@ -284,7 +283,7 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "guardian", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black px-2 py-1">
+                  <td className="border border-black dark:border-white px-2 py-1">
                     {formData.nominees.length > 1 && (
                       <button
                         type="button"
@@ -340,7 +339,7 @@ export default function Page() {
             type="text"
             name="employeeName"
             value={formData.name}
-            className="border-b border-gray-500 px-2 mx-1 w-60 inline-block"
+            className="border-b-1 border-black dark:border-white px-2 mx-1 w-60 inline-block"
             disabled={true}
           />
           employed in my establishment after he/ she has read the entry/ entries have been read over to him/ her by me and got confirmed by him/her.
@@ -356,7 +355,7 @@ export default function Page() {
                 name="place"
                 value={formData.place}
                 onChange={handleChange}
-                className="flex-1 border-b border-gray-500 px-2"
+                className="flex-1 border-b-1 border-black dark:border-white px-2"
                 placeholder="Enter Place"
               />
             </div>
@@ -367,7 +366,7 @@ export default function Page() {
                 name="date"
                 value={formData.date}
                 onChange={handleChange}
-                className="flex-1 border-b border-gray-500 px-2"
+                className="flex-1 border-b-1 border-black dark:border-white px-2"
               />
             </div>
           </div>
@@ -387,9 +386,10 @@ export default function Page() {
           <textarea
             name="establishmentAddress"
             value={formData.establishmentAddress}
-            rows={3}
-            className="w-full border border-gray-400 px-2 py-1"
-            disabled={true}
+            rows={2}
+            placeholder="Enter establishment address"
+            className="w-full border-b-1 border-black dark:border-white px-2 py-1 mb-4"
+            onChange={handleChange}
           />
         </div>
       </div>

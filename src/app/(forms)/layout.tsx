@@ -79,7 +79,7 @@ export default function FormLayout({
                 {/* Bottom section */}
                 <div className="mt-6 space-y-4">
                     {/* Dark Mode Toggle */}
-                    {/* <div className="flex items-center space-x-3">
+                    <div className="flex items-center space-x-3">
                         <span className="text-gray-800 dark:text-gray-200 font-medium">
                             {isDarkMode ? "🌙" : "☀️"}
                         </span>
@@ -95,7 +95,7 @@ export default function FormLayout({
                         <span className="text-gray-800 dark:text-gray-200 font-medium">
                             {isDarkMode ? "Light Mode" : "Dark Mode"}
                         </span>
-                    </div> */}
+                    </div>
 
                     {/* Logout Button */}
                     <button

@@ -103,16 +103,16 @@ export default function MedicalInsuranceForm() {
 
     return (
         <form onSubmit={handleSubmit} className="p-6 max-w-5xl mx-auto bg-white dark:bg-gray-950 shadow-md rounded-lg">
-            <h2 className="text-center text-lg font-semibold border-b border-black pb-2 mb-4">
+            <h2 className="text-center text-lg font-semibold border-b border-black dark:border-white pb-2 mb-4">
                 STAFF FAMILY MEMBERS DETAILS - MEDICAL INSURANCE
             </h2>
 
-            <table className="w-full border border-black text-left text-sm">
+            <table className="w-full border border-black dark:border-white text-left text-sm">
                 <tbody>
-                    <tr className="border border-black">
-                        <td className="p-2 border border-black">1</td>
-                        <td className="p-2 border border-black">EMP. NO</td>
-                        <td className="p-2 border border-black">
+                    <tr className="border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white">1</td>
+                        <td className="p-2 border border-black dark:border-white">EMP. NO</td>
+                        <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="text"
                                 name="empNo"
@@ -122,8 +122,8 @@ export default function MedicalInsuranceForm() {
                                 placeholder="Employee Number"
                             />
                         </td>
-                        <td className="p-2 border border-black">Emp. Name</td>
-                        <td className="p-2 border border-black" colSpan={4}>
+                        <td className="p-2 border border-black dark:border-white">Emp. Name</td>
+                        <td className="p-2 border border-black dark:border-white" colSpan={4}>
                             <input
                                 type="text"
                                 name="name"
@@ -136,10 +136,10 @@ export default function MedicalInsuranceForm() {
                         </td>
                     </tr>
 
-                    <tr className="border border-black">
+                    <tr className="border border-black dark:border-white">
                         <td></td>
-                        <td className="p-2 border border-black">DEPARTMENT</td>
-                        <td className="p-2 border border-black">
+                        <td className="p-2 border border-black dark:border-white">DEPARTMENT</td>
+                        <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="text"
                                 name="department"
@@ -150,8 +150,8 @@ export default function MedicalInsuranceForm() {
                                 disabled={true}
                             />
                         </td>
-                        <td className="p-2 border border-black">DOB</td>
-                        <td className="p-2 border border-black">
+                        <td className="p-2 border border-black dark:border-white">DOB</td>
+                        <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="date"
                                 name="dob"
@@ -161,8 +161,8 @@ export default function MedicalInsuranceForm() {
                                 disabled={true}
                             />
                         </td>
-                        <td className="p-2 border border-black">AGE</td>
-                        <td className="p-2 border border-black">
+                        <td className="p-2 border border-black dark:border-white">AGE</td>
+                        <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="number"
                                 name="age"
@@ -175,10 +175,10 @@ export default function MedicalInsuranceForm() {
                         </td>
                     </tr>
 
-                    <tr className="border border-black">
+                    <tr className="border border-black dark:border-white">
                         <td></td>
-                        <td className="p-2 border border-black"><RequiredLabel>MARITAL STATUS</RequiredLabel></td>
-                        <td className="p-2 border border-black" colSpan={5}>
+                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>MARITAL STATUS</RequiredLabel></td>
+                        <td className="p-2 border border-black dark:border-white" colSpan={5}>
                             <input
                                 type="text"
                                 name="maritalStatus"
@@ -190,10 +190,10 @@ export default function MedicalInsuranceForm() {
                         </td>
                     </tr>
 
-                    <tr className="border border-black">
-                        <td className="p-2 border border-black">2</td>
-                        <td className="p-2 border border-black">SPOUSE NAME</td>
-                        <td className="p-2 border border-black" colSpan={2}>
+                    <tr className="border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white">2</td>
+                        <td className="p-2 border border-black dark:border-white">SPOUSE NAME</td>
+                        <td className="p-2 border border-black dark:border-white" colSpan={2}>
                             <input
                                 type="text"
                                 name="spouseName"
@@ -203,8 +203,8 @@ export default function MedicalInsuranceForm() {
                                 placeholder="Spouse Name"
                             />
                         </td>
-                        <td className="p-2 border border-black">DOB</td>
-                        <td className="p-2 border border-black" colSpan={2}>
+                        <td className="p-2 border border-black dark:border-white">DOB</td>
+                        <td className="p-2 border border-black dark:border-white" colSpan={2}>
                             <input
                                 type="date"
                                 name="spouseDob"
@@ -215,10 +215,10 @@ export default function MedicalInsuranceForm() {
                         </td>
                     </tr>
 
-                    <tr className="border border-black">
-                        <td className="p-2 border border-black">3</td>
-                        <td className="p-2 border border-black">NO. OF CHILD</td>
-                        <td className="p-2 border border-black" colSpan={5}>
+                    <tr className="border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white">3</td>
+                        <td className="p-2 border border-black dark:border-white">NO. OF CHILD</td>
+                        <td className="p-2 border border-black dark:border-white" colSpan={5}>
                             <input
                                 type="number"
                                 name="numOfChildren"
@@ -231,10 +231,10 @@ export default function MedicalInsuranceForm() {
                     </tr>
 
                     {formData.children.map((child, index) => (
-                        <tr key={index} className="border border-black">
-                            <td className="p-2 border border-black">{index + 4}</td>
-                            <td className="p-2 border border-black">CHILD.{index + 1} NAME</td>
-                            <td className="p-2 border border-black">
+                        <tr key={index} className="border border-black dark:border-white">
+                            <td className="p-2 border border-black dark:border-white">{index + 4}</td>
+                            <td className="p-2 border border-black dark:border-white">CHILD.{index + 1} NAME</td>
+                            <td className="p-2 border border-black dark:border-white">
                                 <input
                                     type="text"
                                     value={child.name}
@@ -243,8 +243,8 @@ export default function MedicalInsuranceForm() {
                                     placeholder={`Child ${index + 1} Name`}
                                 />
                             </td>
-                            <td className="p-2 border border-black">GENDER</td>
-                            <td className="p-2 border border-black">
+                            <td className="p-2 border border-black dark:border-white">GENDER</td>
+                            <td className="p-2 border border-black dark:border-white">
                                 <select
                                     value={child.gender}
                                     onChange={(e) => handleChildChange(index, 'gender', e.target.value)}
@@ -255,8 +255,8 @@ export default function MedicalInsuranceForm() {
                                     <option value="Female">Female</option>
                                 </select>
                             </td>
-                            <td className="p-2 border border-black">DOB</td>
-                            <td className="p-2 border border-black">
+                            <td className="p-2 border border-black dark:border-white">DOB</td>
+                            <td className="p-2 border border-black dark:border-white">
                                 <input
                                     type="date"
                                     value={child.dob}
@@ -267,10 +267,10 @@ export default function MedicalInsuranceForm() {
                         </tr>
                     ))}
 
-                    <tr className="border border-black">
-                        <td className="p-2 border border-black">6</td>
-                        <td className="p-2 border border-black"><RequiredLabel>FATHER NAME / FATHER-IN-LAW</RequiredLabel></td>
-                        <td className="p-2 border border-black" colSpan={3}>
+                    <tr className="border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white">6</td>
+                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>FATHER NAME / FATHER-IN-LAW</RequiredLabel></td>
+                        <td className="p-2 border border-black dark:border-white" colSpan={3}>
                             <input
                                 type="text"
                                 name="fatherName"
@@ -280,8 +280,8 @@ export default function MedicalInsuranceForm() {
                                 placeholder="Father or Father-in-law Name"
                             />
                         </td>
-                        <td className="p-2 border border-black"><RequiredLabel>DOB</RequiredLabel></td>
-                        <td className="p-2 border border-black">
+                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>DOB</RequiredLabel></td>
+                        <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="date"
                                 name="fatherDob"
@@ -292,10 +292,10 @@ export default function MedicalInsuranceForm() {
                         </td>
                     </tr>
 
-                    <tr className="border border-black">
-                        <td className="p-2 border border-black">7</td>
-                        <td className="p-2 border border-black"><RequiredLabel>MOTHER NAME / MOTHER-IN-LAW</RequiredLabel></td>
-                        <td className="p-2 border border-black" colSpan={3}>
+                    <tr className="border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white">7</td>
+                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>MOTHER NAME / MOTHER-IN-LAW</RequiredLabel></td>
+                        <td className="p-2 border border-black dark:border-white" colSpan={3}>
                             <input
                                 type="text"
                                 name="motherName"
@@ -305,8 +305,8 @@ export default function MedicalInsuranceForm() {
                                 placeholder="Mother or Mother-in-law Name"
                             />
                         </td>
-                        <td className="p-2 border border-black"><RequiredLabel>DOB</RequiredLabel></td>
-                        <td className="p-2 border border-black">
+                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>DOB</RequiredLabel></td>
+                        <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="date"
                                 name="motherDob"
@@ -317,10 +317,10 @@ export default function MedicalInsuranceForm() {
                         </td>
                     </tr>
 
-                    <tr className="border border-black">
-                        <td className="p-2 border border-black">8</td>
-                        <td className="p-2 border border-black"><RequiredLabel>MOBILE NUMBER</RequiredLabel></td>
-                        <td className="p-2 border border-black" colSpan={5}>
+                    <tr className="border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white">8</td>
+                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>MOBILE NUMBER</RequiredLabel></td>
+                        <td className="p-2 border border-black dark:border-white" colSpan={5}>
                             <input
                                 type="tel"
                                 name="mobileNumber"
@@ -332,10 +332,10 @@ export default function MedicalInsuranceForm() {
                         </td>
                     </tr>
 
-                    <tr className="border border-black">
-                        <td className="p-2 border border-black">9</td>
-                        <td className="p-2 border border-black"><RequiredLabel>ADDRESS</RequiredLabel></td>
-                        <td className="p-2 border border-black" colSpan={5}>
+                    <tr className="border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white">9</td>
+                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>ADDRESS</RequiredLabel></td>
+                        <td className="p-2 border border-black dark:border-white" colSpan={5}>
                             <textarea
                                 name="address"
                                 value={form1data.currAddress}
@@ -357,7 +357,7 @@ export default function MedicalInsuranceForm() {
                         name="date"
                         value={formData.date}
                         onChange={handleChange}
-                        className="ml-2 border p-1"
+                        className="ml-2 p-1"
                     />
                 </div>
                 <div className="text-right mt-6 ">

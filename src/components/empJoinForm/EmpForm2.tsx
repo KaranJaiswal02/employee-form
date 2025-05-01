@@ -27,18 +27,18 @@ export default function EmpForm2() {
             </div>
 
             {/* HR Section */}
-            <h4 className="text-lg font-bold mb-2 border-b border-black pb-1">TO BE FILLED BY HR</h4>
-            <div className="border border-black mb-6">
+            <h4 className="text-lg font-bold mb-2 border-b border-black dark:border-white pb-1">TO BE FILLED BY HR</h4>
+            <div className="border border-black dark:border-white mb-6">
                 <div className="flex">
-                    <div className="w-[20%] border-r border-black p-1 text-center font-semibold">E. CODE</div>
-                    <div className="w-[20%] border-r border-black p-1 text-center font-semibold">P.F. NO.</div>
-                    <div className="w-[20%] border-r border-black p-1 text-center font-semibold">DEPARTMENT</div>
-                    <div className="w-[20%] border-r border-black p-1 text-center font-semibold">FUNCTION</div>
+                    <div className="w-[20%] border-r border-black dark:border-white p-1 text-center font-semibold">E. CODE</div>
+                    <div className="w-[20%] border-r border-black dark:border-white p-1 text-center font-semibold">P.F. NO.</div>
+                    <div className="w-[20%] border-r border-black dark:border-white p-1 text-center font-semibold">DEPARTMENT</div>
+                    <div className="w-[20%] border-r border-black dark:border-white p-1 text-center font-semibold">FUNCTION</div>
                     <div className="w-[20%] p-1 text-center font-semibold">LEVEL</div>
                 </div>
-                <div className="flex border-t border-black">
+                <div className="flex border-t border-black dark:border-white">
                     {(['eCode', 'pfNo', 'department', 'function', 'level'] as Array<keyof typeof formData>).map((field: keyof typeof formData) => (
-                        <div key={field} className="w-[20%] border-r border-black last:border-r-0">
+                        <div key={field} className="w-[20%] border-r border-black dark:border-white last:border-r-0">
                             <input
                                 type="text"
                                 name={field}
@@ -52,7 +52,7 @@ export default function EmpForm2() {
             </div>
 
             {/* Employee Section */}
-            <h4 className="text-lg font-bold mb-4 border-b border-black pb-2">TO BE FILLED BY EMPLOYEE</h4>
+            <h4 className="text-lg font-bold mb-4 border-b border-black dark:border-white pb-2">TO BE FILLED BY EMPLOYEE</h4>
 
             {/* Name Section */}
             <div className="mb-4">
@@ -63,7 +63,7 @@ export default function EmpForm2() {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
-                        className="w-1/3 border-b-2 border-black pb-1 focus:outline-none mr-2"
+                        className="w-1/3 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
                         placeholder="First"
 
                     />
@@ -72,7 +72,7 @@ export default function EmpForm2() {
                         name="middleName"
                         value={formData.middleName}
                         onChange={handleChange}
-                        className="w-1/3 border-b-2 border-black pb-1 focus:outline-none mr-2"
+                        className="w-1/3 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
                         placeholder="Middle"
                     />
                     <input
@@ -80,7 +80,7 @@ export default function EmpForm2() {
                         name="surname"
                         value={formData.surname}
                         onChange={handleChange}
-                        className="w-1/3 border-b-2 border-black pb-1 focus:outline-none"
+                        className="w-1/3 border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         placeholder="Surname"
                     />
                 </div>
@@ -97,7 +97,7 @@ export default function EmpForm2() {
                         name="designation"
                         value={formData.designation}
                         onChange={handleChange}
-                        className="w-full border-b-2 border-black pb-1 focus:outline-none"
+                        className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         required
                     />
                 </div>
@@ -112,7 +112,7 @@ export default function EmpForm2() {
                         name="familyMemberName"
                         value={formData.familyMemberName}
                         onChange={handleChange}
-                        className="w-3/4 border-b-2 border-black pb-1 focus:outline-none"
+                        className="w-3/4 border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         required
                     />
                 </div>
@@ -129,7 +129,7 @@ export default function EmpForm2() {
                         value={formData.dob}
                         disabled={true}
                         onChange={handleChange}
-                        className="w-full border-b-2 border-black pb-1 focus:outline-none"
+                        className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         required
                     />
                 </div>
@@ -140,7 +140,7 @@ export default function EmpForm2() {
                         value={formData.sex}
                         id='sex'
                         onChange={handleChange}
-                        className="w-full border-b-2 border-black pb-1 focus:outline-none bg-transparent"
+                        className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none bg-transparent"
                         required
                     >
                         <option value=""></option>
@@ -156,7 +156,7 @@ export default function EmpForm2() {
                         id='bloodGroup'
                         value={formData.bloodGroup}
                         onChange={handleChange}
-                        className="w-full border-b-2 border-black pb-1 focus:outline-none"
+                        className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         required
                     />
                 </div>
@@ -168,7 +168,7 @@ export default function EmpForm2() {
                         id='nationality'
                         value={formData.nationality}
                         onChange={handleChange}
-                        className="w-full border-b-2 border-black pb-1 focus:outline-none"
+                        className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         required
                     />
                 </div>
@@ -182,7 +182,7 @@ export default function EmpForm2() {
                     value={formData.currAddress}
                     disabled={true}
                     onChange={handleChange}
-                    className="w-3/5 border-b-2 border-black pb-1 focus:outline-none h-8"
+                    className="w-3/5 border-b-1 border-black dark:border-white pb-1 focus:outline-none h-8"
                     required
                 />
                 <div className="grid grid-cols-3 gap-4 mt-2">
@@ -194,7 +194,7 @@ export default function EmpForm2() {
                             value={formData.district}
                             disabled={true}
                             onChange={handleChange}
-                            className="w-3/4 border-b border-black focus:outline-none ml-1"
+                            className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-1"
                             required
                         />
                     </div>
@@ -206,7 +206,7 @@ export default function EmpForm2() {
                             value={formData.state}
                             disabled={true}
                             onChange={handleChange}
-                            className="w-3/4 border-b border-black focus:outline-none ml-1"
+                            className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-1"
                             required
                         />
                     </div>
@@ -218,7 +218,7 @@ export default function EmpForm2() {
                             value={formData.pincode}
                             disabled={true}
                             onChange={handleChange}
-                            className="w-3/4 border-b border-black focus:outline-none ml-1"
+                            className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-1"
                             required
                         />
                     </div>
@@ -231,7 +231,7 @@ export default function EmpForm2() {
                         value={formData.currstdcode}
                         disabled={true}
                         onChange={handleChange}
-                        className="w-16 border-b border-black focus:outline-none mx-1"
+                        className="w-16 border-b border-black dark:border-white focus:outline-none mx-1"
                     />
                     <div className="text-sm ml-4"><RequiredLabel>Number</RequiredLabel></div>
                     <input
@@ -240,7 +240,7 @@ export default function EmpForm2() {
                         value={formData.currcontactNumber}
                         disabled={true}
                         onChange={handleChange}
-                        className="w-24 border-b border-black focus:outline-none mx-1"
+                        className="w-24 border-b border-black dark:border-white focus:outline-none mx-1"
                         required
                     />
                 </div>
@@ -254,7 +254,7 @@ export default function EmpForm2() {
                     value={formData.perAddress}
                     disabled={true}
                     onChange={handleChange}
-                    className="w-3/5 border-b-2 border-black pb-1 focus:outline-none h-8"
+                    className="w-3/5 border-b-1 border-black dark:border-white pb-1 focus:outline-none h-8"
                     required
                 />
                 <div className="grid grid-cols-3 gap-4 mt-2">
@@ -266,7 +266,7 @@ export default function EmpForm2() {
                             value={formData.perDistrict}
                             disabled={true}
                             onChange={handleChange}
-                            className="w-3/4 border-b border-black focus:outline-none ml-1"
+                            className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-1"
                             required
                         />
                     </div>
@@ -278,7 +278,7 @@ export default function EmpForm2() {
                             value={formData.perState}
                             disabled={true}
                             onChange={handleChange}
-                            className="w-3/4 border-b border-black focus:outline-none ml-1"
+                            className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-1"
                             required
                         />
                     </div>
@@ -290,7 +290,7 @@ export default function EmpForm2() {
                             value={formData.perPincode}
                             disabled={true}
                             onChange={handleChange}
-                            className="w-3/4 border-b border-black focus:outline-none ml-1"
+                            className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-1"
                             required
                         />
                     </div>
@@ -303,7 +303,7 @@ export default function EmpForm2() {
                         value={formData.perstdcode}
                         disabled={true}
                         onChange={handleChange}
-                        className="w-16 border-b border-black focus:outline-none mx-1"
+                        className="w-16 border-b border-black dark:border-white focus:outline-none mx-1"
                     />
                     <div className="text-sm ml-4"><RequiredLabel>Number</RequiredLabel></div>
                     <input
@@ -312,7 +312,7 @@ export default function EmpForm2() {
                         value={formData.percontactNumber}
                         disabled={true}
                         onChange={handleChange}
-                        className="w-24 border-b border-black focus:outline-none mx-1"
+                        className="w-24 border-b border-black dark:border-white focus:outline-none mx-1"
                         required
                     />
                 </div>
@@ -378,7 +378,7 @@ export default function EmpForm2() {
                                 name="spouseName"
                                 value={formData.spouseName}
                                 onChange={handleChange}
-                                className="w-full border-b border-black focus:outline-none"
+                                className="w-full border-b border-black dark:border-white focus:outline-none"
                                 required
                             />
                         </div>
@@ -389,7 +389,7 @@ export default function EmpForm2() {
                                 name="spouseDob"
                                 value={formData.spouseDob}
                                 onChange={handleChange}
-                                className="w-full border-b border-black focus:outline-none"
+                                className="w-full border-b border-black dark:border-white focus:outline-none"
                                 required
                             />
                         </div>
@@ -400,7 +400,7 @@ export default function EmpForm2() {
                                 name="anniversaryDate"
                                 value={formData.anniversaryDate}
                                 onChange={handleChange}
-                                className="w-full border-b border-black focus:outline-none"
+                                className="w-full border-b border-black dark:border-white focus:outline-none"
                                 required
                             />
                         </div>
@@ -413,7 +413,7 @@ export default function EmpForm2() {
                                 name="spouseBloodGroup"
                                 value={formData.spouseBloodGroup}
                                 onChange={handleChange}
-                                className="w-full border-b border-black focus:outline-none"
+                                className="w-full border-b border-black dark:border-white focus:outline-none"
                                 required
                             />
                         </div>
@@ -424,7 +424,7 @@ export default function EmpForm2() {
                                 name="spouseEducation"
                                 value={formData.spouseEducation}
                                 onChange={handleChange}
-                                className="w-full border-b border-black focus:outline-none"
+                                className="w-full border-b border-black dark:border-white focus:outline-none"
                                 required
                             />
                         </div>
@@ -434,7 +434,7 @@ export default function EmpForm2() {
                                 name="spouseWorking"
                                 value={formData.spouseWorking}
                                 onChange={handleChange}
-                                className="w-full border-b border-black focus:outline-none bg-transparent"
+                                className="w-full border-b border-black dark:border-white focus:outline-none bg-transparent"
                                 required
                             >
                                 <option value=""></option>
@@ -457,7 +457,7 @@ export default function EmpForm2() {
                             name="emergencyContactName"
                             value={formData.emergencyContactName}
                             onChange={handleChange}
-                            className="w-3/4 border-b border-black focus:outline-none"
+                            className="w-3/4 border-b border-black dark:border-white focus:outline-none"
                             required
                         />
                     </div>
@@ -468,7 +468,7 @@ export default function EmpForm2() {
                             name="emergencyContactPhone"
                             value={formData.emergencyContactPhone}
                             onChange={handleChange}
-                            className="w-3/4 border-b border-black focus:outline-none"
+                            className="w-3/4 border-b border-black dark:border-white focus:outline-none"
                             required
                         />
                     </div>
@@ -480,7 +480,7 @@ export default function EmpForm2() {
                         name="emergencyContactRelationship"
                         value={formData.emergencyContactRelationship}
                         onChange={handleChange}
-                        className="w-2/5 border-b border-black focus:outline-none"
+                        className="w-2/5 border-b border-black dark:border-white focus:outline-none"
                         required
                     />
                 </div>
@@ -497,7 +497,7 @@ export default function EmpForm2() {
                         name="gratuityNominee1Percent"
                         value={formData.gratuityNominee1Percent}
                         onChange={handleChange}
-                        className="w-16 border-b border-black focus:outline-none"
+                        className="w-16 border-b border-black dark:border-white focus:outline-none"
                         placeholder='Percentage'
                         required
                     />
@@ -507,7 +507,7 @@ export default function EmpForm2() {
                         name="gratuityNominee1Name"
                         value={formData.gratuityNominee1Name}
                         onChange={handleChange}
-                        className="w-3/4 border-b border-black focus:outline-none ml-2"
+                        className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-2"
                         placeholder='Name'
                         required
                     />
@@ -519,7 +519,7 @@ export default function EmpForm2() {
                         name="gratuityNominee2Percent"
                         value={formData.gratuityNominee2Percent}
                         onChange={handleChange}
-                        className="w-16 border-b border-black focus:outline-none"
+                        className="w-16 border-b border-black dark:border-white focus:outline-none"
                         placeholder='Percentage'
                     />
                     <span className="mx-1">%</span>
@@ -528,7 +528,7 @@ export default function EmpForm2() {
                         name="gratuityNominee2Name"
                         value={formData.gratuityNominee2Name}
                         onChange={handleChange}
-                        className="w-3/4 border-b border-black focus:outline-none ml-2"
+                        className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-2"
                         placeholder='Name'
                     />
                 </div>
@@ -540,7 +540,7 @@ export default function EmpForm2() {
                         name="pfNominee1Percent"
                         value={formData.pfNominee1Percent}
                         onChange={handleChange}
-                        className="w-16 border-b border-black focus:outline-none"
+                        className="w-16 border-b border-black dark:border-white focus:outline-none"
                         placeholder='Percentage'
                         required
                     />
@@ -550,7 +550,7 @@ export default function EmpForm2() {
                         name="pfNominee1Name"
                         value={formData.pfNominee1Name}
                         onChange={handleChange}
-                        className="w-3/4 border-b border-black focus:outline-none ml-2"
+                        className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-2"
                         placeholder='Name'
                         required
                     />
@@ -562,7 +562,7 @@ export default function EmpForm2() {
                         name="pfNominee2Percent"
                         value={formData.pfNominee2Percent}
                         onChange={handleChange}
-                        className="w-16 border-b border-black focus:outline-none"
+                        className="w-16 border-b border-black dark:border-white focus:outline-none"
                         placeholder='Percentage'
                     />
                     <span className="mx-1">%</span>
@@ -571,7 +571,7 @@ export default function EmpForm2() {
                         name="pfNominee2Name"
                         value={formData.pfNominee2Name}
                         onChange={handleChange}
-                        className="w-3/4 border-b border-black focus:outline-none ml-2"
+                        className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-2"
                         placeholder='Name'
                     />
                 </div>
@@ -582,7 +582,7 @@ export default function EmpForm2() {
                         name="pfNominee3Percent"
                         value={formData.pfNominee3Percent}
                         onChange={handleChange}
-                        className="w-16 border-b border-black focus:outline-none"
+                        className="w-16 border-b border-black dark:border-white focus:outline-none"
                         placeholder='Percentage'
                     />
                     <span className="mx-1">%</span>
@@ -591,7 +591,7 @@ export default function EmpForm2() {
                         name="pfNominee3Name"
                         value={formData.pfNominee3Name}
                         onChange={handleChange}
-                        className="w-3/4 border-b border-black focus:outline-none ml-2"
+                        className="w-3/4 border-b border-black dark:border-white focus:outline-none ml-2"
                         placeholder='Name'
                     />
                 </div>

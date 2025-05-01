@@ -71,7 +71,7 @@ export default function EmpForm5() {
                         value={formData.name}
                         onChange={handleEmployeeInfoChange}
                         disabled={true}
-                        className="ml-0 border-b border-black outline-none"
+                        className="ml-0 border-b border-black dark:border-white outline-none"
                     />
                 </div>
                 <div>
@@ -81,7 +81,7 @@ export default function EmpForm5() {
                         name="code"
                         value={formData.code}
                         onChange={handleEmployeeInfoChange}
-                        className="ml-2 border-b border-black outline-none"
+                        className="ml-2 border-b border-black dark:border-white outline-none"
                     />
                 </div>
                 <div>
@@ -91,7 +91,7 @@ export default function EmpForm5() {
                         name="grade"
                         value={formData.grade}
                         onChange={handleEmployeeInfoChange}
-                        className="ml-2 border-b border-black outline-none"
+                        className="ml-2 border-b border-black dark:border-white outline-none"
                     />
                 </div>
 
@@ -104,7 +104,7 @@ export default function EmpForm5() {
                         id="department"
                         value={formData.department}
                         onChange={handleEmployeeInfoChange}
-                        className=" flex-1 border-b border-black pb-1 focus:outline-none "
+                        className=" flex-1 border-b border-black dark:border-white pb-1 focus:outline-none "
                         required
                     />
                 </div>
@@ -117,23 +117,23 @@ export default function EmpForm5() {
             </p>
 
             {/* Table */}
-            <table className="w-full border border-black text-sm">
-                <thead className="bg-gray-100">
+            <table className="w-full border border-black dark:border-white text-sm">
+                <thead className="">
                     <tr>
-                        <th className="border border-black p-1 font-semibold">Sl. No</th>
-                        <th className="border border-black p-1 font-semibold">Name</th>
-                        <th className="border border-black p-1 font-semibold">Relationship</th>
-                        <th className="border border-black p-1 font-semibold">DOB</th>
-                        <th className="border border-black p-1 font-semibold">Age</th>
-                        <th className="border border-black p-1 font-semibold">Insured Amount (Rs.)</th>
-                        <th className="border border-black p-1 font-semibold">Actions</th>
+                        <th className="border border-black dark:border-white p-1 font-semibold">Sl. No</th>
+                        <th className="border border-black dark:border-white p-1 font-semibold">Name</th>
+                        <th className="border border-black dark:border-white p-1 font-semibold">Relationship</th>
+                        <th className="border border-black dark:border-white p-1 font-semibold">DOB</th>
+                        <th className="border border-black dark:border-white p-1 font-semibold">Age</th>
+                        <th className="border border-black dark:border-white p-1 font-semibold">Insured Amount (Rs.)</th>
+                        <th className="border border-black dark:border-white p-1 font-semibold">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {formData.members.map((member, index) => (
                         <tr key={index}>
-                            <td className="border border-black p-1 text-center">{index + 1}</td>
-                            <td className="border border-black p-1">
+                            <td className="border border-black dark:border-white p-1 text-center">{index + 1}</td>
+                            <td className="border border-black dark:border-white p-1">
                                 <input
                                     type="text"
                                     value={member.name}
@@ -143,7 +143,7 @@ export default function EmpForm5() {
                                     }
                                 />
                             </td>
-                            <td className="border border-black p-1">
+                            <td className="border border-black dark:border-white p-1">
                                 <input
                                     type="text"
                                     value={member.relationship}
@@ -154,7 +154,7 @@ export default function EmpForm5() {
                                     disabled={index === 0}
                                 />
                             </td>
-                            <td className="border border-black p-1">
+                            <td className="border border-black dark:border-white p-1">
                                 <input
                                     type="date"
                                     value={member.dob}
@@ -162,7 +162,7 @@ export default function EmpForm5() {
                                     onChange={(e) => handleMemberChange(index, "dob", e.target.value)}
                                 />
                             </td>
-                            <td className="border border-black p-1">
+                            <td className="border border-black dark:border-white p-1">
                                 <input
                                     type="number"
                                     value={member.age}
@@ -170,7 +170,7 @@ export default function EmpForm5() {
                                     onChange={(e) => handleMemberChange(index, "age", e.target.value)}
                                 />
                             </td>
-                            <td className="border border-black p-1">
+                            <td className="border border-black dark:border-white p-1">
                                 <input
                                     type="number"
                                     value={member.amount}
@@ -178,7 +178,7 @@ export default function EmpForm5() {
                                     onChange={(e) => handleMemberChange(index, "amount", e.target.value)}
                                 />
                             </td>
-                            <td className="border border-black text-center">
+                            <td className="border border-black dark:border-white text-center">
                                 {index !== 0 && (
                                     <button
                                         type="button"
@@ -197,7 +197,7 @@ export default function EmpForm5() {
             <button
                 type="button"
                 onClick={addMember}
-                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
+                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm"
             >
                 + Add Row
             </button>
@@ -212,7 +212,7 @@ export default function EmpForm5() {
                         value={formData.date}
                         onChange={handleEmployeeInfoChange}
                         disabled={true}
-                        className="border-b border-black outline-none ml-2"
+                        className="border-b border-black dark:border-white outline-none ml-2"
                     />
                 </div>
                 <div className="text-right font-semibold">

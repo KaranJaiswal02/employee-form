@@ -86,7 +86,7 @@ export default function Page() {
     >
       <h1 className="text-center text-xl font-bold mb-4">ID CARD FORM</h1>
 
-      <div className="grid grid-cols-3 gap-0 border border-black text-sm">
+      <div className="grid grid-cols-3 gap-0 border border-black dark:border-white text-sm">
         <div className="col-span-2 w-full">
           {[
             ["NAME", "name"],
@@ -99,8 +99,8 @@ export default function Page() {
             ["FATHER NAME", "fatherName"],
             ["YEAR", "year"],
           ].map(([label, id, type]) => (
-            <div key={id} className="flex border-b border-black h-12">
-              <label htmlFor={id} className="w-1/3 border-r border-black font-semibold px-2 flex items-center">
+            <div key={id} className="flex border-b border-black dark:border-white h-12">
+              <label htmlFor={id} className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                 {label}
                 
               </label>
@@ -153,7 +153,7 @@ export default function Page() {
         </div>
 
         {/* PHOTO COLUMN */}
-        <div className="row-span-9 border border-black flex items-center justify-center">
+        <div className="row-span-9 border border-black dark:border-white flex items-center justify-center">
           <label className="w-32 h-40 border-2 border-gray-400 text-center flex items-center justify-center text-xs cursor-pointer relative">
             {photoPreview ? (
               <img
@@ -175,8 +175,8 @@ export default function Page() {
         </div>
 
         {/* ADDRESS ROW */}
-        <div className="col-span-3 border-t border-black h-24 flex">
-          <label htmlFor="currAddress" className="w-1/6 border-r border-black px-2 font-semibold flex items-center">
+        <div className="col-span-3 border-t border-black dark:border-white h-24 flex">
+          <label htmlFor="currAddress" className="w-1/6 border-r border-black dark:border-white px-2 font-semibold flex items-center">
             ADDRESS
           </label>
           <div className="w-5/6 px-2">
@@ -190,8 +190,8 @@ export default function Page() {
         </div>
 
         {/* CONTACT NUMBER */}
-        <div className="col-span-3 border-t border-black h-12 flex">
-          <label htmlFor="contactnumber" className="w-1/6 border-r border-black px-2 font-semibold flex items-center">
+        <div className="col-span-3 border-t border-black dark:border-white h-12 flex">
+          <label htmlFor="contactnumber" className="w-1/6 border-r border-black dark:border-white px-2 font-semibold flex items-center">
             CONTACT NUMBER
           </label>
           <div className="w-5/6 px-2 flex items-center">
@@ -206,8 +206,8 @@ export default function Page() {
         </div>
 
         {/* SIGNATURE */}
-        <div className="col-span-3 border-t border-black h-12 flex">
-          <div className="w-1/6 border-r border-black px-2 font-semibold flex items-center">
+        <div className="col-span-3 border-t border-black dark:border-white h-12 flex">
+          <div className="w-1/6 border-r border-black dark:border-white px-2 font-semibold flex items-center">
             SIGNATURE
           </div>
           <div className="w-5/6 px-2 flex items-center">
