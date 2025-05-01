@@ -1,5 +1,6 @@
-export default interface IAPIResponse<T> {
+export default interface IAPIResponse {
     success: boolean;
     message: string;
-    data?: T;
+    errors: string[];
+    data?: any;
 }
