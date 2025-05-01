@@ -62,7 +62,7 @@ export default function GratuityForm1() {
         <input
           type="text"
           value={formData.name}
-          className="border-b border-black w-72 mx-2"
+          className="border-b border-black dark:border-white w-72 mx-2"
           placeholder="Name in full here"
           required
           name="name"
@@ -96,7 +96,7 @@ export default function GratuityForm1() {
           <input
             type="date"
             value={formData.noticedate}
-            className="border-b border-black w-40 inline-block"
+            className="border-b border-black dark:border-white w-40 inline-block"
             onChange={handleChange}
             name="noticedate"
             required
@@ -109,22 +109,22 @@ export default function GratuityForm1() {
 
       <h4 className="font-semibold text-center mt-6 mb-2">Nominee(s)</h4>
 
-      <table className="w-full border border-black text-left text-sm">
+      <table className="w-full border border-black dark:border-white text-left text-sm">
         <thead>
           <tr className="bg-gray-100 dark:bg-gray-800">
-            <th className="border border-black p-2 text-center">
+            <th className="border border-black dark:border-white p-2 text-center">
               Name in full with full address of nominee(s)
             </th>
-            <th className="border border-black p-2 text-center">Relationship</th>
-            <th className="border border-black p-2 text-center">Age</th>
-            <th className="border border-black p-2 text-center">Proportion</th>
-            <th className="border border-black p-2 text-center">Actions</th>
+            <th className="border border-black dark:border-white p-2 text-center">Relationship</th>
+            <th className="border border-black dark:border-white p-2 text-center">Age</th>
+            <th className="border border-black dark:border-white p-2 text-center">Proportion</th>
+            <th className="border border-black dark:border-white p-2 text-center">Actions</th>
           </tr>
         </thead>
         <tbody>
           {formData.nominee.map((row, i) => (
             <tr key={i}>
-              <td className="border border-black p-2">
+              <td className="border border-black dark:border-white p-2">
                 <input
                   type="text"
                   value={row.name}
@@ -133,7 +133,7 @@ export default function GratuityForm1() {
                   onChange={(e) => handleNomineeChange(i, "name", e.target.value)}
                 />
               </td>
-              <td className="border border-black p-2">
+              <td className="border border-black dark:border-white p-2">
                 <input
                   type="text"
                   value={row.relationship}
@@ -142,7 +142,7 @@ export default function GratuityForm1() {
                   onChange={(e) => handleNomineeChange(i, "relationship", e.target.value)}
                 />
               </td>
-              <td className="border border-black p-2">
+              <td className="border border-black dark:border-white p-2">
                 <input
                   type="number"
                   value={row.age || ''}
@@ -151,7 +151,7 @@ export default function GratuityForm1() {
                   onChange={(e) => handleNomineeChange(i, "age", e.target.value)}
                 />
               </td>
-              <td className="border border-black p-2">
+              <td className="border border-black dark:border-white p-2">
                 <input
                   type="number"
                   value={row.proportion || ''}
@@ -160,7 +160,7 @@ export default function GratuityForm1() {
                   onChange={(e) => handleNomineeChange(i, "proportion", e.target.value)}
                 />
               </td>
-              <td className="border border-black text-center">
+              <td className="border border-black dark:border-white text-center">
                 {formData.nominee.length > 1 && (<button
                   type="button"
                   onClick={() => removeNominee(i)}
@@ -183,7 +183,7 @@ export default function GratuityForm1() {
         + Add Row
       </button>
 
-      <hr className="my-6 border-black" />
+      <hr className="my-6 border-black dark:border-white" />
     </div>
   );
 }
