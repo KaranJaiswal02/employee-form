@@ -117,6 +117,7 @@ export const grauFormData = atom({
   witness1name: "",
   witness2name: "",
 })
+//write mongoose model for this data in ts
 
 export const nominationForm1Data = atom({
   name: "",
