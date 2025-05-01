@@ -117,7 +117,7 @@ export default function SignUpForm() {
                                     ))}
                                 </div>
                             )}
-                            <Button disabled={loading} type="submit" className="w-full">
+                            <Button disabled={loading} type="submit" className="w-full cursor-pointer">
                                 {loading ? "Loading..." : "Sign Up"}
                             </Button>
                         </div>

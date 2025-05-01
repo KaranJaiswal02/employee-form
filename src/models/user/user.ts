@@ -3,6 +3,7 @@ import { Schema, model, models, Document, Types } from 'mongoose';
 export interface IUser extends Document {
     email: string;
     password: string;
+    role?: string;
     staffJoiningForm?: Types.ObjectId;
     idCardForm?: Types.ObjectId;
     familyDetailsForm?: Types.ObjectId;
@@ -24,6 +25,11 @@ const userSchema = new Schema<IUser>(
         password: {
             type: String,
             required: true,
+        },
+        role: {
+            type: String,
+            enum: ['admin', 'user'],
+            default: 'user',
         },
         staffJoiningForm: { type: Schema.Types.ObjectId, ref: 'EmpFormData' },
         idCardForm: { type: Schema.Types.ObjectId, ref: 'IdCardFormData' },
