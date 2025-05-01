@@ -58,11 +58,14 @@ export default function Page() {
     if (response.status === 201) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
-        form5: {
-          ...prevStatus.form5,
-          status: "done",
-        },
-      }));
+        forms: {
+            ...prevStatus.forms,
+            form5: {
+                ...prevStatus.forms.form5,
+                status: "done",
+            },
+        }
+    }));
       router.push("/gratuity-form");
     }
     else {

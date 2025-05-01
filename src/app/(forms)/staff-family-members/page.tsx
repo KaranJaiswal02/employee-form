@@ -88,10 +88,13 @@ export default function MedicalInsuranceForm() {
         if (response.status === 201) {
             setFormStatus((prevStatus) => ({
                 ...prevStatus,
-                form3: {
-                    ...prevStatus.form3,
-                    status: "done",
-                },
+                forms: {
+                    ...prevStatus.forms,
+                    form3: {
+                        ...prevStatus.forms.form3,
+                        status: "done",
+                    },
+                }
             }));
             router.push("/bank-mandate");
         }

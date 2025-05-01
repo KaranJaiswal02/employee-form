@@ -67,11 +67,14 @@ export default function Page() {
     if (response.status === 201) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
-        form2: {
-          ...prevStatus.form2,
-          status: "done",
-        },
-      }));
+        forms: {
+            ...prevStatus.forms,
+            form2: {
+                ...prevStatus.forms.form2,
+                status: "done",
+            },
+        }
+    }));
       router.push("/staff-family-members");
     }
     else {

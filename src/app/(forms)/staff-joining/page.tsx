@@ -28,11 +28,14 @@ export default function page() {
     if (response.status === 201) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
-        form1: {
-          ...prevStatus.form1,
-          status: "done",
-        },
-      }));
+        forms: {
+            ...prevStatus.forms,
+            form1: {
+                ...prevStatus.forms.form1,
+                status: "done",
+            },
+        }
+    }));
       router.push("/idcard-form");
     }
     else {

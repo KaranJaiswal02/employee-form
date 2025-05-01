@@ -9,16 +9,25 @@ export async function POST(req: NextRequest) {
     await dbConnect();
 
     try {
-        const userId = req.headers.get('x-userId');
-        const role = req.headers.get('x-userRole');
-        return NextResponse.json({
-            userId,
-            role,
-        }, { status: 200 })
+        const xUserId = req.headers.get("x-userid");
+        const staffId = req.headers.get("userid");
+        const role = req.headers.get("x-userrole");
+
+        const actualUserId = role === "admin" ? staffId : xUserId;
+
+        if (!actualUserId) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized",
+                    errors: ["User ID is missing from headers"],
+                },
+                { status: 401 }
+            );
+        }
 
         const body: IEmpFormData = await req.json();
-        
-        // Validate request body
+
         if (!body) {
             const response: IAPIResponse = {
                 success: false,
@@ -28,26 +37,34 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(response, { status: 400 });
         }
 
-        // Create new Employee Join form entry
-        const empJoinForm = new EmpJoinForm(body);
-        const savedEmpJoinForm = await empJoinForm.save();
+        // Check if form already exists for this user
+        const existingForm = await EmpJoinForm.findOne({ userId: actualUserId });
+
+        let result;
+        if (existingForm) {
+            // Update existing form
+            await EmpJoinForm.updateOne({ userId: actualUserId }, { $set: body });
+            result = await EmpJoinForm.findOne({ userId: actualUserId });
+        } else {
+            // Create new form
+            const newForm = new EmpJoinForm({ ...body, userId: actualUserId });
+            result = await newForm.save();
+        }
 
         const response: IAPIResponse = {
             success: true,
-            message: "Employee Join Form submitted successfully",
+            message: "Employee Join Form saved successfully",
             errors: [],
-            data: savedEmpJoinForm,
+            data: result,
         };
-        return NextResponse.json(response, { status: 201 });
-
+        return NextResponse.json(response, { status: 200 });
     } catch (error) {
-        console.log("Error in POST /empjoin-form:", error);
+        console.error("Error in POST /empjoin-form:", error);
 
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];
         let statusCode = 500;
 
-        // Handle validation and syntax errors
         if (error instanceof mongoose.Error.ValidationError) {
             errorMessage = "Validation Error";
             errorDetails = [error.message];

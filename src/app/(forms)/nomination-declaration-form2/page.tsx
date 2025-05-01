@@ -41,10 +41,13 @@ export default function Page() {
         if (response.status === 201) {
             setFormStatus((prevStatus) => ({
                 ...prevStatus,
-                form7: {
-                    ...prevStatus.form7,
-                    status: "done",
-                },
+                forms: {
+                    ...prevStatus.forms,
+                    form7: {
+                        ...prevStatus.forms.form7,
+                        status: "done",
+                    },
+                }
             }));
             router.push("/thank-you");
         }

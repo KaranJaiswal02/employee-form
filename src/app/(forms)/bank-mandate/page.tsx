@@ -43,10 +43,13 @@ export default function BankMandateForm() {
         if (response.status === 201) {
             setFormStatus((prevStatus) => ({
                 ...prevStatus,
-                form4: {
-                    ...prevStatus.form4,
-                    status: "done",
-                },
+                forms: {
+                    ...prevStatus.forms,
+                    form4: {
+                        ...prevStatus.forms.form4,
+                        status: "done",
+                    },
+                }
             }));
             router.push("/nomination-declaration-form1");
         }
