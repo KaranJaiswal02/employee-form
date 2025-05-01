@@ -4,7 +4,7 @@ import { IEmpFormData } from "@/models/forms/staffjoin_form";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import IAPIResponse from "@/types/responseType";
-import { User } from "@/models/user/user";
+import { User } from "@/models/user";
 
 export async function POST(req: NextRequest) {
     await dbConnect();

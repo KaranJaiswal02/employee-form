@@ -1,9 +1,10 @@
 import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/dbConnect';
-import { User } from '@/models/user/user';
+import { User } from '@/models/user';
 import { signJwt } from '@/lib/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 import IAPIResponse from '@/types/responseType';
+import { comparePassword } from '@/lib/bcrypt';
 
 export async function POST(req: NextRequest) {
     const { email, password } = await req.json();
@@ -37,7 +38,8 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(response, { status: 401 });
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await comparePassword(password, user.password);
+
         if (!isMatch) {
             const response: IAPIResponse = {
                 success: false,
