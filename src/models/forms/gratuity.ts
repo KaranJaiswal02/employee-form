@@ -64,6 +64,6 @@ const GratuityFormSchema: Schema = new Schema({
 
 
 const GratuityFormModel =
-  models.MergedGratuityForm || mongoose.model<IGratuityForm>('GratuityForm', GratuityFormSchema);
+  models.GratuityForm || mongoose.model<IGratuityForm>('GratuityForm', GratuityFormSchema);
 
 export default GratuityFormModel;
