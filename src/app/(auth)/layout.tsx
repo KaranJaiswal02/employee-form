@@ -13,11 +13,15 @@ export default function RootLayout({
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
+        if (typeof window !== "undefined") {
+            const isDark = document.documentElement.classList.contains("dark");
+            setIsDarkMode(isDark);
+        }
         const token = localStorage.getItem('token');
         if (token) {
             router.push('/staff-joining');
         }
-    }, [router]);
+    }, [router, isDarkMode]);
 
     const toggleDarkMode = () => {
         if (typeof window !== "undefined") {

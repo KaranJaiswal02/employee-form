@@ -37,8 +37,8 @@ export default function Page() {
         if(response.status === 201) {
           setFormStatus((prevStatus) => ({
             ...prevStatus,
-            form5: {
-                ...prevStatus.form5,
+            form6: {
+                ...prevStatus.form6,
                 status: "done",
             },
         }));
@@ -50,7 +50,6 @@ export default function Page() {
         }
       };
 
-    
     return (
         <form onSubmit={handleSubmit} className='p-6 max-w-4xl mx-auto bg-white dark:bg-gray-950 shadow-md rounded-lg'>
             <GratuityForm1 />
