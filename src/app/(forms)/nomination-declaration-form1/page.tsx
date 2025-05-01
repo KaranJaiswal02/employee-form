@@ -167,10 +167,10 @@ export default function Page() {
               onChange={handleChange}
               className="flex-1 border-b-1 border-black dark:border-white px-2 py-1"
             >
-              <option value="">Select</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
+              <option className='bg-white dark:bg-gray-800' value="">Select</option>
+              <option className='bg-white dark:bg-gray-800' value="Male">Male</option>
+              <option className='bg-white dark:bg-gray-800' value="Female">Female</option>
+              <option className='bg-white dark:bg-gray-800' value="Other">Other</option>
             </select>
           </div>
           <div className="flex items-center gap-4">
@@ -235,7 +235,7 @@ export default function Page() {
             <tbody>
               {formData.nominees.map((nominee, index) => (
                 <tr key={index}>
-                  <td className="border border-black dark:border-white px-2 py-1">
+                  <td className="border border-black dark:border-white">
                     <input
                       type="text"
                       className="w-full px-1 py-1 border border-gray-300"
@@ -243,7 +243,7 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "name", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black dark:border-white px-2 py-1">
+                  <td className="border border-black dark:border-white">
                     <input
                       type="text"
                       className="w-full px-1 py-1 border border-gray-300"
@@ -251,7 +251,7 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "address", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black dark:border-white px-2 py-1">
+                  <td className="border border-black dark:border-white">
                     <input
                       type="text"
                       className="w-full px-1 py-1 border border-gray-300"
@@ -259,7 +259,7 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "relationship", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black dark:border-white px-2 py-1">
+                  <td className="border border-black dark:border-white">
                     <input
                       type="date"
                       className="w-full px-1 py-1 border border-gray-300"
@@ -267,7 +267,7 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "dob", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black dark:border-white px-2 py-1">
+                  <td className="border border-black dark:border-white">
                     <input
                       type="text"
                       className="w-full px-1 py-1 border border-gray-300"
@@ -275,15 +275,15 @@ export default function Page() {
                       onChange={(e) => handleNomineeChange(index, "share", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black dark:border-white px-2 py-1">
+                  <td className="border border-black dark:border-white">
                     <textarea
-                      rows={2}
+                      rows={1}
                       className="w-full px-1 py-1 border border-gray-300"
                       value={nominee.guardian}
                       onChange={(e) => handleNomineeChange(index, "guardian", e.target.value)}
                     />
                   </td>
-                  <td className="border border-black dark:border-white px-2 py-1">
+                  <td className="border border-black dark:border-white">
                     {formData.nominees.length > 1 && (
                       <button
                         type="button"
@@ -299,11 +299,11 @@ export default function Page() {
             </tbody>
           </table>
 
-          <div className="text-right mt-4">
+          <div className="text-left">
             <button
               type="button"
               onClick={addNominee}
-              className="px-4 py-1 bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
+              className="px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
             >
               + Add Nominee
             </button>
