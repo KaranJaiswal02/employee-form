@@ -6,6 +6,8 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FiSun } from "react-icons/fi";
 import { FaRegMoon } from "react-icons/fa";
+import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
+import { MdOutlinePending } from "react-icons/md";
 
 export default function FormLayout({
     children,
@@ -55,18 +57,18 @@ export default function FormLayout({
                                     <Link
                                         href={form.url}
                                         className={`flex items-center space-x-3 p-2 rounded-lg transition-colors duration-200 
-                    ${isActive
+                                            ${isActive
                                                 ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold"
                                                 : form.status === "done"
                                                     ? "bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800"
                                                     : "hover:bg-gray-100 dark:hover:bg-gray-800"
                                             }`}
                                     >
-                                        <span className={`text-xl ${form.status === "done"
+                                        <span className={`text-2xl ${form.status === "done"
                                             ? "text-green-500 dark:text-green-400"
                                             : "text-gray-400 dark:text-gray-500"
                                             }`}>
-                                            {form.status === "done" ? "✅" : "⭕"}
+                                            {form.status === "done" ? <IoCheckmarkDoneCircleOutline /> : <MdOutlinePending color="orange" />}
                                         </span>
                                         <span className={`truncate ${isActive ? "font-semibold" : "font-medium"}`}>
                                             {form.name}
