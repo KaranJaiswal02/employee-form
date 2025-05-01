@@ -1,14 +1,11 @@
 import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
 import jwt from 'jsonwebtoken';
+import { AuthenticatedNextApiRequest } from '@/types/requestType';
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
 if (!JWT_SECRET) {
     throw new Error('Missing JWT_SECRET in environment variables');
-}
-
-export interface AuthenticatedNextApiRequest extends NextApiRequest {
-    userId?: string;
 }
 
 export const signJwt = (payload: object, expiresIn: string | number = '7d'): string => {
