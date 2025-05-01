@@ -225,42 +225,39 @@ export const staffFamilyFormData = atom({
 })
 
 export const formStatusus = atom({
-  token: "",
-  forms : {
-    form1: {
-      name: "STAFF JOINING FORM",
-      url: "/staff-joining",
-      status: "pending",
-    },
-    form2: {
-      name: "ID Card Form",
-      url: "/idcard-form",
-      status: "pending",
-    },
-    form3: {
-      name: "Family Members Details",
-      url: "/staff-family-members",
-      status: "pending",
-    },
-    form4: {
-      name: "Bank Mandate Form",
-      url: "/bank-mandate",
-      status: "pending",
-    },
-    form5: {
-      name: "Form 1 Nomination & declaration",
-      url: "/nomination-declaration-form1",
-      status: "pending",
-    },
-    form6: {
-      name: "Gratuity Form",
-      url: "/gratuity-form",
-      status: "pending",
-    },
-    form7: {
-      name: "Form 2 Nomination & declaration",
-      url: "/nomination-declaration-form2",
-      status: "pending",
-    },
+  form1: {
+    name: "STAFF JOINING FORM",
+    url: "/staff-joining",
+    status: "pending",
+  },
+  form2: {
+    name: "ID Card Form",
+    url: "/idcard-form",
+    status: "pending",
+  },
+  form3: {
+    name: "Family Members Details",
+    url: "/staff-family-members",
+    status: "pending",
+  },
+  form4: {
+    name: "Bank Mandate Form",
+    url: "/bank-mandate",
+    status: "pending",
+  },
+  form5: {
+    name: "Form 1 Nomination & declaration",
+    url: "/nomination-declaration-form1",
+    status: "pending",
+  },
+  form6: {
+    name: "Gratuity Form",
+    url: "/gratuity-form",
+    status: "pending",
+  },
+  form7: {
+    name: "Form 2 Nomination & declaration",
+    url: "/nomination-declaration-form2",
+    status: "pending",
   },
 })

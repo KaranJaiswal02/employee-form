@@ -15,7 +15,7 @@ export default function FormLayout({
     children: React.ReactNode;
 }>) {
     const pathname = usePathname();
-    const [formStatus,setFormStatus] = useAtom(formStatusus);
+    const [formStatus] = useAtom(formStatusus);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const router = useRouter();
 
@@ -28,10 +28,6 @@ export default function FormLayout({
         if (!token) {
             router.push('/sign-in');
         }
-        setFormStatus(prev => ({
-            ...prev,
-            token: token || "",
-        }))
     }, [router, isDarkMode]);
 
     const toggleDarkMode = () => {
@@ -54,7 +50,7 @@ export default function FormLayout({
                         📋 Form Progress
                     </h2>
                     <ul className="flex flex-col space-y-2">
-                        {Object.entries(formStatus.forms).map(([key, form]) => {
+                        {Object.entries(formStatus).map(([key, form]) => {
                             const isActive = pathname === form.url;
                             return (
                                 <li key={key}>

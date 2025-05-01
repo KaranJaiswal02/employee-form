@@ -37,13 +37,10 @@ export default function Page() {
         if(response.status === 201) {
           setFormStatus((prevStatus) => ({
             ...prevStatus,
-            forms: {
-                ...prevStatus.forms,
-                form6: {
-                    ...prevStatus.forms.form6,
-                    status: "done",
-                },
-            }
+            form6: {
+                ...prevStatus.form6,
+                status: "done",
+            },
         }));
           router.push("/nomination-declaration-form2");
         }
