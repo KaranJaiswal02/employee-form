@@ -19,7 +19,7 @@ export default function Page() {
   const [formData, setFormData] = useAtom(idCardFormData);
   const [empFormData1] = useAtom(empFormData);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
-  const [_,setFormStatus] = useAtom(formStatusus);
+  const [_, setFormStatus] = useAtom(formStatusus);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -30,6 +30,7 @@ export default function Page() {
       dob: empFormData1.dob || "",
       // currAddress: empFormData1.currAddress || "",
     }));
+    setPhotoPreview(formData.photo || null);
   }, []);
 
   const handleInputChange = (
@@ -63,14 +64,14 @@ export default function Page() {
       },
       body: JSON.stringify(formData),
     });
-    if(response.status === 201) {
+    if (response.status === 201) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
         form2: {
-            ...prevStatus.form2,
-            status: "done",
+          ...prevStatus.form2,
+          status: "done",
         },
-    }));
+      }));
       router.push("/staff-family-members");
     }
     else {
@@ -102,7 +103,7 @@ export default function Page() {
             <div key={id} className="flex border-b border-black dark:border-white h-12">
               <label htmlFor={id} className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                 {label}
-                
+
               </label>
               <div className="w-2/3 flex items-center px-2">
                 {id === "bloodGroup" ? (
@@ -165,7 +166,7 @@ export default function Page() {
               <span className="text-sm">Upload Photo</span>
             )}
             <input
-              type="file" 
+              type="file"
               accept="image/*"
               onChange={handlePhotoChange}
               className="opacity-0 absolute inset-0 cursor-pointer"

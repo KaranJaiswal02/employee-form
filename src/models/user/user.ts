@@ -3,13 +3,13 @@ import { Schema, model, models, Document, Types } from 'mongoose';
 export interface IUser extends Document {
     email: string;
     password: string;
-    form1?: Types.ObjectId;
-    form2?: Types.ObjectId;
-    form3?: Types.ObjectId;
-    form4?: Types.ObjectId;
-    form5?: Types.ObjectId;
-    form6?: Types.ObjectId;
-    form7?: Types.ObjectId;
+    staffJoiningForm?: Types.ObjectId;
+    idCardForm?: Types.ObjectId;
+    familyDetailsForm?: Types.ObjectId;
+    bankMandateForm?: Types.ObjectId;
+    nominationForm1?: Types.ObjectId;
+    gratuityForm?: Types.ObjectId;
+    nominationForm2?: Types.ObjectId;
 }
 
 const userSchema = new Schema<IUser>(
@@ -25,13 +25,13 @@ const userSchema = new Schema<IUser>(
             type: String,
             required: true,
         },
-        form1: { type: Schema.Types.ObjectId, ref: 'Form1' },
-        form2: { type: Schema.Types.ObjectId, ref: 'Form2' },
-        form3: { type: Schema.Types.ObjectId, ref: 'Form3' },
-        form4: { type: Schema.Types.ObjectId, ref: 'Form4' },
-        form5: { type: Schema.Types.ObjectId, ref: 'Form5' },
-        form6: { type: Schema.Types.ObjectId, ref: 'Form6' },
-        form7: { type: Schema.Types.ObjectId, ref: 'Form7' },
+        staffJoiningForm: { type: Schema.Types.ObjectId, ref: 'EmpFormData' },
+        idCardForm: { type: Schema.Types.ObjectId, ref: 'IdCardFormData' },
+        familyDetailsForm: { type: Schema.Types.ObjectId, ref: 'StaffFamilyFormData' },
+        bankMandateForm: { type: Schema.Types.ObjectId, ref: 'BankMandateFormData' },
+        nominationForm1: { type: Schema.Types.ObjectId, ref: 'NominationForm1' },
+        gratuityForm: { type: Schema.Types.ObjectId, ref: 'GratuityForm' },
+        nominationForm2: { type: Schema.Types.ObjectId, ref: 'NominationForm2' },
     }
 );
 

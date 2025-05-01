@@ -50,7 +50,6 @@ export default function Page() {
         }
       };
 
-    
     return (
         <form onSubmit={handleSubmit} className='p-6 max-w-4xl mx-auto bg-white dark:bg-gray-950 shadow-md rounded-lg'>
             <GratuityForm1 />

@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
-import EmpJoinForm from "@/models/forms/empjoin_form";
-import { IEmpFormData } from "@/models/forms/empjoin_form";
+import EmpJoinForm from "@/models/forms/staffjoin_form";
+import { IEmpFormData } from "@/models/forms/staffjoin_form";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import IAPIResponse from "@/types/responseType";

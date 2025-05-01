@@ -111,7 +111,7 @@ export default function EmpForm3() {
             <button
                 type="button"
                 onClick={addEducationRow}
-                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm"
+                className="px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
             >
                 + Add Row
             </button>
@@ -161,7 +161,7 @@ export default function EmpForm3() {
             <button
                 type="button"
                 onClick={addEmploymentRow}
-                className="px-3 py-[1px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm"
+                className="px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
             >
                 + Add Row
             </button>

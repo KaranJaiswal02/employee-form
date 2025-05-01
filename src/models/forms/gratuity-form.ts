@@ -61,7 +61,6 @@ const GratuityFormSchema: Schema = new Schema({
   witness2name: { type: String, required: false },
 });
 
-const IGratuityFormModel =
-  models.GratuityForm || mongoose.model<IGratuityForm>('GratuityForm', GratuityFormSchema);
+const IGratuityFormModel = models.GratuityForm || mongoose.model<IGratuityForm>('GratuityForm', GratuityFormSchema);
 
 export default IGratuityFormModel;

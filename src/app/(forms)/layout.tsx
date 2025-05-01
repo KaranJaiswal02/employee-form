@@ -4,6 +4,10 @@ import { useAtom } from "jotai";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
+import { FiSun } from "react-icons/fi";
+import { FaRegMoon } from "react-icons/fa";
+import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
+import { MdOutlinePending } from "react-icons/md";
 
 export default function FormLayout({
     children,
@@ -53,18 +57,18 @@ export default function FormLayout({
                                     <Link
                                         href={form.url}
                                         className={`flex items-center space-x-3 p-2 rounded-lg transition-colors duration-200 
-                    ${isActive
+                                            ${isActive
                                                 ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold"
                                                 : form.status === "done"
                                                     ? "bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800"
                                                     : "hover:bg-gray-100 dark:hover:bg-gray-800"
                                             }`}
                                     >
-                                        <span className={`text-xl ${form.status === "done"
+                                        <span className={`text-2xl ${form.status === "done"
                                             ? "text-green-500 dark:text-green-400"
                                             : "text-gray-400 dark:text-gray-500"
                                             }`}>
-                                            {form.status === "done" ? "✅" : "⭕"}
+                                            {form.status === "done" ? <IoCheckmarkDoneCircleOutline /> : <MdOutlinePending color="orange" />}
                                         </span>
                                         <span className={`truncate ${isActive ? "font-semibold" : "font-medium"}`}>
                                             {form.name}
@@ -79,10 +83,7 @@ export default function FormLayout({
                 {/* Bottom section */}
                 <div className="mt-6 space-y-4">
                     {/* Dark Mode Toggle */}
-                    <div className="flex items-center space-x-3">
-                        <span className="text-gray-800 dark:text-gray-200 font-medium">
-                            {isDarkMode ? "🌙" : "☀️"}
-                        </span>
+                    <div className="flex items-center justify-center space-x-3">
                         <button
                             onClick={toggleDarkMode}
                             className="relative inline-flex items-center cursor-pointer w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-700 transition-colors duration-200"
@@ -93,14 +94,17 @@ export default function FormLayout({
                             ></span>
                         </button>
                         <span className="text-gray-800 dark:text-gray-200 font-medium">
-                            {isDarkMode ? "Light Mode" : "Dark Mode"}
+                            {isDarkMode ? <FaRegMoon /> : <FiSun />}
+                        </span>
+                        <span className="text-gray-800 dark:text-gray-200 font-medium">
+                            {isDarkMode ? "Dark Mode" : "Light Mode"}
                         </span>
                     </div>
 
                     {/* Logout Button */}
                     <button
                         onClick={handleLogout}
-                        className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200"
+                        className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors cursor-pointer"
                     >
                         Logout
                     </button>
