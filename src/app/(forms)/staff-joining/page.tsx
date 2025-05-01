@@ -18,7 +18,7 @@ export default function page() {
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
-    const response = await fetch("/api/staff-joining", {
+    const response = await fetch("/api/forms/staff-joining", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

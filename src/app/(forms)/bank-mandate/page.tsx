@@ -33,7 +33,7 @@ export default function BankMandateForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(formData);
-        const response = await fetch("/api/bank-mandate", {
+        const response = await fetch("/api/forms/bank-mandate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

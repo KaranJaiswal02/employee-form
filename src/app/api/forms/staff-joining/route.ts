@@ -9,6 +9,13 @@ export async function POST(req: NextRequest) {
     await dbConnect();
 
     try {
+        const userId = req.headers.get('x-userId');
+        const role = req.headers.get('x-userRole');
+        return NextResponse.json({
+            userId,
+            role,
+        }, { status: 200 })
+
         const body: IEmpFormData = await req.json();
         
         // Validate request body

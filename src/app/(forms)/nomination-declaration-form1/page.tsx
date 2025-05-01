@@ -48,7 +48,7 @@ export default function Page() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
-    const response = await fetch("/api/nomination-declaration-form1", {
+    const response = await fetch("/api/forms/nomination-declaration-form1", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
