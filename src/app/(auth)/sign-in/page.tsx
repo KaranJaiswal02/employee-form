@@ -100,7 +100,7 @@ export default function LoginForm() {
                                     ))}
                                 </div>
                             )}
-                            <Button disabled={loading} type="submit" className="w-full">
+                            <Button disabled={loading} type="submit" className="w-full cursor-pointer">
                                 {loading ? "Loading..." : "Login"}
                             </Button>
                         </div>
