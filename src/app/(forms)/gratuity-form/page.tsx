@@ -23,7 +23,6 @@ export default function Page() {
       name: empFormData1.name || "",
       department: empFormData1.department || "",
       marriagestatus: nominationform1.maritalStatus || "",
-
     }))
   }, [])
 

@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function SignUpForm() {
     const router = useRouter();
@@ -53,10 +54,10 @@ export default function SignUpForm() {
 
             if (res.data.success) {
                 localStorage.setItem('token', res.data.data.token);
+                toast.success(res.data.message);
                 router.push('/staff-joining');
             } else {
-                const message = res.data.message || 'Signup failed';
-                setErrors(Array.isArray(message) ? message : [message]);
+                setErrors(res.data.errors || ['Sign-Up failed']);
             }
         } catch (err: any) {
             setErrors([err.response?.data?.message || 'Something went wrong']);

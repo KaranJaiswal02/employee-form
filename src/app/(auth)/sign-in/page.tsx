@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { toast } from "sonner";
 
 export default function LoginForm() {
     const router = useRouter();
@@ -48,7 +49,7 @@ export default function LoginForm() {
             if (res.data.success) {
                 localStorage.setItem('token', res.data.data.token);
                 console.log(res.data.data)
-
+                toast.success(res.data.message);
                 router.push('/staff-joining');
             } else {
                 setErrors(res.data.errors || ['Login failed']);
