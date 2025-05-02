@@ -55,7 +55,7 @@ export default function page() {
   };
 
   return (
-    <form onSubmit={submitForm} className="p-6 max-w-4xl mx-auto bg-white dark:bg-gray-950 shadow-md rounded-lg">
+    <form onSubmit={submitForm} className="p-6 max-w-4xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
       <EmpForm1 />
       <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
       <EmpForm2 />

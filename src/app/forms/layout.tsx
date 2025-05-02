@@ -117,7 +117,7 @@ export default function FormLayout({
                 (<div className="w-full h-screen flex items-center justify-center">
                     <span className="inline-block md:w-36 w-16 md:h-36 h-16 border-[1rem] border-gray-600 border-b-transparent rounded-full animate-spin dark:border-white dark:border-b-transparent"></span>
                 </div>) : (<div className="flex">
-                    <aside className="fixed top-0 left-0 w-80 h-screen bg-white dark:bg-gray-950 shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between overflow-auto">
+                    <aside className="fixed top-0 left-0 w-80 h-screen bg-white dark:bg-card border shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between overflow-auto">
                         <div>
                             <h2 className="text-2xl font-bold text-gray-900 dark:text-white px-2 mb-6 tracking-tight">
                                 📋 {name ? name : "Form Progress"}

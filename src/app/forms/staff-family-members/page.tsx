@@ -114,7 +114,7 @@ export default function MedicalInsuranceForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="p-6 max-w-5xl mx-auto bg-white dark:bg-gray-950 shadow-md rounded-lg">
+        <form onSubmit={handleSubmit} className="p-6 max-w-5xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
             <h2 className="text-center text-lg font-semibold border-b border-black dark:border-white pb-2 mb-4">
                 STAFF FAMILY MEMBERS DETAILS - MEDICAL INSURANCE
             </h2>
