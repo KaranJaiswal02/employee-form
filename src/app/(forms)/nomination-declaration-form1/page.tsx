@@ -32,6 +32,7 @@ export default function Page() {
   const router = useRouter()
   const [empFormData1] = useAtom(empFormData);
   const [_, setFormStatus] = useAtom(formStatusus);
+  const [formData, setFormData] = useAtom<FormData>(nominationForm1Data);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -73,7 +74,6 @@ export default function Page() {
     }
   };
 
-  const [formData, setFormData] = useAtom<FormData>(nominationForm1Data);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;

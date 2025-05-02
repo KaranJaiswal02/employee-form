@@ -12,8 +12,8 @@ export async function POST(req: NextRequest) {
     if (!email || !password) {
         const response: IAPIResponse = {
             success: false,
-            message: 'Validation Error',
-            errors: ['Email and password are required'],
+            message: 'Missing required fields',
+            errors: ['Both email and password must be provided.'],
         };
         return NextResponse.json(response, { status: 400 });
     }
@@ -21,30 +21,13 @@ export async function POST(req: NextRequest) {
     try {
         await dbConnect();
 
-        const user = await User.findOne({ email })
-            .populate('idCardForm')
-            .populate('familyDetailsForm')
-            .populate('bankMandateForm')
-            .populate('nominationForm1')
-            .populate('gratuityForm')
-            .populate('nominationForm2');
+        const user = await User.findOne({ email });
 
-        if (!user) {
+        if (!user || !(await comparePassword(password, user.password))) {
             const response: IAPIResponse = {
                 success: false,
-                message: 'Invalid Credentials',
-                errors: ['Email or password is incorrect'],
-            };
-            return NextResponse.json(response, { status: 401 });
-        }
-
-        const isMatch = await comparePassword(password, user.password);
-
-        if (!isMatch) {
-            const response: IAPIResponse = {
-                success: false,
-                message: 'Invalid Credentials',
-                errors: ['Email or password is incorrect'],
+                message: 'Authentication failed',
+                errors: ['The email or password you entered is incorrect.'],
             };
             return NextResponse.json(response, { status: 401 });
         }
@@ -57,15 +40,6 @@ export async function POST(req: NextRequest) {
             errors: [],
             data: {
                 token,
-                email: user.email,
-                forms: {
-                    idCardForm: user.idCardForm,
-                    familyDetailsForm: user.familyDetailsForm,
-                    bankMandateForm: user.bankMandateForm,
-                    nominationForm1: user.nominationForm1,
-                    gratuityForm: user.gratuityForm,
-                    nominationForm2: user.nominationForm2,
-                },
             },
         };
 
@@ -76,8 +50,8 @@ export async function POST(req: NextRequest) {
 
         const response: IAPIResponse = {
             success: false,
-            message: 'Internal Server Error',
-            errors: ['Something went wrong during signin'],
+            message: 'Unexpected error occurred',
+            errors: ['An error occurred while processing your request. Please try again later.'],
         };
 
         return NextResponse.json(response, { status: 500 });

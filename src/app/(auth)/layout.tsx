@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -35,7 +34,7 @@ export default function RootLayout({
     return (
         <div className="min-h-svh w-full flex flex-col">
             {/* Navbar */}
-            <nav className="w-full bg-white dark:bg-gray-900 shadow px-6 py-4">
+            <nav className="w-full bg-white dark:bg-gray-900 shadow border-b-1 px-6 py-4 fixed z-10 top-0 left-0">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <Link href="/" className="text-xl font-semibold text-gray-800 dark:text-white">
                         Employee Forms
@@ -60,7 +59,7 @@ export default function RootLayout({
             </nav>
 
             {/* Page content */}
-            <div className="flex flex-1 items-center justify-center p-6 md:p-10">
+            <div className="flex flex-1 items-center justify-center pt-16">
                 <div className="w-full max-w-sm">
                     {children}
                 </div>
