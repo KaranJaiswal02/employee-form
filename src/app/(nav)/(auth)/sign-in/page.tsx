@@ -50,8 +50,9 @@ export default function LoginForm() {
                 localStorage.setItem('token', res.data.data.token);
                 console.log(res.data.data)
                 toast.success(res.data.message);
+                window.dispatchEvent(new Event("login"));
                 if(res.data.data.role === 'admin') {
-                    router.push('/dashboard');
+                    router.push('/admin/dashboard');
                 }else{
                     router.push('/forms/staff-joining');
                 }

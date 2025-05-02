@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { verifyJwt } from '@/lib/jwt';
 
 export async function middleware(req: NextRequest) {
-    const protectedRoutes = ['/api/forms'];
+    const protectedRoutes = ['/api/forms','/api/user'];
 
     const { pathname } = req.nextUrl;
 

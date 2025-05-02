@@ -1,0 +1,64 @@
+// Dashboard.tsx
+'use client';
+import Link from 'next/link';
+import { FaUserShield, FaFileDownload, FaUserEdit, FaClipboardList, FaBriefcase } from 'react-icons/fa';
+
+const dashboardOptions = [
+    {
+        title: 'Admin Management',
+        icon: <FaUserShield className="text-3xl text-white" />,
+        bgColor: 'bg-blue-600 dark:bg-blue-800',
+        href: '/admin/admin-management',
+    },
+    {
+        title: 'Edit Employee Details',
+        icon: <FaUserEdit className="text-3xl text-white" />,
+        bgColor: 'bg-orange-600 dark:bg-orange-700/90',
+        href: '/admin/edit-employee-details',
+    },
+    {
+        title: 'Download Meal Tickets',
+        icon: <FaFileDownload className="text-3xl text-white" />,
+        bgColor: 'bg-green-600 dark:bg-green-800',
+        href: '/admin/meal-ticket',
+    },
+    {
+        title: 'Download Forms',
+        icon: <FaClipboardList className="text-3xl text-white" />,
+        bgColor: 'bg-purple-600 dark:bg-purple-800',
+        href: '/admin/download-forms',
+    },
+    {
+        title: 'My Employment Forms',
+        icon: <FaBriefcase className="text-3xl text-white" />,
+        bgColor: 'bg-yellow-500 dark:bg-yellow-700',
+        href: '/forms/staff-joining',
+    },
+];
+
+
+export default function Dashboard() {
+    return (
+        <div className="h-full w-full flex flex-col items-center justify-start p-6">
+            <h1 className="text-3xl bg- font-bold text-center mb-8 text-gray-800 dark:text-white">
+                Admin Dashboard
+            </h1>
+
+            <div className="max-w-6xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+                {dashboardOptions.map((option) => (
+                    <Link
+                        key={option.title}
+                        href={option.href}
+                        className={`${option.bgColor} text-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-scale flex items-center gap-4 hover:scale-[1.02] duration-150`}
+                    >
+                        <div className="bg-white/20 p-4 rounded-full">
+                            {option.icon}
+                        </div>
+                        <h3 className="text-xl font-semibold">{option.title}</h3>
+                    </Link>
+                ))}
+            </div>
+        </div>
+    );
+}
+

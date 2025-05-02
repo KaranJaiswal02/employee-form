@@ -65,7 +65,7 @@ export async function PATCH(req: NextRequest) {
 
         const response: IAPIResponse = {
             success: true,
-            message: `User role updated to '${user.role}'`,
+            message: `User ${user.name}'s role updated to '${user.role}'`,
             errors: [],
             data: { userId: user._id, newRole: user.role },
         };

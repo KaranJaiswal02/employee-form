@@ -4,10 +4,12 @@ import { useAtom } from "jotai";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import { FiSun } from "react-icons/fi";
+import { FiLogOut, FiSun } from "react-icons/fi";
 import { FaRegMoon } from "react-icons/fa";
 import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
 import { MdOutlinePending } from "react-icons/md";
+import Loader from "@/components/Loader";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default function FormLayout({
     children,
@@ -22,6 +24,7 @@ export default function FormLayout({
     const searchParams = useSearchParams();
     const [paramsData, setParamsData] = useState<string>("");
     const [name, setName] = useState<string>("");
+    const [currentUserRole, setCurrentUserRole] = useState("user");
 
     //all forms
     const [, setbankMandateFormData] = useAtom(bankMandateFormData);
@@ -102,6 +105,8 @@ export default function FormLayout({
             const data = await response.json();
             if (data.success) {
                 setName(data.data?.name || "");
+                console.log(data.data?.currentUserRole)
+                setCurrentUserRole(data.data?.currentUserRole || "user");
                 setFormsData(data.data.forms);
             } else {
                 console.log(data.message);
@@ -114,13 +119,18 @@ export default function FormLayout({
     return (
         <>
             {isLoading ?
-                (<div className="w-full h-screen flex items-center justify-center">
-                    <span className="inline-block md:w-36 w-16 md:h-36 h-16 border-[1rem] border-gray-600 border-b-transparent rounded-full animate-spin dark:border-white dark:border-b-transparent"></span>
-                </div>) : (<div className="flex">
+                (
+                    <div className="h-screen">
+                        <Loader />
+                    </div>
+                ) : (<div className="flex">
                     <aside className="fixed top-0 left-0 w-80 h-screen bg-white dark:bg-card border shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between overflow-auto">
                         <div>
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white px-2 mb-6 tracking-tight">
-                                📋 {name ? name : "Form Progress"}
+                            <h2 className="text-2xl flex font-bold text-gray-900 dark:text-white px-2 mb-6 tracking-tight">
+                                {currentUserRole==="admin" && (<Link href={paramsData ? "/admin/edit-employee-details" : "/admin/dashboard"} className="text-gray-800 dark:text-white hover:opacity-80">
+                                    <IoIosArrowBack size={32} className="p-1 bg-neutral-300 dark:bg-neutral-700 rounded-full" />
+                                </Link>)}
+                                <span>📋{name ? name : "Form Progress"}</span>
                             </h2>
                             <ul className="flex flex-col space-y-2">
                                 {Object.entries(formStatus).map(([key, form]) => {
@@ -158,7 +168,7 @@ export default function FormLayout({
                             {/* Dark Mode Toggle */}
                             <div onClick={toggleDarkMode} className="flex items-center justify-center space-x-3 cursor-pointer">
                                 <button
-                                    className="relative inline-flex items-center w-12 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 transition-colors duration-200"
+                                    className="relative inline-flex items-center w-12 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 transition-colors duration-200 cursor-pointer"
                                 >
                                     <span
                                         className={`inline-block w-6 h-6 bg-white rounded-full shadow-md transform transition-all duration-200 ${isDarkMode ? "translate-x-6" : "translate-x-0"
@@ -176,9 +186,9 @@ export default function FormLayout({
                             {/* Logout Button */}
                             <button
                                 onClick={handleLogout}
-                                className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors cursor-pointer"
+                                className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium shadow-md transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer"
                             >
-                                Logout
+                                <FiLogOut className="text-lg" />Logout
                             </button>
                         </div>
                     </aside>

@@ -19,6 +19,7 @@ export async function seedAdmin() : Promise<string> {
     }
 
     const newAdmin = new User({
+        name: "Admin",
         email: adminEmail,
         password: await hashPassword(adminPassword),
         role: "admin",

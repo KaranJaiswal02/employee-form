@@ -56,6 +56,7 @@ export default function SignUpForm() {
             if (res.data.success) {
                 localStorage.setItem('token', res.data.data.token);
                 toast.success(res.data.message);
+                window.dispatchEvent(new Event("login"));
                 router.push('/forms/staff-joining');
             } else {
                 toast.error(res.data.message);

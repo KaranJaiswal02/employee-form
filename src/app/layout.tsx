@@ -13,7 +13,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // await seedAdmin();
+  await seedAdmin();
   return (
     <html lang="en" className="dark">
       <body className="bg-neutral-200 dark:bg-neutral-950 text-gray-900 font-sans antialiased dark:text-gray-200">

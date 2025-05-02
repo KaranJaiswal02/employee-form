@@ -8,35 +8,23 @@ export async function GET(req: NextRequest) {
     await dbConnect();
 
     try {
-        const xUserId = req.headers.get("x-userid") as string;
-        const staffId = req.headers.get("userid") as string;
-        const role = req.headers.get("x-userrole") as string;
+        const xUserId = req.headers.get("x-userId");
+        const xrole = req.headers.get("x-userRole");
+        console.log("xUserId", xUserId);
+        console.log("xrole", xrole);
 
-        const actualUserId = (staffId !== "null" && role === "admin") ? staffId : xUserId;
-
-        if (!actualUserId) {
+        if (!xUserId || !xrole) {
             return NextResponse.json(
                 {
                     success: false,
                     message: "Unauthorized",
-                    errors: ["User ID is missing from headers"],
+                    errors: ["User ID or role is missing from headers"],
                 },
                 { status: 401 }
             );
         }
 
-        const omitFields = "-_id -userId -__v -createdAt -updatedAt";
-
-        const currentUser = await User.findById(xUserId);
-
-        const user = await User.findById(actualUserId)
-            .populate("staffJoiningForm", omitFields)
-            .populate("idCardForm", omitFields)
-            .populate("familyDetailsForm", omitFields)
-            .populate("bankMandateForm", omitFields)
-            .populate("nominationForm1", omitFields)
-            .populate("gratuityForm", omitFields)
-            .populate("nominationForm2", omitFields);
+        const user = await User.findById(xUserId);
 
         if (!user) {
             return NextResponse.json(
@@ -51,30 +39,19 @@ export async function GET(req: NextRequest) {
 
         const response: IAPIResponse = {
             success: true,
-            message: "Form data fetched successfully",
+            message: "User found successfully",
             errors: [],
             data: {
                 name: user.name,
                 email: user.email,
                 role: user.role,
-                currentUserRole: currentUser.role,
-                currentUserName: currentUser.name,
-                forms: {
-                    bankMandateFormData: user.bankMandateForm,
-                    grauFormData: user.gratuityForm,
-                    idCardFormData: user.idCardForm,
-                    nominationForm1Data: user.nominationForm1,
-                    nominationForm2Data: user.nominationForm2,
-                    staffFamilyFormData: user.familyDetailsForm,
-                    empFormData: user.staffJoiningForm,
-                },
             },
         };
 
         return NextResponse.json(response, { status: 200 });
 
     } catch (error) {
-        console.error("Error in GET /user-forms:", error);
+        console.error("Error in GET /verify-token:", error);
 
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];
