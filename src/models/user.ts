@@ -1,6 +1,7 @@
 import { Schema, model, models, Document, Types } from 'mongoose';
 
 export interface IUser extends Document {
+    name: string;
     email: string;
     password: string;
     role?: string;
@@ -15,6 +16,11 @@ export interface IUser extends Document {
 
 const userSchema = new Schema<IUser>(
     {
+        name: {
+            type: String,
+            required: true,
+            trim: true,
+        },
         email: {
             type: String,
             required: true,
@@ -38,6 +44,9 @@ const userSchema = new Schema<IUser>(
         nominationForm1: { type: Schema.Types.ObjectId, ref: 'NominationForm1' },
         gratuityForm: { type: Schema.Types.ObjectId, ref: 'GratuityForm' },
         nominationForm2: { type: Schema.Types.ObjectId, ref: 'NominationForm2' },
+    },
+    {
+        timestamps: true,
     }
 );
 
