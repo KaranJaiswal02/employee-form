@@ -21,6 +21,7 @@ export default function FormLayout({
     const router = useRouter();
     const searchParams = useSearchParams();
     const [paramsData, setParamsData] = useState<string>("");
+    const [name, setName] = useState<string>("");
 
     //all forms
     const [, setbankMandateFormData] = useAtom(bankMandateFormData);
@@ -100,6 +101,7 @@ export default function FormLayout({
             });
             const data = await response.json();
             if (data.success) {
+                setName(data.data?.name || "");
                 setFormsData(data.data.forms);
             } else {
                 console.log(data.message);
@@ -176,7 +178,7 @@ export default function FormLayout({
                                 onClick={handleLogout}
                                 className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors cursor-pointer"
                             >
-                                Logout
+                                Logout ({name.split(" ")[0]})
                             </button>
                         </div>
                     </aside>

@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
             errors: [],
             data: {
                 token,
+                role : user.role,
             },
         };
 

@@ -47,6 +47,7 @@ export async function POST(req: NextRequest) {
             errors: [],
             data: {
                 token,
+                role : newUser.role,
             },
         };
         return NextResponse.json(response, { status: 201 });

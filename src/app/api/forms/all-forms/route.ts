@@ -52,6 +52,7 @@ export async function GET(req: NextRequest) {
             message: "Form data fetched successfully",
             errors: [],
             data: {
+                name: user.name,
                 email: user.email,
                 role: user.role,
                 forms: {
