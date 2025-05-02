@@ -22,6 +22,8 @@ export default function Page() {
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [, setFormStatus] = useAtom(formStatusus);
   const searchParams = useSearchParams()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -88,6 +90,7 @@ export default function Page() {
     }
     else {
       toast.error(responseData.message);
+      setErrors(responseData.errors);
     }
   };
 
@@ -99,70 +102,7 @@ export default function Page() {
       <h1 className="text-center text-xl font-bold mb-4">ID CARD FORM</h1>
 
       <div className="grid grid-cols-3 gap-0 border border-black dark:border-white text-sm">
-        {/* <div className="col-span-2 w-full">
-          {[
-            ["NAME", "name"],
-            ["CODE", "empcode"],
-            ["DEPARTMENT", "department"],
-            ["DESIGNATION", "designation"],
-            ["DOB", "dob", "date"],
-            ["DOJ", "dateOfJoining", "date"],
-            ["BLOOD GROUP", "bloodGroup"],
-            ["FATHER NAME", "fatherName"],
-            ["YEAR", "year"],
-          ].map(([label, id, type]) => (
-            <div key={id} className="flex border-b border-black dark:border-white h-12">
-              <label htmlFor={id} className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
-                {label}
 
-              </label>
-              <div className="w-2/3 flex items-center px-2">
-                {id === "bloodGroup" ? (
-                  <DropdownMenu>
-                    <DropdownMenuTrigger className="w-full text-left">
-                      <Input
-                        id="bloodGroup"
-                        value={formData.bloodGroup}
-                        onChange={handleInputChange}
-                        readOnly
-                        className="cursor-pointer"
-                      />
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-48">
-                      <DropdownMenuRadioGroup
-                        value={formData.bloodGroup}
-                        onValueChange={(value) =>
-                          setFormData((prev) => ({
-                            ...prev,
-                            bloodGroup: value,
-                          }))
-                        }
-                      >
-                        {["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"].map(
-                          (bg) => (
-                            <DropdownMenuRadioItem key={bg} value={bg}>
-                              {bg}
-                            </DropdownMenuRadioItem>
-                          )
-                        )}
-                      </DropdownMenuRadioGroup>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
-                ) : (
-                  <Input
-                    id={id}
-                    type={type || "text"}
-                    value={(formData as any)[id]}
-                    onChange={handleInputChange}
-                    className="w-full"
-                    min={id === "year" ? "2000" : undefined}
-                    max={id === "year" ? "2100" : undefined}
-                  />
-                )}
-              </div>
-            </div>
-          ))}
-        </div> */}
         <div className="col-span-2 w-full">
           {/* NAME */}
           <div className="flex border-b border-black dark:border-white h-12">
@@ -245,7 +185,7 @@ export default function Page() {
                 className="w-full"
                 disabled={true}
                 required
-              min="1950-01-01"
+                min="1950-01-01"
               />
             </div>
           </div>
@@ -406,9 +346,17 @@ export default function Page() {
         </div>
       </div>
 
+      {errors.length > 0 && (
+        <div className="text-red-600 text-sm px-2 text-left">
+          {errors.map((err, index) => (
+            <div key={index}>{err}</div>
+          ))}
+        </div>
+      )}
       <div className="flex justify-center mt-6">
-        <Button type="submit" className="w-full cursor-pointer">
+        <Button type="submit" disabled={isSubmitting} className="w-full cursor-pointer">
           Submit
+          {isSubmitting ? "Submitting..." : "Submit"}
         </Button>
       </div>
     </form>

@@ -16,6 +16,8 @@ export default function Page() {
   const [nominationform1] = useAtom(nominationForm1Data);
   const [, setFormStatus] = useAtom(formStatusus);
   const searchParams = useSearchParams()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
 
   useEffect(() => {
     setFormData(prev => ({
@@ -54,6 +56,8 @@ export default function Page() {
     }
     else {
       toast.error(responseData.message);
+      setErrors(responseData.errors);
+      
     }
   };
 
@@ -61,8 +65,17 @@ export default function Page() {
     <form onSubmit={handleSubmit} className='p-6 max-w-4xl mx-auto bg-white dark:bg-gray-950 shadow-md rounded-lg'>
       <GratuityForm1 />
       <GratuityForm2 />
+      {errors.length > 0 && (
+                <div className="text-red-600 text-sm px-2 text-left">
+                    {errors.map((err, index) => (
+                        <div key={index}>{err}</div>
+                    ))}
+                </div>
+            )}
       <div className="flex justify-center mt-6">
-        <Button type="submit" className='w-full'>Submit</Button>
+        <Button type="submit" disabled={isSubmitting} className='w-full'>Submit
+        {isSubmitting ? "Submitting..." : "Submit"}
+        </Button>
       </div>
     </form>
   )

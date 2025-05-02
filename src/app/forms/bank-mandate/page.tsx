@@ -15,7 +15,7 @@ export default function BankMandateForm() {
     const searchParams = useSearchParams()
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
-
+//16-17 lagana hai sbmein
     useEffect(() => {
         setFormData((prev) => ({
             ...prev,
@@ -63,7 +63,7 @@ export default function BankMandateForm() {
         }
         else {
             toast.error(responseData.message);
-            setErrors(responseData.errors);
+            setErrors(responseData.errors);// Set the errors to display sbmein in handle submit
         }
         setIsSubmitting(false);
     };
@@ -278,38 +278,7 @@ export default function BankMandateForm() {
                                 </div>
                             </td>
                         </tr>
-
-                        {/* <tr>
-                            <td className="border border-black dark:border-white p-2" colSpan={4}><RequiredLabel>
-                                Account Number (as appearing in the cheque book):
-                            </RequiredLabel>
-
-                                <input
-                                    id="accountNumber"
-                                    type="number"
-                                    className="w-full mt-2 outline-none border-t border-black dark:border-white"
-                                    placeholder="Enter Account Number"
-                                    onChange={handleChange}
-                                    value={formData.accountNumber}
-                                    required
-                                />
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td className="border border-black dark:border-white p-2" colSpan={4}>
-                                <RequiredLabel>IFSC Code:</RequiredLabel>
-                                <input
-                                    id="ifscCode"
-                                    type="text"
-                                    className="w-full mt-2 outline-none border-t border-black dark:border-white"
-                                    placeholder="Enter IFSC Code"
-                                    onChange={handleChange}
-                                    value={formData.ifscCode}
-                                    required
-                                />
-                            </td>
-                        </tr> */}
+                        
                         <tr>
                             <td className="border border-black dark:border-white p-2" colSpan={4}>
                                 <RequiredLabel> <label htmlFor="accountNumber" className="block">
@@ -393,9 +362,11 @@ export default function BankMandateForm() {
                     ))}
                 </div>
             )}
+            {/* sbmin 389 se 396 poors sbmein submit div ke just upper.  */}
             <div className="flex justify-center mt-6">
                 <Button type="submit" disabled={isSubmitting} className="w-full cursor-pointer">
                     {isSubmitting ? "Submitting..." : "Submit"}
+                    {/* is submititng aur button ka disabled sbmein laga do. */}
                 </Button>
             </div>
         </form >
