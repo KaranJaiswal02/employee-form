@@ -58,7 +58,7 @@ export default function page() {
       <EmpForm4 />
       <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
       <EmpForm5 />
-      <Button type='submit' className="mt-6 w-full">Submit</Button>
+      <Button type='submit' className="mt-6 w-full cursor-pointer">Submit</Button>
     </form>
   )
 }

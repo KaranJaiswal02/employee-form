@@ -441,7 +441,7 @@ export default function MedicalInsuranceForm() {
                 Note: Combination of Father & Father in-law / Mother & Mother in law is not allowed
             </p>
             <div className="flex justify-center mt-2">
-                <Button type='submit' className="mt-6 w-full">Submit</Button>
+                <Button type='submit' className="mt-6 w-full cursor-pointer">Submit</Button>
             </div>
         </form>
     );

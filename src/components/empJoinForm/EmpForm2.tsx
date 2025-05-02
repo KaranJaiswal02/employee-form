@@ -168,22 +168,6 @@ export default function EmpForm2() {
                         required
                     />
                 </div>
-                {/* <div>
-                    <div className="font-semibold mb-1"><RequiredLabel>SEX</RequiredLabel> </div>
-                    <select
-                        name="sex"
-                        value={formData.sex}
-                        id='sex'
-                        onChange={handleChange}
-                        className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none bg-transparent"
-                        required
-                    >
-                        <option className='bg-white dark:bg-gray-800' value="">Select</option>
-                        <option className='bg-white dark:bg-gray-800' value="Male">Male</option>
-                        <option className='bg-white dark:bg-gray-800' value="Female">Female</option>
-                        <option className='bg-white dark:bg-gray-800' value="Other">Other</option>
-                    </select>
-                </div> */}
                 <div>
                     <RequiredLabel><label htmlFor="sex" className="font-semibold mb-1 block">
                         SEX
@@ -204,8 +188,8 @@ export default function EmpForm2() {
                 </div>
 
                 <div>
-                  <RequiredLabel> <label htmlFor='bloodGroup'> <div className="font-semibold mb-1">BLOOD GROUP </div></label>
-                  </RequiredLabel><input
+                    <RequiredLabel> <label htmlFor='bloodGroup'> <div className="font-semibold mb-1">BLOOD GROUP </div></label>
+                    </RequiredLabel><input
                         type="text"
                         name="bloodGroup"
                         id='bloodGroup'
@@ -216,7 +200,7 @@ export default function EmpForm2() {
                     />
                 </div>
                 <div>
-                <RequiredLabel><label htmlFor='nationality'><div className="font-semibold mb-1">NATIONALITY</div></label></RequiredLabel> 
+                    <RequiredLabel><label htmlFor='nationality'><div className="font-semibold mb-1">NATIONALITY</div></label></RequiredLabel>
                     <input
                         type="text"
                         name="nationality"
@@ -231,7 +215,7 @@ export default function EmpForm2() {
 
             {/* Address Section */}
             <div className="mb-4">
-            <RequiredLabel><label htmlFor='currAddress'> <div className="font-semibold mb-1">CURRENT ADDRESS:</div></label></RequiredLabel>
+                <RequiredLabel><label htmlFor='currAddress'> <div className="font-semibold mb-1">CURRENT ADDRESS:</div></label></RequiredLabel>
                 <textarea
                     name="currAddress"
                     value={formData.currAddress}
@@ -279,7 +263,7 @@ export default function EmpForm2() {
                     </div>
                 </div>
                 <div className="flex mt-2">
-                   <label htmlFor='currstdcode'><div className="text-sm">Tel: STD code</div></label>
+                    <label htmlFor='currstdcode'><div className="text-sm">Tel: STD code</div></label>
                     <input
                         type="text"
                         name="currstdcode"
@@ -375,50 +359,50 @@ export default function EmpForm2() {
 
             {/* Marital Status */}
             <div className="mb-4">
-            <RequiredLabel> <label htmlFor="maritalStatus"> <div className="font-semibold mb-1">MARITAL STATUS :</div></label></RequiredLabel>
-                    <label className="ml-4">
-                        <input
-                            type="radio"
-                            name="maritalStatus"
-                            value="Married"
-                            checked={formData.maritalStatus === 'Married'}
-                            onChange={handleChange}
-                            className="mr-1"
+                <RequiredLabel> <label htmlFor="maritalStatus"> <div className="font-semibold mb-1">MARITAL STATUS :</div></label></RequiredLabel>
+                <label className="ml-4">
+                    <input
+                        type="radio"
+                        name="maritalStatus"
+                        value="Married"
+                        checked={formData.maritalStatus === 'Married'}
+                        onChange={handleChange}
+                        className="mr-1"
 
-                        /> Married
-                    </label>
-                    <label className="ml-4">
-                        <input
-                            type="radio"
-                            name="maritalStatus"
-                            value="Single"
-                            checked={formData.maritalStatus === 'Single'}
-                            onChange={handleChange}
-                            className="mr-1"
+                    /> Married
+                </label>
+                <label className="ml-4">
+                    <input
+                        type="radio"
+                        name="maritalStatus"
+                        value="Single"
+                        checked={formData.maritalStatus === 'Single'}
+                        onChange={handleChange}
+                        className="mr-1"
 
-                        /> Single
-                    </label>
-                    <label className="ml-4">
-                        <input
-                            type="radio"
-                            name="maritalStatus"
-                            value="Divorced"
-                            checked={formData.maritalStatus === 'Divorced'}
-                            onChange={handleChange}
-                            className="mr-1"
-                        /> Divorced
-                    </label>
-                    <label className="ml-4">
-                        <input
-                            type="radio"
-                            name="maritalStatus"
-                            value="Widowed"
-                            checked={formData.maritalStatus === 'Widowed'}
-                            onChange={handleChange}
-                            className="mr-1"
-                        /> Widowed
-                    </label>
-                
+                    /> Single
+                </label>
+                <label className="ml-4">
+                    <input
+                        type="radio"
+                        name="maritalStatus"
+                        value="Divorced"
+                        checked={formData.maritalStatus === 'Divorced'}
+                        onChange={handleChange}
+                        className="mr-1"
+                    /> Divorced
+                </label>
+                <label className="ml-4">
+                    <input
+                        type="radio"
+                        name="maritalStatus"
+                        value="Widowed"
+                        checked={formData.maritalStatus === 'Widowed'}
+                        onChange={handleChange}
+                        className="mr-1"
+                    /> Widowed
+                </label>
+
             </div>
 
             {/* Spouse Details - Only show if married */}
@@ -427,7 +411,7 @@ export default function EmpForm2() {
                     <div className="font-semibold mb-2">IF MARRIED, DETAILS OF SPOUSE:</div>
                     <div className="grid grid-cols-3 gap-4">
                         <div>
-                        <RequiredLabel><label htmlFor="spouseName"> <div className="text-sm">NAME</div></label></RequiredLabel>
+                            <RequiredLabel><label htmlFor="spouseName"> <div className="text-sm">NAME</div></label></RequiredLabel>
                             <input
                                 type="text"
                                 name="spouseName"
@@ -439,7 +423,7 @@ export default function EmpForm2() {
                             />
                         </div>
                         <div>
-                        <RequiredLabel><label htmlFor='spouseDob'><div className="text-sm">DATE OF BIRTH</div></label></RequiredLabel>
+                            <RequiredLabel><label htmlFor='spouseDob'><div className="text-sm">DATE OF BIRTH</div></label></RequiredLabel>
                             <input
                                 type="date"
                                 name="spouseDob"
@@ -451,7 +435,7 @@ export default function EmpForm2() {
                             />
                         </div>
                         <div>
-                        <RequiredLabel><label htmlFor='anniversaryDate'><div className="text-sm">ANNIVERSARY DATE</div></label></RequiredLabel>
+                            <RequiredLabel><label htmlFor='anniversaryDate'><div className="text-sm">ANNIVERSARY DATE</div></label></RequiredLabel>
                             <input
                                 type="date"
                                 name="anniversaryDate"
@@ -465,19 +449,25 @@ export default function EmpForm2() {
                     </div>
                     <div className="grid grid-cols-3 gap-4 mt-2">
                         <div>
-                        <RequiredLabel><label htmlFor="spouseBloodGroup"><div className="text-sm">BLOOD GROUP</div></label></RequiredLabel>
-                            <input
-                                type="text"
+                            <RequiredLabel><label htmlFor="spouseBloodGroup"><div className="text-sm">BLOOD GROUP</div></label></RequiredLabel>
+                            <select
                                 name="spouseBloodGroup"
-                                id='spouseBloodGroup'
+                                id="spouseBloodGroup"
                                 value={formData.spouseBloodGroup}
                                 onChange={handleChange}
-                                className="w-full border-b border-black dark:border-white focus:outline-none"
+                                className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none bg-transparent"
                                 required
-                            />
+                            >
+                                <option className="bg-white dark:bg-gray-800" value="">Select</option>
+                                {["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"].map((group) => (
+                                    <option key={group} className="bg-white dark:bg-gray-800" value={group}>
+                                        {group}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
                         <div>
-                        <RequiredLabel> <label htmlFor="spouseEducation"> <div className="text-sm">HIGHEST EDUCATIONAL QUALIFICATION</div></label></RequiredLabel>
+                            <RequiredLabel> <label htmlFor="spouseEducation"> <div className="text-sm">HIGHEST EDUCATIONAL QUALIFICATION</div></label></RequiredLabel>
                             <input
                                 type="text"
                                 name="spouseEducation"
@@ -489,7 +479,7 @@ export default function EmpForm2() {
                             />
                         </div>
                         <div>
-                        <RequiredLabel><label htmlFor="spouseWorking"> <div className="text-sm">WORKING: YES / NO</div></label></RequiredLabel>
+                            <RequiredLabel><label htmlFor="spouseWorking"> <div className="text-sm">WORKING: YES / NO</div></label></RequiredLabel>
                             <select
                                 name="spouseWorking"
                                 id='spouseWorking'
@@ -509,10 +499,10 @@ export default function EmpForm2() {
 
             {/* Emergency Contact */}
             <div className="mb-6">
-            <RequiredLabel><label htmlFor="emergencyContactName"><div className="font-semibold mb-2">EMERGENCY CONTACT:</div></label></RequiredLabel>
+                <RequiredLabel><label htmlFor="emergencyContactName"><div className="font-semibold mb-2">EMERGENCY CONTACT:</div></label></RequiredLabel>
                 <div className="grid grid-cols-2 gap-4">
                     <div>
-                       <RequiredLabel><label htmlFor="emergencyContactName"> <div className="text-sm">NAME:</div></label></RequiredLabel>
+                        <RequiredLabel><label htmlFor="emergencyContactName"> <div className="text-sm">NAME:</div></label></RequiredLabel>
                         <input
                             type="text"
                             name="emergencyContactName"
