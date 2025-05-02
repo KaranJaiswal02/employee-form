@@ -65,7 +65,8 @@ export default function Page() {
       },
       body: JSON.stringify(formData),
     });
-    if (response.status === 201) {
+    const responseData = await response.json();
+    if (responseData.success) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
         form2: {
@@ -76,7 +77,7 @@ export default function Page() {
       router.push("/staff-family-members");
     }
     else {
-      const responseData = await response.json();
+      
       alert(responseData.message);
     }
   };

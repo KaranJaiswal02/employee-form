@@ -47,7 +47,7 @@ export default function EmpForm1() {
           />
         </div>
         <div className="space-y-1">
-          <label className="block font-medium"><RequiredLabel> Father's Name</RequiredLabel></label>
+          <RequiredLabel><label htmlFor='fatherName' className="block font-medium"> Father's Name</label></RequiredLabel>
           <input
             type="text"
             id="fatherName"
@@ -58,7 +58,7 @@ export default function EmpForm1() {
           />
         </div>
         <div className="space-y-1">
-          <label className="block font-medium"><RequiredLabel>Designation</RequiredLabel></label>
+          <RequiredLabel><label htmlFor='designation' className="block font-medium">Designation</label></RequiredLabel>
           <input
             type="text"
             id="designation"
@@ -75,7 +75,7 @@ export default function EmpForm1() {
 
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="space-y-1">
-            <label className="block"><RequiredLabel>Date of Birth</RequiredLabel> </label>
+            <RequiredLabel> <label htmlFor='dob' className="block">Date of Birth </label></RequiredLabel>
             <input
               type="date"
               id="dob"
@@ -92,7 +92,7 @@ export default function EmpForm1() {
 
         {/* Current Address */}
         <div className="mb-2">
-          <label className="block font-medium mb-1"><RequiredLabel>Current Address:</RequiredLabel></label>
+          <RequiredLabel><label htmlFor='currAddress' className="block font-medium mb-1">Current Address:</label></RequiredLabel>
           <textarea
             rows={2}
             id="currAddress"
@@ -143,19 +143,19 @@ export default function EmpForm1() {
               className="w-20 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
 
             />
-            <span><RequiredLabel>Number:</RequiredLabel></span>
+            <RequiredLabel><label htmlFor='currcontacctNumber' className='font-small'>Number:</label></RequiredLabel>
             <input
               type="number"
-              id="currcontactNumber"
+              id="currcontacctNumber"
               value={empFormData1.currcontactNumber}
               onChange={handleChange}
-              className="flex-1 min-w-30"
+              className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
               required
             />
           </div>
         </div>
 
-        <label className="block font-medium mb-1"><RequiredLabel>Permanent Address:</RequiredLabel></label>
+        <RequiredLabel> <label htmlFor='sameAsCurrent' className="block font-medium mb-1">Permanent Address:</label></RequiredLabel>
         {/* Same as Current Address Checkbox */}
         <div className="flex items-center gap-2 mb-2">
           <Checkbox id="sameAsCurrent" checked={isChecked} onCheckedChange={handleCheckboxChange} />
@@ -221,7 +221,10 @@ export default function EmpForm1() {
                 className="w-20 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
                 disabled={isChecked}
               />
-              <span><RequiredLabel>Number:</RequiredLabel></span>
+              
+              <RequiredLabel><label htmlFor="percontactNumber" className=" font-small">
+                Number:
+              </label></RequiredLabel>
               <input
                 type="number"
                 id="percontactNumber"
@@ -231,6 +234,7 @@ export default function EmpForm1() {
                 disabled={isChecked}
                 required
               />
+
             </div>
           </div>
         </div>)}
@@ -239,27 +243,33 @@ export default function EmpForm1() {
       {/* Company Details */}
       <div className="grid grid-cols-3 gap-4 mb-6">
         <div className="col-span-2 flex items-center gap-2">
-          <span><RequiredLabel>Company Name:</RequiredLabel></span>
+          <RequiredLabel><label htmlFor="companyName" className="block font-small">
+            Company Name:
+          </label></RequiredLabel>
           <input
-            type='text'
-            id='companyName'
+            type="text"
+            id="companyName"
             value={empFormData1.companyName}
             onChange={handleChange}
             className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             required
           />
         </div>
+
         <div className="flex items-center gap-2">
-          <span><RequiredLabel>Location:</RequiredLabel></span>
+          <RequiredLabel><label htmlFor="companylocation" className="font-small">
+            Location:
+          </label></RequiredLabel>
           <input
-            type='text'
-            id='companylocation'
+            type="text"
+            id="companylocation"
             value={empFormData1.companylocation}
             onChange={handleChange}
             className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
             required
           />
         </div>
+
         <div className="flex items-center gap-2">
           <span>Deptt:</span>
           <input
@@ -275,7 +285,7 @@ export default function EmpForm1() {
       {/* Bank Details */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="flex items-center gap-2">
-          <span><RequiredLabel>Bank A/c No:</RequiredLabel></span>
+          <RequiredLabel><label htmlFor='accountNumber'className='font-small'>Bank A/c No:</label></RequiredLabel>
           <input
             type='text'
             id='accountNumber'
@@ -286,7 +296,7 @@ export default function EmpForm1() {
           />
         </div>
         <div className="flex items-center gap-2">
-          <span><RequiredLabel>Bank Name :</RequiredLabel></span>
+        <RequiredLabel><label htmlFor='bankName' className='font-small'>Bank Name :</label></RequiredLabel>
           <input
             type='text'
             id='bankName'

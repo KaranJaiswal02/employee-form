@@ -56,7 +56,8 @@ export default function Page() {
       },
       body: JSON.stringify(formData),
     });
-    if (response.status === 201) {
+    const responseData = await response.json();
+    if (responseData.success) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
         form5: {
@@ -67,7 +68,7 @@ export default function Page() {
       router.push("/gratuity-form");
     }
     else {
-      const responseData = await response.json();
+      
       alert(responseData.message);
     }
   };

@@ -26,7 +26,8 @@ export default function page() {
       },
       body: JSON.stringify(formData),
     });
-    if (response.status === 201) {
+    const responseData = await response.json();
+    if (responseData.success) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
         form1: {
@@ -37,7 +38,7 @@ export default function page() {
       router.push("/idcard-form");
     }
     else {
-      const responseData = await response.json();
+      
       alert(responseData.message);
     }
   };

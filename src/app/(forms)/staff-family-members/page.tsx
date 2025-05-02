@@ -86,7 +86,8 @@ export default function MedicalInsuranceForm() {
             },
             body: JSON.stringify(formData),
         });
-        if (response.status === 201) {
+        const responseData = await response.json();
+        if (responseData.success) {
             setFormStatus((prevStatus) => ({
                 ...prevStatus,
                 form3: {
@@ -97,7 +98,7 @@ export default function MedicalInsuranceForm() {
             router.push("/bank-mandate");
         }
         else {
-            const responseData = await response.json();
+            
             alert(responseData.message);
         }
     };

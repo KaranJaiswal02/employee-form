@@ -35,7 +35,8 @@ export default function Page() {
       },
       body: JSON.stringify(formData),
     });
-    if (response.status === 201) {
+    const responseData = await response.json();
+    if (responseData.success) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
         form6: {
@@ -46,7 +47,7 @@ export default function Page() {
       router.push("/nomination-declaration-form2");
     }
     else {
-      const responseData = await response.json();
+      
       alert(responseData.message);
     }
   };

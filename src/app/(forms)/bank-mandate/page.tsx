@@ -41,7 +41,8 @@ export default function BankMandateForm() {
             },
             body: JSON.stringify(formData),
         });
-        if (response.status === 201) {
+        const responseData = await response.json();
+        if (responseData.success) {
             setFormStatus((prevStatus) => ({
                 ...prevStatus,
                 form4: {
@@ -52,7 +53,7 @@ export default function BankMandateForm() {
             router.push("/nomination-declaration-form1");
         }
         else {
-            const responseData = await response.json();
+            
             alert(responseData.message);
         }
     };

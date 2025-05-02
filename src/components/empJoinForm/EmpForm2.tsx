@@ -56,19 +56,23 @@ export default function EmpForm2() {
 
             {/* Name Section */}
             <div className="mb-4">
-                <div className="font-semibold mb-1"><RequiredLabel>Name</RequiredLabel></div>
+                <RequiredLabel><label htmlFor="firstName" className="block font-semibold mb-1">
+                    Name
+                </label></RequiredLabel>
                 <div className="flex">
                     <input
                         type="text"
+                        id="firstName"
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
                         className="w-1/3 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
                         placeholder="First"
-
+                        required
                     />
                     <input
                         type="text"
+                        id="middleName"
                         name="middleName"
                         value={formData.middleName}
                         onChange={handleChange}
@@ -77,6 +81,7 @@ export default function EmpForm2() {
                     />
                     <input
                         type="text"
+                        id="surname"
                         name="surname"
                         value={formData.surname}
                         onChange={handleChange}
@@ -86,9 +91,10 @@ export default function EmpForm2() {
                 </div>
             </div>
 
+
             <div className="mb-4 flex gap-16">
                 {/* Designation - Left Side */}
-                <div className="w-1/3">
+                {/* <div className="w-1/3">
                     <div className="font-semibold mb-1">
                         <RequiredLabel>DESIGNATION</RequiredLabel>
                     </div>
@@ -100,10 +106,24 @@ export default function EmpForm2() {
                         className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         required
                     />
+                </div> */}
+                <div className="w-1/3">
+                    <RequiredLabel><label htmlFor="designation" className="font-semibold mb-1 block">
+                        DESIGNATION
+                    </label></RequiredLabel>
+                    <input
+                        type="text"
+                        id="designation"
+                        name="designation"
+                        value={formData.designation}
+                        onChange={handleChange}
+                        className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
+                        required
+                    />
                 </div>
 
                 {/* Father's/Mother's Name & Occupation - Right Side */}
-                <div className="w-2/3">
+                {/* <div className="w-2/3">
                     <div className="font-semibold mb-1">
                         <RequiredLabel>FATHER/MOTHER'S NAME & OCCUPATION</RequiredLabel>
                     </div>
@@ -115,7 +135,22 @@ export default function EmpForm2() {
                         className="w-3/4 border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         required
                     />
+                </div> */}
+                <div className="w-2/3">
+                    <RequiredLabel><label htmlFor="familyMemberName" className="font-semibold mb-1 block">
+                        FATHER/MOTHER'S NAME & OCCUPATION
+                    </label></RequiredLabel>
+                    <input
+                        type="text"
+                        id="familyMemberName"
+                        name="familyMemberName"
+                        value={formData.familyMemberName}
+                        onChange={handleChange}
+                        className="w-3/4 border-b-1 border-black dark:border-white pb-1 focus:outline-none"
+                        required
+                    />
                 </div>
+
             </div>
 
             {/* Personal Details Grid */}
