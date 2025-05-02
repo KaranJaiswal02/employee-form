@@ -39,7 +39,7 @@ export default function Page() {
                   key={index}
                   className="text-red-500 font-semibold text-base md:text-lg hover:underline cursor-pointer"
                 >
-                  <Link href={`${form.url}${params}`}>{form.name}</Link>
+                  <Link href={`/forms${form.url}${params}`}>{form.name}</Link>
                 </li>
               ))}
             </ul>

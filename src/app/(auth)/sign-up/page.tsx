@@ -55,7 +55,7 @@ export default function SignUpForm() {
             if (res.data.success) {
                 localStorage.setItem('token', res.data.data.token);
                 toast.success(res.data.message);
-                router.push('/staff-joining');
+                router.push('/forms/staff-joining');
             } else {
                 setErrors(res.data.errors || ['Sign-Up failed']);
             }

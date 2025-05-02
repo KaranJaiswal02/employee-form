@@ -101,7 +101,7 @@ export default function MedicalInsuranceForm() {
             }));
             toast.success(responseData.message);
             const params = id ? `?id=${id}` : '';
-            router.push(`/bank-mandate${params}`);
+            router.push(`/forms/bank-mandate${params}`);
         }
         else {
             toast.error(responseData.message);

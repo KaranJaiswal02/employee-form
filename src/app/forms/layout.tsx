@@ -122,11 +122,11 @@ export default function FormLayout({
                             </h2>
                             <ul className="flex flex-col space-y-2">
                                 {Object.entries(formStatus).map(([key, form]) => {
-                                    const isActive = pathname === form.url;
+                                    const isActive = pathname === `/forms${form.url}`;
                                     return (
                                         <li key={key}>
                                             <Link
-                                                href={`${form.url}${paramsData}`}
+                                                href={`/forms${form.url}${paramsData}`}
                                                 className={`flex items-center space-x-3 p-2 rounded-lg transition-colors duration-200 
                                             ${isActive
                                                         ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold"

@@ -50,7 +50,7 @@ export default function Page() {
       }));
       toast.success(responseData.message);
       const params = id ? `?id=${id}` : '';
-      router.push(`/nomination-declaration-form2${params}`);
+      router.push(`/forms/nomination-declaration-form2${params}`);
     }
     else {
       toast.error(responseData.message);
