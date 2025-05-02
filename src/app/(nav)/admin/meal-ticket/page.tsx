@@ -56,7 +56,7 @@ export default function MealTicketPage() {
   ];
 
   return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8">
+    <div className="py-12 px-4 sm:px-6 lg:px-8">
       <Card className="max-w-md mx-auto">
         <CardHeader>
           <CardTitle className="text-center text-2xl">Meal Ticket Generator</CardTitle>

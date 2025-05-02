@@ -1,6 +1,5 @@
 'use client';
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { FiSun } from "react-icons/fi";
 import { FaRegMoon } from "react-icons/fa";
@@ -10,7 +9,6 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    const router = useRouter();
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
@@ -18,11 +16,7 @@ export default function RootLayout({
             const isDark = document.documentElement.classList.contains("dark");
             setIsDarkMode(isDark);
         }
-        const token = localStorage.getItem('token');
-        if (token) {
-            router.push('/forms/staff-joining');
-        }
-    }, [router, isDarkMode]);
+    }, [isDarkMode]);
 
     const toggleDarkMode = () => {
         if (typeof window !== "undefined") {
@@ -59,11 +53,7 @@ export default function RootLayout({
             </nav>
 
             {/* Page content */}
-            <div className="flex flex-1 items-center justify-center pt-16">
-                <div className="w-full max-w-sm">
-                    {children}
-                </div>
-            </div>
+            {children}
         </div>
     );
 }

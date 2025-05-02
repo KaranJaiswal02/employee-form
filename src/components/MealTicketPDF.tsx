@@ -11,18 +11,18 @@ type MealTicketGeneratorProps = {
   onReset?: () => void;
 };
 
-export default function MealTicketGenerator({ 
-  name, 
+export default function MealTicketGenerator({
+  name,
   month,
   year = new Date().getFullYear(),
-  noOfDays, 
-  onReset 
+  noOfDays,
+  onReset
 }: MealTicketGeneratorProps) {
   const [isGenerating, setIsGenerating] = useState(false);
 
   const generateAndPrintTickets = () => {
     setIsGenerating(true);
-    
+
     const printWindow = window.open('', '_blank');
     if (!printWindow) {
       setIsGenerating(false);
@@ -145,28 +145,50 @@ export default function MealTicketGenerator({
   };
 
   return (
-    <div className="space-y-4">
-      <div className="p-4 border rounded-lg bg-gray-50">
-        <h2 className="font-semibold">Preview Details:</h2>
-        <p>Name: {name}</p>
-        <p>Month: {month}</p>
-        <p>Year: {year}</p>
-        <p>Number of Tickets: {noOfDays}</p>
+    <div className="space-y-6">
+      <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-neutral-900 shadow-sm">
+        <table className="min-w-full text-sm text-left text-gray-700 dark:text-gray-300">
+          <thead className="bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-gray-100">
+            <tr>
+              <th scope="col" className="px-6 py-3">Field</th>
+              <th scope="col" className="px-6 py-3">Value</th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+            <tr>
+              <td className="px-6 py-4 font-medium">Name</td>
+              <td className="px-6 py-4">{name}</td>
+            </tr>
+            <tr>
+              <td className="px-6 py-4 font-medium">Month</td>
+              <td className="px-6 py-4">{month}</td>
+            </tr>
+            <tr>
+              <td className="px-6 py-4 font-medium">Year</td>
+              <td className="px-6 py-4">{year}</td>
+            </tr>
+            <tr>
+              <td className="px-6 py-4 font-medium">Number of Tickets</td>
+              <td className="px-6 py-4">{noOfDays}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      
-      <div className="flex gap-2">
-        <Button 
-          onClick={generateAndPrintTickets} 
+
+      <div className="flex flex-col sm:flex-row gap-3">
+        <Button
+          onClick={generateAndPrintTickets}
           disabled={isGenerating}
-          className="flex-1"
+          className="w-full sm:w-auto sm:flex-1"
         >
           {isGenerating ? "Generating..." : "Generate & Print Tickets"}
         </Button>
+
         {onReset && (
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             onClick={onReset}
-            className="flex-1"
+            className="w-full sm:w-auto sm:flex-1"
           >
             Back to Form
           </Button>
