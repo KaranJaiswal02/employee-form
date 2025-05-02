@@ -35,8 +35,9 @@ export default function BankMandateForm() {
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        setIsSubmitting(true);
         e.preventDefault();
+        setIsSubmitting(true);//upr niche
+        
         const id = searchParams.get('id')
         console.log(formData);
         const response = await fetch("/api/forms/bank-mandate", {
@@ -65,7 +66,7 @@ export default function BankMandateForm() {
             toast.error(responseData.message);
             setErrors(responseData.errors);// Set the errors to display sbmein in handle submit
         }
-        setIsSubmitting(false);
+        setIsSubmitting(false);// Set isSubmitting to false after the request is complete initally true.
     };
 
     return (

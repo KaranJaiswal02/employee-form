@@ -7,6 +7,7 @@ import React, { useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { useState } from 'react';
 
 
 export default function Page() {
@@ -30,6 +31,8 @@ export default function Page() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
     const id = searchParams.get('id')
     console.log(formData);
     const response = await fetch("/api/forms/gratuity-form", {
@@ -59,6 +62,7 @@ export default function Page() {
       setErrors(responseData.errors);
       
     }
+    setIsSubmitting(false);
   };
 
   return (
