@@ -10,7 +10,7 @@ export default function BankMandateForm() {
     const router = useRouter();
     const [formData, setFormData] = useAtom(bankMandateFormData);
     const [formData1] = useAtom(empFormData);
-    const [_, setFormStatus] = useAtom(formStatusus);
+    const [, setFormStatus] = useAtom(formStatusus);
 
     useEffect(() => {
         setFormData((prev) => ({
@@ -45,8 +45,8 @@ export default function BankMandateForm() {
         if (responseData.success) {
             setFormStatus((prevStatus) => ({
                 ...prevStatus,
-                form4: {
-                    ...prevStatus.form4,
+                bank_mandate: {
+                    ...prevStatus.bank_mandate,
                     status: "done",
                 },
             }));

@@ -37,7 +37,7 @@ export default function MedicalInsuranceForm() {
     const router = useRouter();
     const [formData, setFormData] = useAtom<FormData>(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
-    const [_, setFormStatus] = useAtom(formStatusus);
+    const [, setFormStatus] = useAtom(formStatusus);
 
     const calculateAge = (dob: string) => {
         const birthDate = new Date(dob);
@@ -90,8 +90,8 @@ export default function MedicalInsuranceForm() {
         if (responseData.success) {
             setFormStatus((prevStatus) => ({
                 ...prevStatus,
-                form3: {
-                    ...prevStatus.form3,
+                staff_family_members: {
+                    ...prevStatus.staff_family_members,
                     status: "done",
                 },
             }));

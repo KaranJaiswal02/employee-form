@@ -13,7 +13,7 @@ export default function Page() {
   const [formData, setFormData] = useAtom(grauFormData);
   const [empFormData1] = useAtom(empFormData);
   const [nominationform1] = useAtom(nominationForm1Data);
-  const [_, setFormStatus] = useAtom(formStatusus);
+  const [, setFormStatus] = useAtom(formStatusus);
   useEffect(() => {
     setFormData(prev => ({
       ...prev,
@@ -39,8 +39,8 @@ export default function Page() {
     if (responseData.success) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
-        form6: {
-          ...prevStatus.form6,
+        gratuity_form: {
+          ...prevStatus.gratuity_form,
           status: "done",
         },
       }));

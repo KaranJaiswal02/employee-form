@@ -19,7 +19,7 @@ export default function Page() {
   const [formData, setFormData] = useAtom(idCardFormData);
   const [empFormData1] = useAtom(empFormData);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
-  const [_, setFormStatus] = useAtom(formStatusus);
+  const [, setFormStatus] = useAtom(formStatusus);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -30,8 +30,11 @@ export default function Page() {
       dob: empFormData1.dob || "",
       // currAddress: empFormData1.currAddress || "",
     }));
-    setPhotoPreview(formData.photo || null);
   }, []);
+
+  useEffect(() => {
+    setPhotoPreview(formData.photo || null);
+  }, [formData.photo]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -69,8 +72,8 @@ export default function Page() {
     if (responseData.success) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
-        form2: {
-          ...prevStatus.form2,
+        id_card: {
+          ...prevStatus.id_card,
           status: "done",
         },
       }));

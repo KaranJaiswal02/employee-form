@@ -12,7 +12,7 @@ import React from 'react'
 
 export default function page() {
   const [formData] = useAtom(empFormData);
-  const [_, setFormStatus] = useAtom(formStatusus);
+  const [, setFormStatus] = useAtom(formStatusus);
   const router = useRouter();
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -30,8 +30,8 @@ export default function page() {
     if (responseData.success) {
       setFormStatus((prevStatus) => ({
         ...prevStatus,
-        form1: {
-          ...prevStatus.form1,
+        staff_joining: {
+          ...prevStatus.staff_joining,
           status: "done",
         },
       }));

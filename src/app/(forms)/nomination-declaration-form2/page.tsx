@@ -11,7 +11,7 @@ export default function Page() {
     const router = useRouter();
     const [formData, setFormData] = useAtom(nominationForm2Data);
     const [formData1] = useAtom(empFormData);
-    const [_, setFormStatus] = useAtom(formStatusus);
+    const [, setFormStatus] = useAtom(formStatusus);
 
     useEffect(() => {
         setFormData((prev) => ({
@@ -43,8 +43,8 @@ export default function Page() {
         if (responseData.success) {
             setFormStatus((prevStatus) => ({
                 ...prevStatus,
-                form7: {
-                    ...prevStatus.form7,
+                nomination_declaration_form2: {
+                    ...prevStatus.nomination_declaration_form2,
                     status: "done",
                 },
             }));

@@ -15,7 +15,7 @@ export default function FormLayout({
     children: React.ReactNode;
 }>) {
     const pathname = usePathname();
-    const [formStatus] = useAtom(formStatusus);
+    const [formStatus, setFormStatus] = useAtom(formStatusus);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const router = useRouter();
 
@@ -29,28 +29,29 @@ export default function FormLayout({
     const [, setEmpFormData] = useAtom(empFormData);
 
     const setFormsData = (data: any) => {
-        if (data.bankMandateFormData) {
-            setbankMandateFormData(data.bankMandateFormData);
-        }
-        if (data.grauFormData) {
-            setGrauFormData(data.grauFormData);
-        }
-        if (data.idCardFormData) {
-            setIdCardFormData(data.idCardFormData);
-        }
-        if (data.nominationForm1Data) {
-            setNominstionForm1Data(data.nominationForm1Data);
-        }
-        if (data.nominationForm2Data) {
-            setNominstionForm2Data(data.nominationForm2Data);
-        }
-        if (data.staffFamilyFormData) {
-            setStaffFamilyFormData(data.staffFamilyFormData);
-        }
-        if (data.empFormData) {
-            setEmpFormData(data.empFormData);
-        }
-    }
+        const formMappings: { key: string; setter: (data: any) => void; statusKey: keyof typeof formStatus }[] = [
+            { key: 'bankMandateFormData', setter: setbankMandateFormData, statusKey: 'bank_mandate' },
+            { key: 'grauFormData', setter: setGrauFormData, statusKey: 'gratuity_form' },
+            { key: 'idCardFormData', setter: setIdCardFormData, statusKey: 'id_card' },
+            { key: 'nominationForm1Data', setter: setNominstionForm1Data, statusKey: 'nomination_declaration_form1' },
+            { key: 'nominationForm2Data', setter: setNominstionForm2Data, statusKey: 'nomination_declaration_form2' },
+            { key: 'staffFamilyFormData', setter: setStaffFamilyFormData, statusKey: 'staff_family_members' },
+            { key: 'empFormData', setter: setEmpFormData, statusKey: 'staff_joining' },
+        ];
+    
+        formMappings.forEach(({ key, setter, statusKey }) => {
+            if (data[key]) {
+                setter(data[key]);
+                setFormStatus((prev) => ({
+                    ...prev,
+                    [statusKey]: {
+                        ...prev[statusKey],
+                        status: 'done',
+                    },
+                }));
+            }
+        });
+    };    
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -76,7 +77,7 @@ export default function FormLayout({
         router.push('/sign-in');
     };
 
-    const fetchFormData = async (token : string) => {
+    const fetchFormData = async (token: string) => {
         try {
             const response = await fetch('/api/forms/all-forms', {
                 method: 'GET',
