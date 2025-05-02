@@ -78,33 +78,7 @@ export default function BankMandateForm() {
             </div>
 
             <div className="space-y-3 mb-4">
-                {/* {['Name', 'Employee Code', 'Category(CT/DT/STAFF)', 'Address'].map((label, i) => (
-                    <div key={i} className="flex flex-col sm:flex-row">
-                        <label htmlFor={label.toLowerCase().replace(/[^a-z]/gi, '')} className="w-72">
-                            {i + 1}. {label}
-                        </label>
-                        {label === 'Address' ? (
-                            <textarea
-                                id={label.toLowerCase().replace(/[^a-z]/gi, '')}
-                                onChange={handleChange}
-                                value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData] ||""}
-                                className="flex-1 border-b border-black dark:border-white sm:ml-4 resize-none h-16"
-                                required
-                                disabled={label === 'Address' || label === 'Name'}
-                            />
-                        ) : (
-                            <input
-                                id={label.toLowerCase().replace(/[^a-z]/gi, '')}
-                                type="text"
-                                onChange={handleChange}
-                                value={formData[label.toLowerCase().replace(/[^a-z]/gi, '') as keyof typeof formData] || ""}
-                                className="flex-1 border-b border-black dark:border-white sm:ml-4"
-                                required
-                                disabled={label === 'Address' || label === 'Name'}
-                            />
-                        )}
-                    </div>
-                ))} */}
+                
                 <div className="flex flex-col sm:flex-row">
                     <label htmlFor="name" className="w-72">
                         1. Name
