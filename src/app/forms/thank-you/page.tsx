@@ -16,7 +16,7 @@ export default function Page() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 py-10 text-center">
-      <div className="max-w-2xl w-full bg-white dark:bg-gray-800 shadow-md rounded-xl p-6 md:p-10">
+      <div className="max-w-2xl w-full bg-white dark:bg-neutral-800 shadow-md rounded-xl p-6 md:p-10">
 
         {allFormsCompleted ? (
           <>

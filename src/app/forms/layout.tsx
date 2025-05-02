@@ -73,7 +73,7 @@ export default function FormLayout({
 
     useEffect(() => {
         init();
-    }, [router, isDarkMode]);
+    }, []);
 
     const toggleDarkMode = () => {
         if (typeof window !== "undefined") {
@@ -134,7 +134,7 @@ export default function FormLayout({
                                                         ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold"
                                                         : form.status === "done"
                                                             ? "bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800"
-                                                            : "hover:bg-gray-100 dark:hover:bg-gray-800"
+                                                            : "hover:bg-neutral-100 dark:hover:bg-neutral-800"
                                                     }`}
                                             >
                                                 <span className={`text-2xl ${form.status === "done"
@@ -158,7 +158,7 @@ export default function FormLayout({
                             {/* Dark Mode Toggle */}
                             <div onClick={toggleDarkMode} className="flex items-center justify-center space-x-3 cursor-pointer">
                                 <button
-                                    className="relative inline-flex items-center w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-700 transition-colors duration-200"
+                                    className="relative inline-flex items-center w-12 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 transition-colors duration-200"
                                 >
                                     <span
                                         className={`inline-block w-6 h-6 bg-white rounded-full shadow-md transform transition-all duration-200 ${isDarkMode ? "translate-x-6" : "translate-x-0"

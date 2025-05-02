@@ -121,7 +121,7 @@ export default function EmpForm5() {
             {/* Table */}
             <table className="w-full border border-black dark:border-white text-sm">
                 <thead className="">
-                    <tr className="bg-gray-100 dark:bg-gray-800">
+                    <tr className="bg-neutral-100 dark:bg-neutral-800">
                         <th className="border border-black dark:border-white p-1 font-semibold">Sl. No</th>
                         <th className="border border-black dark:border-white p-1 font-semibold">Name</th>
                         <th className="border border-black dark:border-white p-1 font-semibold">Relationship</th>

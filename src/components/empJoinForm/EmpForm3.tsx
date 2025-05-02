@@ -71,7 +71,7 @@ export default function EmpForm3() {
             </h2>
             <table className="table-auto w-full border border-black dark:border-white text-center text-sm mb-0">
                 <thead>
-                    <tr className="bg-gray-100 dark:bg-gray-800">
+                    <tr className="bg-neutral-100 dark:bg-neutral-800">
                         <th className="border border-black dark:border-white">Examination</th>
                         <th className="border border-black dark:border-white">University / Institute</th>
                         <th className="border border-black dark:border-white">From</th>
@@ -122,7 +122,7 @@ export default function EmpForm3() {
             </h2>
             <table className="table-auto w-full border border-black dark:border-white text-center text-sm mb-0">
                 <thead>
-                    <tr className="bg-gray-100 dark:bg-gray-800">
+                    <tr className="bg-neutral-100 dark:bg-neutral-800">
                         <th className="border border-black dark:border-white">Name of the Organisation</th>
                         <th className="border border-black dark:border-white">From</th>
                         <th className="border border-black dark:border-white">To</th>

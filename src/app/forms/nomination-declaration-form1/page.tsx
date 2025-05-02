@@ -180,10 +180,10 @@ export default function Page() {
               onChange={handleChange}
               className="flex-1 border-b-1 border-black dark:border-white px-2 py-1 focus:outline-none"
             >
-              <option className='bg-white dark:bg-gray-800' value="">Select</option>
-              <option className='bg-white dark:bg-gray-800' value="Male">Male</option>
-              <option className='bg-white dark:bg-gray-800' value="Female">Female</option>
-              <option className='bg-white dark:bg-gray-800' value="Other">Other</option>
+              <option className='bg-white dark:bg-neutral-800' value="">Select</option>
+              <option className='bg-white dark:bg-neutral-800' value="Male">Male</option>
+              <option className='bg-white dark:bg-neutral-800' value="Female">Female</option>
+              <option className='bg-white dark:bg-neutral-800' value="Other">Other</option>
             </select>
           </div>
           <div className="flex items-center gap-4">
@@ -194,11 +194,11 @@ export default function Page() {
               onChange={handleChange}
               className="flex-1 border-b-1 border-black dark:border-white px-2 py-1 focus:outline-none"
             >
-              <option className='bg-white dark:bg-gray-800' value="">Select</option>
-              <option className='bg-white dark:bg-gray-800' value="Single">Single</option>
-              <option className='bg-white dark:bg-gray-800' value="Married">Married</option>
-              <option className='bg-white dark:bg-gray-800' value="Divorced">Divorced</option>
-              <option className='bg-white dark:bg-gray-800' value="Widowed">Widowed</option>
+              <option className='bg-white dark:bg-neutral-800' value="">Select</option>
+              <option className='bg-white dark:bg-neutral-800' value="Single">Single</option>
+              <option className='bg-white dark:bg-neutral-800' value="Married">Married</option>
+              <option className='bg-white dark:bg-neutral-800' value="Divorced">Divorced</option>
+              <option className='bg-white dark:bg-neutral-800' value="Widowed">Widowed</option>
             </select>
           </div>
           <div className="flex items-start gap-4">
@@ -235,7 +235,7 @@ export default function Page() {
         <div className="overflow-x-auto mt-4">
           <table className="w-full border border-black dark:border-white text-sm text-center ">
             <thead className="">
-              <tr className="bg-gray-100 dark:bg-gray-800">
+              <tr className="bg-neutral-100 dark:bg-neutral-800">
                 <th className="border border-black dark:border-white px-2 py-1">Name of Nominee</th>
                 <th className="border border-black dark:border-white px-2 py-1">Address</th>
                 <th className="border border-black dark:border-white px-2 py-1">Relationship</th>

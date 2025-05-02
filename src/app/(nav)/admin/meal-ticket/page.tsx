@@ -122,7 +122,7 @@ export default function MealTicketPage() {
                 />
               </div>
 
-              <Button type="submit" className="w-full">
+              <Button type="submit" className="w-full cursor-pointer">
                 Generate Tickets
               </Button>
             </form>

@@ -35,7 +35,7 @@ export default function RootLayout({
                     </Link>
                     <div onClick={toggleDarkMode} className="flex items-center justify-center space-x-3 cursor-pointer">
                         <button
-                            className="relative inline-flex items-center w-12 h-6 rounded-full bg-gray-300 dark:bg-gray-700 transition-colors duration-200"
+                            className="relative inline-flex items-center w-12 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 transition-colors duration-200"
                         >
                             <span
                                 className={`inline-block w-6 h-6 bg-white rounded-full shadow-md transform transition-all duration-200 ${isDarkMode ? "translate-x-6" : "translate-x-0"

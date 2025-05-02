@@ -57,13 +57,13 @@ export default function page() {
   return (
     <form onSubmit={submitForm} className="p-6 max-w-4xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
       <EmpForm1 />
-      <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
+      <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
       <EmpForm2 />
-      <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
+      <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
       <EmpForm3 />
-      <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
+      <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
       <EmpForm4 />
-      <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
+      <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
       <EmpForm5 />
       {errors.length > 0 && (
                 <div className="text-red-600 text-sm px-2 text-left">

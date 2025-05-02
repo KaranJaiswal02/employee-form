@@ -29,7 +29,7 @@ export default function EmpForm2() {
             {/* HR Section */}
             <h4 className="text-lg font-bold mb-2 border-b border-black dark:border-white pb-1">TO BE FILLED BY HR</h4>
             <div className="border border-black dark:border-white mb-6">
-                <div className="flex">
+                <div className="flex bg-neutral-100 dark:bg-neutral-800">
                     <div className="w-[20%] border-r border-black dark:border-white p-1 text-center font-semibold">E. CODE</div>
                     <div className="w-[20%] border-r border-black dark:border-white p-1 text-center font-semibold">P.F. NO.</div>
                     <div className="w-[20%] border-r border-black dark:border-white p-1 text-center font-semibold">DEPARTMENT</div>
@@ -180,10 +180,10 @@ export default function EmpForm2() {
                         className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none bg-transparent"
                         required
                     >
-                        <option className="bg-white dark:bg-gray-800" value="">Select</option>
-                        <option className="bg-white dark:bg-gray-800" value="Male">Male</option>
-                        <option className="bg-white dark:bg-gray-800" value="Female">Female</option>
-                        <option className="bg-white dark:bg-gray-800" value="Other">Other</option>
+                        <option className="bg-white dark:bg-neutral-800" value="">Select</option>
+                        <option className="bg-white dark:bg-neutral-800" value="Male">Male</option>
+                        <option className="bg-white dark:bg-neutral-800" value="Female">Female</option>
+                        <option className="bg-white dark:bg-neutral-800" value="Other">Other</option>
                     </select>
                 </div>
 
@@ -458,9 +458,9 @@ export default function EmpForm2() {
                                 className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none bg-transparent"
                                 required
                             >
-                                <option className="bg-white dark:bg-gray-800" value="">Select</option>
+                                <option className="bg-white dark:bg-neutral-800" value="">Select</option>
                                 {["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"].map((group) => (
-                                    <option key={group} className="bg-white dark:bg-gray-800" value={group}>
+                                    <option key={group} className="bg-white dark:bg-neutral-800" value={group}>
                                         {group}
                                     </option>
                                 ))}

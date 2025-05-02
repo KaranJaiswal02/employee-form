@@ -148,7 +148,7 @@ export default function MealTicketGenerator({
     <div className="space-y-6">
       <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-neutral-900 shadow-sm">
         <table className="min-w-full text-sm text-left text-gray-700 dark:text-gray-300">
-          <thead className="bg-gray-100 dark:bg-neutral-800 text-gray-900 dark:text-gray-100">
+          <thead className="bg-neutral-100 dark:bg-neutral-800 text-gray-900 dark:text-gray-100">
             <tr>
               <th scope="col" className="px-6 py-3">Field</th>
               <th scope="col" className="px-6 py-3">Value</th>
@@ -168,7 +168,7 @@ export default function MealTicketGenerator({
               <td className="px-6 py-4">{year}</td>
             </tr>
             <tr>
-              <td className="px-6 py-4 font-medium">Number of Tickets</td>
+              <td className="px-6 py-4 font-medium">No. of tickets</td>
               <td className="px-6 py-4">{noOfDays}</td>
             </tr>
           </tbody>
@@ -179,7 +179,7 @@ export default function MealTicketGenerator({
         <Button
           onClick={generateAndPrintTickets}
           disabled={isGenerating}
-          className="w-full sm:w-auto sm:flex-1"
+          className="w-full sm:w-auto sm:flex-1 cursor-pointer"
         >
           {isGenerating ? "Generating..." : "Generate & Print Tickets"}
         </Button>
@@ -188,7 +188,7 @@ export default function MealTicketGenerator({
           <Button
             variant="outline"
             onClick={onReset}
-            className="w-full sm:w-auto sm:flex-1"
+            className="w-full sm:w-auto sm:flex-1 cursor-pointer"
           >
             Back to Form
           </Button>

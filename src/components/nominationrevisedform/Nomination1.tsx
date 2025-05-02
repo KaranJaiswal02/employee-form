@@ -233,7 +233,7 @@ export default function EPFNominationForm() {
                 <div className="overflow-x-auto">
                     <table className="w-full border border-black dark:border-white text-sm mb-4">
                         <thead>
-                            <tr className="bg-gray-100 dark:bg-gray-800">
+                            <tr className="bg-neutral-100 dark:bg-neutral-800">
                                 <th className="border border-black dark:border-white p-2">Name of the Nominee(s)</th>
                                 <th className="border border-black dark:border-white p-2">Address</th>
                                 <th className="border border-black dark:border-white p-2">Nominee's relationship with the member</th>
@@ -380,7 +380,7 @@ export default function EPFNominationForm() {
                 <div className="overflow-x-auto">
                     <table className="w-full border border-black dark:border-white text-sm mb-4">
                         <thead>
-                            <tr className="bg-gray-100 dark:bg-gray-800">
+                            <tr className="bg-neutral-100 dark:bg-neutral-800">
                                 <th className="border border-black dark:border-white p-2">Sr. No</th>
                                 <th className="border border-black dark:border-white p-2">Name & Address of the Family Member</th>
                                 <th className="border border-black dark:border-white p-2">Age</th>

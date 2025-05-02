@@ -16,7 +16,7 @@ export default async function RootLayout({
   // await seedAdmin();
   return (
     <html lang="en" className="dark">
-      <body className="bg-gray-200 dark:bg-neutral-950 text-gray-900 font-sans antialiased dark:text-gray-200">
+      <body className="bg-neutral-200 dark:bg-neutral-950 text-gray-900 font-sans antialiased dark:text-gray-200">
         {children}
         <Toaster richColors closeButton />
       </body>

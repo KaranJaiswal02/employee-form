@@ -140,7 +140,7 @@ export default function EmpForm4() {
             <div className="mt-6 text-sm">
                 <table className="w-full border border-black dark:border-white text-center">
                     <thead>
-                    <tr className="bg-gray-100 dark:bg-gray-800">
+                    <tr className="bg-neutral-100 dark:bg-neutral-800">
                             <th className="border border-black dark:border-white px-2">S. No.</th>
                             <th className="border border-black dark:border-white px-2">Name</th>
                             <th className="border border-black dark:border-white px-2">Relationship</th>
@@ -225,7 +225,7 @@ export default function EmpForm4() {
             <div className="mt-4 text-sm">
                 <table className="w-full border border-black dark:border-white text-center">
                     <thead>
-                    <tr className="bg-gray-100 dark:bg-gray-800">
+                    <tr className="bg-neutral-100 dark:bg-neutral-800">
                             <th className="border border-black dark:border-white px-2">S. No.</th>
                             <th className="border border-black dark:border-white px-2">Name of the Nominee(s)</th>
                             <th className="border border-black dark:border-white px-2">Relationship</th>
