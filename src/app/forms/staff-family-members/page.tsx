@@ -40,6 +40,8 @@ export default function MedicalInsuranceForm() {
     const [form1data] = useAtom(empFormData);
     const [, setFormStatus] = useAtom(formStatusus);
     const searchParams = useSearchParams()
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errors, setErrors] = useState<string[]>([]);
 
     const calculateAge = (dob: string) => {
         const birthDate = new Date(dob);
@@ -79,6 +81,7 @@ export default function MedicalInsuranceForm() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsSubmitting(true);
         const id = searchParams.get('id')
         console.log(formData);
         const response = await fetch("/api/forms/staff-family-members", {
@@ -105,7 +108,9 @@ export default function MedicalInsuranceForm() {
         }
         else {
             toast.error(responseData.message);
+            setErrors(responseData.errors);
         }
+        setIsSubmitting(false);
     };
 
     return (
@@ -441,8 +446,17 @@ export default function MedicalInsuranceForm() {
             <p className="text-xs mt-4 italic text-red-700">
                 Note: Combination of Father & Father in-law / Mother & Mother in law is not allowed
             </p>
+            {errors.length > 0 && (
+                <div className="text-red-600 text-sm px-2 text-left">
+                    {errors.map((err, index) => (
+                        <div key={index}>{err}</div>
+                    ))}
+                </div>
+            )}
             <div className="flex justify-center mt-2">
-                <Button type='submit' className="mt-6 w-full cursor-pointer">Submit</Button>
+                <Button type='submit' disabled={isSubmitting} className="mt-6 w-full cursor-pointer">Submit
+                {isSubmitting ? "Submitting..." : "Submit"}
+                </Button>
             </div>
         </form>
     );

@@ -35,6 +35,8 @@ export default function Page() {
   const [, setFormStatus] = useAtom(formStatusus);
   const [formData, setFormData] = useAtom<FormData>(nominationForm1Data);
   const searchParams = useSearchParams()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -50,6 +52,8 @@ export default function Page() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     const id = searchParams.get('id')
     console.log(formData);
     const response = await fetch("/api/forms/nomination-declaration-form1", {
@@ -76,7 +80,9 @@ export default function Page() {
     }
     else {
       toast.error(responseData.message);
+      setErrors(responseData.errors);
     }
+    setIsSubmitting(false);
   };
 
 
@@ -400,7 +406,16 @@ export default function Page() {
           />
         </div>
       </div>
-      <Button type="submit" className='w-full cursor-pointer'>Submit</Button>
+      {errors.length > 0 && (
+                <div className="text-red-600 text-sm px-2 text-left">
+                    {errors.map((err, index) => (
+                        <div key={index}>{err}</div>
+                    ))}
+                </div>
+            )}
+      <Button type="submit" disabled={isSubmitting} className='w-full cursor-pointer'>Submit
+      {isSubmitting ? "Submitting..." : "Submit"}
+      </Button>
     </form>
   )
 }
