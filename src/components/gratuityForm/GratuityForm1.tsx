@@ -2,6 +2,7 @@
 
 import { grauFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
+import RequiredLabel from "../RequiredLabel";
 
 export default function GratuityForm1() {
   const [formData, setFormData] = useAtom(grauFormData);
@@ -131,6 +132,7 @@ export default function GratuityForm1() {
                   className="w-full focus:outline-none"
                   placeholder="Full Name & Address"
                   onChange={(e) => handleNomineeChange(i, "name", e.target.value)}
+                  required={i=== 0}
                 />
               </td>
               <td className="border border-black dark:border-white p-2">
@@ -140,6 +142,7 @@ export default function GratuityForm1() {
                   className="w-full focus:outline-none"
                   placeholder="Relationship"
                   onChange={(e) => handleNomineeChange(i, "relationship", e.target.value)}
+                  required={i=== 0}
                 />
               </td>
               <td className="border border-black dark:border-white p-2">
@@ -149,6 +152,7 @@ export default function GratuityForm1() {
                   className="w-full focus:outline-none"
                   placeholder="Age"
                   onChange={(e) => handleNomineeChange(i, "age", e.target.value)}
+                  required={i=== 0}
                 />
               </td>
               <td className="border border-black dark:border-white p-2">
@@ -158,6 +162,7 @@ export default function GratuityForm1() {
                   className="w-full focus:outline-none"
                   placeholder="Proportion (%)"
                   onChange={(e) => handleNomineeChange(i, "proportion", e.target.value)}
+                  required={i=== 0}
                 />
               </td>
               <td className="border border-black dark:border-white text-center">

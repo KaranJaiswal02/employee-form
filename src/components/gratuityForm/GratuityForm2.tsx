@@ -2,6 +2,7 @@
 
 import { grauFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
+import RequiredLabel from "../RequiredLabel";
 
 export default function GratuityForm2() {
     const [formData, setFormData] = useAtom(grauFormData);
@@ -29,69 +30,198 @@ export default function GratuityForm2() {
             <h4 className="font-bold text-center mb-4">Statement</h4>
 
             <ol className="list-decimal list-inside space-y-2 ">
-                <li className="flex">
-                    Name of employee in full:
-                    <input type="text" value={formData.name} disabled className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
-                </li>
 
-                <li className="flex">
-                    Sex:
-                    <input id="sex" type="text" value={formData.sex} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
-                </li>
+                <ul>
+                    {/* Name of employee in full */}
+                    <li className="flex">
+                        <label htmlFor="name" className="flex-1 flex">
+                            Name of employee in full:
+                            <input
+                                id="name"
+                                type="text"
+                                value={formData.name}
+                                disabled
+                                className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none"
+                            />
+                        </label>
+                    </li>
 
-                <li className="flex">
-                    Religion:
-                    <input id="religion" type="text" value={formData.religion} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
-                </li>
+                    {/* Sex */}
+                    <li className="flex">
+                        <RequiredLabel><label htmlFor="sex" className="flex-1 flex">
+                            Sex:</label></RequiredLabel>
+                        <input
+                            id="sex"
+                            type="text"
+                            value={formData.sex}
+                            onChange={handleChange}
+                            className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none"
+                            required
+                        />
 
-                <li className="flex">
-                    Whether unmarried/married/widow/widower:
-                    <input id="marriagestatus" type="text" value={formData.marriagestatus} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
-                </li>
+                    </li>
 
-                <li className="flex">
-                    Department/Branch/Section where employed:
-                    <input id="department" type="text" value={formData.department} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
-                </li>
+                    {/* Religion */}
+                    <li className="flex">
+                        <RequiredLabel><label htmlFor="religion" className="flex-1 flex">
+                            Religion:</label></RequiredLabel>
+                        <input
+                            id="religion"
+                            type="text"
+                            value={formData.religion}
+                            onChange={handleChange}
+                            className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none"
+                            required
+                        />
 
-                <li className="flex">
-                    Post held with Ticket No. or Serial No., if any:
-                    <input id="post" type="text" value={formData.post} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
-                </li>
+                    </li>
 
-                <li className="flex">
-                    Date of appointment:
-                    <input
-                        id="dateofappointment"
-                        type="date"
-                        value={formData.dateofappointment}
-                        onChange={handleChange} // <- You must define this function
-                        className="border-b border-black dark:border-white inline-block ml-2 flex-1 max-w-[200px] focus:outline-none"
-                    />
-                </li>
+                    {/* Marital Status */}
+                    <li className="flex">
+                        <RequiredLabel><label htmlFor="marriagestatus" className="flex-1 flex">
+                            Whether unmarried/married/widow/widower:</label></RequiredLabel>
+                        <input
+                            id="marriagestatus"
+                            type="text"
+                            value={formData.marriagestatus}
+                            onChange={handleChange}
+                            className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none"
+                            required
+                        />
 
+                    </li>
 
+                    {/* Department */}
+                    <li className="flex">
+                        <RequiredLabel><label htmlFor="department" className="flex-1 flex">
+                            Department/Branch/Section where employed:</label></RequiredLabel>
+                        <input
+                            id="department"
+                            type="text"
+                            value={formData.department}
+                            onChange={handleChange}
+                            className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none"
+                            required
+                        />
 
+                    </li>
+
+                    {/* Post held */}
+                    <li className="flex">
+                        <label htmlFor="post" className="flex-1 flex">
+                            Post held with Ticket No. or Serial No., if any:</label>
+                        <input
+                            id="post"
+                            type="text"
+                            value={formData.post}
+                            onChange={handleChange}
+                            className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none"
+                        />
+
+                    </li>
+
+                    {/* Date of appointment */}
+                    <li className="flex">
+                        <RequiredLabel><label htmlFor="dateofappointment" className="flex-1 flex">
+                            Date of appointment:</label></RequiredLabel>
+                        <input
+                            id="dateofappointment"
+                            type="date"
+                            value={formData.dateofappointment}
+                            onChange={handleChange}
+                            required
+                            className="border-b border-black dark:border-white inline-block ml-2 flex-1 max-w-[200px] focus:outline-none"
+                        />
+
+                    </li>
+                </ul>
                 <li>
-                    Permanent address:
+                    <RequiredLabel><label htmlFor="building">Permanent address:</label></RequiredLabel>
                     <div className="ml-4 mt-2 space-y-1">
                         <div>
-                            building No./Street No./Village:
-                            <input id="building" type="text" value={formData.building} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
-                            Village:
-                            <input id="village" type="text" value={formData.village} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
-                            &nbsp; Thana:
-                            <input id="thana" type="text" value={formData.thana} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
-                            &nbsp; Sub-division:
-                            <input id="subdivision" type="text" value={formData.subdivision} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
+                            <label htmlFor="building" className="inline-block">
+                                Building No./Street No.
+                                <input
+                                    id="building"
+                                    type="text"
+                                    value={formData.building}
+                                    onChange={handleChange}
+                                    className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="village" className="inline-block ml-2">
+                                Village:
+                                <input
+                                    id="village"
+                                    type="text"
+                                    value={formData.village}
+                                    onChange={handleChange}
+                                    className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                />
+                            </label>
+
+                            <label htmlFor="thana" className="inline-block ml-2">
+                                Thana:
+                                <input
+                                    id="thana"
+                                    type="text"
+                                    value={formData.thana}
+                                    onChange={handleChange}
+                                    className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="subdivision" className="inline-block ml-0">
+                                Sub-division:
+                                <input
+                                    id="subdivision"
+                                    type="text"
+                                    value={formData.subdivision}
+                                    onChange={handleChange}
+                                    className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                />
+                            </label>
                         </div>
+
                         <div>
-                            Post Office:
-                            <input id="postoffice" type="text" value={formData.postoffice} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
-                            &nbsp; District:
-                            <input id="district" type="text" value={formData.district} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
-                            &nbsp; State:
-                            <input id="state" type="text" value={formData.state} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
+                            <label htmlFor="postoffice" className="inline-block">
+                                Post Office:
+                                <input
+                                    id="postoffice"
+                                    type="text"
+                                    value={formData.postoffice}
+                                    onChange={handleChange}
+                                    className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="district" className="inline-block ml-2">
+                                District:
+                                <input
+                                    id="district"
+                                    type="text"
+                                    value={formData.district}
+                                    onChange={handleChange}
+                                    className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                    required
+                                />
+                            </label>
+
+                            <label htmlFor="state" className="inline-block ml-2">
+                                State:
+                                <input
+                                    id="state"
+                                    type="text"
+                                    value={formData.state}
+                                    onChange={handleChange}
+                                    className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                    required
+                                />
+                            </label>
                         </div>
                     </div>
                 </li>
@@ -162,7 +292,7 @@ export default function GratuityForm2() {
                 <p>Place:
                     <b> Bengaluru</b>
                 </p>
-            </div>            
+            </div>
 
 
             <hr className="my-6 border-black dark:border-white" />

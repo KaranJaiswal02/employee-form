@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import RequiredLabel from "../RequiredLabel";
 // import EmployerCertification from "./page2";
 
 // export default function Page() {
@@ -69,19 +70,31 @@ export default function DeclarationForm1() {
                     <label className="w-64 font-medium">2. Father’s/Husband’s Name:</label>
                     <input type="text" className="flex-1 border border-gray-400 px-2 py-1" />
                 </div>
-                <div  className="flex items-center gap-4">
+                {/* <div  className="flex items-center gap-4">
                     <label htmlFor="" className="w-64 font-medium">3. Date of Birth:</label>
-                    <input type="date" className="flex-1 border border-gray-400 px-2 py-1" />
-                </div>
+                    <input type="date" className="flex-1 border border-gray-400 px-2 py-1"
+                    />
+                </div> */}
                 <div className="flex items-center gap-4">
-                    <label className="w-64 font-medium">4. Sex:</label>
-                    <select className="flex-1 border border-gray-400 px-2 py-1">
+                    <RequiredLabel><label htmlFor="dob" className="w-64 font-medium">3. Date of Birth:</label></RequiredLabel>
+                    <input
+                        id="dob"
+                        type="date"
+                        className="flex-1 border border-gray-400 px-2 py-1"
+                        required
+                    />
+                </div>
+
+                <div className="flex items-center gap-4">
+                <RequiredLabel><label className="w-64 font-medium">4. Sex:</label></RequiredLabel>
+                    <select id="sex" required className="flex-1 border border-gray-400 px-2 py-1">
                         <option value="">Select</option>
                         <option>Male</option>
                         <option>Female</option>
-                        <option>Other</option>
+                        <option>Other</option>                       
                     </select>
                 </div>
+                
                 <div className="flex items-center gap-4">
                     <label className="w-64 font-medium">5. Marital Status:</label>
                     <select className="flex-1 border border-gray-400 px-2 py-1">
@@ -197,12 +210,12 @@ export default function DeclarationForm1() {
 
                 <div className="text-right mt-4">
                     <button
-                    type="button"
-                    onClick={addRow}
-                    className="px-4 py-1 bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
-                >
-                    + Add Nominee
-                </button>
+                        type="button"
+                        onClick={addRow}
+                        className="px-4 py-1 bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
+                    >
+                        + Add Nominee
+                    </button>
                 </div>
             </div>
         </div>
