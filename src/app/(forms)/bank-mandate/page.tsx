@@ -53,7 +53,7 @@ export default function BankMandateForm() {
             router.push("/nomination-declaration-form1");
         }
         else {
-            
+
             alert(responseData.message);
         }
     };
@@ -80,7 +80,7 @@ export default function BankMandateForm() {
             </div>
 
             <div className="space-y-3 mb-4">
-                
+
                 <div className="flex flex-col sm:flex-row">
                     <label htmlFor="name" className="w-72">
                         1. Name
@@ -140,7 +140,7 @@ export default function BankMandateForm() {
                     />
                 </div>
                 <div className="flex flex-col sm:flex-row">
-                    <label htmlFor="email" className="w-72"><RequiredLabel>5. Email Id</RequiredLabel></label>
+                    <RequiredLabel><label htmlFor="email" className="w-72">5. Email Id</label></RequiredLabel>
                     <input
                         id="email"
                         type="email"
@@ -152,7 +152,7 @@ export default function BankMandateForm() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row">
-                    <label htmlFor="pan" className="w-72"><RequiredLabel>6. Permanent Account Number</RequiredLabel></label>
+                    <RequiredLabel><label htmlFor="pan" className="w-72">6. Permanent Account Number</label></RequiredLabel>
                     <input
                         id="pan"
                         type="text"
@@ -169,8 +169,13 @@ export default function BankMandateForm() {
             <div className="overflow-x-auto">
                 <table className="w-full border border-black dark:border-white text-sm">
                     <tbody>
+
                         <tr className="flex flex-col md:flex-row">
-                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">Bank Name</td>
+                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">
+                                <label htmlFor="bankName" className="text-center w-full">
+                                    Bank Name
+                                </label>
+                            </td>
                             <td className="border border-black dark:border-white p-2 md:w-1/2">
                                 <input
                                     id="bankName"
@@ -182,7 +187,12 @@ export default function BankMandateForm() {
                                     required
                                 />
                             </td>
-                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">Branch Place</td>
+
+                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">
+                                <label htmlFor="branchPlace" className="text-center w-full">
+                                    Branch Place
+                                </label>
+                            </td>
                             <td className="border border-black dark:border-white p-2 md:w-1/2">
                                 <input
                                     id="branchPlace"
@@ -196,8 +206,11 @@ export default function BankMandateForm() {
                             </td>
                         </tr>
 
+
                         <tr className="flex flex-col md:flex-row">
-                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">Branch City</td>
+                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">
+                                <label htmlFor="branchCity" className="text-center w-full">
+                                    Branch City</label></td>
                             <td className="border border-black dark:border-white p-2 md:w-1/2">
                                 <input
                                     id="branchCity"
@@ -209,7 +222,9 @@ export default function BankMandateForm() {
                                     required
                                 />
                             </td>
-                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">Pin Code</td>
+                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">
+                                <label htmlFor="pincode" className="text-center w-full">
+                                    Pin Code</label></td>
                             <td className="border border-black dark:border-white p-2 md:w-1/2">
                                 <input
                                     id="pincode"
@@ -254,14 +269,14 @@ export default function BankMandateForm() {
                             </td>
                         </tr>
 
-                        <tr>
+                        {/* <tr>
                             <td className="border border-black dark:border-white p-2" colSpan={4}><RequiredLabel>
                                 Account Number (as appearing in the cheque book):
                             </RequiredLabel>
 
                                 <input
                                     id="accountNumber"
-                                    type="text"
+                                    type="number"
                                     className="w-full mt-2 outline-none border-t border-black dark:border-white"
                                     placeholder="Enter Account Number"
                                     onChange={handleChange}
@@ -284,7 +299,42 @@ export default function BankMandateForm() {
                                     required
                                 />
                             </td>
+                        </tr> */}
+                        <tr>
+                            <td className="border border-black dark:border-white p-2" colSpan={4}>
+                            <RequiredLabel> <label htmlFor="accountNumber" className="block">
+                                    Account Number (as appearing in the cheque book):
+                                </label></RequiredLabel>
+                                <input
+                                    id="accountNumber"
+                                    type="number"
+                                    className="w-full mt-2 outline-none border-t border-black dark:border-white"
+                                    placeholder="Enter Account Number"
+                                    onChange={handleChange}
+                                    value={formData.accountNumber}
+                                    required
+                                />
+                            </td>
                         </tr>
+
+                        <tr>
+                            <td className="border border-black dark:border-white p-2" colSpan={4}>
+                            <RequiredLabel><label htmlFor="ifscCode" className="block">
+                                    IFSC Code:
+                                </label></RequiredLabel>
+                                <input
+                                    id="ifscCode"
+                                    type="text"
+                                    className="w-full mt-2 outline-none border-t border-black dark:border-white"
+                                    placeholder="Enter IFSC Code"
+                                    onChange={handleChange}
+                                    value={formData.ifscCode}
+                                    required
+                                />
+                            </td>
+                        </tr>
+
+
                     </tbody>
                 </table>
             </div>
@@ -301,15 +351,15 @@ export default function BankMandateForm() {
 
             <div className="flex flex-col sm:flex-row justify-between gap-4 mt-8">
                 <div className="flex items-center gap-2">
-                    <label>Place:</label>
-                    <input
+                    <label><p>Place:<b> Bengaluru</b></p></label>
+                    {/* <input
                         id="place"
                         type="text"
                         onChange={handleChange}
                         value={formData.place}
                         className="border-b border-black dark:border-white outline-none flex-1"
                         required
-                    />
+                    /> */}
                 </div>
                 <div className="flex items-center gap-2">
                     <label>Date:</label>

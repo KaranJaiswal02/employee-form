@@ -67,11 +67,11 @@ export default function EmpForm3() {
         <div className="p-6 space-y-6 text-sm font-sans">
             {/* EDUCATIONAL QUALIFICATION */}
             <h2 className="font-bold uppercase">
-                Educational Qualification<span className="italic"><RequiredLabel>(Start from highest qualification)</RequiredLabel></span>
+                <RequiredLabel>Educational Qualification<div className="italic">(Start from highest qualification)</div></RequiredLabel>
             </h2>
             <table className="table-auto w-full border border-black dark:border-white text-center text-sm mb-0">
                 <thead>
-                <tr className="bg-gray-100 dark:bg-gray-800">
+                    <tr className="bg-gray-100 dark:bg-gray-800">
                         <th className="border border-black dark:border-white">Examination</th>
                         <th className="border border-black dark:border-white">University / Institute</th>
                         <th className="border border-black dark:border-white">From</th>
@@ -122,7 +122,7 @@ export default function EmpForm3() {
             </h2>
             <table className="table-auto w-full border border-black dark:border-white text-center text-sm mb-0">
                 <thead>
-                <tr className="bg-gray-100 dark:bg-gray-800">
+                    <tr className="bg-gray-100 dark:bg-gray-800">
                         <th className="border border-black dark:border-white">Name of the Organisation</th>
                         <th className="border border-black dark:border-white">From</th>
                         <th className="border border-black dark:border-white">To</th>
@@ -172,11 +172,11 @@ export default function EmpForm3() {
             </h2>
             <div className="border border-black dark:border-white p-4 rounded-md space-y-2">
                 <div className="flex items-center gap-x-2">
-                    <label htmlFor="games"><RequiredLabel>Games / Sports:</RequiredLabel></label>
+                    <RequiredLabel><label htmlFor="games">Games / Sports:</label></RequiredLabel>
                     <input
                         id="games"
                         type="text"
-                        className="border-b border-black dark:border-white flex-1"
+                        className="border-b border-black dark:border-white flex-1 focus:outline-none"
                         value={formData.games}
                         onChange={(e) => handleChange("games", e.target.value)}
                         required
@@ -184,11 +184,11 @@ export default function EmpForm3() {
                 </div>
 
                 <div className="flex items-center gap-x-2">
-                    <label htmlFor="ncc"><RequiredLabel>NCC etc.:</RequiredLabel></label>
+                    <RequiredLabel><label htmlFor="ncc">NCC etc.:</label></RequiredLabel>
                     <input
                         id="ncc"
                         type="text"
-                        className="border-b border-black dark:border-white flex-1"
+                        className="border-b border-black dark:border-white flex-1 focus:outline-none"
                         value={formData.ncc}
                         onChange={(e) => handleChange("ncc", e.target.value)}
                         placeholder="NCC, NSS, etc., if not applicable, write N/A"
@@ -197,11 +197,11 @@ export default function EmpForm3() {
                 </div>
 
                 <div className="flex items-center gap-x-2">
-                    <label htmlFor="hobbies"><RequiredLabel>Hobbies & Other Interests:</RequiredLabel></label>
+                    <RequiredLabel> <label htmlFor="hobbies">Hobbies & Other Interests:</label></RequiredLabel>
                     <input
                         id="hobbies"
                         type="text"
-                        className="border-b border-black dark:border-white flex-1"
+                        className="border-b border-black dark:border-white flex-1 focus:outline-none"
                         value={formData.hobbies}
                         onChange={(e) => handleChange("hobbies", e.target.value)}
                         required
@@ -223,7 +223,7 @@ export default function EmpForm3() {
                                 <input
                                     type="text"
                                     placeholder="Name"
-                                    className="border-b border-black dark:border-white w-full mt-1"
+                                    className="border-b border-black dark:border-white w-full mt-1 focus:outline-none"
                                     value={ref.name}
                                     onChange={(e) => handleReferenceChange(idx, "name", e.target.value)}
 
@@ -231,7 +231,7 @@ export default function EmpForm3() {
                                 <input
                                     type="text"
                                     placeholder="Address"
-                                    className="border-b border-black dark:border-white w-full mt-1"
+                                    className="border-b border-black dark:border-white w-full mt-1 focus:outline-none"
                                     value={ref.address}
                                     onChange={(e) => handleReferenceChange(idx, "address", e.target.value)}
 
@@ -239,7 +239,7 @@ export default function EmpForm3() {
                                 <input
                                     type="text"
                                     placeholder="Phone"
-                                    className="border-b border-black dark:border-white w-full mt-1"
+                                    className="border-b border-black dark:border-white w-full mt-1 focus:outline-none"
                                     value={ref.phone}
                                     onChange={(e) => handleReferenceChange(idx, "phone", e.target.value)}
 
@@ -250,13 +250,13 @@ export default function EmpForm3() {
                 </div>
             </div>
 
-            {/* COURT CONVICTION */}
             <div>
-                <strong>
-                    <RequiredLabel>Have you been convicted by any court? If yes, please give details:</RequiredLabel>
-                </strong>
+                <RequiredLabel><label htmlFor="convictionDetails" className="font-semibold block">
+                    Have you been convicted by any court? If yes, please give details:
+                </label></RequiredLabel>
                 <textarea
-                    className="w-full border border-black dark:border-white mt-2 p-2"
+                    id="convictionDetails"
+                    className="w-full border border-black dark:border-white mt-2 p-2 focus:outline-none"
                     rows={3}
                     value={formData.convictionDetails}
                     onChange={(e) => handleChange("convictionDetails", e.target.value)}
@@ -264,6 +264,7 @@ export default function EmpForm3() {
                     required
                 ></textarea>
             </div>
+
 
             {/* AFFIRMATION */}
             <p className="mt-4">
@@ -281,19 +282,12 @@ export default function EmpForm3() {
                         disabled={true}
                     />
                 </div>
-                <div>
-                    PLACE:{" "}
-                    <input
-                        type="text"
-                        className="border-b border-black dark:border-white inline-block w-40"
-                        value={formData.place}
-                        onChange={(e) => handleChange("place", e.target.value)}
-                    />
-
+                <div className=" border-black dark:border-white inline-block w-40">
+                    <p>PLACE:<b> Bengaluru</b></p>                   
                 </div>
                 <div className="text-right">
                     ______________________ <br />
-                    SIGNATURE
+                            SIGNATURE
                 </div>
             </div>
         </div>

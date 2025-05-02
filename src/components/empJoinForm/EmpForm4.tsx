@@ -114,19 +114,22 @@ export default function EmpForm4() {
                 </div>
 
                 <div className="flex justify-between items-center">
-                    <label className="w-1/3"><RequiredLabel>Designation</RequiredLabel></label>
+                <label htmlFor="designation" className="w-1/5">Designation</label>
                     <input
                         type="text"
-                        className="border-b border-black dark:border-white w-[35%]"
+                        className="border-b border-black dark:border-white w-[30%] ml-4 focus:outline-none"
                         value={formData.designation}
+                        id="designation"
                         onChange={(e) => handleChange('designation', e.target.value)}
                         required
+                        disabled={true}
                     />
-                    <label className="ml-6"><RequiredLabel>Date of Joining</RequiredLabel></label>
+                   <RequiredLabel> <label htmlFor="dateOfJoining" className="ml-4">Date of Joining</label></RequiredLabel>
                     <input
                         type="date"
-                        className="border-b border-black dark:border-white w-[30%]"
+                        className="border-b border-black dark:border-white w-[25%] focus:outline-none"
                         value={formData.dateOfJoining}
+                        id="dateOfJoining"
                         onChange={(e) => handleChange('dateOfJoining', e.target.value)}
                         required
                     />
@@ -157,6 +160,8 @@ export default function EmpForm4() {
                                         className="w-full outline-none px-2"
                                         value={row.name}
                                         onChange={(e) => handleFamilyChange(index, 'name', e.target.value)}
+                                        required={index===0}
+                                        
                                     />
                                 </td>
                                 <td className="border border-black dark:border-white">
@@ -165,6 +170,7 @@ export default function EmpForm4() {
                                         className="w-full outline-none px-2"
                                         value={row.relationship}
                                         onChange={(e) => handleFamilyChange(index, 'relationship', e.target.value)}
+                                        required={index===0}
                                     />
                                 </td>
                                 <td className="border border-black dark:border-white">
@@ -173,6 +179,7 @@ export default function EmpForm4() {
                                         className="w-full outline-none px-2"
                                         value={row.dob}
                                         onChange={(e) => handleFamilyChange(index, 'dob', e.target.value)}
+                                        required={index===0}
                                     />
                                 </td>
                                 <td className="border border-black dark:border-white">
@@ -181,6 +188,8 @@ export default function EmpForm4() {
                                         className="w-full outline-none px-2"
                                         value={row.age}
                                         onChange={(e) => handleFamilyChange(index, 'age', e.target.value)}
+                                        required={index===0}
+                                    min={0} // Ensure age is a positive number
                                     />
                                 </td>
                                 <td className="border border-black dark:border-white">
@@ -235,6 +244,7 @@ export default function EmpForm4() {
                                         className="w-full outline-none px-2"
                                         value={row.name}
                                         onChange={(e) => handleNomineeChange(index, 'name', e.target.value)}
+                                        required={index===0}
                                     />
                                 </td>
                                 <td className="border border-black dark:border-white">
@@ -243,6 +253,7 @@ export default function EmpForm4() {
                                         className="w-full outline-none px-2"
                                         value={row.relationship}
                                         onChange={(e) => handleNomineeChange(index, 'relationship', e.target.value)}
+                                        required={index===0}
                                     />
                                 </td>
                                 <td className="border border-black dark:border-white">
@@ -251,6 +262,8 @@ export default function EmpForm4() {
                                         className="w-full outline-none px-2"
                                         value={row.dob}
                                         onChange={(e) => handleNomineeChange(index, 'dob', e.target.value)}
+                                        required={index===0}
+                                    min={new Date().toISOString().split("T")[0]} // Ensure date is not in the future
                                     />
                                 </td>
                                 <td className="border border-black dark:border-white">
@@ -259,6 +272,7 @@ export default function EmpForm4() {
                                         className="w-full outline-none px-2"
                                         value={row.percentage}
                                         onChange={(e) => handleNomineeChange(index, 'percentage', e.target.value)}
+                                        required={index===0}
                                     />
                                 </td>
                                 <td className="border border-black dark:border-white">

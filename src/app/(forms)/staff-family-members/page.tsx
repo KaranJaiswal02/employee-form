@@ -98,7 +98,7 @@ export default function MedicalInsuranceForm() {
             router.push("/bank-mandate");
         }
         else {
-            
+
             alert(responseData.message);
         }
     };
@@ -177,7 +177,7 @@ export default function MedicalInsuranceForm() {
                         </td>
                     </tr>
 
-                    <tr className="border border-black dark:border-white">
+                    {/* <tr className="border border-black dark:border-white">
                         <td></td>
                         <td className="p-2 border border-black dark:border-white"><RequiredLabel>MARITAL STATUS</RequiredLabel></td>
                         <td className="p-2 border border-black dark:border-white" colSpan={5}>
@@ -190,7 +190,28 @@ export default function MedicalInsuranceForm() {
                                 className="w-full focus:outline-none"
                             />
                         </td>
+                    </tr> */}
+                    <tr className="border border-black dark:border-white">
+                        <td></td>
+                        <td className="p-2 border border-black dark:border-white">
+                            <RequiredLabel><label htmlFor="maritalStatus">
+                                MARITAL STATUS
+                            </label>
+                            </RequiredLabel>
+                        </td>
+                        <td className="p-2 border border-black dark:border-white" colSpan={5}>
+                            <input
+                                type="text"
+                                id="maritalStatus"
+                                name="maritalStatus"
+                                value={formData.maritalStatus}
+                                onChange={handleChange}
+                                placeholder="MARRIED / SINGLE"
+                                className="w-full focus:outline-none"
+                            />
+                        </td>
                     </tr>
+
 
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">2</td>
@@ -271,46 +292,77 @@ export default function MedicalInsuranceForm() {
 
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">6</td>
-                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>FATHER NAME / FATHER-IN-LAW</RequiredLabel></td>
+
+                        <td className="p-2 border border-black dark:border-white">
+                            <RequiredLabel><label htmlFor="fatherName">
+                                FATHER NAME / FATHER-IN-LAW
+                            </label></RequiredLabel>
+                        </td>
+
                         <td className="p-2 border border-black dark:border-white" colSpan={3}>
                             <input
                                 type="text"
+                                id="fatherName"
                                 name="fatherName"
                                 value={formData.fatherName}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
                                 placeholder="Father or Father-in-law Name"
+                                required
                             />
                         </td>
-                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>DOB</RequiredLabel></td>
-                        <td className="p-2 border border-black dark:border-white">
+
+                        <td className="p-2 border border-black dark:border-white focus:outline-none">
+                            <RequiredLabel><label htmlFor="fatherDob">
+                                DOB
+                            </label></RequiredLabel>
+                        </td>
+
+                        <td className="p-2 border border-black dark:border-white ">
                             <input
                                 type="date"
+                                id="fatherDob"
                                 name="fatherDob"
                                 value={formData.fatherDob}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
+                                required
                             />
                         </td>
                     </tr>
 
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">7</td>
-                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>MOTHER NAME / MOTHER-IN-LAW</RequiredLabel></td>
+
+                        <td className="p-2 border border-black dark:border-white">
+                            <RequiredLabel><label htmlFor="motherName">
+                                MOTHER NAME / MOTHER-IN-LAW
+                            </label></RequiredLabel>
+                        </td>
+
                         <td className="p-2 border border-black dark:border-white" colSpan={3}>
                             <input
                                 type="text"
+                                id="motherName"
                                 name="motherName"
                                 value={formData.motherName}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
                                 placeholder="Mother or Mother-in-law Name"
+                                required
                             />
                         </td>
-                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>DOB</RequiredLabel></td>
+
+                        <td className="p-2 border border-black dark:border-white">
+                            <RequiredLabel> <label htmlFor="motherDob">
+                                DOB
+                            </label></RequiredLabel>
+                        </td>
+
                         <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="date"
+                                id="motherDob"
                                 name="motherDob"
                                 value={formData.motherDob}
                                 onChange={handleChange}
@@ -321,10 +373,17 @@ export default function MedicalInsuranceForm() {
 
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">8</td>
-                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>MOBILE NUMBER</RequiredLabel></td>
+
+                        <td className="p-2 border border-black dark:border-white">
+                        <RequiredLabel><label htmlFor="mobileNumber">
+                                MOBILE NUMBER
+                            </label></RequiredLabel>
+                        </td>
+
                         <td className="p-2 border border-black dark:border-white" colSpan={5}>
                             <input
                                 type="tel"
+                                id="mobileNumber"
                                 name="mobileNumber"
                                 value={formData.mobileNumber}
                                 onChange={handleChange}
@@ -336,9 +395,16 @@ export default function MedicalInsuranceForm() {
 
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">9</td>
-                        <td className="p-2 border border-black dark:border-white"><RequiredLabel>ADDRESS</RequiredLabel></td>
+
+                        <td className="p-2 border border-black dark:border-white">
+                            <label htmlFor="address">
+                                <RequiredLabel>ADDRESS</RequiredLabel>
+                            </label>
+                        </td>
+
                         <td className="p-2 border border-black dark:border-white" colSpan={5}>
                             <textarea
+                                id="address"
                                 name="address"
                                 value={form1data.currAddress}
                                 onChange={handleChange}
@@ -361,7 +427,7 @@ export default function MedicalInsuranceForm() {
                         onChange={handleChange}
                         className="ml-2 p-1 focus:outline-none"
                     />
-                </div> 
+                </div>
                 <div className="text-right mt-6 ">
                     <p className="font-semibold">EMPLOYEE SIGNATURE</p>
                 </div>
