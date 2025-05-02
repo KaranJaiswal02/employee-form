@@ -2,10 +2,14 @@
 import { formStatusus } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 
 export default function Page() {
   const [formStatus] = useAtom(formStatusus);
+  const searchParams = useSearchParams()
+  const id = searchParams.get('id');
+  const params = id ? `?id=${id}` : '';
 
   const incompleteForms = Object.values(formStatus).filter(form => form.status !== 'done');
   const allFormsCompleted = incompleteForms.length === 0;
@@ -35,7 +39,7 @@ export default function Page() {
                   key={index}
                   className="text-red-500 font-semibold text-base md:text-lg hover:underline cursor-pointer"
                 >
-                  <Link href={form.url}>{form.name}</Link>
+                  <Link href={`${form.url}${params}`}>{form.name}</Link>
                 </li>
               ))}
             </ul>

@@ -19,7 +19,8 @@ export default function FormLayout({
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
-    const searchParams = useSearchParams()
+    const searchParams = useSearchParams();
+    const [paramsData, setParamsData] = useState<string>("");
 
     //all forms
     const [, setbankMandateFormData] = useAtom(bankMandateFormData);
@@ -87,6 +88,7 @@ export default function FormLayout({
 
     const fetchFormData = async (token: string) => {
         const id = searchParams.get('id')
+        setParamsData(id ? `?id=${id}` : '');
         try {
             const response = await fetch('/api/forms/all-forms', {
                 method: 'GET',
@@ -99,7 +101,6 @@ export default function FormLayout({
             const data = await response.json();
             if (data.success) {
                 setFormsData(data.data.forms);
-                // console.log(data.data.forms);
             } else {
                 console.log(data.message);
             }
@@ -125,7 +126,7 @@ export default function FormLayout({
                                     return (
                                         <li key={key}>
                                             <Link
-                                                href={form.url}
+                                                href={`${form.url}${paramsData}`}
                                                 className={`flex items-center space-x-3 p-2 rounded-lg transition-colors duration-200 
                                             ${isActive
                                                         ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold"
