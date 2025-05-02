@@ -2,7 +2,7 @@
 import { Button } from '@/components/ui/button'
 import { empFormData, formStatusus, nominationForm1Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from "react";
 
 interface Nominee {
@@ -33,6 +33,7 @@ export default function Page() {
   const [empFormData1] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
   const [formData, setFormData] = useAtom<FormData>(nominationForm1Data);
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -48,12 +49,14 @@ export default function Page() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const id = searchParams.get('id')
     console.log(formData);
     const response = await fetch("/api/forms/nomination-declaration-form1", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "authorization": `Bearer ${localStorage.getItem("token")}`,
+        "userid": id as string,
       },
       body: JSON.stringify(formData),
     });
@@ -66,7 +69,8 @@ export default function Page() {
           status: "done",
         },
       }));
-      router.push("/gratuity-form");
+      const params = id ? `?id=${id}` : '';
+      router.push(`/gratuity-form${params}`);
     }
     else {
       

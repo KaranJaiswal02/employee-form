@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, idCardFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 
@@ -20,6 +20,7 @@ export default function Page() {
   const [empFormData1] = useAtom(empFormData);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [, setFormStatus] = useAtom(formStatusus);
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     setFormData((prev) => ({
@@ -59,12 +60,14 @@ export default function Page() {
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const id = searchParams.get('id')
     console.log(formData);
     const response = await fetch("/api/forms/idcard-form", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "authorization": `Bearer ${localStorage.getItem("token")}`,
+        "userid": id as string,
       },
       body: JSON.stringify(formData),
     });
@@ -77,7 +80,8 @@ export default function Page() {
           status: "done",
         },
       }));
-      router.push("/staff-family-members");
+      const params = id ? `?id=${id}` : '';
+      router.push(`/staff-family-members${params}`);
     }
     else {
 

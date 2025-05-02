@@ -7,22 +7,25 @@ import EmpForm5 from '@/components/empJoinForm/EmpForm5'
 import { Button } from '@/components/ui/button';
 import { empFormData, formStatusus } from '@/hooks/Atoms'
 import { useAtom } from 'jotai'
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
 
 export default function page() {
   const [formData] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
   const router = useRouter();
+  const searchParams = useSearchParams()
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const id = searchParams.get('id')
     console.log(formData);
     const response = await fetch("/api/forms/staff-joining", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "authorization": `Bearer ${localStorage.getItem("token")}`,
+        "userid": id as string,
       },
       body: JSON.stringify(formData),
     });
@@ -35,7 +38,8 @@ export default function page() {
           status: "done",
         },
       }));
-      router.push("/idcard-form");
+      const params = id ? `?id=${id}` : '';
+      router.push(`/idcard-form${params}`);
     }
     else {
       

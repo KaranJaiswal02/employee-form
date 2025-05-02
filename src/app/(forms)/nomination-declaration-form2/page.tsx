@@ -3,7 +3,7 @@ import Nomination1 from '@/components/nominationrevisedform/Nomination1';
 import Nomination2 from '@/components/nominationrevisedform/Nomination2';
 import { Button } from "@/components/ui/button";
 import { useAtom } from "jotai";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, nominationForm2Data } from '@/hooks/Atoms';
 import { useEffect } from 'react';
 
@@ -12,6 +12,7 @@ export default function Page() {
     const [formData, setFormData] = useAtom(nominationForm2Data);
     const [formData1] = useAtom(empFormData);
     const [, setFormStatus] = useAtom(formStatusus);
+    const searchParams = useSearchParams()
 
     useEffect(() => {
         setFormData((prev) => ({
@@ -30,12 +31,14 @@ export default function Page() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const id = searchParams.get('id')
         console.log(formData);
         const response = await fetch("/api/forms/nomination-declaration-form2", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "authorization": `Bearer ${localStorage.getItem("token")}`,
+                "userid": id as string,
             },
             body: JSON.stringify(formData),
         });
@@ -48,7 +51,8 @@ export default function Page() {
                     status: "done",
                 },
             }));
-            router.push("/thank-you");
+            const params = id ? `?id=${id}` : '';
+            router.push(`/thank-you${params}`);
         }
         else {
             

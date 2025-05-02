@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import React, { use, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { set } from "mongoose";
@@ -38,6 +38,7 @@ export default function MedicalInsuranceForm() {
     const [formData, setFormData] = useAtom<FormData>(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
     const [, setFormStatus] = useAtom(formStatusus);
+    const searchParams = useSearchParams()
 
     const calculateAge = (dob: string) => {
         const birthDate = new Date(dob);
@@ -77,12 +78,14 @@ export default function MedicalInsuranceForm() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const id = searchParams.get('id')
         console.log(formData);
         const response = await fetch("/api/forms/staff-family-members", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "authorization": `Bearer ${localStorage.getItem("token")}`,
+                "userid": id as string,
             },
             body: JSON.stringify(formData),
         });
@@ -95,7 +98,8 @@ export default function MedicalInsuranceForm() {
                     status: "done",
                 },
             }));
-            router.push("/bank-mandate");
+            const params = id ? `?id=${id}` : '';
+            router.push(`/bank-mandate${params}`);
         }
         else {
 

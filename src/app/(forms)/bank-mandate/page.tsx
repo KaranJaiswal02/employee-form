@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { bankMandateFormData, empFormData, formStatusus } from '@/hooks/Atoms';
 import { Button } from '@/components/ui/button';
@@ -11,6 +11,7 @@ export default function BankMandateForm() {
     const [formData, setFormData] = useAtom(bankMandateFormData);
     const [formData1] = useAtom(empFormData);
     const [, setFormStatus] = useAtom(formStatusus);
+    const searchParams = useSearchParams()
 
     useEffect(() => {
         setFormData((prev) => ({
@@ -32,12 +33,14 @@ export default function BankMandateForm() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        const id = searchParams.get('id')
         console.log(formData);
         const response = await fetch("/api/forms/bank-mandate", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
                 "authorization": `Bearer ${localStorage.getItem("token")}`,
+                "userid": id as string,
             },
             body: JSON.stringify(formData),
         });
@@ -50,10 +53,10 @@ export default function BankMandateForm() {
                     status: "done",
                 },
             }));
-            router.push("/nomination-declaration-form1");
+            const params = id ? `?id=${id}` : '';
+            router.push(`/nomination-declaration-form1${params}`);
         }
         else {
-
             alert(responseData.message);
         }
     };
@@ -302,7 +305,7 @@ export default function BankMandateForm() {
                         </tr> */}
                         <tr>
                             <td className="border border-black dark:border-white p-2" colSpan={4}>
-                            <RequiredLabel> <label htmlFor="accountNumber" className="block">
+                                <RequiredLabel> <label htmlFor="accountNumber" className="block">
                                     Account Number (as appearing in the cheque book):
                                 </label></RequiredLabel>
                                 <input
@@ -319,7 +322,7 @@ export default function BankMandateForm() {
 
                         <tr>
                             <td className="border border-black dark:border-white p-2" colSpan={4}>
-                            <RequiredLabel><label htmlFor="ifscCode" className="block">
+                                <RequiredLabel><label htmlFor="ifscCode" className="block">
                                     IFSC Code:
                                 </label></RequiredLabel>
                                 <input

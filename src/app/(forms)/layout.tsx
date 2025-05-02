@@ -2,7 +2,7 @@
 import { bankMandateFormData, empFormData, formStatusus, grauFormData, idCardFormData, nominationForm1Data, nominationForm2Data, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FiSun } from "react-icons/fi";
 import { FaRegMoon } from "react-icons/fa";
@@ -19,6 +19,7 @@ export default function FormLayout({
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const router = useRouter();
+    const searchParams = useSearchParams()
 
     //all forms
     const [, setbankMandateFormData] = useAtom(bankMandateFormData);
@@ -85,23 +86,25 @@ export default function FormLayout({
     };
 
     const fetchFormData = async (token: string) => {
+        const id = searchParams.get('id')
         try {
             const response = await fetch('/api/forms/all-forms', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'authorization': `Bearer ${token}`,
+                    'userid': id as string,
                 },
             });
             const data = await response.json();
             if (data.success) {
                 setFormsData(data.data.forms);
-                console.log(data.data.forms);
+                // console.log(data.data.forms);
             } else {
-                console.error(data.message);
+                console.log(data.message);
             }
         } catch (error) {
-            console.error("Error fetching form data:", error);
+            console.log("Error fetching form data:", error);
         }
     };
 

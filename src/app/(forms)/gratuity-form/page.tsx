@@ -4,7 +4,7 @@ import GratuityForm2 from '@/components/gratuityForm/GratuityForm2'
 import { empFormData, formStatusus, grauFormData, nominationForm1Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
 import React, { useEffect } from 'react'
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 
 
@@ -14,6 +14,8 @@ export default function Page() {
   const [empFormData1] = useAtom(empFormData);
   const [nominationform1] = useAtom(nominationForm1Data);
   const [, setFormStatus] = useAtom(formStatusus);
+  const searchParams = useSearchParams()
+
   useEffect(() => {
     setFormData(prev => ({
       ...prev,
@@ -26,12 +28,14 @@ export default function Page() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const id = searchParams.get('id')
     console.log(formData);
     const response = await fetch("/api/forms/gratuity-form", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "authorization": `Bearer ${localStorage.getItem("token")}`,
+        "userId": id as string,
       },
       body: JSON.stringify(formData),
     });
@@ -44,7 +48,8 @@ export default function Page() {
           status: "done",
         },
       }));
-      router.push("/nomination-declaration-form2");
+      const params = id ? `?id=${id}` : '';
+      router.push(`/nomination-declaration-form2${params}`);
     }
     else {
       
