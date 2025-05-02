@@ -7,6 +7,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, nominationForm2Data } from '@/hooks/Atoms';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
+import { useState } from 'react';
 
 export default function Page() {
     const router = useRouter();
@@ -14,6 +15,8 @@ export default function Page() {
     const [formData1] = useAtom(empFormData);
     const [, setFormStatus] = useAtom(formStatusus);
     const searchParams = useSearchParams()
+    const [isSubmitting, setIsSubmitting] = useState(false);
+        const [errors, setErrors] = useState<string[]>([]);
 
     useEffect(() => {
         setFormData((prev) => ({
@@ -32,6 +35,7 @@ export default function Page() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        setIsSubmitting(true);
         const id = searchParams.get('id')
         console.log(formData);
         const response = await fetch("/api/forms/nomination-declaration-form2", {
@@ -58,7 +62,9 @@ export default function Page() {
         }
         else {
             toast.error(responseData.message);
+            setErrors(responseData.errors);
         }
+        setIsSubmitting(false);
     };
 
     return (
@@ -66,8 +72,17 @@ export default function Page() {
         <form onSubmit={handleSubmit} className="p-6 max-w-4xl mx-auto bg-white dark:bg-gray-950 shadow-md rounded-lg">
             <Nomination1 />
             <Nomination2 />
+            {errors.length > 0 && (
+                <div className="text-red-600 text-sm px-2 text-left">
+                    {errors.map((err, index) => (
+                        <div key={index}>{err}</div>
+                    ))}
+                </div>
+            )}
             <div className="flex justify-center mt-6">
-                <Button type="submit" className='w-full cursor-pointer'>Submit</Button>
+                <Button type="submit" disabled={isSubmitting} className='w-full cursor-pointer'>Submit
+                {isSubmitting ? "Submitting..." : "Submit"}
+                </Button>
             </div>
         </form>
     );

@@ -10,15 +10,19 @@ import { useAtom } from 'jotai'
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
 import { toast } from "sonner"
+import { useState } from 'react';
 
 export default function page() {
   const [formData] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
   const router = useRouter();
   const searchParams = useSearchParams()
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
     const id = searchParams.get('id');
     console.log(formData);
     const response = await fetch("/api/forms/staff-joining", {
@@ -45,7 +49,9 @@ export default function page() {
     }
     else {
       toast.error(responseData.message);
+      setErrors(responseData.errors);
     }
+    setIsSubmitting(false);
   };
 
   return (
@@ -59,7 +65,16 @@ export default function page() {
       <EmpForm4 />
       <div className="h-[2px] w-3/4 bg-gray-600 mx-auto my-8"></div>
       <EmpForm5 />
-      <Button type='submit' className="mt-6 w-full cursor-pointer">Submit</Button>
+      {errors.length > 0 && (
+                <div className="text-red-600 text-sm px-2 text-left">
+                    {errors.map((err, index) => (
+                        <div key={index}>{err}</div>
+                    ))}
+                </div>
+            )}
+      <Button type='submit' disabled={isSubmitting} className="mt-6 w-full cursor-pointer">Submit
+        {isSubmitting ? "Submitting..." : "Submit"}
+      </Button>
     </form>
   )
 }

@@ -63,7 +63,9 @@ export default function Page() {
   };
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    setIsSubmitting(true);
     e.preventDefault();
+    
     const id = searchParams.get('id')
     console.log(formData);
     const response = await fetch("/api/forms/idcard-form", {
@@ -92,6 +94,7 @@ export default function Page() {
       toast.error(responseData.message);
       setErrors(responseData.errors);
     }
+    setIsSubmitting(false);
   };
 
   return (
