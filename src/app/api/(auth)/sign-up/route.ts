@@ -7,13 +7,13 @@ import IAPIResponse from '@/types/responseType';
 import { hashPassword } from '@/lib/bcrypt';
 
 export async function POST(req: NextRequest) {
-    const { email, password } = await req.json();
+    const { name, email, password } = await req.json();
 
-    if (!email || !password) {
+    if (!email || !password || !name) {
         const response: IAPIResponse = {
             success: false,
-            message: 'Validation Error',
-            errors: ['Email and password are required'],
+            message: 'Missing required fields',
+            errors: ['Email, password, and name are required'],
         };
         return NextResponse.json(response, { status: 400 });
     }
@@ -34,6 +34,7 @@ export async function POST(req: NextRequest) {
         const hashedPassword = await hashPassword(password);
 
         const newUser = await User.create({
+            name,
             email,
             password: hashedPassword,
         });

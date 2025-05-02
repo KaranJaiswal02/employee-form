@@ -52,6 +52,7 @@ export default function LoginForm() {
                 toast.success(res.data.message);
                 router.push('/forms/staff-joining');
             } else {
+                toast.error(res.data.message);
                 setErrors(res.data.errors || ['Login failed']);
             }
         } catch (err: any) {

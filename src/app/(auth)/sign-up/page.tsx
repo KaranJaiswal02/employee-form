@@ -20,6 +20,7 @@ import { toast } from "sonner";
 export default function SignUpForm() {
     const router = useRouter();
     const [formData, setFormData] = useState({
+        name: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -41,7 +42,7 @@ export default function SignUpForm() {
         setLoading(true);
         setErrors([]);
 
-        const { email, password, confirmPassword } = formData;
+        const { name, email, password, confirmPassword } = formData;
 
         if (password !== confirmPassword) {
             setErrors(["Passwords do not match"]);
@@ -50,13 +51,14 @@ export default function SignUpForm() {
         }
 
         try {
-            const res = await axios.post('/api/sign-up', { email, password });
+            const res = await axios.post('/api/sign-up', { name, email, password });
 
             if (res.data.success) {
                 localStorage.setItem('token', res.data.data.token);
                 toast.success(res.data.message);
                 router.push('/forms/staff-joining');
             } else {
+                toast.error(res.data.message);
                 setErrors(res.data.errors || ['Sign-Up failed']);
             }
         } catch (err: any) {
@@ -78,6 +80,17 @@ export default function SignUpForm() {
                 <CardContent>
                     <form onSubmit={handleSubmit}>
                         <div className="flex flex-col gap-6">
+                            <div className="grid gap-2">
+                                <Label htmlFor="name">Name</Label>
+                                <Input
+                                    id="name"
+                                    type="name"
+                                    placeholder="John Doe"
+                                    required
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                />
+                            </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="email">Email</Label>
                                 <Input
