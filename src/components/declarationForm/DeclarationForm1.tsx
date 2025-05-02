@@ -69,8 +69,8 @@ export default function DeclarationForm1() {
                     <label className="w-64 font-medium">2. Father’s/Husband’s Name:</label>
                     <input type="text" className="flex-1 border border-gray-400 px-2 py-1" />
                 </div>
-                <div className="flex items-center gap-4">
-                    <label className="w-64 font-medium">3. Date of Birth:</label>
+                <div  className="flex items-center gap-4">
+                    <label htmlFor="" className="w-64 font-medium">3. Date of Birth:</label>
                     <input type="date" className="flex-1 border border-gray-400 px-2 py-1" />
                 </div>
                 <div className="flex items-center gap-4">
