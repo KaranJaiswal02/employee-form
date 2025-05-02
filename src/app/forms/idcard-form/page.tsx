@@ -41,6 +41,7 @@ export default function Page() {
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    console.log(empFormData1.fatherName.toString())
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
   };
@@ -83,7 +84,7 @@ export default function Page() {
       }));
       toast.success(responseData.message);
       const params = id ? `?id=${id}` : '';
-      router.push(`/staff-family-members${params}`);
+      router.push(`/forms/staff-family-members${params}`);
     }
     else {
       toast.error(responseData.message);
@@ -312,7 +313,7 @@ export default function Page() {
             <div className="w-2/3 flex items-center px-2">
               <Input
                 id="fatherName"
-                type="number"
+                type="text"
                 value={empFormData1.fatherName}
                 onChange={handleInputChange}
                 className="w-full"

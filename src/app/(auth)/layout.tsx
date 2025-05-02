@@ -20,7 +20,7 @@ export default function RootLayout({
         }
         const token = localStorage.getItem('token');
         if (token) {
-            router.push('/staff-joining');
+            router.push('/forms/staff-joining');
         }
     }, [router, isDarkMode]);
 

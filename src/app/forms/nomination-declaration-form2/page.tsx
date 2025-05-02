@@ -54,7 +54,7 @@ export default function Page() {
             }));
             toast.success(responseData.message);
             const params = id ? `?id=${id}` : '';
-            router.push(`/thank-you${params}`);
+            router.push(`/forms/thank-you${params}`);
         }
         else {
             toast.error(responseData.message);

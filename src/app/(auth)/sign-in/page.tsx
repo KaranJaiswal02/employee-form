@@ -50,7 +50,7 @@ export default function LoginForm() {
                 localStorage.setItem('token', res.data.data.token);
                 console.log(res.data.data)
                 toast.success(res.data.message);
-                router.push('/staff-joining');
+                router.push('/forms/staff-joining');
             } else {
                 setErrors(res.data.errors || ['Login failed']);
             }

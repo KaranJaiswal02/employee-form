@@ -72,7 +72,7 @@ export default function Page() {
       }));
       toast.success(responseData.message);
       const params = id ? `?id=${id}` : '';
-      router.push(`/gratuity-form${params}`);
+      router.push(`/forms/gratuity-form${params}`);
     }
     else {
       toast.error(responseData.message);

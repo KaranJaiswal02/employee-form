@@ -59,7 +59,7 @@ export default function BankMandateForm() {
             }));
             toast.success(responseData.message);
             const params = id ? `?id=${id}` : '';
-            router.push(`/nomination-declaration-form1${params}`);
+            router.push(`/forms/nomination-declaration-form1${params}`);
         }
         else {
             toast.error(responseData.message);
@@ -150,7 +150,7 @@ export default function BankMandateForm() {
                     />
                 </div>
                 <div className="flex flex-col sm:flex-row">
-                    <RequiredLabel><label htmlFor="email" className="w-72">5. Email Id</label></RequiredLabel>
+                    <RequiredLabel className="w-72"><label htmlFor="email">5. Email Id</label></RequiredLabel>
                     <input
                         id="email"
                         type="email"
@@ -162,7 +162,7 @@ export default function BankMandateForm() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row">
-                    <RequiredLabel><label htmlFor="pan" className="w-72">6. Permanent Account Number</label></RequiredLabel>
+                    <RequiredLabel className="w-72"><label htmlFor="pan">6. Permanent Account Number</label></RequiredLabel>
                     <input
                         id="pan"
                         type="text"

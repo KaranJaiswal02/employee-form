@@ -41,7 +41,7 @@ export default function page() {
       }));
       toast.success(responseData.message);
       const params = id ? `?id=${id}` : '';
-      router.push(`/idcard-form${params}`);
+      router.push(`/forms/idcard-form${params}`);
     }
     else {
       toast.error(responseData.message);
