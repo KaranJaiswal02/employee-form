@@ -14,10 +14,33 @@ export default function EmpForm1() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target as HTMLInputElement;
+    if (id ==="dob"){
+      checkAge(value);
+      return;
+    }
     setEmpFormData1(prev => ({ ...prev, [id]: value }));
     if (isChecked) {
       setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode, perstdcode: empFormData1.currstdcode, percontactNumber: empFormData1.currcontactNumber }));
     }
+  };
+
+  const checkAge = (value : string ) => {
+    const dob = new Date(value);
+    const today = new Date();
+    let age = today.getFullYear() - dob.getFullYear();
+    const monthDiff = today.getMonth() - dob.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
+      age--;
+    }
+    if (age < 18) {
+      alert("Age must be at least 18 years.");
+      return;
+    }
+    if (age > 60) {
+      alert("Age must be less than 60 years.");
+      return;
+    }
+    setEmpFormData1(prev => ({ ...prev, dob: value }));
   };
 
   const handleCheckboxChange = () => {
@@ -221,7 +244,7 @@ export default function EmpForm1() {
                 className="w-20 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
                 disabled={isChecked}
               />
-              
+
               <RequiredLabel><label htmlFor="percontactNumber" className=" font-small">
                 Number:
               </label></RequiredLabel>
@@ -285,7 +308,7 @@ export default function EmpForm1() {
       {/* Bank Details */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="flex items-center gap-2">
-          <RequiredLabel><label htmlFor='accountNumber'className='font-small'>Bank A/c No:</label></RequiredLabel>
+          <RequiredLabel><label htmlFor='accountNumber' className='font-small'>Bank A/c No:</label></RequiredLabel>
           <input
             type='text'
             id='accountNumber'
@@ -296,7 +319,7 @@ export default function EmpForm1() {
           />
         </div>
         <div className="flex items-center gap-2">
-        <RequiredLabel><label htmlFor='bankName' className='font-small'>Bank Name :</label></RequiredLabel>
+          <RequiredLabel><label htmlFor='bankName' className='font-small'>Bank Name :</label></RequiredLabel>
           <input
             type='text'
             id='bankName'
