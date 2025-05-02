@@ -12,6 +12,8 @@ export default function BankMandateForm() {
     const [formData1] = useAtom(empFormData);
     const [, setFormStatus] = useAtom(formStatusus);
     const searchParams = useSearchParams()
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [errors, setErrors] = useState<string[]>([]);
 
     useEffect(() => {
         setFormData((prev) => ({
@@ -32,6 +34,7 @@ export default function BankMandateForm() {
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        setIsSubmitting(true);
         e.preventDefault();
         const id = searchParams.get('id')
         console.log(formData);
@@ -58,7 +61,9 @@ export default function BankMandateForm() {
         }
         else {
             alert(responseData.message);
+            setErrors(responseData.errors);
         }
+        setIsSubmitting(false);
     };
 
     return (
@@ -379,7 +384,13 @@ export default function BankMandateForm() {
             </div>
 
             <div className="text-right font-bold mt-6 mb-4">SIGNATURE</div>
-
+            {errors.length > 0 && (
+                <div className="text-red-600 text-sm px-2 text-left">
+                    {errors.map((err, index) => (
+                        <div key={index}>{err}</div>
+                    ))}
+                </div>
+            )}
             <div className="flex justify-center mt-6">
                 <Button type="submit" className="w-full cursor-pointer">Submit</Button>
             </div>
