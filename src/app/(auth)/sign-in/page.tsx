@@ -51,10 +51,10 @@ export default function LoginForm() {
 
                 router.push('/staff-joining');
             } else {
-                setErrors(res.data.message || 'Login failed');
+                setErrors(res.data.errors || ['Login failed']);
             }
         } catch (err: any) {
-            setErrors(err.response?.data?.message || 'Something went wrong');
+            setErrors(err.response?.data?.errors || ['Something went wrong']);
         } finally {
             setLoading(false);
         }

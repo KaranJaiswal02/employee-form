@@ -1,5 +1,5 @@
 "use client";
-import { formStatusus } from "@/hooks/Atoms";
+import { bankMandateFormData, empFormData, formStatusus, grauFormData, idCardFormData, nominationForm1Data, nominationForm2Data, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -19,6 +19,39 @@ export default function FormLayout({
     const [isDarkMode, setIsDarkMode] = useState(false);
     const router = useRouter();
 
+    //all forms
+    const [, setbankMandateFormData] = useAtom(bankMandateFormData);
+    const [, setGrauFormData] = useAtom(grauFormData);
+    const [, setIdCardFormData] = useAtom(idCardFormData);
+    const [, setNominstionForm1Data] = useAtom(nominationForm1Data);
+    const [, setNominstionForm2Data] = useAtom(nominationForm2Data);
+    const [, setStaffFamilyFormData] = useAtom(staffFamilyFormData);
+    const [, setEmpFormData] = useAtom(empFormData);
+
+    const setFormsData = (data: any) => {
+        if (data.bankMandateFormData) {
+            setbankMandateFormData(data.bankMandateFormData);
+        }
+        if (data.grauFormData) {
+            setGrauFormData(data.grauFormData);
+        }
+        if (data.idCardFormData) {
+            setIdCardFormData(data.idCardFormData);
+        }
+        if (data.nominationForm1Data) {
+            setNominstionForm1Data(data.nominationForm1Data);
+        }
+        if (data.nominationForm2Data) {
+            setNominstionForm2Data(data.nominationForm2Data);
+        }
+        if (data.staffFamilyFormData) {
+            setStaffFamilyFormData(data.staffFamilyFormData);
+        }
+        if (data.empFormData) {
+            setEmpFormData(data.empFormData);
+        }
+    }
+
     useEffect(() => {
         if (typeof window !== "undefined") {
             const isDark = document.documentElement.classList.contains("dark");
@@ -28,6 +61,7 @@ export default function FormLayout({
         if (!token) {
             router.push('/sign-in');
         }
+        fetchFormData(token as string);
     }, [router, isDarkMode]);
 
     const toggleDarkMode = () => {
@@ -40,6 +74,27 @@ export default function FormLayout({
     const handleLogout = () => {
         localStorage.removeItem('token');
         router.push('/sign-in');
+    };
+
+    const fetchFormData = async (token : string) => {
+        try {
+            const response = await fetch('/api/forms/all-forms', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'authorization': `Bearer ${token}`,
+                },
+            });
+            const data = await response.json();
+            if (data.success) {
+                setFormsData(data.data.forms);
+                console.log(data.data.forms);
+            } else {
+                console.error(data.message);
+            }
+        } catch (error) {
+            console.error("Error fetching form data:", error);
+        }
     };
 
     return (
