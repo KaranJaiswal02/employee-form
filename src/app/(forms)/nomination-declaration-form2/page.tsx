@@ -6,6 +6,7 @@ import { useAtom } from "jotai";
 import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, nominationForm2Data } from '@/hooks/Atoms';
 import { useEffect } from 'react';
+import { toast } from 'sonner';
 
 export default function Page() {
     const router = useRouter();
@@ -51,12 +52,12 @@ export default function Page() {
                     status: "done",
                 },
             }));
+            toast.success(responseData.message);
             const params = id ? `?id=${id}` : '';
             router.push(`/thank-you${params}`);
         }
         else {
-            
-            alert(responseData.message);
+            toast.error(responseData.message);
         }
     };
 

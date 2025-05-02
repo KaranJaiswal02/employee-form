@@ -4,6 +4,7 @@ import { empFormData, formStatusus, nominationForm1Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
 import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from "react";
+import { toast } from 'sonner';
 
 interface Nominee {
   name: string;
@@ -69,12 +70,12 @@ export default function Page() {
           status: "done",
         },
       }));
+      toast.success(responseData.message);
       const params = id ? `?id=${id}` : '';
       router.push(`/gratuity-form${params}`);
     }
     else {
-      
-      alert(responseData.message);
+      toast.error(responseData.message);
     }
   };
 

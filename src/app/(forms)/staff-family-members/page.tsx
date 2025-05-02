@@ -6,6 +6,7 @@ import { empFormData, formStatusus, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { set } from "mongoose";
 import RequiredLabel from "@/components/RequiredLabel";
+import { toast } from "sonner";
 
 type Child = {
     name: string;
@@ -98,12 +99,12 @@ export default function MedicalInsuranceForm() {
                     status: "done",
                 },
             }));
+            toast.success(responseData.message);
             const params = id ? `?id=${id}` : '';
             router.push(`/bank-mandate${params}`);
         }
         else {
-
-            alert(responseData.message);
+            toast.error(responseData.message);
         }
     };
 

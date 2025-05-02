@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, idCardFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
+import { toast } from "sonner";
 
 export default function Page() {
   const router = useRouter();
@@ -80,12 +81,12 @@ export default function Page() {
           status: "done",
         },
       }));
+      toast.success(responseData.message);
       const params = id ? `?id=${id}` : '';
       router.push(`/staff-family-members${params}`);
     }
     else {
-
-      alert(responseData.message);
+      toast.error(responseData.message);
     }
   };
 

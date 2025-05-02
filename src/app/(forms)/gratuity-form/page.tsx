@@ -6,6 +6,7 @@ import { useAtom } from 'jotai';
 import React, { useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
+import { toast } from 'sonner';
 
 
 export default function Page() {
@@ -48,12 +49,12 @@ export default function Page() {
           status: "done",
         },
       }));
+      toast.success(responseData.message);
       const params = id ? `?id=${id}` : '';
       router.push(`/nomination-declaration-form2${params}`);
     }
     else {
-      
-      alert(responseData.message);
+      toast.error(responseData.message);
     }
   };
 
