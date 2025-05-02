@@ -392,7 +392,9 @@ export default function BankMandateForm() {
                 </div>
             )}
             <div className="flex justify-center mt-6">
-                <Button type="submit" className="w-full cursor-pointer">Submit</Button>
+                <Button type="submit" disabled={isSubmitting} className="w-full cursor-pointer">
+                    {isSubmitting ? "Submitting..." : "Submit"}
+                </Button>
             </div>
         </form >
     );
