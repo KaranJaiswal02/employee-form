@@ -7,6 +7,7 @@ import { useAtom } from 'jotai'
 import RequiredLabel from '../RequiredLabel'
 import { Label } from '../ui/label'
 import { Checkbox } from '../ui/checkbox'
+import { toast } from 'sonner'
 
 export default function EmpForm1() {
   const [empFormData1, setEmpFormData1] = useAtom(empFormData);
@@ -33,13 +34,13 @@ export default function EmpForm1() {
       age--;
     }
     if (age < 18) {
-      alert("Age must be at least 18 years.");
+      toast.warning("Age must be at least 18 years.");
       return;
     }
-    if (age > 60) {
-      alert("Age must be less than 60 years.");
-      return;
-    }
+    // if (age > 60) {
+    //   toast.warning("Age must be less than 60 years.");
+    //   return;
+    // }
     setEmpFormData1(prev => ({ ...prev, dob: value }));
   };
 

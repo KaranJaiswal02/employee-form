@@ -9,6 +9,7 @@ import { empFormData, formStatusus } from '@/hooks/Atoms'
 import { useAtom } from 'jotai'
 import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
+import { toast } from "sonner"
 
 export default function page() {
   const [formData] = useAtom(empFormData);
@@ -18,7 +19,7 @@ export default function page() {
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const id = searchParams.get('id')
+    const id = searchParams.get('id');
     console.log(formData);
     const response = await fetch("/api/forms/staff-joining", {
       method: "POST",
@@ -38,12 +39,12 @@ export default function page() {
           status: "done",
         },
       }));
+      toast.success(responseData.message);
       const params = id ? `?id=${id}` : '';
       router.push(`/idcard-form${params}`);
     }
     else {
-      
-      alert(responseData.message);
+      toast.error(responseData.message);
     }
   };
 
