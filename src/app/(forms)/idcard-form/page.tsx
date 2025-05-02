@@ -77,7 +77,7 @@ export default function Page() {
       router.push("/staff-family-members");
     }
     else {
-      
+
       alert(responseData.message);
     }
   };
@@ -90,7 +90,7 @@ export default function Page() {
       <h1 className="text-center text-xl font-bold mb-4">ID CARD FORM</h1>
 
       <div className="grid grid-cols-3 gap-0 border border-black dark:border-white text-sm">
-        <div className="col-span-2 w-full">
+        {/* <div className="col-span-2 w-full">
           {[
             ["NAME", "name"],
             ["CODE", "empcode"],
@@ -153,6 +153,184 @@ export default function Page() {
               </div>
             </div>
           ))}
+        </div> */}
+        <div className="col-span-2 w-full">
+          {/* NAME */}
+          <div className="flex border-b border-black dark:border-white h-12">
+            <label htmlFor="name" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
+              NAME
+            </label>
+            <div className="w-2/3 flex items-center px-2">
+              <Input
+                id="name"
+                type="text"
+                value={empFormData1.name}
+                onChange={handleInputChange}
+                className="w-full"
+                disabled={true}
+              />
+            </div>
+          </div>
+
+          {/* CODE */}
+          <div className="flex border-b border-black dark:border-white h-12">
+            <label htmlFor="empcode" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
+              CODE
+            </label>
+            <div className="w-2/3 flex items-center px-2">
+              <Input
+                id="empcode"
+                type="text"
+                value={formData.empcode}
+                onChange={handleInputChange}
+                className="w-full"
+              />
+            </div>
+          </div>
+
+          {/* DEPARTMENT */}
+          <div className="flex border-b border-black dark:border-white h-12">
+            <label htmlFor="department" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
+              DEPARTMENT
+            </label>
+            <div className="w-2/3 flex items-center px-2">
+              <Input
+                id="department"
+                type="text"
+                value={formData.department}
+                onChange={handleInputChange}
+                className="w-full"
+              />
+            </div>
+          </div>
+
+          {/* DESIGNATION */}
+          <div className="flex border-b border-black dark:border-white h-12">
+            <label htmlFor="designation" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
+              DESIGNATION
+            </label>
+            <div className="w-2/3 flex items-center px-2">
+              <Input
+                id="designation"
+                type="text"
+                value={empFormData1.designation}
+                onChange={handleInputChange}
+                className="w-full"
+                disabled={true}
+                required
+              />
+            </div>
+          </div>
+
+          {/* DOB */}
+          <div className="flex border-b border-black dark:border-white h-12">
+            <label htmlFor="dob" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
+              DOB
+            </label>
+            <div className="w-2/3 flex items-center px-2">
+              <Input
+                id="dob"
+                type="date"
+                value={formData.dob}
+                onChange={handleInputChange}
+                className="w-full"
+                disabled={true}
+                required
+              min="1950-01-01"
+              />
+            </div>
+          </div>
+
+          {/* DOJ */}
+          <div className="flex border-b border-black dark:border-white h-12">
+            <label htmlFor="dateOfJoining" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
+              DOJ
+            </label>
+            <div className="w-2/3 flex items-center px-2">
+              <Input
+                id="dateOfJoining"
+                type="date"
+                value={formData.dateOfJoining}
+                onChange={handleInputChange}
+                className="w-full"
+              />
+            </div>
+          </div>
+
+          {/* BLOOD GROUP */}
+          <div className="flex border-b border-black dark:border-white h-12">
+            <label htmlFor="bloodGroup" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
+              BLOOD GROUP
+            </label>
+            <div className="w-2/3 flex items-center px-2">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="w-full text-left">
+                  <Input
+                    id="bloodGroup"
+                    value={formData.bloodGroup}
+                    onChange={handleInputChange}
+                    readOnly
+                    className="cursor-pointer"
+                  />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-48">
+                  <DropdownMenuRadioGroup
+                    value={formData.bloodGroup}
+                    onValueChange={(value) =>
+                      setFormData((prev) => ({
+                        ...prev,
+                        bloodGroup: value,
+                      }))
+                    }
+                  >
+                    {["A+", "A-", "B+", "B-", "O+", "O-", "AB+", "AB-"].map(
+                      (bg) => (
+                        <DropdownMenuRadioItem key={bg} value={bg}>
+                          {bg}
+                        </DropdownMenuRadioItem>
+                      )
+                    )}
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+
+          {/* FATHER NAME */}
+          <div className="flex border-b border-black dark:border-white h-12">
+            <label htmlFor="fatherName" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
+              FATHER NAME
+            </label>
+            <div className="w-2/3 flex items-center px-2">
+              <Input
+                id="fatherName"
+                type="number"
+                value={empFormData1.fatherName}
+                onChange={handleInputChange}
+                className="w-full"
+                disabled={true}
+                required
+              />
+            </div>
+          </div>
+
+          {/* YEAR */}
+          <div className="flex border-b border-black dark:border-white h-12">
+            <label htmlFor="year" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
+              YEAR
+            </label>
+            <div className="w-2/3 flex items-center px-2">
+              <Input
+                id="year"
+                type="text"
+                value={formData.year}
+                onChange={handleInputChange}
+                className="w-full"
+                min="2000"
+                max="2100"
+              />
+            </div>
+          </div>
         </div>
 
         {/* PHOTO COLUMN */}

@@ -75,20 +75,22 @@ export default function EmpForm5() {
                     />
                 </div>
                 <div>
-                    <label className="font-semibold">CODE:</label>
+                    <label htmlFor="code" className="font-semibold">CODE:</label>
                     <input
                         type="text"
                         name="code"
+                        id="code"
                         value={formData.code}
                         onChange={handleEmployeeInfoChange}
                         className="ml-2 border-b border-black dark:border-white outline-none"
                     />
                 </div>
                 <div>
-                    <label className="font-semibold">GRADE:</label>
+                    <label htmlFor="grade" className="font-semibold">GRADE:</label>
                     <input
                         type="text"
                         name="grade"
+                        id="grade"
                         value={formData.grade}
                         onChange={handleEmployeeInfoChange}
                         className="ml-2 border-b border-black dark:border-white outline-none"
@@ -96,7 +98,7 @@ export default function EmpForm5() {
                 </div>
 
                 <div className="w-1 flex items-end gap-2 mb-4">
-                    <label className=" font-semibold whitespace-nowrap">
+                    <label htmlFor="department" className=" font-semibold whitespace-nowrap">
                         <RequiredLabel>Deptt:</RequiredLabel>
                     </label>
                     <input
@@ -140,6 +142,7 @@ export default function EmpForm5() {
                                     className="w-full outline-none"
                                     onChange={(e) =>
                                         handleMemberChange(index, "name", e.target.value)
+                                        
                                     }
                                 />
                             </td>
