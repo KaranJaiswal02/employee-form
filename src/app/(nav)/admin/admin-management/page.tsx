@@ -35,6 +35,9 @@ export default function AdminManagementPage() {
             const data = await res.json();
             if (data.success) {
                 setUsers(data.data);
+                if(data.data.length < 1) {
+                    toast.warning("No users found in the system")
+                }
                 setFilteredUsers(data.data);
             } else {
                 toast.error(data.message);
@@ -109,91 +112,99 @@ export default function AdminManagementPage() {
         <Loader />
     ) : (
         <div className="p-6 max-w-7xl mx-auto">
-            <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-                Admin Management
-            </h1>
-            <p className="mb-6 text-gray-600 dark:text-gray-400">
-                <span className="font-semibold text-green-600">Note:</span> You cannot change the role of the currently logged-in user.
-            </p>
+            <div className="mb-6">
+                <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+                    Admin Management
+                </h1>
+                <p className="text-gray-600 dark:text-gray-400">
+                    <span className="font-semibold text-yellow-500">Important:</span> The role of the currently logged-in user cannot be modified.
+                </p>
+                {users.length === 0 && (
+                    <p className="text-gray-600 dark:text-gray-400">
+                        <span className="font-semibold text-red-500">Notice:</span> No users found in the system.
+                    </p>
+                )}
+            </div>
 
+            {users.length > 0 && (<>
+                <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <Input
+                        type="text"
+                        placeholder="Search by name or email..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="w-full md:w-1/2 bg-white dark:bg-neutral-800"
+                        disabled={changingRole}
+                    />
 
-            <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <Input
-                    type="text"
-                    placeholder="Search by name or email..."
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    className="w-full md:w-1/2 bg-white dark:bg-neutral-800"
-                    disabled={changingRole}
-                />
-
-                <div className="flex gap-2">
-                    <Button
-                        variant={roleFilter === "admin" ? "default" : "secondary"}
-                        onClick={() => setRoleFilter("admin")}
-                        className="cursor-pointer"
-                        disabled={changingRole}
-                    >
-                        Show Only Admin
-                    </Button>
-                    <Button
-                        variant={roleFilter === "user" ? "default" : "secondary"}
-                        onClick={() => setRoleFilter("user")}
-                        className="cursor-pointer"
-                        disabled={changingRole}
-                    >
-                        Show Only Users
-                    </Button>
-                    <Button
-                        variant={roleFilter === "all" ? "default" : "secondary"}
-                        onClick={() => setRoleFilter("all")}
-                        className="cursor-pointer"
-                        disabled={changingRole}
-                    >
-                        Show All
-                    </Button>
+                    <div className="flex gap-2">
+                        <Button
+                            variant={roleFilter === "admin" ? "default" : "secondary"}
+                            onClick={() => setRoleFilter("admin")}
+                            className="cursor-pointer"
+                            disabled={changingRole}
+                        >
+                            Show Only Admin
+                        </Button>
+                        <Button
+                            variant={roleFilter === "user" ? "default" : "secondary"}
+                            onClick={() => setRoleFilter("user")}
+                            className="cursor-pointer"
+                            disabled={changingRole}
+                        >
+                            Show Only Users
+                        </Button>
+                        <Button
+                            variant={roleFilter === "all" ? "default" : "secondary"}
+                            onClick={() => setRoleFilter("all")}
+                            className="cursor-pointer"
+                            disabled={changingRole}
+                        >
+                            Show All
+                        </Button>
+                    </div>
                 </div>
-            </div>
 
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white dark:bg-neutral-800 rounded-md shadow">
-                    <thead>
-                        <tr className="text-left border-b dark:border-neutral-700">
-                            <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
-                                Name
-                            </th>
-                            <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
-                                Email
-                            </th>
-                            <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
-                                Admin
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredUsers.map((user) => (
-                            <tr key={user._id} className="border-t dark:border-neutral-700">
-                                <td className="p-4 text-gray-800 dark:text-gray-100">
-                                    {user.name}
-                                </td>
-                                <td className="p-4 text-gray-800 dark:text-gray-100">
-                                    {user.email}
-                                </td>
-                                <td className="p-4">
-                                    <Switch
-                                        checked={user.role === "admin"}
-                                        onCheckedChange={() =>
-                                            toggleRole(user._id, user.name)
-                                        }
-                                        className="cursor-pointer"
-                                        disabled={changingRole}
-                                    />
-                                </td>
+                <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white dark:bg-neutral-800 rounded-md shadow">
+                        <thead>
+                            <tr className="text-left border-b dark:border-neutral-700">
+                                <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
+                                    Name
+                                </th>
+                                <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
+                                    Email
+                                </th>
+                                <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
+                                    Admin
+                                </th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            {filteredUsers.map((user) => (
+                                <tr key={user._id} className="border-t dark:border-neutral-700">
+                                    <td className="p-4 text-gray-800 dark:text-gray-100">
+                                        {user.name}
+                                    </td>
+                                    <td className="p-4 text-gray-800 dark:text-gray-100">
+                                        {user.email}
+                                    </td>
+                                    <td className="p-4">
+                                        <Switch
+                                            checked={user.role === "admin"}
+                                            onCheckedChange={() =>
+                                                toggleRole(user._id, user.name)
+                                            }
+                                            className="cursor-pointer"
+                                            disabled={changingRole}
+                                        />
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </>)}
         </div>
     );
 }
