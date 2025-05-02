@@ -1,9 +1,10 @@
 import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/dbConnect';
-import { User } from '@/models/user/user';
+import { User } from '@/models/user';
 import { signJwt } from '@/lib/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 import IAPIResponse from '@/types/responseType';
+import { hashPassword } from '@/lib/bcrypt';
 
 export async function POST(req: NextRequest) {
     const { email, password } = await req.json();
@@ -30,14 +31,14 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(response, { status: 409 });
         }
 
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const hashedPassword = await hashPassword(password);
 
         const newUser = await User.create({
             email,
             password: hashedPassword,
         });
 
-        const token = signJwt({ id: newUser._id });
+        const token = signJwt({ id: newUser._id ,role : newUser.role}, '7d');
 
         const response: IAPIResponse = {
             success: true,

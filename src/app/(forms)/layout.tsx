@@ -92,10 +92,10 @@ export default function FormLayout({
                                     }`}
                             ></span>
                         </button>
-                        <span  className="text-gray-800 dark:text-gray-200 font-medium">
+                        <span className="text-gray-800 dark:text-gray-200 font-medium">
                             {isDarkMode ? <FaRegMoon /> : <FiSun />}
                         </span>
-                        <span  className="text-gray-800 dark:text-gray-200 font-medium">
+                        <span className="text-gray-800 dark:text-gray-200 font-medium">
                             {isDarkMode ? "Dark Mode" : "Light Mode"}
                         </span>
                     </div>

@@ -4,14 +4,31 @@ import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import IAPIResponse from "@/types/responseType";
+import { User } from "@/models/user";
 
 export async function POST(req: NextRequest) {
     await dbConnect();
 
     try {
+        const xUserId = req.headers.get("x-userid");
+        const staffId = req.headers.get("userid");
+        const role = req.headers.get("x-userrole");
+
+        const actualUserId = role === "admin" ? staffId : xUserId;
+
+        if (!actualUserId) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized",
+                    errors: ["User ID is missing from headers"],
+                },
+                { status: 401 }
+            );
+        }
+
         const body: StaffFamilyFormData = await req.json();
-        
-        // Validate request body
+
         if (!body) {
             const response: IAPIResponse = {
                 success: false,
@@ -21,26 +38,38 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(response, { status: 400 });
         }
 
-        // Create new Family Member form entry
-        const familyForm = new IempFamilyDataModel(body);
-        const savedFamilyForm = await familyForm.save();
+        // Check if form already exists for this user
+        const existingForm = await IempFamilyDataModel.findOne({ userId: actualUserId });
+
+        let result;
+        if (existingForm) {
+            await IempFamilyDataModel.updateOne({ userId: actualUserId }, { $set: body });
+            result = await IempFamilyDataModel.findOne({ userId: actualUserId });
+        } else {
+            const newForm = new IempFamilyDataModel({ ...body, userId: actualUserId });
+            result = await newForm.save();
+        }
+
+        await User.updateOne(
+            { _id: actualUserId },
+            { $set: { familyDetailsForm: result._id } }
+        );
 
         const response: IAPIResponse = {
             success: true,
-            message: "Family Member Form submitted successfully",
+            message: "Family Member Form saved successfully",
             errors: [],
-            data: savedFamilyForm,
+            data: result,
         };
-        return NextResponse.json(response, { status: 201 });
+        return NextResponse.json(response, { status: 200 });
 
     } catch (error) {
-        console.log("Error in POST /staff-family-members:", error);
+        console.error("Error in POST /staff-family-members:", error);
 
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];
         let statusCode = 500;
 
-        // Handle validation and syntax errors
         if (error instanceof mongoose.Error.ValidationError) {
             errorMessage = "Validation Error";
             errorDetails = [error.message];

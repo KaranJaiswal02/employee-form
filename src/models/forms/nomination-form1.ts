@@ -1,4 +1,4 @@
-import { Schema, Document, model, models } from 'mongoose';
+import { Schema, Document, model, models, Types } from 'mongoose';
 
 interface Nominee {
   name: string;
@@ -10,6 +10,7 @@ interface Nominee {
 }
 
 export interface NominationForm1Document extends Document {
+  userId: Types.ObjectId;
   name: string;
   fathersName: string;
   dob: string;
@@ -33,6 +34,7 @@ const NomineeSchema: Schema = new Schema({
 });
 
 const NominationForm1Schema: Schema = new Schema({
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   name: { type: String, required: false },
   fathersName: { type: String, required: false },
   dob: { type: String, required: false },
@@ -45,9 +47,9 @@ const NominationForm1Schema: Schema = new Schema({
   date: { type: String, required: false },
   establishmentAddress: { type: String, required: false },
 },
-{
+  {
     timestamps: true,
-});
+  });
 
 const NominationForm1DataModel = models.NominationForm1 || model<NominationForm1Document>('NominationForm1', NominationForm1Schema);
 export default NominationForm1DataModel

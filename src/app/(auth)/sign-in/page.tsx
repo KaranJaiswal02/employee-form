@@ -47,6 +47,7 @@ export default function LoginForm() {
 
             if (res.data.success) {
                 localStorage.setItem('token', res.data.data.token);
+                console.log(res.data.data)
 
                 router.push('/staff-joining');
             } else {

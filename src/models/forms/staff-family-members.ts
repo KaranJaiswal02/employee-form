@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, model, models } from 'mongoose';
+import mongoose, { Schema, Document, model, models, Types } from 'mongoose';
 
 interface Child {
   name: string;
@@ -7,6 +7,7 @@ interface Child {
 }
 
 export interface StaffFamilyFormData extends Document {
+  userId: Types.ObjectId;
   empNo: string;
   name: string;
   department: string;
@@ -33,6 +34,7 @@ const ChildSchema: Schema = new Schema({
 });
 
 const StaffFamilyFormDataSchema: Schema = new Schema({
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   empNo: { type: String, required: false },
   name: { type: String, required: false },
   department: { type: String, required: false },
@@ -51,9 +53,9 @@ const StaffFamilyFormDataSchema: Schema = new Schema({
   address: { type: String, required: false },
   date: { type: Date, default: Date.now },
 },
-{
+  {
     timestamps: true,
-});
+  });
 
 const IempFamilyDataModel = models.StaffFamilyFormData || model<StaffFamilyFormData>('StaffFamilyFormData', StaffFamilyFormDataSchema);
 export default IempFamilyDataModel;

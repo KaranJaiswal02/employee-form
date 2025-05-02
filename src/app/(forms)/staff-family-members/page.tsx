@@ -78,10 +78,11 @@ export default function MedicalInsuranceForm() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(formData);
-        const response = await fetch("/api/staff-family-members", {
+        const response = await fetch("/api/forms/staff-family-members", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "authorization": `Bearer ${localStorage.getItem("token")}`,
             },
             body: JSON.stringify(formData),
         });

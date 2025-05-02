@@ -57,10 +57,11 @@ export default function Page() {
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(formData);
-    const response = await fetch("/api/idcard-form", {
+    const response = await fetch("/api/forms/idcard-form", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "authorization": `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(formData),
     });

@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, model, models } from "mongoose";
+import mongoose, { Schema, Document, model, models, Types } from "mongoose";
 
 interface Reference {
     name: string;
@@ -29,6 +29,7 @@ interface Member {
 }
 
 export interface IEmpFormData extends Document {
+    userId: Types.ObjectId;
     name: string;
     fatherName: string;
     designation: string;
@@ -131,6 +132,7 @@ const MemberSchema = new Schema<Member>({
 });
 
 const EmpFormDataSchema = new Schema<IEmpFormData>({
+    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     name: { type: String, required: false },
     fatherName: { type: String, required: false },
     designation: { type: String, required: false },
@@ -227,9 +229,9 @@ const EmpFormDataSchema = new Schema<IEmpFormData>({
         default: []
     },
 },
-{
-    timestamps: true,
-});
+    {
+        timestamps: true,
+    });
 
 const EmpJoinForm = models.EmpFormData || model<IEmpFormData>("EmpFormData", EmpFormDataSchema);
 export default EmpJoinForm;

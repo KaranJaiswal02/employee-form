@@ -1,5 +1,5 @@
 // models/GratuityForm.ts
-import mongoose, { Schema, Document, model, models} from 'mongoose';
+import mongoose, { Schema, Document, model, models, Types } from 'mongoose';
 
 interface Nominee {
   name: string;
@@ -9,6 +9,7 @@ interface Nominee {
 }
 
 export interface IGratuityForm extends Document {
+  userId: Types.ObjectId;
   name: string;
   noticedate: string;
   nominee: Nominee[];
@@ -39,6 +40,7 @@ const NomineeSchema: Schema = new Schema({
 });
 
 const GratuityFormSchema: Schema = new Schema({
+  userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   name: { type: String, required: false },
   noticedate: { type: String, required: false },
   nominee: { type: [NomineeSchema], required: false },

@@ -1,9 +1,10 @@
 import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/dbConnect';
-import { User } from '@/models/user/user';
+import { User } from '@/models/user';
 import { signJwt } from '@/lib/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 import IAPIResponse from '@/types/responseType';
+import { comparePassword } from '@/lib/bcrypt';
 
 export async function POST(req: NextRequest) {
     const { email, password } = await req.json();
@@ -20,7 +21,14 @@ export async function POST(req: NextRequest) {
     try {
         await dbConnect();
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ email })
+            .populate('idCardForm')
+            .populate('familyDetailsForm')
+            .populate('bankMandateForm')
+            .populate('nominationForm1')
+            .populate('gratuityForm')
+            .populate('nominationForm2');
+
         if (!user) {
             const response: IAPIResponse = {
                 success: false,
@@ -30,7 +38,8 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(response, { status: 401 });
         }
 
-        const isMatch = await bcrypt.compare(password, user.password);
+        const isMatch = await comparePassword(password, user.password);
+
         if (!isMatch) {
             const response: IAPIResponse = {
                 success: false,
@@ -40,7 +49,7 @@ export async function POST(req: NextRequest) {
             return NextResponse.json(response, { status: 401 });
         }
 
-        const token = signJwt({ id: user._id });
+        const token = signJwt({ id: user._id, role: user.role }, '7d');
 
         const response: IAPIResponse = {
             success: true,
@@ -48,26 +57,29 @@ export async function POST(req: NextRequest) {
             errors: [],
             data: {
                 token,
-                userId: user._id,
+                email: user.email,
+                forms: {
+                    idCardForm: user.idCardForm,
+                    familyDetailsForm: user.familyDetailsForm,
+                    bankMandateForm: user.bankMandateForm,
+                    nominationForm1: user.nominationForm1,
+                    gratuityForm: user.gratuityForm,
+                    nominationForm2: user.nominationForm2,
+                },
             },
         };
+
         return NextResponse.json(response, { status: 200 });
+
     } catch (error) {
         console.error('[Signin Error]', error);
 
-        let errorMessage = 'Internal Server Error';
-        let statusCode = 500;
-
-        if (error instanceof SyntaxError) {
-            errorMessage = 'Invalid JSON format';
-            statusCode = 400;
-        }
-
         const response: IAPIResponse = {
             success: false,
-            message: errorMessage,
+            message: 'Internal Server Error',
             errors: ['Something went wrong during signin'],
         };
-        return NextResponse.json(response, { status: statusCode });
+
+        return NextResponse.json(response, { status: 500 });
     }
 }
