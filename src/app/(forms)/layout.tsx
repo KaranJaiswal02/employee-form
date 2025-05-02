@@ -117,7 +117,7 @@ export default function FormLayout({
                 </div>) : (<div className="flex">
                     <aside className="fixed top-0 left-0 w-80 h-screen bg-white dark:bg-gray-950 shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between overflow-auto">
                         <div>
-                            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-10 tracking-tight">
+                            <h2 className="text-2xl font-bold text-gray-900 dark:text-white px-2 mb-6 tracking-tight">
                                 📋 Form Progress
                             </h2>
                             <ul className="flex flex-col space-y-2">
