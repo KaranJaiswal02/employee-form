@@ -28,35 +28,35 @@ export default function GratuityForm2() {
         <div>
             <h4 className="font-bold text-center mb-4">Statement</h4>
 
-            <ol className="list-decimal list-inside space-y-2">
+            <ol className="list-decimal list-inside space-y-2 ">
                 <li className="flex">
                     Name of employee in full:
-                    <input type="text" value={formData.name} disabled className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0" />
+                    <input type="text" value={formData.name} disabled className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
                 </li>
 
                 <li className="flex">
                     Sex:
-                    <input id="sex" type="text" value={formData.sex} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0" />
+                    <input id="sex" type="text" value={formData.sex} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
                 </li>
 
                 <li className="flex">
                     Religion:
-                    <input id="religion" type="text" value={formData.religion} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0" />
+                    <input id="religion" type="text" value={formData.religion} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
                 </li>
 
                 <li className="flex">
                     Whether unmarried/married/widow/widower:
-                    <input id="marriagestatus" type="text" value={formData.marriagestatus} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0" />
+                    <input id="marriagestatus" type="text" value={formData.marriagestatus} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
                 </li>
 
                 <li className="flex">
                     Department/Branch/Section where employed:
-                    <input id="department" type="text" value={formData.department} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0" />
+                    <input id="department" type="text" value={formData.department} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
                 </li>
 
                 <li className="flex">
                     Post held with Ticket No. or Serial No., if any:
-                    <input id="post" type="text" value={formData.post} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0" />
+                    <input id="post" type="text" value={formData.post} onChange={handleChange} className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none" />
                 </li>
 
                 <li className="flex">
@@ -66,7 +66,7 @@ export default function GratuityForm2() {
                         type="date"
                         value={formData.dateofappointment}
                         onChange={handleChange} // <- You must define this function
-                        className="border-b border-black dark:border-white inline-block ml-2 flex-1 max-w-[200px]"
+                        className="border-b border-black dark:border-white inline-block ml-2 flex-1 max-w-[200px] focus:outline-none"
                     />
                 </li>
 
@@ -77,21 +77,21 @@ export default function GratuityForm2() {
                     <div className="ml-4 mt-2 space-y-1">
                         <div>
                             building No./Street No./Village:
-                            <input id="building" type="text" value={formData.building} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1" />
+                            <input id="building" type="text" value={formData.building} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
                             Village:
-                            <input id="village" type="text" value={formData.village} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1" />
+                            <input id="village" type="text" value={formData.village} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
                             &nbsp; Thana:
-                            <input id="thana" type="text" value={formData.thana} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1" />
+                            <input id="thana" type="text" value={formData.thana} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
                             &nbsp; Sub-division:
-                            <input id="subdivision" type="text" value={formData.subdivision} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1" />
+                            <input id="subdivision" type="text" value={formData.subdivision} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
                         </div>
                         <div>
                             Post Office:
-                            <input id="postoffice" type="text" value={formData.postoffice} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1" />
+                            <input id="postoffice" type="text" value={formData.postoffice} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
                             &nbsp; District:
-                            <input id="district" type="text" value={formData.district} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1" />
+                            <input id="district" type="text" value={formData.district} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
                             &nbsp; State:
-                            <input id="state" type="text" value={formData.state} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1" />
+                            <input id="state" type="text" value={formData.state} onChange={handleChange} className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none" />
                         </div>
                     </div>
                 </li>
@@ -110,7 +110,7 @@ export default function GratuityForm2() {
                     <b> Bengaluru</b>
                 </p>
                 <p className="mt-2">
-                    Date: <input id="date" type="date" value={formData.date} onChange={handleDateChange} className="border-b border-black dark:border-white w-48 inline-block ml-2" />
+                    Date: <input id="date" type="date" value={formData.date} onChange={handleDateChange} className="border-b border-black dark:border-white w-48 inline-block ml-2 focus:outline-none" />
                 </p>
                 <p className="mt-4 text-right font-semibold">Signature/Thumb-impression of the Employee</p>
             </div>
@@ -128,7 +128,7 @@ export default function GratuityForm2() {
                                 type="text"
                                 value={formData.witness1name}
                                 onChange={(e) => handleWitnessChange(0, e.target.value)}
-                                className="border-b border-black dark:border-white w-full"
+                                className="border-b border-black dark:border-white w-full focus:outline-none"
                                 placeholder="Name and address"
                             />
                         </li>
@@ -137,7 +137,7 @@ export default function GratuityForm2() {
                                 type="text"
                                 value={formData.witness2name}
                                 onChange={(e) => handleWitnessChange(1, e.target.value)}
-                                className="border-b border-black dark:border-white w-full"
+                                className="border-b border-black dark:border-white w-full focus:outline-none"
                                 placeholder="Name and address"
                             />
                         </li>
@@ -155,8 +155,15 @@ export default function GratuityForm2() {
                 </div>
             </div>
 
-            <p className="mt-4">Place: <input type="text" value={formData.place} disabled={true} className="border-b border-black dark:border-white w-48 inline-block ml-2" /></p>
-            <p>Date: <input type="date" value={formData.date} disabled className="border-b border-black dark:border-white w-48 inline-block ml-2" /></p>
+            {/* <p className="mt-4">Place: <input type="text" value={formData.place} disabled={true} className="border-b border-black dark:border-white w-48 inline-block ml-2" /></p>
+            <p>Date: <input type="date" value={formData.date} disabled className="border-b border-black dark:border-white w-48 inline-block ml-2" /></p> */}
+
+            <div className="mt-6">
+                <p>Place:
+                    <b> Bengaluru</b>
+                </p>
+            </div>            
+
 
             <hr className="my-6 border-black dark:border-white" />
 
@@ -166,13 +173,13 @@ export default function GratuityForm2() {
             </p>
             <p>
                 Employer's Reference No., if any:{" "}
-                <input type="text" className="border-b border-black dark:border-white w-60 inline-block" />
+                <input type="text" className="border-b border-black dark:border-white w-60 inline-block focus:outline-none" />
             </p>
             <div className="mt-2">
                 Signature of the employer/Officer authorised:{" "}
                 <div className="border-b border-black dark:border-white w-60 inline-block mt-2 " />
             </div>
-            <p>Date: <input type="date" value={formData.date} disabled className="border-b border-black dark:border-white w-48 inline-block ml-2 mt-2 mb-2 " /></p>
+            <p>Date: <input type="date" value={formData.date} disabled className="border-b border-black dark:border-white w-48 inline-block ml-2 mt-2 mb-2 focus:outline-none " /></p>
             <div className="mt-2">
                 Name and address of the establishment or rubber stamp thereof:
                 < div className="w-full mt-2 h-25" >
@@ -191,7 +198,7 @@ export default function GratuityForm2() {
                 Received the duplicate copy of nomination in Form 'F' filed by me and duly certified by the employer.
             </p>
             <p className="mt-2">
-                Date: <input type="date" value={formData.date} disabled className="border-b border-black dark:border-white w-48 inline-block ml-2" />
+                Date: <input type="date" value={formData.date} disabled className="focus:outline-none border-b border-black dark:border-white w-48 inline-block ml-2" />
             </p>
             <p className="text-right font-semibold mt-4">Signature of the Employee</p>
 

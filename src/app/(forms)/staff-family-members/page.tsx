@@ -119,7 +119,7 @@ export default function MedicalInsuranceForm() {
                                 name="empNo"
                                 value={formData.empNo}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                                 placeholder="Employee Number"
                             />
                         </td>
@@ -130,8 +130,8 @@ export default function MedicalInsuranceForm() {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="w-full"
-                                placeholder="Employee Name"
+                                className="w-full focus:outline-none"
+                                placeholder="Employee Name "
                                 disabled={true}
                             />
                         </td>
@@ -146,7 +146,7 @@ export default function MedicalInsuranceForm() {
                                 name="department"
                                 value={formData.department}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                                 placeholder="Department"
                                 disabled={true}
                             />
@@ -158,7 +158,7 @@ export default function MedicalInsuranceForm() {
                                 name="dob"
                                 value={formData.dob}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                                 disabled={true}
                             />
                         </td>
@@ -169,7 +169,7 @@ export default function MedicalInsuranceForm() {
                                 name="age"
                                 value={formData.age}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                                 placeholder="Age"
                                 disabled={true}
                             />
@@ -186,7 +186,7 @@ export default function MedicalInsuranceForm() {
                                 value={formData.maritalStatus}
                                 onChange={handleChange}
                                 placeholder="MARRIED / SINGLE"
-                                className="w-full"
+                                className="w-full focus:outline-none"
                             />
                         </td>
                     </tr>
@@ -200,7 +200,7 @@ export default function MedicalInsuranceForm() {
                                 name="spouseName"
                                 value={formData.spouseName}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                                 placeholder="Spouse Name"
                             />
                         </td>
@@ -211,7 +211,7 @@ export default function MedicalInsuranceForm() {
                                 name="spouseDob"
                                 value={formData.spouseDob}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                             />
                         </td>
                     </tr>
@@ -225,7 +225,7 @@ export default function MedicalInsuranceForm() {
                                 name="numOfChildren"
                                 value={formData.numOfChildren}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                                 placeholder="Number of Children, if none, enter 0"
                             />
                         </td>
@@ -240,7 +240,7 @@ export default function MedicalInsuranceForm() {
                                     type="text"
                                     value={child.name}
                                     onChange={(e) => handleChildChange(index, 'name', e.target.value)}
-                                    className="w-full"
+                                    className="w-full focus:outline-none"
                                     placeholder={`Child ${index + 1} Name`}
                                 />
                             </td>
@@ -249,7 +249,7 @@ export default function MedicalInsuranceForm() {
                                 <select
                                     value={child.gender}
                                     onChange={(e) => handleChildChange(index, 'gender', e.target.value)}
-                                    className="w-full"
+                                    className="w-full focus:outline-none"
                                 >
                                     <option value="">Select</option>
                                     <option value="Male">Male</option>
@@ -262,7 +262,7 @@ export default function MedicalInsuranceForm() {
                                     type="date"
                                     value={child.dob}
                                     onChange={(e) => handleChildChange(index, 'dob', e.target.value)}
-                                    className="w-full"
+                                    className="w-full focus:outline-none"
                                 />
                             </td>
                         </tr>
@@ -277,7 +277,7 @@ export default function MedicalInsuranceForm() {
                                 name="fatherName"
                                 value={formData.fatherName}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                                 placeholder="Father or Father-in-law Name"
                             />
                         </td>
@@ -302,7 +302,7 @@ export default function MedicalInsuranceForm() {
                                 name="motherName"
                                 value={formData.motherName}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                                 placeholder="Mother or Mother-in-law Name"
                             />
                         </td>
@@ -313,7 +313,7 @@ export default function MedicalInsuranceForm() {
                                 name="motherDob"
                                 value={formData.motherDob}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                             />
                         </td>
                     </tr>
@@ -327,7 +327,7 @@ export default function MedicalInsuranceForm() {
                                 name="mobileNumber"
                                 value={formData.mobileNumber}
                                 onChange={handleChange}
-                                className="w-full"
+                                className="w-full focus:outline-none"
                                 placeholder="Mobile Number"
                             />
                         </td>
@@ -341,7 +341,7 @@ export default function MedicalInsuranceForm() {
                                 name="address"
                                 value={form1data.currAddress}
                                 onChange={handleChange}
-                                className="w-full h-16"
+                                className="w-full h-16 focus:outline-none"
                                 placeholder="Full Address"
                                 disabled={true}
                             ></textarea>
@@ -358,9 +358,9 @@ export default function MedicalInsuranceForm() {
                         name="date"
                         value={formData.date}
                         onChange={handleChange}
-                        className="ml-2 p-1"
+                        className="ml-2 p-1 focus:outline-none"
                     />
-                </div>
+                </div> 
                 <div className="text-right mt-6 ">
                     <p className="font-semibold">EMPLOYEE SIGNATURE</p>
                 </div>

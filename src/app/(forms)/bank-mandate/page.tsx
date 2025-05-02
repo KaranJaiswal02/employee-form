@@ -89,7 +89,7 @@ export default function BankMandateForm() {
                         type="text"
                         onChange={handleChange}
                         value={formData.name || ""}
-                        className="flex-1 border-b border-black dark:border-white sm:ml-4"
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4 focus:outline-none "
                         required
                         disabled={true}
                     />
@@ -104,7 +104,7 @@ export default function BankMandateForm() {
                         type="text"
                         onChange={handleChange}
                         value={formData.employeeCode || ""}
-                        className="flex-1 border-b border-black dark:border-white sm:ml-4"
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4 focus:outline-none"
                         required
                         disabled={false}
                     />
@@ -119,7 +119,7 @@ export default function BankMandateForm() {
                         type="text"
                         onChange={handleChange}
                         value={formData.categoryctdtstaff || ""}
-                        className="flex-1 border-b border-black dark:border-white sm:ml-4"
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4 focus:outline-none"
                         required
                         disabled={false}
                     />
@@ -133,7 +133,7 @@ export default function BankMandateForm() {
                         id="address"
                         onChange={handleChange}
                         value={formData.address || ""}
-                        className="flex-1 border-b border-black dark:border-white sm:ml-4 resize-none h-16"
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4 resize-none h-16 focus:outline-none"
                         required
                         disabled={true}
                     />
@@ -145,7 +145,7 @@ export default function BankMandateForm() {
                         type="email"
                         onChange={handleChange}
                         value={formData.email}
-                        className="flex-1 border-b border-black dark:border-white sm:ml-4"
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4 focus:outline-none"
                         required
                     />
                 </div>
@@ -157,7 +157,7 @@ export default function BankMandateForm() {
                         type="text"
                         onChange={handleChange}
                         value={formData.pan}
-                        className="flex-1 border-b border-black dark:border-white sm:ml-4"
+                        className="flex-1 border-b border-black dark:border-white sm:ml-4 focus:outline-none"
                         required
                     />
                 </div>
@@ -319,6 +319,7 @@ export default function BankMandateForm() {
                         value={formData.date}
                         className="border-b border-black dark:border-white outline-none"
                         required
+                        disabled={true}
                     />
                 </div>
             </div>

@@ -62,7 +62,7 @@ export default function GratuityForm1() {
         <input
           type="text"
           value={formData.name}
-          className="border-b border-black dark:border-white w-72 mx-2"
+          className="border-b border-black dark:border-white w-72 mx-2 focus:outline-none"
           placeholder="Name in full here"
           required
           name="name"
@@ -96,7 +96,7 @@ export default function GratuityForm1() {
           <input
             type="date"
             value={formData.noticedate}
-            className="border-b border-black dark:border-white w-40 inline-block"
+            className="border-b border-black dark:border-white w-40 inline-block focus:outline-none"
             onChange={handleChange}
             name="noticedate"
             required
@@ -112,7 +112,7 @@ export default function GratuityForm1() {
       <table className="w-full border border-black dark:border-white text-left text-sm">
         <thead>
           <tr className="bg-gray-100 dark:bg-gray-800">
-            <th className="border border-black dark:border-white p-2 text-center">
+            <th className="border border-black dark:border-white p-2 text-center ">
               Name in full with full address of nominee(s)
             </th>
             <th className="border border-black dark:border-white p-2 text-center">Relationship</th>
@@ -128,7 +128,7 @@ export default function GratuityForm1() {
                 <input
                   type="text"
                   value={row.name}
-                  className="w-full"
+                  className="w-full focus:outline-none"
                   placeholder="Full Name & Address"
                   onChange={(e) => handleNomineeChange(i, "name", e.target.value)}
                 />
@@ -137,7 +137,7 @@ export default function GratuityForm1() {
                 <input
                   type="text"
                   value={row.relationship}
-                  className="w-full"
+                  className="w-full focus:outline-none"
                   placeholder="Relationship"
                   onChange={(e) => handleNomineeChange(i, "relationship", e.target.value)}
                 />
@@ -146,7 +146,7 @@ export default function GratuityForm1() {
                 <input
                   type="number"
                   value={row.age || ''}
-                  className="w-full"
+                  className="w-full focus:outline-none"
                   placeholder="Age"
                   onChange={(e) => handleNomineeChange(i, "age", e.target.value)}
                 />
@@ -155,7 +155,7 @@ export default function GratuityForm1() {
                 <input
                   type="number"
                   value={row.proportion || ''}
-                  className="w-full"
+                  className="w-full focus:outline-none"
                   placeholder="Proportion (%)"
                   onChange={(e) => handleNomineeChange(i, "proportion", e.target.value)}
                 />
