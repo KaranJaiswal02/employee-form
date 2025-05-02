@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { seedAdmin } from "@/lib/seedAdmin";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Employee Forms",
@@ -17,6 +18,7 @@ export default async function RootLayout({
     <html lang="en" className="dark">
       <body className="bg-gray-200 dark:bg-gray-900 text-gray-900 font-sans antialiased dark:text-gray-200">
         {children}
+        <Toaster richColors closeButton />
       </body>
     </html>
   );

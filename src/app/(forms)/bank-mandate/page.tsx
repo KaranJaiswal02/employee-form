@@ -5,6 +5,7 @@ import { useAtom } from 'jotai';
 import { bankMandateFormData, empFormData, formStatusus } from '@/hooks/Atoms';
 import { Button } from '@/components/ui/button';
 import RequiredLabel from '@/components/RequiredLabel';
+import { toast } from "sonner"
 
 export default function BankMandateForm() {
     const router = useRouter();
@@ -56,11 +57,12 @@ export default function BankMandateForm() {
                     status: "done",
                 },
             }));
+            toast.success(responseData.message);
             const params = id ? `?id=${id}` : '';
             router.push(`/nomination-declaration-form1${params}`);
         }
         else {
-            alert(responseData.message);
+            toast.error(responseData.message);
             setErrors(responseData.errors);
         }
         setIsSubmitting(false);
