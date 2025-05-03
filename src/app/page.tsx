@@ -5,12 +5,35 @@ import { FaBriefcase, FaClipboardList, FaFileDownload, FaMoon, FaSun, FaUserEdit
 
 export default function HomePage() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [role, setRole] = useState("");
+
+  const verifyToken = async (token: string) => {
+    try {
+      const res = await fetch("/api/user/verify-token", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      if (data.success) {
+        setRole(data.data.role);
+      } else {
+        localStorage.removeItem("token");
+      }
+    } catch (error) {
+      localStorage.removeItem("token");
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const isDark = document.documentElement.classList.contains("dark");
       setIsDarkMode(isDark);
     }
+    const token = localStorage.getItem("token");
+    verifyToken(token as string);
   }, []);
 
   const toggleDarkMode = () => {
@@ -36,26 +59,26 @@ export default function HomePage() {
           A centralized platform to manage employee roles, forms, and administrative tools with ease.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <Link
+          {role === "admin" && (<Link
             href="/admin/dashboard"
-            className="inline-block px-6 py-3 rounded-xl font-medium text-blue-700 dark:text-white bg-white dark:bg-transparent border-2 border-blue-600 dark:border-blue-400 hover:bg-blue-50 dark:hover:bg-blue-600 dark:hover:text-white shadow transition"
+            className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-blue-600 dark:bg-transparent border-3 border-blue-600 dark:border-blue-400 hover:bblue-700 dark:hover:bg-blue-600 dark:hover:text-white shadow transition"
           >
             Go to Dashboard
-          </Link>
+          </Link>)}
 
-          <Link
+          {role !== "" && (<Link
             href="/forms/staff-joining"
-            className="inline-block px-6 py-3 rounded-xl font-medium text-green-700 dark:text-white bg-white dark:bg-transparent border-2 border-green-600 dark:border-green-400 hover:bg-green-50 dark:hover:bg-green-600 dark:hover:text-white shadow transition"
+            className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-green-600 dark:bg-transparent border-3 border-green-600 dark:border-green-400 hover:bggreen-700 dark:hover:bg-green-600 dark:hover:text-white shadow transition"
           >
             Join Form
-          </Link>
+          </Link>)}
 
-          <Link
+          {role === "" && (<Link
             href="/sign-in"
-            className="inline-block px-6 py-3 rounded-xl font-medium text-purple-700 dark:text-white bg-white dark:bg-transparent border-2 border-purple-600 dark:border-purple-400 hover:bg-purple-50 dark:hover:bg-purple-600 dark:hover:text-white shadow transition"
+            className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-purple-600 dark:bg-transparent border-3 border-purple-600 dark:border-purple-400 hover:bg-purple-700 dark:hover:bg-purple-600 dark:hover:text-white shadow transition"
           >
             Sign In
-          </Link>
+          </Link>)}
         </div>
 
       </header>

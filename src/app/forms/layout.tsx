@@ -4,12 +4,12 @@ import { useAtom } from "jotai";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import { FiLogOut, FiSun } from "react-icons/fi";
-import { FaRegMoon } from "react-icons/fa";
+import { FiLogOut } from "react-icons/fi";
 import { IoCheckmarkDoneCircleOutline, IoMoon, IoSunny } from "react-icons/io5";
 import { MdOutlinePending } from "react-icons/md";
 import Loader from "@/components/Loader";
 import { IoIosArrowBack } from "react-icons/io";
+import { DefaultBankMandateFormData, DefaultEmpFormData, DefaultGrauFormData, DefaultIdCardFormData, DefaultNominationForm1Data, DefaultNominationForm2Data, DefaultStaffFamilyFormData } from "@/hooks/defaultValue";
 
 export default function FormLayout({
     children,
@@ -36,17 +36,17 @@ export default function FormLayout({
     const [, setEmpFormData] = useAtom(empFormData);
 
     const setFormsData = (data: any) => {
-        const formMappings: { key: string; setter: (data: any) => void; statusKey: keyof typeof formStatus }[] = [
-            { key: 'bankMandateFormData', setter: setbankMandateFormData, statusKey: 'bank_mandate' },
-            { key: 'grauFormData', setter: setGrauFormData, statusKey: 'gratuity_form' },
-            { key: 'idCardFormData', setter: setIdCardFormData, statusKey: 'id_card' },
-            { key: 'nominationForm1Data', setter: setNominstionForm1Data, statusKey: 'nomination_declaration_form1' },
-            { key: 'nominationForm2Data', setter: setNominstionForm2Data, statusKey: 'nomination_declaration_form2' },
-            { key: 'staffFamilyFormData', setter: setStaffFamilyFormData, statusKey: 'staff_family_members' },
-            { key: 'empFormData', setter: setEmpFormData, statusKey: 'staff_joining' },
+        const formMappings: { key: string; setter: (data: any) => void; statusKey: keyof typeof formStatus; defaultValue: any}[] = [
+            { key: 'bankMandateFormData', setter: setbankMandateFormData, statusKey: 'bank_mandate', defaultValue: DefaultBankMandateFormData },
+            { key: 'grauFormData', setter: setGrauFormData, statusKey: 'gratuity_form', defaultValue: DefaultGrauFormData },
+            { key: 'idCardFormData', setter: setIdCardFormData, statusKey: 'id_card', defaultValue: DefaultIdCardFormData },
+            { key: 'nominationForm1Data', setter: setNominstionForm1Data, statusKey: 'nomination_declaration_form1', defaultValue: DefaultNominationForm1Data },
+            { key: 'nominationForm2Data', setter: setNominstionForm2Data, statusKey: 'nomination_declaration_form2', defaultValue: DefaultNominationForm2Data },
+            { key: 'staffFamilyFormData', setter: setStaffFamilyFormData, statusKey: 'staff_family_members', defaultValue: DefaultStaffFamilyFormData },
+            { key: 'empFormData', setter: setEmpFormData, statusKey: 'staff_joining', defaultValue: DefaultEmpFormData },
         ];
 
-        formMappings.forEach(({ key, setter, statusKey }) => {
+        formMappings.forEach(({ key, setter, statusKey, defaultValue }) => {
             if (data[key]) {
                 setter(data[key]);
                 setFormStatus((prev) => ({
@@ -54,6 +54,16 @@ export default function FormLayout({
                     [statusKey]: {
                         ...prev[statusKey],
                         status: 'done',
+                    },
+                }));
+            }
+            else{
+                setter(defaultValue);
+                setFormStatus((prev) => ({
+                    ...prev,
+                    [statusKey]: {
+                        ...prev[statusKey],
+                        status: 'pending',
                     },
                 }));
             }
@@ -76,7 +86,7 @@ export default function FormLayout({
 
     useEffect(() => {
         init();
-    }, []);
+    }, [searchParams]);
 
     const toggleDarkMode = () => {
         if (typeof window !== "undefined") {

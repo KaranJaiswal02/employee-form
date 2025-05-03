@@ -1,5 +1,12 @@
 import dbConnect from "@/lib/dbConnect";
 import { User } from "@/models/user";
+import BankMandateForm from "@/models/forms/bank-mandate";
+import GratuityForm from "@/models/forms/gratuity-form";
+import IdCardForm from "@/models/forms/idcard-form";
+import NominationForm1 from "@/models/forms/nomination-form1";
+import NominationForm2 from "@/models/forms/nomination-form2";
+import FamilyDetailsForm from "@/models/forms/staff-family-members";
+import StaffJoiningForm from "@/models/forms/staffjoin_form";
 import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 import IAPIResponse from "@/types/responseType";
@@ -12,7 +19,7 @@ export async function GET(req: NextRequest) {
         const staffId = req.headers.get("userid") as string;
         const role = req.headers.get("x-userrole") as string;
 
-        const actualUserId = (staffId !== "null" && role === "admin") ? staffId : xUserId;
+        const actualUserId = staffId !== "null" && role === "admin" ? staffId : xUserId;
 
         if (!actualUserId) {
             return NextResponse.json(
@@ -25,18 +32,21 @@ export async function GET(req: NextRequest) {
             );
         }
 
-        const omitFields = "-_id -userId -__v -createdAt -updatedAt";
+        const currentUser = await User.findById(xUserId).lean<IUser | null>();
+        interface IUser {
+            bankMandateForm?: string;
+            gratuityForm?: string;
+            idCardForm?: string;
+            nominationForm1?: string;
+            nominationForm2?: string;
+            familyDetailsForm?: string;
+            staffJoiningForm?: string;
+            name: string;
+            email: string;
+            role: string;
+        }
 
-        const currentUser = await User.findById(xUserId);
-
-        const user = await User.findById(actualUserId)
-            .populate("staffJoiningForm", omitFields)
-            .populate("idCardForm", omitFields)
-            .populate("familyDetailsForm", omitFields)
-            .populate("bankMandateForm", omitFields)
-            .populate("nominationForm1", omitFields)
-            .populate("gratuityForm", omitFields)
-            .populate("nominationForm2", omitFields);
+        const user = await User.findById(actualUserId).lean<IUser>();
 
         if (!user) {
             return NextResponse.json(
@@ -49,6 +59,25 @@ export async function GET(req: NextRequest) {
             );
         }
 
+        // Fetch referenced form documents individually
+        const [
+            bankMandateFormData,
+            grauFormData,
+            idCardFormData,
+            nominationForm1Data,
+            nominationForm2Data,
+            staffFamilyFormData,
+            empFormData,
+        ] = await Promise.all([
+            BankMandateForm.findById(user.bankMandateForm).select("-_id -userId -__v -createdAt -updatedAt").lean(),
+            GratuityForm.findById(user.gratuityForm).select("-_id -userId -__v -createdAt -updatedAt").lean(),
+            IdCardForm.findById(user.idCardForm).select("-_id -userId -__v -createdAt -updatedAt").lean(),
+            NominationForm1.findById(user.nominationForm1).select("-_id -userId -__v -createdAt -updatedAt").lean(),
+            NominationForm2.findById(user.nominationForm2).select("-_id -userId -__v -createdAt -updatedAt").lean(),
+            FamilyDetailsForm.findById(user.familyDetailsForm).select("-_id -userId -__v -createdAt -updatedAt").lean(),
+            StaffJoiningForm.findById(user.staffJoiningForm).select("-_id -userId -__v -createdAt -updatedAt").lean(),
+        ]);
+
         const response: IAPIResponse = {
             success: true,
             message: "Form data fetched successfully",
@@ -57,16 +86,16 @@ export async function GET(req: NextRequest) {
                 name: user.name,
                 email: user.email,
                 role: user.role,
-                currentUserRole: currentUser.role,
-                currentUserName: currentUser.name,
+                currentUserRole: currentUser?.role,
+                currentUserName: currentUser?.name,
                 forms: {
-                    bankMandateFormData: user.bankMandateForm,
-                    grauFormData: user.gratuityForm,
-                    idCardFormData: user.idCardForm,
-                    nominationForm1Data: user.nominationForm1,
-                    nominationForm2Data: user.nominationForm2,
-                    staffFamilyFormData: user.familyDetailsForm,
-                    empFormData: user.staffJoiningForm,
+                    bankMandateFormData,
+                    grauFormData,
+                    idCardFormData,
+                    nominationForm1Data,
+                    nominationForm2Data,
+                    staffFamilyFormData,
+                    empFormData,
                 },
             },
         };
