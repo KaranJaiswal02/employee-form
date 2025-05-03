@@ -121,12 +121,12 @@ export const grauFormData = atom({
 
 export const nominationForm1Data = atom({
   name: "",
-  fathersName: "",
+  fatherName: "",
   dob: "",
   sex: "",
   maritalStatus: "",
-  permanentAddress: "",
-  currentAddress: "",
+  perAddress: "",
+  currAddress: "",
   nominees: [
     { name: "", address: "", relationship: "", dob: "", share: "", guardian: "" },
   ],
@@ -220,7 +220,7 @@ export const staffFamilyFormData = atom({
   motherName: '',
   motherDob: '',
   mobileNumber: '',
-  address: '',
+  familyAddress: '',
   date: currentDate
 })
 

@@ -77,7 +77,7 @@ export default function Page() {
                 </div>
             )}
       <div className="flex justify-center mt-6">
-        <Button type="submit" disabled={isSubmitting} className='w-full'>Submit
+        <Button type="submit" disabled={isSubmitting} className='w-full'>
         {isSubmitting ? "Submitting..." : "Submit"}
         </Button>
       </div>

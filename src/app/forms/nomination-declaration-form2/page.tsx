@@ -80,7 +80,7 @@ export default function Page() {
                 </div>
             )}
             <div className="flex justify-center mt-6">
-                <Button type="submit" disabled={isSubmitting} className='w-full cursor-pointer'>Submit
+                <Button type="submit" disabled={isSubmitting} className='w-full cursor-pointer'>
                 {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
             </div>

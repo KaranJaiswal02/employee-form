@@ -23,7 +23,7 @@ export interface StaffFamilyFormData extends Document {
   motherName: string;
   motherDob: string;
   mobileNumber: string;
-  address: string;
+  familyAddress: string;
   date: Date;
 }
 
@@ -50,7 +50,7 @@ const StaffFamilyFormDataSchema: Schema = new Schema({
   motherName: { type: String, required: false },
   motherDob: { type: String, required: false },
   mobileNumber: { type: String, required: false },
-  address: { type: String, required: false },
+  familyAddress: { type: String, required: false },
   date: { type: Date, default: Date.now },
 },
   {

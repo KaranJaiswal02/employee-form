@@ -33,7 +33,11 @@ export default function AdminManagementPage() {
             const data = await res.json();
             if (data.success) {
                 setUsers(data.data);
-                setFilteredUsers(data.data);
+                const filtered = data.data.filter((user : User) => user.role === "user");
+                if (filtered.length < 1) {
+                    toast.warning("No users found in the system")
+                }
+                setFilteredUsers(filtered);
             } else {
                 toast.error(data.message);
             }
@@ -57,11 +61,8 @@ export default function AdminManagementPage() {
                 user.email.toLowerCase().includes(lowerSearch);
             return matchesSearch && user.role === "user";
         });
-        if (filtered.length < 1) {
-            toast.warning("No users found in the system")
-        }
         setFilteredUsers(filtered);
-    }, [search, users]);
+    }, [search]);
 
     return loading ? (
         <Loader />

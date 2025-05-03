@@ -12,12 +12,12 @@ interface Nominee {
 export interface NominationForm1Document extends Document {
   userId: Types.ObjectId;
   name: string;
-  fathersName: string;
+  fatherName: string;
   dob: string;
   sex: string;
   maritalStatus: string;
-  permanentAddress: string;
-  currentAddress: string;
+  perAddress: string;
+  currAddress: string;
   nominees: Nominee[];
   place: string;
   date: string;
@@ -36,12 +36,12 @@ const NomineeSchema: Schema = new Schema({
 const NominationForm1Schema: Schema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   name: { type: String, required: false },
-  fathersName: { type: String, required: false },
+  fatherName: { type: String, required: false },
   dob: { type: String, required: false },
   sex: { type: String, required: false },
   maritalStatus: { type: String, required: false },
-  permanentAddress: { type: String, required: false },
-  currentAddress: { type: String, required: false },
+  perAddress: { type: String, required: false },
+  currAddress: { type: String, required: false },
   nominees: { type: [NomineeSchema], required: false },
   place: { type: String, required: false },
   date: { type: String, required: false },
