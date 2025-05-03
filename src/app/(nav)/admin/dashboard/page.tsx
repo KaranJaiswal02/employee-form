@@ -1,7 +1,7 @@
 // Dashboard.tsx
 'use client';
 import Link from 'next/link';
-import { FaUserShield, FaFileDownload, FaUserEdit, FaClipboardList, FaBriefcase } from 'react-icons/fa';
+import { FaUserShield, FaFileDownload, FaUserEdit, FaClipboardList, FaBriefcase, FaUsers } from 'react-icons/fa';
 
 const dashboardOptions = [
     {
@@ -34,8 +34,13 @@ const dashboardOptions = [
         bgColor: 'bg-yellow-500 dark:bg-yellow-700',
         href: '/forms/staff-joining',
     },
+    {
+        title: 'Bulk Upload Users',
+        icon: <FaUsers className="text-3xl text-white" />,
+        bgColor: 'bg-pink-600 dark:bg-pink-800',
+        href: '/admin/bulk-upload-users',
+    },
 ];
-
 
 export default function Dashboard() {
     return (
