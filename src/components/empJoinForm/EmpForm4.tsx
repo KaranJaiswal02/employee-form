@@ -44,10 +44,6 @@ export default function EmpForm4() {
                 toast.warning("Date of birth cannot be in the future.");
                 return;
             }
-            // if (age > 60) {
-            //     toast.warning("Age must be less than 60 years.");
-            //     return;
-            // }
         }
         setFormData(prev => {
             const updatedFamily = [...prev.familyMembers];

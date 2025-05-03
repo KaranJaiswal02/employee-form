@@ -167,8 +167,8 @@ export const DefaultNominationForm2Data: NominationForm2Model = {
     },
     subscriberDate: currentDate,
     employerDate: currentDate,
-    establishmentDetails: '',
-    place: '',
+    establishmentDetails: "SL AP Private Limited\n Brigade Opus, 4th Floor\n Municipal No. 70/401, Survey No. 44/1 and 44/4 Kodigehalli Main Road, Hebbal,\n Bengaluru Urban, Karnataka 560092",
+    place: 'Bengaluru',
     date: currentDate,
 }
 

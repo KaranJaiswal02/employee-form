@@ -233,13 +233,13 @@ export default function GratuityForm2() {
                 <p>
                     Place:
                     <input id="place"
-                    type="text" 
-                    value={formData.place} 
-                    onChange={handleChange} 
-                    className=" font-bold border-black dark:border-white w-48 inline-block ml-2" 
-                    disabled={true}
+                        type="text"
+                        value={formData.place}
+                        onChange={handleChange}
+                        className=" font-bold border-black dark:border-white w-48 inline-block ml-2"
+                        disabled={true}
                     />
-                                  
+
                 </p>
                 <p className="mt-2">
                     Date: <input id="date" type="date" value={formData.date} onChange={handleDateChange}
@@ -324,16 +324,13 @@ export default function GratuityForm2() {
             <div className="mt-2">
                 Name and address of the establishment or rubber stamp thereof:
                 < div className="w-full mt-2 h-25" >
-                    < div className="w-full border border-black dark:border-white mt-2 h-25" >
-                    <input type="text" 
-                    className=" border-black dark:border-white w-full h-25 focus:outline-none" 
-                    value={formData.establishmentAddress} 
-                    disabled />
+                    < div className="w-full border mt-2 h-25 " >
+                        <input type="text"
+                            className=" w-full h-25 focus:outline-none"
+                            value={formData.establishmentAddress}
+                            disabled />
                     </div>
-                    {/* <p><b>SL AP Private Limited</b><br />
-                        Brigade Opus,  4th Floor<br />
-                        Municipal No. 70/401, Survey No. 44/1 and 44/4
-                        Kodigehalli Main Road, Hebbal,<br /> Bengaluru Urban, Karnataka 560092</p> */}
+
                 </div>
             </div>
 

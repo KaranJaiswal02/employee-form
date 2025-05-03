@@ -112,7 +112,7 @@ export default function EPFNominationFormPart2() {
               name="subscriberDate"
               value={formData.subscriberDate as string}
               onChange={handleFieldChange}
-              className="border-b border-black dark:border-white outline-none"
+              className="font-bold border-black dark:border-white outline-none"
               disabled
             />
           </div>
@@ -148,7 +148,8 @@ export default function EPFNominationFormPart2() {
               name="employerDate"
               value={formData.employerDate as string}
               onChange={handleFieldChange}
-              className="border-b border-black dark:border-white outline-none"
+              className=" font-bold border-black dark:border-white outline-none"
+              //className="border-b border-black dark:border-white outline-none"
               disabled
             />
           </div>
@@ -158,24 +159,29 @@ export default function EPFNominationFormPart2() {
         </div>
 
         <div className="mb-4">
-          <p>Name & address of the Factory / Establishment:</p>
-          <p><b>SL AP Private Limited</b><br />
-            Brigade Opus,  4th Floor<br />
-            Municipal No. 70/401, Survey No. 44/1 and 44/4
-            Kodigehalli Main Road, Hebbal,<br/> Bengaluru Urban, Karnataka 560092</p>
+          <p><b>Name & address of the Factory / Establishment:</b></p>
+          <div className='ml-1 mt-1'>
+            <textarea
+              name="establishmentDetails"
+              value={formData.establishmentDetails}
+              onChange={handleFieldChange}
+              className=" border-b border-black dark:border-white outline-none w-full h-24 resize-none"
+              placeholder="Enter establishment details here..."
+            />
+          </div>
         </div>
 
         <div className="flex justify-between">
           <div className="flex items-center gap-2">
             <label>Place:</label>
-            {/* <input
+            <input
               type="text"
               name="place"
               value={formData.place}
               onChange={handleFieldChange}
-              className="border-b border-black dark:border-white outline-none w-32"
-            /> */}
-            <p><b>Bengaluru</b></p>           
+              className=" font-bold border-black dark:border-white outline-none w-32"
+            />
+
           </div>
           <div className="flex items-center gap-2">
             <label>Date:</label>
