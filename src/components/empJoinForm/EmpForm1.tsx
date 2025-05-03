@@ -8,6 +8,7 @@ import RequiredLabel from '../RequiredLabel'
 import { Label } from '../ui/label'
 import { Checkbox } from '../ui/checkbox'
 import { toast } from 'sonner'
+import { calculateAge } from '@/lib/calculateAge'
 
 export default function EmpForm1() {
   const [empFormData1, setEmpFormData1] = useAtom(empFormData);
@@ -15,33 +16,23 @@ export default function EmpForm1() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target as HTMLInputElement;
-    if (id ==="dob"){
-      checkAge(value);
+    if (id === "dob") {
+      const age = calculateAge(value);
+      if (age < 18) {
+        toast.warning("Age must be at least 18 years.");
+        return;
+      }
+      // if (age > 60) {
+      //   toast.warning("Age must be less than 60 years.");
+      //   return;
+      // }
+      setEmpFormData1(prev => ({ ...prev, dob: value }));
       return;
     }
     setEmpFormData1(prev => ({ ...prev, [id]: value }));
     if (isChecked) {
       setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode, perstdcode: empFormData1.currstdcode, percontactNumber: empFormData1.currcontactNumber }));
     }
-  };
-
-  const checkAge = (value : string ) => {
-    const dob = new Date(value);
-    const today = new Date();
-    let age = today.getFullYear() - dob.getFullYear();
-    const monthDiff = today.getMonth() - dob.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dob.getDate())) {
-      age--;
-    }
-    if (age < 18) {
-      toast.warning("Age must be at least 18 years.");
-      return;
-    }
-    // if (age > 60) {
-    //   toast.warning("Age must be less than 60 years.");
-    //   return;
-    // }
-    setEmpFormData1(prev => ({ ...prev, dob: value }));
   };
 
   const handleCheckboxChange = () => {
@@ -171,7 +162,6 @@ export default function EmpForm1() {
             <input
               type="number"
               id="currcontactNumber"
-              name='currcontacctNumber'
               value={empFormData1.currcontactNumber}
               onChange={handleChange}
               className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"

@@ -6,6 +6,7 @@ import { empFormData, formStatusus, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { toast } from "sonner";
 import StaffFamilyMembers from "@/components/staffFamilyMembers/StaffFamilyMembers";
+import { calculateAge } from "@/lib/calculateAge";
 
 type Child = {
     name: string;
@@ -21,18 +22,6 @@ export default function Page() {
     const searchParams = useSearchParams()
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
-
-    const calculateAge = (dob: string) => {
-        const birthDate = new Date(dob);
-        const today = new Date();
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const monthDiff = today.getMonth() - birthDate.getMonth();
-        const dayDiff = today.getDate() - birthDate.getDate();
-        if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-            age--;
-        }
-        return age;
-    }
 
     useEffect(() => {
         setFormData((prev) => ({

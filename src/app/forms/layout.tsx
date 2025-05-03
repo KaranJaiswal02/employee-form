@@ -6,7 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FiLogOut, FiSun } from "react-icons/fi";
 import { FaRegMoon } from "react-icons/fa";
-import { IoCheckmarkDoneCircleOutline } from "react-icons/io5";
+import { IoCheckmarkDoneCircleOutline, IoMoon, IoSunny } from "react-icons/io5";
 import { MdOutlinePending } from "react-icons/md";
 import Loader from "@/components/Loader";
 import { IoIosArrowBack } from "react-icons/io";
@@ -127,7 +127,7 @@ export default function FormLayout({
                     <aside className="fixed top-0 left-0 w-80 h-screen bg-white dark:bg-card border shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between overflow-auto">
                         <div>
                             <h2 className="text-2xl flex font-bold text-gray-900 dark:text-white px-2 mb-6 tracking-tight">
-                                {currentUserRole==="admin" && (<Link href={paramsData ? "/admin/edit-employee-details" : "/admin/dashboard"} className="text-gray-800 dark:text-white hover:opacity-80">
+                                {currentUserRole === "admin" && (<Link href={paramsData ? "/admin/edit-employee-details" : "/admin/dashboard"} className="text-gray-800 dark:text-white hover:opacity-80">
                                     <IoIosArrowBack size={32} className="p-1 bg-neutral-300 dark:bg-neutral-700 rounded-full" />
                                 </Link>)}
                                 <span>📋{name ? name : "Form Progress"}</span>
@@ -166,17 +166,17 @@ export default function FormLayout({
                         {/* Bottom section */}
                         <div className="mt-6 space-y-4">
                             {/* Dark Mode Toggle */}
-                            <div onClick={toggleDarkMode} className="flex items-center justify-center space-x-3 cursor-pointer">
-                                <button
+                            <div onClick={toggleDarkMode} className="flex items-center justify-center space-x-3 pr-4 cursor-pointer">
+                                {/* <button
                                     className="relative inline-flex items-center w-12 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 transition-colors duration-200 cursor-pointer"
                                 >
                                     <span
                                         className={`inline-block w-6 h-6 bg-white rounded-full shadow-md transform transition-all duration-200 ${isDarkMode ? "translate-x-6" : "translate-x-0"
                                             }`}
                                     ></span>
-                                </button>
-                                <span className="text-gray-800 dark:text-gray-200 font-medium">
-                                    {isDarkMode ? <FaRegMoon /> : <FiSun />}
+                                </button> */}
+                                <span className="text-gray-800 dark:text-gray-200 font-medium p-2 rounded-full bg-neutral-200 dark:bg-neutral-700 hover:opacity-80 transition duration-200">
+                                    {isDarkMode ? <IoMoon size={22} /> : <IoSunny size={22} />}
                                 </span>
                                 <span className="text-gray-800 dark:text-gray-200 font-medium">
                                     {isDarkMode ? "Dark Mode" : "Light Mode"}
