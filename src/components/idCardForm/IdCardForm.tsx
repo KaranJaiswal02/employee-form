@@ -124,7 +124,7 @@ export default function IdCardForm() {
                             <Input
                                 id="dob"
                                 type="date"
-                                value={formData.dob as string || ""}
+                                value={formData.dob.toString().split('T')[0]}
                                 onChange={handleInputChange}
                                 className="w-full"
                                 disabled={true}
@@ -143,7 +143,7 @@ export default function IdCardForm() {
                             <Input
                                 id="dateOfJoining"
                                 type="date"
-                                value={formData.dateOfJoining}
+                                value={formData.dateOfJoining.toString().split('T')[0]}
                                 onChange={handleInputChange}
                                 className="w-full"
                             />
@@ -219,7 +219,7 @@ export default function IdCardForm() {
                                 value={formData.year}
                                 onChange={handleInputChange}
                                 className="w-full"
-                                min="2000"
+                                min="1970"
                                 max="2100"
                             />
                         </div>

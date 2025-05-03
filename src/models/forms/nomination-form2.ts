@@ -4,7 +4,7 @@ interface CreditNominee {
   name: string;
   address: string;
   relationship: string;
-  dob: string;
+  dob: string| Date;
   share: string;
   guardianName: string;
   guardianAddress: string;
@@ -20,7 +20,7 @@ interface FamilyMember {
 interface PensionNominee {
   name: string;
   address: string;
-  dob: string;
+  dob: string| Date;
   relationship: string;
 }
 
@@ -31,7 +31,7 @@ export interface NominationForm2Model  {
   middleName: string;
   surname: string;
   fatherName: string;
-  dob: string;
+  dob: string| Date;
   accountNumber: string;
   sex: string;
   maritalStatus: string;
@@ -52,7 +52,7 @@ const CreditNomineeSchema = new Schema<CreditNominee>({
   name: { type: String, required: false },
   address: { type: String, required: false },
   relationship: { type: String, required: false },
-  dob: { type: String, required: false },
+  dob: { type: Date, required: false },
   share: { type: String, required: false },
   guardianName: { type: String, required: false },
   guardianAddress: { type: String, required: false },
@@ -68,7 +68,7 @@ const FamilyMemberSchema = new Schema<FamilyMember>({
 const PensionNomineeSchema = new Schema<PensionNominee>({
   name: { type: String, required: false },
   address: { type: String, required: false },
-  dob: { type: String, required: false },
+  dob: { type: Date, required: false },
   relationship: { type: String, required: false },
 });
 
@@ -79,7 +79,7 @@ const NominationForm2Schema = new Schema({
   middleName: { type: String, required: false },
   surname: { type: String, required: false },
   fatherName: { type: String, required: false },
-  dob: { type: String, required: false },
+  dob: { type: Date, required: false },
   accountNumber: { type: String, required: false },
   sex: { type: String, required: false },
   maritalStatus: { type: String, required: false },

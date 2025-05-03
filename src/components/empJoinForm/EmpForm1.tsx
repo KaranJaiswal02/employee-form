@@ -22,10 +22,7 @@ export default function EmpForm1() {
         toast.warning("Age must be at least 18 years.");
         return;
       }
-      // if (age > 60) {
-      //   toast.warning("Age must be less than 60 years.");
-      //   return;
-      // }
+      
       setEmpFormData1(prev => ({ ...prev, dob: value }));
       return;
     }
@@ -94,7 +91,7 @@ export default function EmpForm1() {
             <input
               type="date"
               id="dob"
-              value={empFormData1.dob}
+              value={empFormData1.dob.toString().split("T")[0]}
               onChange={handleChange}
               className="border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
               required
@@ -343,7 +340,7 @@ export default function EmpForm1() {
           <input
             type="date"
             id='date'
-            value={empFormData1.date}
+            value={empFormData1.date.toString().split('T')[0]}
             onChange={handleChange}
             className="w-40 focus:outline-none"
           />
@@ -356,7 +353,9 @@ export default function EmpForm1() {
 
       {/* Certification */}
       <div className="space-y-4">
-        <p>Certified that Mr./Ms. <span className="underline">{empFormData1.name || "________________________"}</span> has joined on <span className="underline">{empFormData1.dateOfJoining || "___________"}</span></p>
+        <p>Certified that Mr./Ms. <span className="underline">{empFormData1.name || "________________________"}</span> has joined on <span className="underline">
+          {empFormData1.dateOfJoining.toString().split('T')[0]}</span></p>
+          {/* </div></div>{empFormData1.dateOfJoining || "___________"}</span></p> */}
         <div className="flex justify-between pt-7">
           <div className="w-48 border-t border-black text-center pt-2">
             Signature of Reporting In charge

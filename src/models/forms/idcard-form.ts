@@ -10,7 +10,7 @@ export interface IdCardFormData {
   empcode: string;
   department: string;
   bloodGroup: string;
-  dateOfJoining: string;
+  dateOfJoining: string| Date;
   contactnumber: string;
   photo: string | null;
   year: string;

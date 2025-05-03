@@ -85,7 +85,7 @@ export default function EPFNominationFormPart2() {
                   <input
                     type="date"
                     name="dob"
-                    value={formData.pension_nominee.dob}
+                    value={formData.pension_nominee.dob.toString().split('T')[0]}
                     onChange={handleNomineeChange}
                     className="w-full outline-none"
                   />
@@ -110,7 +110,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="subscriberDate"
-              value={formData.subscriberDate as string}
+              value={formData.subscriberDate.toString().split('T')[0]}
               onChange={handleFieldChange}
               className="font-bold border-black dark:border-white outline-none"
               disabled
@@ -146,7 +146,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="employerDate"
-              value={formData.employerDate as string}
+              value={formData.employerDate.toString().split('T')[0]}
               onChange={handleFieldChange}
               className=" font-bold border-black dark:border-white outline-none"
               //className="border-b border-black dark:border-white outline-none"
@@ -188,7 +188,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="date"
-              value={formData.date as string}
+              value={formData.date.toString().split('T')[0]}
               onChange={handleFieldChange}
               className="border-b border-black dark:border-white outline-none"
               disabled

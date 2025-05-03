@@ -9,21 +9,21 @@ interface Reference {
 interface FamilyMember {
     name: string;
     relationship: string;
-    dob: string;
+    dob: string| Date;
     age: string;
 }
 
 interface Nominee {
     name: string;
     relationship: string;
-    dob: string;
+    dob: string| Date;
     percentage: string;
 }
 
 interface Member {
     name: string;
     relationship: string;
-    dob: string;
+    dob: string| Date;
     age: string;
     amount: string;
 }
@@ -33,7 +33,7 @@ export interface IEmpFormData {
     name: string;
     fatherName: string;
     designation: string;
-    dob: string;
+    dob: string | Date;
     currAddress: string;
     district: string;
     state: string;
@@ -48,13 +48,13 @@ export interface IEmpFormData {
     bankName: string;
     accountNumber: string;
     ifsc: string;
-    dateOfJoining: string;
+    dateOfJoining: string| Date;
     currstdcode: string;
     currcontactNumber: string;
     perstdcode: string;
     percontactNumber: string;
     companylocation: string;
-    date: string;
+    date: string| Date;
     eCode: string;
     pfNo: string;
     function: string;
@@ -70,7 +70,7 @@ export interface IEmpFormData {
     maritalStatus: string;
     spouseName: string;
     spouseDob: string;
-    anniversaryDate: string;
+    anniversaryDate: string| Date;
     spouseBloodGroup: string;
     spouseEducation: string;
     spouseWorking: string;
@@ -112,21 +112,21 @@ const ReferenceSchema = new Schema<Reference>({
 const FamilyMemberSchema = new Schema<FamilyMember>({
     name: { type: String, required: false },
     relationship: { type: String, required: false },
-    dob: { type: String, required: false },
+    dob: { type:  Date, required: false },
     age: { type: String, required: false },
 });
 
 const NomineeSchema = new Schema<Nominee>({
     name: { type: String, required: false },
     relationship: { type: String, required: false },
-    dob: { type: String, required: false },
+    dob: { type: Date, required: false },
     percentage: { type: String, required: false },
 });
 
 const MemberSchema = new Schema<Member>({
     name: { type: String, required: false },
     relationship: { type: String, required: false },
-    dob: { type: String, required: false },
+    dob: { type: Date, required: false },
     age: { type: String, required: false },
     amount: { type: String, required: false },
 });
@@ -136,7 +136,7 @@ const EmpFormDataSchema = new Schema({
     name: { type: String, required: false },
     fatherName: { type: String, required: false },
     designation: { type: String, required: false },
-    dob: { type: String, required: false },
+    dob: { type: Date, required: false },
     currAddress: { type: String, required: false },
     district: { type: String, required: false },
     state: { type: String, required: false },
@@ -151,13 +151,13 @@ const EmpFormDataSchema = new Schema({
     bankName: { type: String, required: false },
     accountNumber: { type: String, required: false },
     ifsc: { type: String, required: false },
-    dateOfJoining: { type: String, required: false },
+    dateOfJoining: { type: Date, required: false },
     currstdcode: { type: String, required: false },
     currcontactNumber: { type: String, required: false },
     perstdcode: { type: String, required: false },
     percontactNumber: { type: String, required: false },
     companylocation: { type: String, required: false },
-    date: { type: String, required: false },
+    date: { type: Date, required: false },
     eCode: { type: String, required: false },
     pfNo: { type: String, required: false },
     function: { type: String, required: false },
@@ -172,8 +172,8 @@ const EmpFormDataSchema = new Schema({
     nationality: { type: String, required: false },
     maritalStatus: { type: String, required: false },
     spouseName: { type: String, required: false },
-    spouseDob: { type: String, required: false },
-    anniversaryDate: { type: String, required: false },
+    spouseDob: { type: Date, required: false },
+    anniversaryDate: { type: Date, required: false },
     spouseBloodGroup: { type: String, required: false },
     spouseEducation: { type: String, required: false },
     spouseWorking: { type: String, required: false },

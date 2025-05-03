@@ -295,7 +295,7 @@ export default function BankMandateForm() {
                         id="date"
                         type="date"
                         onChange={handleChange}
-                        value={formData.date as string || ""}
+                        value={formData.date.toString().split('T')[0]}
                         className="border-b border-black dark:border-white outline-none"
                         required
                         disabled={true}

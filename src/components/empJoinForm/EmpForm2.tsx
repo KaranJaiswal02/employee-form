@@ -121,20 +121,6 @@ export default function EmpForm2() {
 
 
             <div className="mb-4 flex gap-16">
-                {/* Designation - Left Side */}
-                {/* <div className="w-1/3">
-                    <div className="font-semibold mb-1">
-                        <RequiredLabel>DESIGNATION</RequiredLabel>
-                    </div>
-                    <input
-                        type="text"
-                        name="designation"
-                        value={formData.designation}
-                        onChange={handleChange}
-                        className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
-                        required
-                    />
-                </div> */}
                 <div className="w-1/3">
                     <RequiredLabel><label htmlFor="designation" className="font-semibold mb-1 block">
                         DESIGNATION
@@ -149,21 +135,6 @@ export default function EmpForm2() {
                         required
                     />
                 </div>
-
-                {/* Father's/Mother's Name & Occupation - Right Side */}
-                {/* <div className="w-2/3">
-                    <div className="font-semibold mb-1">
-                        <RequiredLabel>FATHER/MOTHER'S NAME & OCCUPATION</RequiredLabel>
-                    </div>
-                    <input
-                        type="text"
-                        name="familyMemberName"
-                        value={formData.familyMemberName}
-                        onChange={handleChange}
-                        className="w-3/4 border-b-1 border-black dark:border-white pb-1 focus:outline-none"
-                        required
-                    />
-                </div> */}
                 <div className="w-2/3">
                     <RequiredLabel><label htmlFor="familyMemberName" className="font-semibold mb-1 block">
                         FATHER/MOTHER'S NAME & OCCUPATION
@@ -178,7 +149,6 @@ export default function EmpForm2() {
                         required
                     />
                 </div>
-
             </div>
 
             {/* Personal Details Grid */}
@@ -189,7 +159,7 @@ export default function EmpForm2() {
                         type="date"
                         name="dob"
                         id='dob'
-                        value={formData.dob}
+                        value={formData.dob.toString().split('T')[0]}
                         disabled={true}
                         onChange={handleChange}
                         className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
@@ -456,7 +426,7 @@ export default function EmpForm2() {
                                 type="date"
                                 name="spouseDob"
                                 id='spouseDob'
-                                value={formData.spouseDob}
+                                value={formData.spouseDob.toString().split('T')[0]}
                                 onChange={handleChange}
                                 className="w-full border-b border-black dark:border-white focus:outline-none"
                                 required
@@ -468,7 +438,7 @@ export default function EmpForm2() {
                                 type="date"
                                 name="anniversaryDate"
                                 id='anniversaryDate'
-                                value={formData.anniversaryDate}
+                                value={formData.anniversaryDate.toString().split('T')[0]}
                                 onChange={handleChange}
                                 className="w-full border-b border-black dark:border-white focus:outline-none"
                                 required
