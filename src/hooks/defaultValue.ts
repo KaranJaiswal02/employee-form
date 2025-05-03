@@ -8,7 +8,7 @@ import { IEmpFormData } from "@/models/forms/staffjoin_form";
 
 const currentDate = new Date().toISOString().split('T')[0];
 
-export const DefaultEmpFormData : IEmpFormData = {
+export const DefaultEmpFormData: IEmpFormData = {
     name: "",
     fatherName: "",
     designation: "",
@@ -93,7 +93,7 @@ export const DefaultEmpFormData : IEmpFormData = {
     ],
 }
 
-export const DefaultGrauFormData : IGratuityForm = {
+export const DefaultGrauFormData: IGratuityForm = {
     name: "",
     noticedate: "",
     nominee: [
@@ -117,13 +117,14 @@ export const DefaultGrauFormData : IGratuityForm = {
     postoffice: "",
     district: "",
     state: "",
-    place: "",
+    place: "Bengaluru",
     date: currentDate,
     witness1name: "",
     witness2name: "",
+    establishmentAddress: "SL AP Private Limited\n Brigade Opus, 4th Floor\n Municipal No. 70/401, Survey No. 44/1 and 44/4 Kodigehalli Main Road, Hebbal,\n Bengaluru Urban, Karnataka 560092",
 }
 
-export const DefaultNominationForm1Data : NominationForm1Model = {
+export const DefaultNominationForm1Data: NominationForm1Model = {
     name: "",
     fatherName: "",
     dob: "",
@@ -134,12 +135,12 @@ export const DefaultNominationForm1Data : NominationForm1Model = {
     nominees: [
         { name: "", address: "", relationship: "", dob: "", share: "", guardian: "" },
     ],
-    place: "",
+    place: "Bengaluru",
     date: currentDate,
-    establishmentAddress: ""
+    establishmentAddress: "SL AP Private Limited\n Brigade Opus, 4th Floor\n Municipal No. 70/401, Survey No. 44/1 and 44/4 Kodigehalli Main Road, Hebbal,\n Bengaluru Urban, Karnataka 560092"
 };
 
-export const DefaultNominationForm2Data : NominationForm2Model = {
+export const DefaultNominationForm2Data: NominationForm2Model = {
     name: '',
     firstName: '',
     middleName: '',
@@ -171,7 +172,7 @@ export const DefaultNominationForm2Data : NominationForm2Model = {
     date: currentDate,
 }
 
-export const DefaultBankMandateFormData : BankMandateFormData = {
+export const DefaultBankMandateFormData: BankMandateFormData = {
     name: '',
     employeeCode: '',
     category: '',
@@ -185,11 +186,11 @@ export const DefaultBankMandateFormData : BankMandateFormData = {
     accountType: '',
     accountNumber: '',
     ifscCode: '',
-    place: '',
+    place: 'Bengaluru',
     date: currentDate
 }
 
-export const DefaultIdCardFormData : IdCardFormData = {
+export const DefaultIdCardFormData: IdCardFormData = {
     name: "",
     fatherName: "",
     designation: "",
@@ -204,7 +205,7 @@ export const DefaultIdCardFormData : IdCardFormData = {
     year: new Date().getFullYear().toString(),
 }
 
-export const DefaultStaffFamilyFormData : StaffFamilyFormData = {
+export const DefaultStaffFamilyFormData: StaffFamilyFormData = {
     empNo: '',
     name: '',
     department: '',

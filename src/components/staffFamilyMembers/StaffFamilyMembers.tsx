@@ -311,8 +311,8 @@ export default function StaffFamilyMembers() {
 
                         <td className="p-2 border border-black dark:border-white" colSpan={5}>
                             <textarea
-                                id="address"
-                                name="address"
+                                id="familyAddress"
+                                name="familyAddress"
                                 value={formData.familyAddress}
                                 onChange={handleChange}
                                 className="w-full h-16 focus:outline-none"
@@ -332,6 +332,7 @@ export default function StaffFamilyMembers() {
                         value={formData.date as string}
                         onChange={handleChange}
                         className="ml-2 p-1 focus:outline-none"
+                        disabled={true}
                     />
                 </div>
                 <div className="text-right mt-6 ">

@@ -30,6 +30,8 @@ export interface IGratuityForm {
   date: string;
   witness1name: string;
   witness2name: string;
+  establishmentAddress: string;
+  
 }
 
 const NomineeSchema: Schema = new Schema({
@@ -61,6 +63,7 @@ const GratuityFormSchema: Schema = new Schema({
   date: { type: String, required: false },
   witness1name: { type: String, required: false },
   witness2name: { type: String, required: false },
+  establishmentAddress: { type: String, required: false },
 });
 
 interface IGratuityFormModelDocument extends Document, IGratuityForm {}

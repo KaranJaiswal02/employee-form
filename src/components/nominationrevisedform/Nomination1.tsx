@@ -145,13 +145,13 @@ export default function EPFNominationForm() {
                     <label className="w-full md:w-72">2. Father's/Husband's Name:</label>
                     <input
                         type="text"
-                        name="fathersName"
+                        name="fatherName"
                         value={formData.fatherName}
                         onChange={handleChange}
                         className="border-b border-black dark:border-white outline-none"
                         placeholder="Father's/Husband's Name"
                         required
-                        disabled={true}
+                        // disabled={true}
                     />
                 </div>
                 <div className="flex flex-col md:flex-row gap-4">

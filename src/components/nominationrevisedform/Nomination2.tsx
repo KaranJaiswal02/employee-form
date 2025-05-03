@@ -113,6 +113,7 @@ export default function EPFNominationFormPart2() {
               value={formData.subscriberDate as string}
               onChange={handleFieldChange}
               className="border-b border-black dark:border-white outline-none"
+              disabled
             />
           </div>
           <div className="w-64 border-t border-black dark:border-white text-center pt-2 mt-8">
@@ -130,10 +131,11 @@ export default function EPFNominationFormPart2() {
           <input
             type="text"
             name="name"
-            value={formData.name}
+            value={formData.firstName}
             onChange={handleFieldChange}
             className="border-b border-black dark:border-white outline-none mx-2 w-48"
             placeholder="Name"
+            disabled
           />
           employed in my establishment after he/she has read the entries / the entries have been read over to him/her by me and got confirmed by him/her.
         </p>
@@ -147,6 +149,7 @@ export default function EPFNominationFormPart2() {
               value={formData.employerDate as string}
               onChange={handleFieldChange}
               className="border-b border-black dark:border-white outline-none"
+              disabled
             />
           </div>
           <div className="w-64 border-t border-black dark:border-white text-center pt-2 mt-4">
@@ -182,6 +185,7 @@ export default function EPFNominationFormPart2() {
               value={formData.date as string}
               onChange={handleFieldChange}
               className="border-b border-black dark:border-white outline-none"
+              disabled
             />
           </div>
         </div>

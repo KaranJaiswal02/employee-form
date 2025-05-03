@@ -68,6 +68,7 @@ export default function GratuityForm1() {
           required
           name="name"
           onChange={handleChange}
+          disabled={true}
         />
         whose particulars are given in the statement below, hereby nominate the person(s)
         mentioned below to receive the gratuity payable after my death as also the gratuity
@@ -100,7 +101,7 @@ export default function GratuityForm1() {
             className="border-b border-black dark:border-white w-40 inline-block focus:outline-none"
             onChange={handleChange}
             name="noticedate"
-            required
+            
           />{" "}
           to the controlling authority in terms of the provison to clause (h) of Section 2 of the
           said Act.

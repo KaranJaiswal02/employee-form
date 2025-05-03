@@ -345,7 +345,7 @@ export default function EmpForm1() {
             id='date'
             value={empFormData1.date}
             onChange={handleChange}
-            className="w-40"
+            className="w-40 focus:outline-none"
           />
         </div>
         <div className="w-48 border-t border-black text-center pt-2">
