@@ -1,9 +1,6 @@
 "use client";
 import { nominationForm2Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
-import React, { useState } from 'react';
-import { empFormData } from '@/hooks/Atoms';
-import { useEffect } from 'react';
 
 
 type Nominee = {

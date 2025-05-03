@@ -1,10 +1,6 @@
 "use client";
 import { nominationForm2Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
-import React, { use, useState } from 'react';
-import { grauFormData } from '@/hooks/Atoms';
-import { useEffect } from 'react';
-import { Bold } from 'lucide-react';
 
 type nominationForm2Data = {
   pension_nominee: {
