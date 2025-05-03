@@ -8,8 +8,36 @@ export default function EmpForm2() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target as HTMLInputElement;
+        if(name === "maritalStatus"){
+            maritialStatusChange(value)
+            return;
+        }
         setFormData(prev => ({ ...prev, [name]: value }));
         console.log(formData)
+    };
+
+    const maritialStatusChange = (value: string) => {
+        setFormData(prev => ({ ...prev, maritalStatus: value }));
+        if (value !== 'Married') {
+            setFormData(prev => ({
+                ...prev,
+                spouseName: "NA",
+                spouseDob: "NA",
+                spouseBloodGroup: "NA",
+                spouseEducation: "NA",
+                spouseWorking: "NA"
+            }));
+        }
+        else{
+            setFormData(prev => ({
+                ...prev,
+                spouseName: "",
+                spouseDob: "",
+                spouseBloodGroup: "",
+                spouseEducation: "",
+                spouseWorking: ""
+            }));
+        }
     };
 
     return (
