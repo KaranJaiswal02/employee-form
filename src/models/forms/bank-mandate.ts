@@ -1,7 +1,7 @@
 import { Schema, Document, model, models, Types } from 'mongoose';
 
 export interface BankMandateFormData extends Document {
-  userId: Types.ObjectId;
+  userId?: Types.ObjectId;
   name: string;
   employeeCode: string;
   category: string;
@@ -16,7 +16,7 @@ export interface BankMandateFormData extends Document {
   accountNumber: string;
   ifscCode: string;
   place: string;
-  date: Date;
+  date: Date | string;
 }
 
 const BankMandateFormDataSchema: Schema = new Schema({
