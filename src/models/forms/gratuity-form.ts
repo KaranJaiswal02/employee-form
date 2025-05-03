@@ -8,8 +8,8 @@ interface Nominee {
   proportion: number | null;
 }
 
-export interface IGratuityForm extends Document {
-  userId: Types.ObjectId;
+export interface IGratuityForm {
+  userId?: Types.ObjectId;
   name: string;
   noticedate: string;
   nominee: Nominee[];
@@ -63,6 +63,8 @@ const GratuityFormSchema: Schema = new Schema({
   witness2name: { type: String, required: false },
 });
 
-const IGratuityFormModel = models.GratuityForm || mongoose.model<IGratuityForm>('GratuityForm', GratuityFormSchema);
+interface IGratuityFormModelDocument extends Document, IGratuityForm {}
+
+const IGratuityFormModel = models.GratuityForm || mongoose.model<IGratuityFormModelDocument>('GratuityForm', GratuityFormSchema);
 
 export default IGratuityFormModel;

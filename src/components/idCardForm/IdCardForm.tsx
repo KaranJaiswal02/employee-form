@@ -124,7 +124,7 @@ export default function IdCardForm() {
                             <Input
                                 id="dob"
                                 type="date"
-                                value={formData.dob}
+                                value={formData.dob as string || ""}
                                 onChange={handleInputChange}
                                 className="w-full"
                                 disabled={true}

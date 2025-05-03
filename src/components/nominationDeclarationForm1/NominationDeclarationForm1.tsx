@@ -11,22 +11,8 @@ interface Nominee {
     guardian: string;
 }
 
-interface FormData {
-    name: string;
-    fatherName: string;
-    dob: string;
-    sex: string;
-    maritalStatus: string;
-    perAddress: string;
-    currAddress: string;
-    nominees: Nominee[];
-    place: string;
-    date: string;
-    establishmentAddress: string;
-}
-
 export default function NominationDeclarationForm1() {
-    const [formData, setFormData] = useAtom<FormData>(nominationForm1Data);
+    const [formData, setFormData] = useAtom(nominationForm1Data);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;

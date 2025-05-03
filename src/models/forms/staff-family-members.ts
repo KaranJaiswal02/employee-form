@@ -6,8 +6,8 @@ interface Child {
   dob: string;
 }
 
-export interface StaffFamilyFormData extends Document {
-  userId: Types.ObjectId;
+export interface StaffFamilyFormData {
+  userId?: Types.ObjectId;
   empNo: string;
   name: string;
   department: string;
@@ -24,7 +24,7 @@ export interface StaffFamilyFormData extends Document {
   motherDob: string;
   mobileNumber: string;
   familyAddress: string;
-  date: Date;
+  date: Date | string;
 }
 
 const ChildSchema: Schema = new Schema({
@@ -57,5 +57,7 @@ const StaffFamilyFormDataSchema: Schema = new Schema({
     timestamps: true,
   });
 
-const IempFamilyDataModel = models.StaffFamilyFormData || model<StaffFamilyFormData>('StaffFamilyFormData', StaffFamilyFormDataSchema);
+interface StaffFamilyFormDataDocument extends Document, StaffFamilyFormData {}
+
+const IempFamilyDataModel = models.StaffFamilyFormData || model<StaffFamilyFormDataDocument>('StaffFamilyFormData', StaffFamilyFormDataSchema);
 export default IempFamilyDataModel;

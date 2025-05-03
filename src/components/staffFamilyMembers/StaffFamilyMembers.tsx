@@ -9,28 +9,8 @@ type Child = {
     dob: string;
 };
 
-type FormData = {
-    empNo: string;
-    name: string;
-    department: string;
-    dob: string;
-    age: number;
-    maritalStatus: string;
-    spouseName: string;
-    spouseDob: string;
-    numOfChildren: string;
-    children: Child[];
-    fatherName: string;
-    fatherDob: string;
-    motherName: string;
-    motherDob: string;
-    mobileNumber: string;
-    familyAddress: string;
-    date: string;
-};
-
 export default function StaffFamilyMembers() {
-    const [formData, setFormData] = useAtom<FormData>(staffFamilyFormData);
+    const [formData, setFormData] = useAtom(staffFamilyFormData);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -349,7 +329,7 @@ export default function StaffFamilyMembers() {
                     <input
                         type="date"
                         name="date"
-                        value={formData.date}
+                        value={formData.date as string}
                         onChange={handleChange}
                         className="ml-2 p-1 focus:outline-none"
                     />

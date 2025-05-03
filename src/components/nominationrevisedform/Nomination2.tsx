@@ -110,7 +110,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="subscriberDate"
-              value={formData.subscriberDate}
+              value={formData.subscriberDate as string}
               onChange={handleFieldChange}
               className="border-b border-black dark:border-white outline-none"
             />
@@ -144,7 +144,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="employerDate"
-              value={formData.employerDate}
+              value={formData.employerDate as string}
               onChange={handleFieldChange}
               className="border-b border-black dark:border-white outline-none"
             />
@@ -179,7 +179,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="date"
-              value={formData.date}
+              value={formData.date as string}
               onChange={handleFieldChange}
               className="border-b border-black dark:border-white outline-none"
             />

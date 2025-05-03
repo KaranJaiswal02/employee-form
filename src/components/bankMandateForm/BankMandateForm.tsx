@@ -78,7 +78,7 @@ export default function BankMandateForm() {
                         id="categoryctdtstaff"
                         type="text"
                         onChange={handleChange}
-                        value={formData.categoryctdtstaff || ""}
+                        value={formData.category || ""}
                         className="flex-1 border-b border-black dark:border-white sm:ml-4 focus:outline-none"
                         required
                         disabled={false}
@@ -295,7 +295,7 @@ export default function BankMandateForm() {
                         id="date"
                         type="date"
                         onChange={handleChange}
-                        value={formData.date}
+                        value={formData.date as string || ""}
                         className="border-b border-black dark:border-white outline-none"
                         required
                         disabled={true}

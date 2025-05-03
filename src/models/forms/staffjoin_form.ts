@@ -28,8 +28,8 @@ interface Member {
     amount: string;
 }
 
-export interface IEmpFormData extends Document {
-    userId: Types.ObjectId;
+export interface IEmpFormData {
+    userId?: Types.ObjectId;
     name: string;
     fatherName: string;
     designation: string;
@@ -131,7 +131,7 @@ const MemberSchema = new Schema<Member>({
     amount: { type: String, required: false },
 });
 
-const EmpFormDataSchema = new Schema<IEmpFormData>({
+const EmpFormDataSchema = new Schema({
     userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     name: { type: String, required: false },
     fatherName: { type: String, required: false },
@@ -233,5 +233,7 @@ const EmpFormDataSchema = new Schema<IEmpFormData>({
         timestamps: true,
     });
 
-const EmpJoinForm = models.EmpFormData || model<IEmpFormData>("EmpFormData", EmpFormDataSchema);
+interface EmpFormDataDocument extends Document, IEmpFormData {}
+
+const EmpJoinForm = models.EmpFormData || model<EmpFormDataDocument>("EmpFormData", EmpFormDataSchema);
 export default EmpJoinForm;

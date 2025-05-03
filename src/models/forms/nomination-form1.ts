@@ -9,8 +9,8 @@ interface Nominee {
   guardian: string;
 }
 
-export interface NominationForm1Document extends Document {
-  userId: Types.ObjectId;
+export interface NominationForm1Model {
+  userId?: Types.ObjectId;
   name: string;
   fatherName: string;
   dob: string;
@@ -51,5 +51,7 @@ const NominationForm1Schema: Schema = new Schema({
     timestamps: true,
   });
 
+interface NominationForm1Document extends Document, NominationForm1Model {}
+  
 const NominationForm1DataModel = models.NominationForm1 || model<NominationForm1Document>('NominationForm1', NominationForm1Schema);
 export default NominationForm1DataModel

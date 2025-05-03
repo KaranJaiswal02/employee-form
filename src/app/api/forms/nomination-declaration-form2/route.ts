@@ -1,6 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import NominationForm2DataModel from "@/models/forms/nomination-form2";
-import { NominationForm2Document } from "@/models/forms/nomination-form2";
+import { NominationForm2Model } from "@/models/forms/nomination-form2";
 import mongoose from "mongoose";
 import { NextRequest, NextResponse } from "next/server";
 import IAPIResponse from "@/types/responseType";
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const body: NominationForm2Document = await req.json();
+        const body: NominationForm2Model = await req.json();
 
         if (!body) {
             const response: IAPIResponse = {

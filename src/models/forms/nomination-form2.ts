@@ -24,8 +24,8 @@ interface PensionNominee {
   relationship: string;
 }
 
-export interface NominationForm2Document extends Document {
-  userId: Types.ObjectId;
+export interface NominationForm2Model  {
+  userId?: Types.ObjectId;
   name: string;
   firstName: string;
   middleName: string;
@@ -41,11 +41,11 @@ export interface NominationForm2Document extends Document {
   credit_nominees: CreditNominee[];
   familyMembers: FamilyMember[];
   pension_nominee: PensionNominee;
-  subscriberDate: Date;
-  employerDate: Date;
+  subscriberDate: Date | string;
+  employerDate: Date | string;
   establishmentDetails: string;
   place: string;
-  date: Date;
+  date: Date | string;
 }
 
 const CreditNomineeSchema = new Schema<CreditNominee>({
@@ -72,7 +72,7 @@ const PensionNomineeSchema = new Schema<PensionNominee>({
   relationship: { type: String, required: false },
 });
 
-const NominationForm2Schema = new Schema<NominationForm2Document>({
+const NominationForm2Schema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   name: { type: String, required: false },
   firstName: { type: String, required: false },
@@ -98,6 +98,8 @@ const NominationForm2Schema = new Schema<NominationForm2Document>({
   {
     timestamps: true,
   });
+
+interface NominationForm2Document extends Document, NominationForm2Model {}
 
 const NominationForm2DataModel = models.NominationForm2 || model<NominationForm2Document>('NominationForm2', NominationForm2Schema);
 export default NominationForm2DataModel;

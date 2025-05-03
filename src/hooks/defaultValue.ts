@@ -1,6 +1,14 @@
+import { BankMandateFormData } from "@/models/forms/bank-mandate";
+import { IGratuityForm } from "@/models/forms/gratuity-form";
+import { IdCardFormData } from "@/models/forms/idcard-form";
+import { NominationForm1Model } from "@/models/forms/nomination-form1";
+import { NominationForm2Model } from "@/models/forms/nomination-form2";
+import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
+import { IEmpFormData } from "@/models/forms/staffjoin_form";
+
 const currentDate = new Date().toISOString().split('T')[0];
 
-export const DefaultEmpFormData = {
+export const DefaultEmpFormData : IEmpFormData = {
     name: "",
     fatherName: "",
     designation: "",
@@ -85,7 +93,7 @@ export const DefaultEmpFormData = {
     ],
 }
 
-export const DefaultGrauFormData = {
+export const DefaultGrauFormData : IGratuityForm = {
     name: "",
     noticedate: "",
     nominee: [
@@ -114,9 +122,8 @@ export const DefaultGrauFormData = {
     witness1name: "",
     witness2name: "",
 }
-//write mongoose model for this data in ts
 
-export const DefaultNominationForm1Data = {
+export const DefaultNominationForm1Data : NominationForm1Model = {
     name: "",
     fatherName: "",
     dob: "",
@@ -132,7 +139,7 @@ export const DefaultNominationForm1Data = {
     establishmentAddress: ""
 };
 
-export const DefaultNominationForm2Data = {
+export const DefaultNominationForm2Data : NominationForm2Model = {
     name: '',
     firstName: '',
     middleName: '',
@@ -164,7 +171,7 @@ export const DefaultNominationForm2Data = {
     date: currentDate,
 }
 
-export const DefaultBankMandateFormData = {
+export const DefaultBankMandateFormData : BankMandateFormData = {
     name: '',
     employeeCode: '',
     category: '',
@@ -179,11 +186,10 @@ export const DefaultBankMandateFormData = {
     accountNumber: '',
     ifscCode: '',
     place: '',
-    date: currentDate,
-    categoryctdtstaff: '',
+    date: currentDate
 }
 
-export const DefaultIdCardFormData = {
+export const DefaultIdCardFormData : IdCardFormData = {
     name: "",
     fatherName: "",
     designation: "",
@@ -198,7 +204,7 @@ export const DefaultIdCardFormData = {
     year: new Date().getFullYear().toString(),
 }
 
-export const DefaultStaffFamilyFormData = {
+export const DefaultStaffFamilyFormData : StaffFamilyFormData = {
     empNo: '',
     name: '',
     department: '',

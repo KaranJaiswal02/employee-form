@@ -1,6 +1,6 @@
 import { Schema, Document, model, models, Types } from 'mongoose';
 
-export interface BankMandateFormData extends Document {
+export interface BankMandateFormData {
   userId?: Types.ObjectId;
   name: string;
   employeeCode: string;
@@ -41,5 +41,7 @@ const BankMandateFormDataSchema: Schema = new Schema({
     timestamps: true,
   });
 
-const IbankMandateDataModel = models.BankMandateFormData || model<BankMandateFormData>('BankMandateFormData', BankMandateFormDataSchema);
+interface BankMandateFormDataDocument extends Document, BankMandateFormData {}
+
+const IbankMandateDataModel = models.BankMandateFormData || model<BankMandateFormDataDocument>('BankMandateFormData', BankMandateFormDataSchema);
 export default IbankMandateDataModel

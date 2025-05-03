@@ -16,25 +16,11 @@ interface Nominee {
   guardian: string;
 }
 
-interface FormData {
-  name: string;
-  fatherName: string;
-  dob: string;
-  sex: string;
-  maritalStatus: string;
-  perAddress: string;
-  currAddress: string;
-  nominees: Nominee[];
-  place: string;
-  date: string;
-  establishmentAddress: string;
-}
-
 export default function Page() {
   const router = useRouter()
   const [empFormData1] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
-  const [formData, setFormData] = useAtom<FormData>(nominationForm1Data);
+  const [formData, setFormData] = useAtom(nominationForm1Data);
   const searchParams = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
