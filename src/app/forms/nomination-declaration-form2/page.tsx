@@ -19,6 +19,7 @@ export default function Page() {
         const [errors, setErrors] = useState<string[]>([]);
 
     useEffect(() => {
+        console.log(formData.date)
         setFormData((prev) => ({
             ...prev,
             address: formData1.perAddress || "",

@@ -11,6 +11,7 @@ export async function GET(req: NextRequest) {
         const xUserId = req.headers.get("x-userid");
         const role = req.headers.get("x-userrole");
         const omitCurrentUser = req.headers.get("omit-current-user");
+        const includeStatus = req.headers.get("include-status") as string === "true";
 
         if (role !== "admin") {
             return NextResponse.json(
@@ -22,8 +23,43 @@ export async function GET(req: NextRequest) {
                 { status: 403 }
             );
         }
+
         const filter = omitCurrentUser === "true" ? { _id: { $ne: xUserId } } : {};
-        const users = await User.find(filter, { password: 0, __v: 0, createdAt: 0, updatedAt: 0 });
+
+        const rawUsers = await User.find(filter, { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }).lean();
+
+        const users = rawUsers.map((user: any) => {
+            const {
+                bankMandateForm,
+                gratuityForm,
+                idCardForm,
+                nominationForm1,
+                nominationForm2,
+                familyDetailsForm,
+                staffJoiningForm,
+                ...rest
+            } = user;
+
+            const userWithStatus = {
+                ...rest,
+                _id: user._id,
+            };
+
+            if (includeStatus) {
+                const isCompleted =
+                    bankMandateForm &&
+                    gratuityForm &&
+                    idCardForm &&
+                    nominationForm1 &&
+                    nominationForm2 &&
+                    familyDetailsForm &&
+                    staffJoiningForm;
+
+                userWithStatus["status"] = isCompleted ? "Completed" : "Pending";
+            }
+
+            return userWithStatus;
+        });
 
         const response: IAPIResponse = {
             success: true,

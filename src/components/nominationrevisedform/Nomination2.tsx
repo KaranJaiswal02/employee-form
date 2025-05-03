@@ -188,7 +188,7 @@ export default function EPFNominationFormPart2() {
             <input
               type="date"
               name="date"
-              value={formData.date as string}
+              value={formData.date.toString().split('T')[0]}
               onChange={handleFieldChange}
               className="border-b border-black dark:border-white outline-none"
               disabled

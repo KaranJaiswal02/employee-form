@@ -33,7 +33,7 @@ export interface IEmpFormData {
     name: string;
     fatherName: string;
     designation: string;
-    dob: string;
+    dob: string | Date;
     currAddress: string;
     district: string;
     state: string;
@@ -136,7 +136,7 @@ const EmpFormDataSchema = new Schema({
     name: { type: String, required: false },
     fatherName: { type: String, required: false },
     designation: { type: String, required: false },
-    dob: { type: String, required: false },
+    dob: { type: Date, required: false },
     currAddress: { type: String, required: false },
     district: { type: String, required: false },
     state: { type: String, required: false },
