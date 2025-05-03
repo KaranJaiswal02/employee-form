@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     try {
         const xUserId = req.headers.get("x-userid");
         const role = req.headers.get("x-userrole");
-        const omitCurrentUser = req.headers.get("omit-current-user");
+        const omitCurrentUser = req.headers.get("omit-current-user") as string === "true";
         const includeStatus = req.headers.get("include-status") as string === "true";
 
         if (role !== "admin") {
@@ -24,7 +24,7 @@ export async function GET(req: NextRequest) {
             );
         }
 
-        const filter = omitCurrentUser === "true" ? { _id: { $ne: xUserId } } : {};
+        const filter = omitCurrentUser ? { _id: { $ne: xUserId } } : {};
 
         const rawUsers = await User.find(filter, { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }).lean();
 

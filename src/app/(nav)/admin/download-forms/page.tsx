@@ -69,7 +69,7 @@ export default function UserFormDownloadPage() {
                 headers: {
                     "Content-Type": "application/json",
                     authorization: `Bearer ${token}`,
-                    "omit-current-user": "true",
+                    "omit-current-user": "false",
                     "include-status": "true",
                 },
             });
@@ -99,6 +99,7 @@ export default function UserFormDownloadPage() {
                     "Content-Type": "application/json",
                     "authorization": `Bearer ${token}`,
                     "userid": userId,
+                    "omit-current-user": "false",
                     "include-status": "true",
                 },
             });
@@ -131,15 +132,17 @@ export default function UserFormDownloadPage() {
     };
 
     useEffect(() => {
-        const lower = search.toLowerCase();
-        setFilteredUsers(
-            users.filter(
-                (u) =>
-                    u.name.toLowerCase().includes(lower) ||
-                    u.email.toLowerCase().includes(lower)
-            )
-        );
-    }, [search, users]);
+        const lowerSearch = search.toLowerCase();
+        const filtered = users.filter((user) => {
+            const matchesSearch =
+                user.name.toLowerCase().includes(lowerSearch) ||
+                user.email.toLowerCase().includes(lowerSearch);
+            const matchesRole =
+                roleFilter === "all" || user.role === roleFilter;
+            return matchesSearch && matchesRole;
+        });
+        setFilteredUsers(filtered);
+    }, [search, users, roleFilter]);
 
     return (
         <>
@@ -229,7 +232,7 @@ export default function UserFormDownloadPage() {
                                                 <tr className="border-t dark:border-neutral-700 bg-gray-50 dark:bg-neutral-900">
                                                     <td colSpan={5} className="p-4">
                                                         <div className="space-y-3">
-                                                            {hasAnyForm(user._id) && (
+                                                            {hasAnyForm(user._id) ? (
                                                                 <Button
                                                                     onClick={() => handleDownloadExcel(user._id)}
                                                                     className="bg-blue-600 hover:bg-blue-700 text-white"
@@ -237,6 +240,10 @@ export default function UserFormDownloadPage() {
                                                                     <Download className="mr-2 h-4 w-5" />
                                                                     Download All as Excel
                                                                 </Button>
+                                                            ):(
+                                                                <p className="text-red-500 dark:text-red-600 px-5 my-1">
+                                                                    No forms available for download.
+                                                                </p>
                                                             )}
                                                             <div className="flex flex-wrap gap-2">
                                                                 {Object.entries(data.forms).map(([key, value]) =>
