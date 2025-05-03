@@ -198,7 +198,8 @@ export default function FormLayout({
                                 onClick={handleLogout}
                                 className="w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium shadow-md transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer"
                             >
-                                <FiLogOut className="text-lg" />Logout
+                                <FiLogOut className="text-xl" />
+                                <span className="pr-4">Logout</span>
                             </button>
                         </div>
                     </aside>

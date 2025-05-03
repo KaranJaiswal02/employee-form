@@ -127,7 +127,7 @@ export default function RootLayout({
                                 onClick={handleLogout}
                                 className="flex items-center justify-center gap-2 px-4 py-3 md:py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium shadow-md transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer"
                             >
-                                <FiLogOut className="text-sm md:text-md" />
+                                <FiLogOut className="text-md md:text-xl" />
                                 <span className="hidden md:inline">Logout</span>
                             </button>
                         )}
