@@ -18,26 +18,14 @@ export default function EmpForm2() {
 
     const maritialStatusChange = (value: string) => {
         setFormData(prev => ({ ...prev, maritalStatus: value }));
-        if (value !== 'Married') {
-            setFormData(prev => ({
-                ...prev,
-                spouseName: "NA",
-                spouseDob: "NA",
-                spouseBloodGroup: "NA",
-                spouseEducation: "NA",
-                spouseWorking: "NA"
-            }));
-        }
-        else{
-            setFormData(prev => ({
-                ...prev,
-                spouseName: "",
-                spouseDob: "",
-                spouseBloodGroup: "",
-                spouseEducation: "",
-                spouseWorking: ""
-            }));
-        }
+        setFormData(prev => ({
+            ...prev,
+            spouseName: "",
+            spouseDob: "",
+            spouseBloodGroup: "",
+            spouseEducation: "",
+            spouseWorking: ""
+        }));
     };
 
     return (

@@ -7,6 +7,7 @@ import { Download, FileDown } from "lucide-react";
 import Loader from "@/components/Loader";
 import { usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
+import { convertToExcel } from "@/lib/excelGenerator";
 
 interface FormData {
     [key: string]: any;
@@ -50,6 +51,9 @@ export default function UserFormDownloadPage() {
     const [loadingUserId, setLoadingUserId] = useState<string | null>(null);
     const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user">("all");
     const [loading, setLoading] = useState(false);
+
+    //all forms
+    
 
     useEffect(() => {
         fetchUsers();
@@ -124,9 +128,25 @@ export default function UserFormDownloadPage() {
     };
 
     const handleDownloadExcel = (userId: string) => {
-        toast.success(`DownloadingData Excel for ${userFormData[userId].name}`);
-        // Implement actual Excel download logic here
+        const userData = userFormData[userId];
+        if (!userData || !userData.forms) {
+            toast.error("No form data available to download");
+            return;
+        }
+        const excelData = {
+            ...userData.forms.bankMandateFormData,
+            ...userData.forms.grauFormData,
+            ...userData.forms.idCardFormData,
+            ...userData.forms.nominationForm1Data,
+            ...userData.forms.nominationForm2Data,
+            ...userData.forms.staffFamilyFormData,
+            ...userData.forms.empFormData,
+        }
+        console.log(excelData)
+        convertToExcel(excelData, `${userData.name.replace(/\s+/g, "_")}_forms.xlsx`);
+        toast.success(`Downloaded Excel for ${userData.name}`);
     };
+    
 
     useEffect(() => {
         const lowerSearch = search.toLowerCase();
@@ -232,7 +252,7 @@ export default function UserFormDownloadPage() {
                                                             {hasAnyForm(user._id) ? (
                                                                 <Button
                                                                     onClick={() => handleDownloadExcel(user._id)}
-                                                                    className="bg-blue-600 hover:bg-blue-700 text-white"
+                                                                    className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer"
                                                                 >
                                                                     <Download className="mr-2 h-4 w-5" />
                                                                     Download All as Excel
