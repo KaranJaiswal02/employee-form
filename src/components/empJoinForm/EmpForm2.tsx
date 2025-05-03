@@ -25,7 +25,8 @@ export default function EmpForm2() {
                 spouseDob: "NA",
                 spouseBloodGroup: "NA",
                 spouseEducation: "NA",
-                spouseWorking: "NA"
+                spouseWorking: "NA",
+                anniversaryDate: "NA"
             }));
         }
         else{
@@ -35,7 +36,8 @@ export default function EmpForm2() {
                 spouseDob: "",
                 spouseBloodGroup: "",
                 spouseEducation: "",
-                spouseWorking: ""
+                spouseWorking: "",
+                anniversaryDate: ""
             }));
         }
     };

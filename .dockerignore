@@ -1,0 +1,30 @@
+# Node modules
+node_modules
+.npm
+
+# Build outputs
+.next
+out
+
+# Logs
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# Local env files (optional, if you're copying them manually)
+.env.local
+.env.development
+.env.test
+.env.production
+
+# OS / Editor / IDE files
+.DS_Store
+*.swp
+*.swo
+.vscode
+.idea
+
+# Git
+.git
+.gitignore
