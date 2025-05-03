@@ -119,6 +119,7 @@ export default function AdminManagementPage() {
                                     <td className="p-4">
                                         <Link
                                             href={`/forms/staff-joining?id=${user._id}`}
+                                            target="_blank"
                                             className="text-blue-500 hover:underline cursor-pointer"
                                         >
                                             <FaRegEdit size={20} />

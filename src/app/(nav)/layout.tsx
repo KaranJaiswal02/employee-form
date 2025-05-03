@@ -6,6 +6,7 @@ import { FaRegMoon } from "react-icons/fa";
 import { useRouter, usePathname } from "next/navigation";
 import { FiLogOut } from "react-icons/fi";
 import { IoIosArrowBack } from "react-icons/io";
+import { toast } from "sonner";
 
 export default function RootLayout({
     children,
@@ -17,12 +18,42 @@ export default function RootLayout({
     const router = useRouter();
     const pathname = usePathname();
 
+    const verifyToken = async (token: string) => {
+        try {
+            const res = await fetch("/api/user/verify-token", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            const data = await res.json();
+            if (data.success) {
+                if (data.data.role === "admin" && !pathname.startsWith("/admin")) {
+                    router.push("/admin/dashboard");
+                } else if (data.data.role === "user" ){
+                    router.push("/forms/staff-joining");
+                }
+            } else if (!data.success) {
+                localStorage.removeItem("token");
+                router.push("/sign-in");
+            }
+        } catch (error) {
+            localStorage.removeItem("token");
+            toast.error("Error verifying token");
+        }
+    };
+
     useEffect(() => {
         if (typeof window !== "undefined") {
             const isDark = document.documentElement.classList.contains("dark");
             setIsDarkMode(isDark);
         }
         const token = localStorage.getItem("token");
+        if (!token) {
+            router.push("/sign-in");
+        }
+        verifyToken(token as string);
         if (token) {
             setLoggedIn(true);
         }
@@ -54,7 +85,7 @@ export default function RootLayout({
     return (
         <div className="min-h-svh w-full flex flex-col">
             {/* Navbar */}
-            <nav className="w-full bg-white dark:bg-card shadow px-6 py-3 fixed z-10 top-0 left-0">
+            <nav className="w-full bg-white dark:bg-card shadow px-4 md:px-6 py-3 fixed z-10 top-0 left-0">
                 <div className="max-w-7xl mx-auto flex justify-between items-center">
                     <div className="flex items-center gap-5">
                         {/* Reserve space for back icon */}
@@ -65,8 +96,11 @@ export default function RootLayout({
                                 </Link>
                             )}
                         </div>
-                        <span className="text-xl my-2 font-semibold text-gray-800 dark:text-white">
+                        <span className="hidden md:inline text-xl my-2 font-semibold text-gray-800 dark:text-white">
                             Employee Management
+                        </span>
+                        <span className="md:hidden inline text-xl my-2 font-semibold text-gray-800 dark:text-white">
+                            Emp Mag...
                         </span>
                     </div>
 
@@ -84,7 +118,7 @@ export default function RootLayout({
                             <span className="text-gray-800 dark:text-gray-200 font-medium">
                                 {isDarkMode ? <FaRegMoon /> : <FiSun />}
                             </span>
-                            <span className="text-gray-800 dark:text-gray-200 font-medium">
+                            <span className="hidden md:inline text-gray-800 dark:text-gray-200 font-medium">
                                 {isDarkMode ? "Dark Mode" : "Light Mode"}
                             </span>
                         </div>
@@ -92,10 +126,10 @@ export default function RootLayout({
                         {loggedIn && (
                             <button
                                 onClick={handleLogout}
-                                className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium shadow-md transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer"
+                                className="flex items-center justify-center gap-2 px-4 py-3 md:py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium shadow-md transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer"
                             >
-                                <FiLogOut className="text-md" />
-                                Logout
+                                <FiLogOut className="text-sm md:text-md" />
+                                <span className="hidden md:inline">Logout</span>
                             </button>
                         )}
                     </div>

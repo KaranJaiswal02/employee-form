@@ -40,7 +40,7 @@ const dashboardOptions = [
 export default function Dashboard() {
     return (
         <div className="h-full w-full flex flex-col items-center justify-start p-6">
-            <h1 className="text-3xl bg- font-bold text-center mb-8 text-gray-800 dark:text-white">
+            <h1 className="text-3xl md:text-4xl bg- font-bold text-center mb-8 text-gray-800 dark:text-white">
                 Admin Dashboard
             </h1>
 
@@ -54,7 +54,7 @@ export default function Dashboard() {
                         <div className="bg-white/20 p-4 rounded-full">
                             {option.icon}
                         </div>
-                        <h3 className="text-xl font-semibold">{option.title}</h3>
+                        <h3 className="text-xl md:text-2xl font-semibold">{option.title}</h3>
                     </Link>
                 ))}
             </div>

@@ -100,7 +100,7 @@ export default function Page() {
   return (
     <form
       onSubmit={submitForm}
-      className="p-6 max-w-2xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg"
+      className="p-6 max-w-2xl min-w-lg mx-auto bg-white dark:bg-card border shadow-md rounded-lg"
     >
       <h1 className="text-center text-xl font-bold mb-4">ID CARD FORM</h1>
 

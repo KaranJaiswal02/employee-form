@@ -110,7 +110,7 @@ export default function EPFNominationForm() {
             <div className="space-y-4 mb-6">
                 <div className="flex flex-col md:flex-row gap-4" >
                     <label className="w-full md:w-72 uppercase ">1. Name (IN BLOCK LETTERS):</label>
-                    <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div className="flex-1 grid grid-cols-3 gap-4">
                         <input
                             type="text"
                             name="name"
