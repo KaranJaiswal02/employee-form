@@ -65,17 +65,16 @@ export default function BankMandateForm() {
                         onChange={handleChange}
                         value={formData.employeeCode || ""}
                         className="flex-1 border-b border-black dark:border-white sm:ml-4 focus:outline-none"
-                        required
-                        disabled={false}
+                        
                     />
                 </div>
 
                 <div className="flex flex-col sm:flex-row">
-                    <label htmlFor="categoryctdtstaff" className="w-72">
+                    <label htmlFor="category" className="w-72">
                         3. Category(CT/DT/STAFF)
                     </label>
                     <input
-                        id="categoryctdtstaff"
+                        id="category"
                         type="text"
                         onChange={handleChange}
                         value={formData.category || ""}
@@ -187,7 +186,7 @@ export default function BankMandateForm() {
                             <td className="border border-black dark:border-white p-2 md:w-1/2">
                                 <input
                                     id="pincode"
-                                    type="text"
+                                    type="number"
                                     className="w-full outline-none"
                                     placeholder="Enter Pin Code"
                                     onChange={handleChange}
@@ -279,15 +278,16 @@ export default function BankMandateForm() {
 
             <div className="flex flex-col sm:flex-row justify-between gap-4 mt-8">
                 <div className="flex items-center gap-2">
-                    <label><p>Place:<b> Bengaluru</b></p></label>
-                    {/* <input
+                    <label>Place:</label>
+                    <input
                         id="place"
                         type="text"
                         onChange={handleChange}
                         value={formData.place}
-                        className="border-b border-black dark:border-white outline-none flex-1"
+                        className=" border-black dark:border-white outline-none flex-1"
                         required
-                    /> */}
+                        disabled={true}
+                    />
                 </div>
                 <div className="flex items-center gap-2">
                     <label>Date:</label>

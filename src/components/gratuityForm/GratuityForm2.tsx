@@ -232,15 +232,20 @@ export default function GratuityForm2() {
             <div className="mt-6">
                 <p>
                     Place:
-                    {/* <input id="place"
+                    <input id="place"
                     type="text" 
                     value={formData.place} 
                     onChange={handleChange} 
-                    className="border-b border-black dark:border-white w-48 inline-block ml-2" /> */}
-                    <b> Bengaluru</b>
+                    className=" font-bold border-black dark:border-white w-48 inline-block ml-2" 
+                    disabled={true}
+                    />
+                                  
                 </p>
                 <p className="mt-2">
-                    Date: <input id="date" type="date" value={formData.date} onChange={handleDateChange} className="border-b border-black dark:border-white w-48 inline-block ml-2 focus:outline-none" />
+                    Date: <input id="date" type="date" value={formData.date} onChange={handleDateChange}
+                        className=" border-black dark:border-white w-48 inline-block ml-2 focus:outline-none"
+                        disabled={true}
+                    />
                 </p>
                 <p className="mt-4 text-right font-semibold">Signature/Thumb-impression of the Employee</p>
             </div>
@@ -260,6 +265,7 @@ export default function GratuityForm2() {
                                 onChange={(e) => handleWitnessChange(0, e.target.value)}
                                 className="border-b border-black dark:border-white w-full focus:outline-none"
                                 placeholder="Name and address"
+
                             />
                         </li>
                         <li>
@@ -285,18 +291,23 @@ export default function GratuityForm2() {
                 </div>
             </div>
 
-            {/* <p className="mt-4">Place: <input type="text" value={formData.place} disabled={true} className="border-b border-black dark:border-white w-48 inline-block ml-2" /></p>
-            <p>Date: <input type="date" value={formData.date} disabled className="border-b border-black dark:border-white w-48 inline-block ml-2" /></p> */}
-
-            <div className="mt-6">
-                <p>Place:
-                    <b> Bengaluru</b>
-                </p>
-            </div>
-
+            <p className="mt-4">Place:
+                <input type="text"
+                    value={formData.place}
+                    disabled={true}
+                    className="font-bold border-black dark:border-white w-48 inline-block ml-2"
+                />
+            </p>
+            <p>Date:
+                <input
+                    type="date"
+                    value={formData.date}
+                    disabled={true}
+                    className=" border-black dark:border-white w-48 inline-block ml-2"
+                />
+            </p>
 
             <hr className="my-6 border-black dark:border-white" />
-
             <h4 className="font-bold text-center">Certificate by the Employer</h4>
             <p>
                 Certified that the particulars of the above nomination have been verified and recorded in this establishment.
@@ -313,11 +324,16 @@ export default function GratuityForm2() {
             <div className="mt-2">
                 Name and address of the establishment or rubber stamp thereof:
                 < div className="w-full mt-2 h-25" >
-                    {/* < div className="w-full border border-black dark:border-white mt-2 h-25" ></div> */}
-                    <p><b>SL AP Private Limited</b><br />
+                    < div className="w-full border border-black dark:border-white mt-2 h-25" >
+                    <input type="text" 
+                    className=" border-black dark:border-white w-full h-25 focus:outline-none" 
+                    value={formData.establishmentAddress} 
+                    disabled />
+                    </div>
+                    {/* <p><b>SL AP Private Limited</b><br />
                         Brigade Opus,  4th Floor<br />
                         Municipal No. 70/401, Survey No. 44/1 and 44/4
-                        Kodigehalli Main Road, Hebbal,<br /> Bengaluru Urban, Karnataka 560092</p>
+                        Kodigehalli Main Road, Hebbal,<br /> Bengaluru Urban, Karnataka 560092</p> */}
                 </div>
             </div>
 

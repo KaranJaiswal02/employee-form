@@ -1,6 +1,7 @@
 "use client";
 import { nominationForm1Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
+import RequiredLabel from '../RequiredLabel';
 
 interface Nominee {
     name: string;
@@ -101,12 +102,13 @@ export default function NominationDeclarationForm1() {
                         />
                     </div>
                     <div className="flex items-center gap-4">
-                        <label className="w-64 font-medium">4. Sex:</label>
+                        <label className="w-64 font-medium"><RequiredLabel>4. Sex:</RequiredLabel></label>
                         <select
                             name="sex"
                             value={formData.sex}
                             onChange={handleChange}
                             className="flex-1 border-b-1 border-black dark:border-white px-2 py-1 focus:outline-none"
+                            required
                         >
                             <option className='bg-white dark:bg-neutral-800' value="">Select</option>
                             <option className='bg-white dark:bg-neutral-800' value="Male">Male</option>
@@ -121,6 +123,7 @@ export default function NominationDeclarationForm1() {
                             value={formData.maritalStatus}
                             onChange={handleChange}
                             className="flex-1 border-b-1 border-black dark:border-white px-2 py-1 focus:outline-none"
+                            disabled={true}
                         >
                             <option className='bg-white dark:bg-neutral-800' value="">Select</option>
                             <option className='bg-white dark:bg-neutral-800' value="Single">Single</option>
@@ -296,8 +299,11 @@ export default function NominationDeclarationForm1() {
                                 name="place"
                                 value={formData.place}
                                 onChange={handleChange}
-                                className="flex-1 border-b-1 border-black dark:border-white px-2 focus:outline-none"
+                                className="flex-1 font-bold border-black dark:border-white px-2 focus:outline-none"
+                                // className="flex-1 border-b-1 border-black dark:border-white px-2 focus:outline-none"
+
                                 placeholder="Enter Place"
+                                disabled={true}
                             />
                         </div>
                         <div className="flex items-center gap-2">
@@ -307,7 +313,8 @@ export default function NominationDeclarationForm1() {
                                 name="date"
                                 value={formData.date}
                                 onChange={handleChange}
-                                className="flex-1 border-b-1 border-black dark:border-white px-2 focus:outline-none"
+                                className="flex-1  border-black dark:border-white px-2 focus:outline-none"
+                                disabled={true}
                             />
                         </div>
                     </div>
@@ -322,16 +329,25 @@ export default function NominationDeclarationForm1() {
                 {/* Name and address of factory */}
                 <div className="mt-10">
                     <label className="block font-medium mb-2">
-                        Name and address of the factory/Establishment and rubber stamp thereof:
-                    </label>
-                    <textarea
+                        Name and address of the factory/Establishment and rubber stamp thereof:</label>
+                    <div className="mb-4">
+                        <label className="font-small mb-2">
+                            <p style={{ whiteSpace: 'pre-line' }}>
+                                <b>{formData.establishmentAddress.split('\n')[0]}</b>
+                                {"\n" + formData.establishmentAddress.split('\n').slice(1).join('\n')}
+                            </p>
+                        </label>
+                    </div>
+                    {/* <textarea
+
                         name="establishmentAddress"
                         value={formData.establishmentAddress}
                         rows={2}
                         placeholder="Enter establishment address"
-                        className="w-full border-b-1 border-black dark:border-white px-2 py-1 mb-4 focus:outline-none"
+                        className="w-full  border-black dark:border-white px-2 py-1 mb-4 focus:outline-none"
                         onChange={handleChange}
-                    />
+                        disabled={true}
+                    /> */}
                 </div>
             </div>
         </>

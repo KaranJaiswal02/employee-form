@@ -263,7 +263,7 @@ export default function EmpForm4() {
                                         value={row.dob}
                                         onChange={(e) => handleNomineeChange(index, 'dob', e.target.value)}
                                         required={index===0}
-                                    min={new Date().toISOString().split("T")[0]} // Ensure date is not in the future
+                                     
                                     />
                                 </td>
                                 <td className="border border-black dark:border-white">

@@ -167,10 +167,11 @@ export default function EmpForm1() {
               className="w-20 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
 
             />
-            <RequiredLabel><label htmlFor='currcontacctNumber' className='font-small'>Number:</label></RequiredLabel>
+            <RequiredLabel><label htmlFor='currcontactNumber' className='font-small'>Number:</label></RequiredLabel>
             <input
               type="number"
-              id="currcontacctNumber"
+              id="currcontactNumber"
+              name='currcontacctNumber'
               value={empFormData1.currcontactNumber}
               onChange={handleChange}
               className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
@@ -354,7 +355,7 @@ export default function EmpForm1() {
             id='date'
             value={empFormData1.date}
             onChange={handleChange}
-            className="w-40"
+            className="w-40 focus:outline-none"
           />
         </div>
         <div className="w-48 border-t border-black text-center pt-2">
