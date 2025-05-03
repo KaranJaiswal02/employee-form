@@ -72,45 +72,6 @@ export default function Page() {
     setIsSubmitting(false);
   };
 
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleNomineeChange = (index: number, field: keyof Nominee, value: string) => {
-    const updatedNominees = [...formData.nominees];
-    updatedNominees[index] = {
-      ...updatedNominees[index],
-      [field]: value
-    };
-    setFormData(prev => ({
-      ...prev,
-      nominees: updatedNominees
-    }));
-  };
-
-  const addNominee = () => {
-    setFormData(prev => ({
-      ...prev,
-      nominees: [
-        ...prev.nominees,
-        { name: "", address: "", relationship: "", dob: "", share: "", guardian: "" },
-      ],
-    }));
-  };
-
-  const removeNominee = (index: number) => {
-    const updatedNominees = formData.nominees.filter((_, i) => i !== index);
-    setFormData(prev => ({
-      ...prev,
-      nominees: updatedNominees
-    }));
-  };
-
   return (
     <form onSubmit={handleSubmit} className="p-6 max-w-5xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
       <NominationDeclarationForm1 />

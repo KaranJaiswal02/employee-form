@@ -538,7 +538,7 @@ export default function EmpForm2() {
                         value={formData.gratuityNominee1Percent}
                         id='gratuityNominee1Percent'
                         onChange={handleChange}
-                        className="w-16 border-b border-black dark:border-white focus:outline-none"
+                        className="w-1/5 border-b border-black dark:border-white focus:outline-none"
                         placeholder='Percentage'
                         required
                     />
@@ -560,7 +560,7 @@ export default function EmpForm2() {
                         name="gratuityNominee2Percent"
                         value={formData.gratuityNominee2Percent}
                         onChange={handleChange}
-                        className="w-16 border-b border-black dark:border-white focus:outline-none"
+                        className="w-1/5 border-b border-black dark:border-white focus:outline-none"
                         placeholder='Percentage'
                     />
                     <span className="mx-1">%</span>
@@ -582,7 +582,7 @@ export default function EmpForm2() {
                         id='pfNominee1Percent'
                         value={formData.pfNominee1Percent}
                         onChange={handleChange}
-                        className="w-16 border-b border-black dark:border-white focus:outline-none"
+                        className="w-1/5 border-b border-black dark:border-white focus:outline-none"
                         placeholder='Percentage'
                         required
                     />
@@ -604,7 +604,7 @@ export default function EmpForm2() {
                         name="pfNominee2Percent"
                         value={formData.pfNominee2Percent}
                         onChange={handleChange}
-                        className="w-16 border-b border-black dark:border-white focus:outline-none"
+                        className="w-1/5 border-b border-black dark:border-white focus:outline-none"
                         placeholder='Percentage'
                     />
                     <span className="mx-1">%</span>
@@ -624,7 +624,7 @@ export default function EmpForm2() {
                         name="pfNominee3Percent"
                         value={formData.pfNominee3Percent}
                         onChange={handleChange}
-                        className="w-16 border-b border-black dark:border-white focus:outline-none"
+                        className="w-1/5 border-b border-black dark:border-white focus:outline-none"
                         placeholder='Percentage'
                     />
                     <span className="mx-1">%</span>

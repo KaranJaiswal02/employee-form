@@ -55,7 +55,7 @@ export default function EPFNominationFormPart2() {
         <div className="overflow-x-auto mb-6">
           <table className="w-full border border-black dark:border-white text-sm">
             <thead>
-              <tr className="bg-neutral-100 dark:bg-neutral-800">
+              <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
                 <th className="border border-black dark:border-white p-2">Name and Address of the pension_nominee</th>
                 <th className="border border-black dark:border-white p-2">Date of Birth</th>
                 <th className="border border-black dark:border-white p-2">Relationship with member</th>

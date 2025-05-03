@@ -113,14 +113,14 @@ export default function GratuityForm1() {
 
       <table className="w-full border border-black dark:border-white text-left text-sm">
         <thead>
-          <tr className="bg-neutral-100 dark:bg-neutral-800">
+          <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
             <th className="border border-black dark:border-white p-2 text-center ">
               Name in full with full address of nominee(s)
             </th>
             <th className="border border-black dark:border-white p-2 text-center">Relationship</th>
             <th className="border border-black dark:border-white p-2 text-center">Age</th>
             <th className="border border-black dark:border-white p-2 text-center">Proportion</th>
-            <th className="border border-black dark:border-white p-2 text-center">Actions</th>
+            <th className="border print:hidden border-black dark:border-white p-2 text-center">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -166,7 +166,7 @@ export default function GratuityForm1() {
                   required={i=== 0}
                 />
               </td>
-              <td className="border border-black dark:border-white text-center">
+              <td className="border print:hidden border-black dark:border-white text-center">
                 {formData.nominee.length > 1 && (<button
                   type="button"
                   onClick={() => removeNominee(i)}
@@ -184,7 +184,7 @@ export default function GratuityForm1() {
       <button
         type="button"
         onClick={addNominee}
-        className="px-3 py-[1px] my-2 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
+        className="print:hidden px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
       >
         + Add Row
       </button>

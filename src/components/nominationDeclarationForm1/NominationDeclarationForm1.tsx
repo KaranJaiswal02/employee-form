@@ -166,14 +166,14 @@ export default function NominationDeclarationForm1() {
                 <div className="overflow-x-auto mt-4">
                     <table className="w-full border border-black dark:border-white text-sm text-center ">
                         <thead className="">
-                            <tr className="bg-neutral-100 dark:bg-neutral-800">
+                            <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
                                 <th className="border border-black dark:border-white px-2 py-1">Name of Nominee</th>
                                 <th className="border border-black dark:border-white px-2 py-1">Address</th>
                                 <th className="border border-black dark:border-white px-2 py-1">Relationship</th>
                                 <th className="border border-black dark:border-white px-2 py-1">Date of Birth</th>
                                 <th className="border border-black dark:border-white px-2 py-1">Share Amount</th>
                                 <th className="border border-black dark:border-white px-2 py-1">Guardian Info (if minor)</th>
-                                <th className="border border-black dark:border-white px-2 py-1">Action</th>
+                                <th className="border print:hidden border-black dark:border-white px-2 py-1">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -247,7 +247,7 @@ export default function NominationDeclarationForm1() {
                         <button
                             type="button"
                             onClick={addNominee}
-                            className="px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
+                            className="print:hidden px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
                         >
                             + Add Nominee
                         </button>

@@ -70,7 +70,7 @@ export default function Page() {
 
     return (
 
-        <form onSubmit={handleSubmit} className="p-6 max-w-4xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
+        <form onSubmit={handleSubmit} className="p-6 max-w-5xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
             <Nomination1 />
             <Nomination2 />
             {errors.length > 0 && (

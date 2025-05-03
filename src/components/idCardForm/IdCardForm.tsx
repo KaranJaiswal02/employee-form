@@ -53,14 +53,15 @@ export default function IdCardForm() {
                         <label htmlFor="name" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                             NAME
                         </label>
-                        <div className="w-2/3 flex items-center px-2">
-                            <Input
+                        <div className="w-2/3 flex items-center">
+                            <input
                                 id="name"
                                 type="text"
                                 value={formData.name}
                                 onChange={handleInputChange}
-                                className="w-full"
+                                className="w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
                                 disabled={true}
+                                placeholder="Your Name"
                             />
                         </div>
                     </div>
@@ -70,13 +71,14 @@ export default function IdCardForm() {
                         <label htmlFor="empcode" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                             CODE
                         </label>
-                        <div className="w-2/3 flex items-center px-2">
-                            <Input
+                        <div className="w-2/3 flex items-center">
+                            <input
                                 id="empcode"
                                 type="text"
                                 value={formData.empcode}
                                 onChange={handleInputChange}
-                                className="w-full"
+                                className="w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
+                                placeholder="your employment code"
                             />
                         </div>
                     </div>
@@ -86,13 +88,14 @@ export default function IdCardForm() {
                         <label htmlFor="department" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                             DEPARTMENT
                         </label>
-                        <div className="w-2/3 flex items-center px-2">
-                            <Input
+                        <div className="w-2/3 flex items-center">
+                            <input
                                 id="department"
                                 type="text"
                                 value={formData.department}
                                 onChange={handleInputChange}
-                                className="w-full"
+                                className="w-full text-md px-2 py-3 border-none focus:border-none"
+                                placeholder="Your Department"
                             />
                         </div>
                     </div>
@@ -102,15 +105,16 @@ export default function IdCardForm() {
                         <label htmlFor="designation" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                             DESIGNATION
                         </label>
-                        <div className="w-2/3 flex items-center px-2">
-                            <Input
+                        <div className="w-2/3 flex items-center">
+                            <input
                                 id="designation"
                                 type="text"
                                 value={formData.designation}
                                 onChange={handleInputChange}
-                                className="w-full"
+                                className="w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
                                 disabled={true}
                                 required
+                                placeholder="Your Designation"
                             />
                         </div>
                     </div>
@@ -120,13 +124,13 @@ export default function IdCardForm() {
                         <label htmlFor="dob" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                             DOB
                         </label>
-                        <div className="w-2/3 flex items-center px-2">
-                            <Input
+                        <div className="w-2/3 flex items-center">
+                            <input
                                 id="dob"
                                 type="date"
                                 value={formData.dob.toString().split('T')[0]}
                                 onChange={handleInputChange}
-                                className="w-full"
+                                className="w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
                                 disabled={true}
                                 required
                                 min="1950-01-01"
@@ -139,13 +143,13 @@ export default function IdCardForm() {
                         <label htmlFor="dateOfJoining" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                             DOJ
                         </label>
-                        <div className="w-2/3 flex items-center px-2">
-                            <Input
+                        <div className="w-2/3 flex items-center">
+                            <input
                                 id="dateOfJoining"
                                 type="date"
                                 value={formData.dateOfJoining.toString().split('T')[0]}
                                 onChange={handleInputChange}
-                                className="w-full"
+                                className="w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
                             />
                         </div>
                     </div>
@@ -155,15 +159,16 @@ export default function IdCardForm() {
                         <label htmlFor="bloodGroup" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                             BLOOD GROUP
                         </label>
-                        <div className="w-2/3 flex items-center px-2">
+                        <div className="w-2/3 flex items-center">
                             <DropdownMenu>
                                 <DropdownMenuTrigger className="w-full text-left">
-                                    <Input
+                                    <input
                                         id="bloodGroup"
                                         value={formData.bloodGroup}
                                         onChange={handleInputChange}
                                         readOnly
-                                        className="cursor-pointer"
+                                        className="cursor-pointer w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
+                                        placeholder="Select Blood Group"
                                     />
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent className="w-48">
@@ -194,15 +199,16 @@ export default function IdCardForm() {
                         <label htmlFor="fatherName" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                             FATHER NAME
                         </label>
-                        <div className="w-2/3 flex items-center px-2">
-                            <Input
+                        <div className="w-2/3 flex items-center">
+                            <input
                                 id="fatherName"
                                 type="text"
                                 value={formData.fatherName}
                                 onChange={handleInputChange}
-                                className="w-full"
+                                className="w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
                                 disabled={true}
                                 required
+                                placeholder="Your Father's Name"
                             />
                         </div>
                     </div>
@@ -212,13 +218,13 @@ export default function IdCardForm() {
                         <label htmlFor="year" className="w-1/3 border-r border-black dark:border-white font-semibold px-2 flex items-center">
                             YEAR
                         </label>
-                        <div className="w-2/3 flex items-center px-2">
-                            <Input
+                        <div className="w-2/3 flex items-center">
+                            <input
                                 id="year"
                                 type="text"
                                 value={formData.year}
                                 onChange={handleInputChange}
-                                className="w-full"
+                                className="w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
                                 min="1970"
                                 max="2100"
                             />
@@ -253,14 +259,16 @@ export default function IdCardForm() {
                     <label htmlFor="currAddress" className="w-1/6 border-r border-black dark:border-white px-2 font-semibold flex items-center">
                         ADDRESS
                     </label>
-                    <div className="w-5/6 px-2">
-                        <Textarea
+                    <label htmlFor="currAddress" className="w-5/6 flex items-center">
+                        <textarea
                             id="currAddress"
+                            rows={3}
                             value={formData.currAddress}
                             onChange={handleInputChange}
-                            className="w-full h-full resize-none"
+                            className="w-full flex px-2 py-1 text-md border-none focus:border-none focus:ring-0"
+                            placeholder="Your Address"
                         />
-                    </div>
+                    </label>
                 </div>
 
                 {/* CONTACT NUMBER */}
@@ -268,13 +276,15 @@ export default function IdCardForm() {
                     <label htmlFor="contactnumber" className="w-1/6 border-r border-black dark:border-white px-2 font-semibold flex items-center">
                         CONTACT NUMBER
                     </label>
-                    <div className="w-5/6 px-2 flex items-center">
-                        <Input
+                    <div className="w-5/6 flex items-center">
+                        <input
                             id="contactnumber"
                             value={formData.contactnumber}
                             onChange={handleInputChange}
+                            className="w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
                             type="number"
                             pattern="[0-9]{10}"
+                            placeholder="Your Contact Number"
                         />
                     </div>
                 </div>

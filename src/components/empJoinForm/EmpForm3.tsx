@@ -71,14 +71,14 @@ export default function EmpForm3() {
             </h2>
             <table className="table-auto w-full border border-black dark:border-white text-center text-sm mb-0">
                 <thead>
-                    <tr className="bg-neutral-100 dark:bg-neutral-800">
+                    <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
                         <th className="border border-black dark:border-white">Examination</th>
                         <th className="border border-black dark:border-white">University / Institute</th>
                         <th className="border border-black dark:border-white">From</th>
                         <th className="border border-black dark:border-white">To</th>
                         <th className="border border-black dark:border-white">Specialisation</th>
                         <th className="border border-black dark:border-white">Division %</th>
-                        <th className="border border-black dark:border-white">Actions</th>
+                        <th className="border print:hidden border-black dark:border-white">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,7 +95,7 @@ export default function EmpForm3() {
                                     />
                                 </td>
                             ))}
-                            <td className="border border-black dark:border-white">
+                            <td className="border print:hidden border-black dark:border-white">
                                 {formData.education.length > 1 && (<button
                                     type="button"
                                     className="text-red-600 font-semibold cursor-pointer"
@@ -111,7 +111,7 @@ export default function EmpForm3() {
             <button
                 type="button"
                 onClick={addEducationRow}
-                className="px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
+                className="print:hidden px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
             >
                 + Add Row
             </button>
@@ -122,14 +122,14 @@ export default function EmpForm3() {
             </h2>
             <table className="table-auto w-full border border-black dark:border-white text-center text-sm mb-0">
                 <thead>
-                    <tr className="bg-neutral-100 dark:bg-neutral-800">
+                    <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
                         <th className="border border-black dark:border-white">Name of the Organisation</th>
                         <th className="border border-black dark:border-white">From</th>
                         <th className="border border-black dark:border-white">To</th>
                         <th className="border border-black dark:border-white">Designation</th>
                         <th className="border border-black dark:border-white">Last Salary Drawn (CTC)</th>
                         <th className="border border-black dark:border-white">Reason for Leaving</th>
-                        <th className="border border-black dark:border-white">Actions</th>
+                        <th className="border print:hidden border-black dark:border-white">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -145,7 +145,7 @@ export default function EmpForm3() {
                                     />
                                 </td>
                             ))}
-                            <td className="border border-black dark:border-white">
+                            <td className="border print:hidden border-black dark:border-white">
                                 {formData.employment.length > 1 && (<button
                                     type="button"
                                     className="text-red-600 font-semibold cursor-pointer"
@@ -161,7 +161,7 @@ export default function EmpForm3() {
             <button
                 type="button"
                 onClick={addEmploymentRow}
-                className="px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
+                className="print:hidden px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
             >
                 + Add Row
             </button>

@@ -121,14 +121,14 @@ export default function EmpForm5() {
             {/* Table */}
             <table className="w-full border border-black dark:border-white text-sm">
                 <thead className="">
-                    <tr className="bg-neutral-100 dark:bg-neutral-800">
+                    <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
                         <th className="border border-black dark:border-white p-1 font-semibold">Sl. No</th>
                         <th className="border border-black dark:border-white p-1 font-semibold">Name</th>
                         <th className="border border-black dark:border-white p-1 font-semibold">Relationship</th>
                         <th className="border border-black dark:border-white p-1 font-semibold">DOB</th>
                         <th className="border border-black dark:border-white p-1 font-semibold">Age</th>
                         <th className="border border-black dark:border-white p-1 font-semibold">Insured Amount (Rs.)</th>
-                        <th className="border border-black dark:border-white p-1 font-semibold">Actions</th>
+                        <th className="border print:hidden border-black dark:border-white p-1 font-semibold">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -181,7 +181,7 @@ export default function EmpForm5() {
                                     onChange={(e) => handleMemberChange(index, "amount", e.target.value)}
                                 />
                             </td>
-                            <td className="border border-black dark:border-white text-center">
+                            <td className="border print:hidden border-black dark:border-white text-center">
                                 {index !== 0 && (
                                     <button
                                         type="button"
@@ -200,7 +200,7 @@ export default function EmpForm5() {
             <button
                 type="button"
                 onClick={addMember}
-                className="px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
+                className="print:hidden px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
             >
                 + Add Row
             </button>
