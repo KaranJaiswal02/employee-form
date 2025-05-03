@@ -28,7 +28,7 @@ export default function AdminManagementPage() {
                     "Content-Type": "application/json",
                     "authorization": `Bearer ${token}`,
                     "omit-current-user": "true",
-                    "include-status": "true",
+                    "include-status": "false",
                 },
             });
 

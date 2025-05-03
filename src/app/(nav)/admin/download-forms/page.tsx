@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Download, FileDown } from "lucide-react";
 import Loader from "@/components/Loader";
-import { usersData } from "@/hooks/Atoms";
+import { usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 
 interface FormData {
@@ -41,7 +41,7 @@ const formLabelMap: Record<string, string> = {
 };
 
 export default function UserFormDownloadPage() {
-    const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);
+    const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
     const [search, setSearch] = useState("");
     const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [userFormData, setUserFormData] = useState<Record<string, UserFormData>>({});
