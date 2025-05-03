@@ -28,7 +28,8 @@ export default function AdminManagementPage() {
             const res = await fetch("/api/user/get-all", {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
+                    "authorization": `Bearer ${token}`,
+                    "omit-current-user": "true",
                 },
             });
 
@@ -68,7 +69,7 @@ export default function AdminManagementPage() {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${token}`,
+                    "authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify({ userId }),
             });
