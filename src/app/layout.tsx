@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { seedAdmin } from "@/lib/seedAdmin";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
@@ -13,7 +12,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  await seedAdmin();
   return (
     <html lang="en" className="dark">
       <body className="bg-neutral-200 dark:bg-neutral-950 text-gray-900 font-sans antialiased dark:text-gray-200">

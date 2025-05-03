@@ -1,12 +1,11 @@
 'use client';
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { FiSun } from "react-icons/fi";
-import { FaRegMoon } from "react-icons/fa";
 import { useRouter, usePathname } from "next/navigation";
 import { FiLogOut } from "react-icons/fi";
 import { IoIosArrowBack } from "react-icons/io";
 import { toast } from "sonner";
+import { IoMoon, IoSunny } from "react-icons/io5";
 
 export default function RootLayout({
     children,
@@ -31,7 +30,7 @@ export default function RootLayout({
             if (data.success) {
                 if (data.data.role === "admin" && !pathname.startsWith("/admin")) {
                     router.push("/admin/dashboard");
-                } else if (data.data.role === "user" ){
+                } else if (data.data.role === "user") {
                     router.push("/forms/staff-joining");
                 }
             } else if (!data.success) {
@@ -96,9 +95,9 @@ export default function RootLayout({
                                 </Link>
                             )}
                         </div>
-                        <span className="hidden md:inline text-xl my-2 font-semibold text-gray-800 dark:text-white">
+                        <Link href="/" className="hidden md:inline text-xl my-2 font-semibold text-gray-800 dark:text-white">
                             Employee Management
-                        </span>
+                        </Link>
                         <span className="md:hidden inline text-xl my-2 font-semibold text-gray-800 dark:text-white">
                             Emp Mag...
                         </span>
@@ -107,16 +106,16 @@ export default function RootLayout({
 
                     <div className="flex items-center space-x-4">
                         <div onClick={toggleDarkMode} className="flex items-center justify-center space-x-3 cursor-pointer">
-                            <button
+                            {/* <button
                                 className="relative inline-flex items-center w-12 h-6 rounded-full bg-neutral-300 dark:bg-neutral-700 transition-colors duration-200 cursor-pointer"
                             >
                                 <span
                                     className={`inline-block w-6 h-6 bg-white rounded-full shadow-md transform transition-all duration-200 ${isDarkMode ? "translate-x-6" : "translate-x-0"
                                         }`}
                                 ></span>
-                            </button>
-                            <span className="text-gray-800 dark:text-gray-200 font-medium">
-                                {isDarkMode ? <FaRegMoon /> : <FiSun />}
+                            </button> */}
+                            <span className="text-gray-800 dark:text-gray-200 font-medium p-2 rounded-full bg-neutral-200 dark:bg-neutral-700 hover:opacity-80 transition duration-200">
+                                {isDarkMode ? <IoMoon size={22} /> : <IoSunny size={22} />}
                             </span>
                             <span className="hidden md:inline text-gray-800 dark:text-gray-200 font-medium">
                                 {isDarkMode ? "Dark Mode" : "Light Mode"}
