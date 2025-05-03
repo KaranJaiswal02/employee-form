@@ -5,14 +5,8 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Download, FileDown } from "lucide-react";
 import Loader from "@/components/Loader";
-
-interface User {
-    _id: string;
-    name: string;
-    email: string;
-    role: string;
-    status: "Completed" | "Pending";
-}
+import { usersData } from "@/hooks/Atoms";
+import { useAtom } from "jotai";
 
 interface FormData {
     [key: string]: any;
@@ -47,9 +41,9 @@ const formLabelMap: Record<string, string> = {
 };
 
 export default function UserFormDownloadPage() {
-    const [users, setUsers] = useState<User[]>([]);
+    const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);
     const [search, setSearch] = useState("");
-    const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+    const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [userFormData, setUserFormData] = useState<Record<string, UserFormData>>({});
     const [fetchedUserId, setFetchedUserId] = useState<string | null>(null);
     const [loadingData, setLoadingData] = useState<boolean>(false);
@@ -62,6 +56,9 @@ export default function UserFormDownloadPage() {
     }, []);
 
     const fetchUsers = async () => {
+        if (users.length > 0) {
+            return;
+        }
         setLoading(true);
         try {
             const token = localStorage.getItem("token");

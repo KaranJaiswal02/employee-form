@@ -5,23 +5,21 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import Loader from "@/components/Loader";
 import { Button } from "@/components/ui/button";
-
-interface User {
-    _id: string;
-    name: string;
-    email: string;
-    role: "admin" | "user";
-}
+import { usersData } from "@/hooks/Atoms";
+import { useAtom } from "jotai";
 
 export default function AdminManagementPage() {
-    const [users, setUsers] = useState<User[]>([]);
-    const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+    const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);
+    const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [search, setSearch] = useState("");
     const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user">("all");
     const [changingRole, setChangingRole] = useState(false);
     const [loading, setLoading] = useState(false);
 
     const fetchUsers = async () => {
+        if(users.length > 0) {
+            return
+        }
         setLoading(true);
         try {
             const token = localStorage.getItem("token");
@@ -30,6 +28,7 @@ export default function AdminManagementPage() {
                     "Content-Type": "application/json",
                     "authorization": `Bearer ${token}`,
                     "omit-current-user": "true",
+                    "include-status": "true",
                 },
             });
 
@@ -57,7 +56,7 @@ export default function AdminManagementPage() {
 
         const updatedUsers = users.map((user) =>
             user._id === userId
-                ? { ...user, role: user.role === "admin" ? "user" : "admin" } as User
+                ? { ...user, role: user.role === "admin" ? "user" : "admin" } as IFetchedUser
                 : user
         );
         setUsers(updatedUsers);

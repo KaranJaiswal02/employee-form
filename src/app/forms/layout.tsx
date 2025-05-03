@@ -86,7 +86,7 @@ export default function FormLayout({
 
     useEffect(() => {
         init();
-    }, [searchParams]);
+    }, []);
 
     const toggleDarkMode = () => {
         if (typeof window !== "undefined") {

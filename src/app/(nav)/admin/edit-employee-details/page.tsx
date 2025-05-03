@@ -5,21 +5,19 @@ import { toast } from "sonner";
 import Loader from "@/components/Loader";
 import Link from "next/link";
 import { FaRegEdit } from "react-icons/fa";
-
-interface User {
-    _id: string;
-    name: string;
-    email: string;
-    role: "admin" | "user";
-}
+import { usersData } from "@/hooks/Atoms";
+import { useAtom } from "jotai";
 
 export default function AdminManagementPage() {
-    const [users, setUsers] = useState<User[]>([]);
-    const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
+    const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);
+    const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false);
 
     const fetchUsers = async () => {
+        if(users.length > 0) {
+            return
+        }
         setLoading(true);
         try {
             const token = localStorage.getItem("token");
@@ -28,13 +26,14 @@ export default function AdminManagementPage() {
                     "Content-Type": "application/json",
                     "authorization": `Bearer ${token}`,
                     "omit-current-user": "true",
+                    "include-status": "true",
                 },
             });
 
             const data = await res.json();
             if (data.success) {
                 setUsers(data.data);
-                const filtered = data.data.filter((user : User) => user.role === "user");
+                const filtered = data.data.filter((user : IFetchedUser) => user.role === "user");
                 if (filtered.length < 1) {
                     toast.warning("No users found in the system")
                 }

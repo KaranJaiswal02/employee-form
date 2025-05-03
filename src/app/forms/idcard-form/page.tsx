@@ -11,7 +11,6 @@ export default function Page() {
   const router = useRouter();
   const [formData, setFormData] = useAtom(idCardFormData);
   const [empFormData1] = useAtom(empFormData);
-  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [, setFormStatus] = useAtom(formStatusus);
   const searchParams = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,10 +26,6 @@ export default function Page() {
       // currAddress: empFormData1.currAddress || "",
     }));
   }, []);
-
-  useEffect(() => {
-    setPhotoPreview(formData.photo || null);
-  }, [formData.photo]);
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     setIsSubmitting(true);
