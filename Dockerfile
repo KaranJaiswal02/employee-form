@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Copy package.json and package-lock.json (or yarn.lock / pnpm-lock.yaml)
 COPY package.json package-lock.json* ./
-RUN npm ci
+RUN npm i
 
 # Rebuild the source code only when needed
 FROM node:20-alpine AS builder
@@ -29,4 +29,4 @@ COPY --from=builder /app/.next/static ./.next/static
 
 EXPOSE 3000
 
-CMD ["node", "server.js"]
+CMD ["node", "run" ,"dev"]

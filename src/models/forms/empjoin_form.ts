@@ -1,4 +1,4 @@
-import { Schema, Document, model, models } from "mongoose";
+import mongoose, { Schema, Document, model, models } from "mongoose";
 
 interface Reference {
     name: string;

@@ -1,5 +1,5 @@
 // models/GratuityForm.ts
-import { Schema, Document, model, models, Types } from 'mongoose';
+import mongoose, { Schema, Document, model, models, Types } from 'mongoose';
 
 interface Nominee {
   name: string;
@@ -63,6 +63,6 @@ const GratuityFormSchema: Schema = new Schema({
   witness2name: { type: String, required: false },
 });
 
-const IGratuityFormModel = models.GratuityForm || model<IGratuityForm>('GratuityForm', GratuityFormSchema);
+const IGratuityFormModel = models.GratuityForm || mongoose.model<IGratuityForm>('GratuityForm', GratuityFormSchema);
 
 export default IGratuityFormModel;
