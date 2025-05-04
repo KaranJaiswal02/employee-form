@@ -32,7 +32,7 @@ export default function PrintFormPage({ params }: { params: Promise<{ form: stri
         const stored = localStorage.getItem('printFormData');
         if (!stored) {
             alert('Unauthorized access.');
-            router.replace('/');
+            router.replace('/not-found');
             return;
         }
 
@@ -42,7 +42,7 @@ export default function PrintFormPage({ params }: { params: Promise<{ form: stri
         const isRecent = Date.now() - timestamp < 5000;
         if (storedKey !== formKey || !isRecent) {
             alert('Unauthorized or expired access.');
-            router.replace('/');
+            router.replace('/not-found');
             return;
         }
 
@@ -51,6 +51,7 @@ export default function PrintFormPage({ params }: { params: Promise<{ form: stri
 
         setTimeout(() => {
             window.print();
+            localStorage.removeItem('printFormData');
             window.close();
         }, 500);
     }, [formKey, router]);

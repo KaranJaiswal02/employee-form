@@ -10,7 +10,7 @@ export default function MealTicketPrintPage() {
         const stored = localStorage.getItem('printFormData');
         if (!stored) {
             alert('Unauthorized access.');
-            router.replace('/');
+            router.replace('/not-found');
             return;
         }
 
@@ -20,7 +20,7 @@ export default function MealTicketPrintPage() {
         const isRecent = Date.now() - timestamp < 5000;
         if (formKey !== 'mealTickets' || !isRecent) {
             alert('Unauthorized or expired access.');
-            router.replace('/');
+            router.replace('/not-found');
             return;
         }
 
@@ -28,6 +28,7 @@ export default function MealTicketPrintPage() {
 
         setTimeout(() => {
             window.print();
+            localStorage.removeItem('printFormData');
             window.close();
         }, 500);
     }, [router]);
@@ -37,11 +38,11 @@ export default function MealTicketPrintPage() {
     const { name, month, year, noOfDays } = data;
 
     return (
-        <div>
+        <div className='w-full'>
             <div className='print:hidden h-screen text-xl md:text-3xl xl:text-5xl flex justify-center items-end bg-white dark:bg-card text-black dark:text-white p-4 font-bold font-mono'>
                 Meal Tickets for {name} - {month} {year}
             </div>
-            <div className="hidden print:grid grid-cols-4 gap-3 p-4">
+            <div className="hidden print:grid grid-cols-4 gap-3 p-4 mx-auto">
                 {Array.from({ length: noOfDays }).map((_, index) => (
                     <div
                         key={index}
