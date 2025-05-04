@@ -230,14 +230,14 @@ export default function EPFNominationForm() {
                 <div className="overflow-x-auto">
                     <table className="w-full border border-black dark:border-white text-sm mb-4">
                         <thead>
-                            <tr className="bg-neutral-100 dark:bg-neutral-800">
+                            <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
                                 <th className="border border-black dark:border-white p-2">Name of the Nominee(s)</th>
                                 <th className="border border-black dark:border-white p-2">Address</th>
                                 <th className="border border-black dark:border-white p-2">Nominee's relationship with the member</th>
                                 <th className="border border-black dark:border-white p-2">Date of Birth</th>
                                 <th className="border border-black dark:border-white p-2">Total amount or share of accumulations in Provident Funds to be paid to each nominee</th>
                                 <th className="border border-black dark:border-white p-2">If the nominee is minor, name and address of the guardian who may receive the amount during the minority of the nominee</th>
-                                <th className="border border-black dark:border-white p-2">Action</th>
+                                <th className="border print:hidden border-black dark:border-white p-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -306,7 +306,7 @@ export default function EPFNominationForm() {
                                             />
                                         </div>
                                     </td>
-                                    <td className="border border-black dark:border-white p-1 text-center">
+                                    <td className="border print:hidden border-black dark:border-white p-1 text-center">
                                         {formData.credit_nominees.length > 1 && (<button
                                             type="button"
                                             onClick={() => removeNominee(index)}
@@ -325,7 +325,7 @@ export default function EPFNominationForm() {
                 <button
                     type="button"
                     onClick={addNominee}
-                    className="px-4 py-1 cursor-pointer bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
+                    className="print:hidden px-3 py-[2px] mb-5 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm"
                 >
                     + Add Nominee
                 </button>
@@ -377,12 +377,12 @@ export default function EPFNominationForm() {
                 <div className="overflow-x-auto">
                     <table className="w-full border border-black dark:border-white text-sm mb-4">
                         <thead>
-                            <tr className="bg-neutral-100 dark:bg-neutral-800">
+                            <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
                                 <th className="border border-black dark:border-white p-2">Sr. No</th>
                                 <th className="border border-black dark:border-white p-2">Name & Address of the Family Member</th>
                                 <th className="border border-black dark:border-white p-2">Age</th>
                                 <th className="border border-black dark:border-white p-2">Relationship with the member</th>
-                                <th className="border border-black dark:border-white p-2">Action</th>
+                                <th className="border print:hidden border-black dark:border-white p-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -427,7 +427,7 @@ export default function EPFNominationForm() {
                                             required
                                         />
                                     </td>
-                                    <td className="border border-black dark:border-white p-1 text-center">
+                                    <td className="border print:hidden border-black dark:border-white p-1 text-center">
                                         {formData.familyMembers.length > 1 && (<button
                                             type="button"
                                             onClick={() => removeFamilyMember(index)}
@@ -446,7 +446,7 @@ export default function EPFNominationForm() {
                 <button
                     type="button"
                     onClick={addFamilyMember}
-                    className="px-4 py-1 cursor-pointer bg-blue-100 text-blue-700 rounded mb-6 hover:bg-blue-200"
+                    className="print:hidden px-3 py-[2px] mb-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm"
                 >
                     + Add Family Member
                 </button>

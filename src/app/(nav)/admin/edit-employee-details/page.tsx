@@ -5,11 +5,11 @@ import { toast } from "sonner";
 import Loader from "@/components/Loader";
 import Link from "next/link";
 import { FaRegEdit } from "react-icons/fa";
-import { usersData } from "@/hooks/Atoms";
+import { usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 
 export default function AdminManagementPage() {
-    const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);
+    const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
     const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false);
@@ -26,7 +26,7 @@ export default function AdminManagementPage() {
                     "Content-Type": "application/json",
                     "authorization": `Bearer ${token}`,
                     "omit-current-user": "true",
-                    "include-status": "false",
+                    "include-status": "true",
                 },
             });
 
@@ -51,7 +51,7 @@ export default function AdminManagementPage() {
 
     useEffect(() => {
         fetchUsers();
-    }, []);
+    }, [setUsers]);
 
     useEffect(() => {
         const lowerSearch = search.toLowerCase();
@@ -104,6 +104,9 @@ export default function AdminManagementPage() {
                                     Email
                                 </th>
                                 <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
+                                    Status
+                                </th>
+                                <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
                                     Edit
                                 </th>
                             </tr>
@@ -116,6 +119,9 @@ export default function AdminManagementPage() {
                                     </td>
                                     <td className="p-4 text-gray-800 dark:text-gray-100">
                                         {user.email}
+                                    </td>
+                                    <td className="p-4 text-gray-800 dark:text-gray-100">
+                                    <span className={`${user.status === "Completed" ? "text-green-500 dark:text-green-600" : "text-red-500 dark:text-red-600"}`}>{user.status}</span>
                                     </td>
                                     <td className="p-4">
                                         <Link

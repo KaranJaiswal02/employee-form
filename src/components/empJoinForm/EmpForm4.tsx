@@ -156,13 +156,13 @@ export default function EmpForm4() {
             <div className="mt-6 text-sm">
                 <table className="w-full border border-black dark:border-white text-center">
                     <thead>
-                        <tr className="bg-neutral-100 dark:bg-neutral-800">
+                        <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
                             <th className="border border-black dark:border-white px-2">S. No.</th>
                             <th className="border border-black dark:border-white px-2">Name</th>
                             <th className="border border-black dark:border-white px-2">Relationship</th>
                             <th className="border border-black dark:border-white px-2">Date of Birth</th>
                             <th className="border border-black dark:border-white px-2">Age</th>
-                            <th className="border border-black dark:border-white px-2">Action</th>
+                            <th className="border print:hidden border-black dark:border-white px-2">Action</th>
 
                         </tr>
                     </thead>
@@ -208,7 +208,7 @@ export default function EmpForm4() {
                                         min={0} // Ensure age is a positive number
                                     />
                                 </td>
-                                <td className="border border-black dark:border-white">
+                                <td className="border print:hidden border-black dark:border-white">
                                     {index !== 0 && (
                                         <button
                                             type="button"
@@ -226,7 +226,7 @@ export default function EmpForm4() {
                 <button
                     type="button"
                     onClick={addFamilyRow}
-                    className="px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
+                    className="print:hidden px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
                 >
                     + Add Row
                 </button>
@@ -241,13 +241,13 @@ export default function EmpForm4() {
             <div className="mt-4 text-sm">
                 <table className="w-full border border-black dark:border-white text-center">
                     <thead>
-                        <tr className="bg-neutral-100 dark:bg-neutral-800">
+                        <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
                             <th className="border border-black dark:border-white px-2">S. No.</th>
                             <th className="border border-black dark:border-white px-2">Name of the Nominee(s)</th>
                             <th className="border border-black dark:border-white px-2">Relationship</th>
                             <th className="border border-black dark:border-white px-2">Date of Birth</th>
                             <th className="border border-black dark:border-white px-2">%</th>
-                            <th className="border border-black dark:border-white px-2">Action</th>
+                            <th className="border print:hidden border-black dark:border-white px-2">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -290,7 +290,7 @@ export default function EmpForm4() {
                                         required={index === 0}
                                     />
                                 </td>
-                                <td className="border border-black dark:border-white">
+                                <td className="border print:hidden border-black dark:border-white">
                                     {index !== 0 && (
                                         <button
                                             type="button"
@@ -308,7 +308,7 @@ export default function EmpForm4() {
                 <button
                     type="button"
                     onClick={addNomineeRow}
-                    className="px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
+                    className="print:hidden px-3 py-[2px] my-1 cursor-pointer bg-blue-100 text-blue-700 hover:bg-blue-200 dark:bg-blue-900 dark:text-blue-100 dark:hover:bg-blue-800 rounded text-sm mt-2"
                 >
                     + Add Row
                 </button>

@@ -148,7 +148,7 @@ export default function MealTicketGenerator({
     <div className="space-y-6">
       <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-neutral-900 shadow-sm">
         <table className="min-w-full text-sm text-left text-gray-700 dark:text-gray-300">
-          <thead className="bg-neutral-100 dark:bg-neutral-800 text-gray-900 dark:text-gray-100">
+          <thead className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100 text-gray-900 dark:text-gray-100">
             <tr>
               <th scope="col" className="px-6 py-3">Field</th>
               <th scope="col" className="px-6 py-3">Value</th>

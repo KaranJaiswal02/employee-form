@@ -29,7 +29,7 @@ export default function Page() {
             name: form1data.name || "",
             dob: form1data.dob || "",
             department: form1data.department || "",
-            age: calculateAge(form1data.dob) || 0,
+            age: calculateAge(form1data.dob.toString().split('T')[0]) || 0,
         }));
     }, []);
 

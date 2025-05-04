@@ -323,18 +323,17 @@ export default function GratuityForm2() {
             <p>Date: <input type="date" value={formData.date.toString().split('T')[0]} disabled className="border-b border-black dark:border-white w-48 inline-block ml-2 mt-2 mb-2 focus:outline-none " /></p>
             <div className="mt-2">
                 Name and address of the establishment or rubber stamp thereof:
-                < div className="w-full mt-2 h-25" >
-                    < div className="w-full border mt-2 h-25 " >
-                        <input type="text"
-                            className=" w-full h-25 focus:outline-none"
-                            value={formData.establishmentAddress}
-                            disabled />
-                    </div>
-
+                < div className="w-full mt-3 mb-5" >
+                    <textarea
+                        id="establishmentAddress"
+                        rows={4}
+                        className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+                        value={formData.establishmentAddress}
+                        disabled />
                 </div>
             </div>
 
-            <hr className="my-6 border-black dark:border-white" />
+            {/* <hr className="my-6 border-black dark:border-white" /> */}
 
             <h4 className="font-bold text-center">Acknowledgement by the Employee</h4>
             <p>
@@ -345,7 +344,7 @@ export default function GratuityForm2() {
             </p>
             <p className="text-right font-semibold mt-4">Signature of the Employee</p>
 
-            <hr className="my-6 border-black dark:border-white" />
+            {/* <hr className="my-6 border-black dark:border-white" /> */}
 
             <p className="text-xs italic mt-4">
                 Note.—Strike out the words/paragraphs not applicable.

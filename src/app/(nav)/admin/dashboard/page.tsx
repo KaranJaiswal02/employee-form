@@ -1,7 +1,7 @@
 // Dashboard.tsx
 'use client';
 import Link from 'next/link';
-import { FaUserShield, FaFileDownload, FaUserEdit, FaClipboardList, FaBriefcase, FaUsers } from 'react-icons/fa';
+import { FaUserShield, FaFileDownload, FaUserEdit, FaClipboardList, FaBriefcase, FaUsers, FaKey } from 'react-icons/fa';
 
 const dashboardOptions = [
     {
@@ -39,6 +39,12 @@ const dashboardOptions = [
         icon: <FaUsers className="text-3xl text-white" />,
         bgColor: 'bg-pink-600 dark:bg-pink-800',
         href: '/admin/bulk-upload-users',
+    },
+    {
+        title: 'Reset Password',
+        icon: <FaKey className="text-3xl text-white" />,
+        bgColor: 'bg-zinc-800 dark:bg-zinc-600',
+        href: '/admin/reset-password',
     },
 ];
 
