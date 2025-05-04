@@ -164,6 +164,11 @@
   color: transparent;
 }
 
+@media print {
+  .page-break {
+    page-break-before: always;
+  }
+}
 
 @page {
   size: A4;

@@ -24,16 +24,19 @@ export default function StaffJoining({ data = DefaultEmpFormData }: { data?: IEm
       </div>
       <div className="hidden print:block force-light p-6 max-w-4xl mx-auto bg-white text-black">
         <EmpForm1 />
-        <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+        <div className="print:hidden page-break h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+        <div className="page-break"></div>
         <EmpForm2 />
-        <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+        <div className="print:hidden page-break h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+        <div className="page-break"></div>
         <EmpForm3 />
-        <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+        <div className="print:hidden page-break h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+        <div className="page-break"></div>
         <EmpForm4 />
-        <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+        <div className="print:hidden page-break h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+        <div className="page-break"></div>
         <EmpForm5 />
-        <div className="print:hidden flex justify-end mt-4">
-        </div>
+        <div className="print:hidden flex justify-end mt-4"></div>
       </div>
     </>
   )

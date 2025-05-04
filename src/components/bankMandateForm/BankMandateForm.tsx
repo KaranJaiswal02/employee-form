@@ -128,7 +128,7 @@ export default function BankMandateForm() {
                 <table className="w-full border border-black dark:border-white text-sm">
                     <tbody>
 
-                        <tr className="flex flex-col md:flex-row print:flex-col">
+                        <tr className="flex flex-col md:flex-row print:flex-row">
                             <td className="border border-black dark:border-white p-2 md:w-1/2 print:w-1/2 flex items-center justify-center">
                                 <label htmlFor="bankName" className="text-center w-full">
                                     Bank Name
@@ -165,7 +165,7 @@ export default function BankMandateForm() {
                         </tr>
 
 
-                        <tr className="flex flex-col md:flex-row print:flex-col">
+                        <tr className="flex flex-col md:flex-row print:flex-row">
                             <td className="border border-black dark:border-white p-2 md:w-1/2 print:w-1/2 flex items-center justify-center">
                                 <label htmlFor="branchCity" className="text-center w-full">
                                     Branch City</label></td>
