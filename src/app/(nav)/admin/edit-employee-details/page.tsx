@@ -139,9 +139,6 @@ export default function AdminManagementPage() {
                                     Email
                                 </th>
                                 <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
-                                    Role
-                                </th>
-                                <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
                                     Status
                                 </th>
                                 <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
@@ -157,9 +154,6 @@ export default function AdminManagementPage() {
                                     </td>
                                     <td className="p-4 text-gray-800 dark:text-gray-100">
                                         {user.email}
-                                    </td>
-                                    <td className="p-4 text-gray-800 dark:text-gray-100">
-                                        {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
                                     </td>
                                     <td className="p-4 text-gray-800 dark:text-gray-100">
                                         <span className={`${user.status === "Completed" ? "text-green-500 dark:text-green-600" : "text-red-500 dark:text-red-600"}`}>{user.status}</span>
