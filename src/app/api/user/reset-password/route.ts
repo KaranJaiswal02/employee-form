@@ -2,11 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import { User } from "@/models/user";
 import { NextRequest, NextResponse } from "next/server";
 import IAPIResponse from "@/types/responseType";
-
-// Assuming you have a utility like:
-// verifyPassword(inputPassword, hashedPassword)
-// hashPassword(newPassword)
-import { verifyPassword, hashPassword } from "@/lib/auth-utils"; // adjust the path
+import { verifyPassword, hashPassword } from "@/lib/bcrypt";
 
 export async function POST(req: NextRequest) {
     await dbConnect();
@@ -14,6 +10,7 @@ export async function POST(req: NextRequest) {
     try {
         const { oldPassword, newPassword } = await req.json();
         const userId = req.headers.get("x-userid");
+        const role = req.headers.get("x-userrole");
 
         if (!userId) {
             return NextResponse.json({
