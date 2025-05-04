@@ -340,7 +340,7 @@ export default function StaffFamilyMembers() {
                 </div>
             </div>
 
-            <p className="text-xs mt-4 italic text-red-700">
+            <p className="text-xs mt-4 italic text-red-700 print:hidden">
                 Note: Combination of Father & Father in-law / Mother & Mother in law is not allowed
             </p>
         </>

@@ -8,6 +8,7 @@ import { toast } from "sonner";
 import Loader from "@/components/Loader";
 import { usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
+import PasswordInput from "@/components/ui/PasswordInput";
 
 export default function UserPasswordUpdatePage() {
     const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
@@ -158,7 +159,7 @@ export default function UserPasswordUpdatePage() {
                                 <td className="p-4 text-gray-800 dark:text-gray-100">{user.email}</td>
                                 <td className="p-4 text-gray-800 dark:text-gray-100">{user.role}</td>
                                 <td className="p-4 flex items-center justify-center gap-2">
-                                    <Input
+                                    <PasswordInput
                                         type="password"
                                         value={passwordInputs[user._id] || ""}
                                         onChange={(e) =>
@@ -168,7 +169,7 @@ export default function UserPasswordUpdatePage() {
                                             }))
                                         }
                                         placeholder="Enter here..."
-                                        className="w-40 border border-gray-400 dark:border-gray-700"
+                                        className="w-48 border border-gray-400 dark:border-gray-700"
                                         disabled={updating}
                                     />
                                     <Button

@@ -16,6 +16,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
+import PasswordInput from "@/components/ui/PasswordInput";
 
 export default function LoginForm() {
     const router = useRouter();
@@ -84,7 +85,7 @@ export default function LoginForm() {
                                 <Input
                                     id="email"
                                     type="email"
-                                    placeholder="m@example.com"
+                                    placeholder="john@example.com"
                                     required
                                     value={formData.email}
                                     onChange={handleChange}
@@ -92,9 +93,8 @@ export default function LoginForm() {
                             </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="password">Password</Label>
-                                <Input
+                                <PasswordInput
                                     id="password"
-                                    type="password"
                                     placeholder="********"
                                     required
                                     value={formData.password}
