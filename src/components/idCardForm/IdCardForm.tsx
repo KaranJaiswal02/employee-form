@@ -234,12 +234,12 @@ export default function IdCardForm() {
 
                 {/* PHOTO COLUMN */}
                 <div className="row-span-9 border border-black dark:border-white flex items-center justify-center">
-                    <label className="w-32 h-40 border-2 border-gray-400 text-center flex items-center justify-center text-xs cursor-pointer relative">
+                    <label className="w-32 h-40 border-2 border-gray-400 text-center flex items-center justify-center text-xs cursor-pointer relative overflow-hidden">
                         {photoPreview ? (
                             <img
                                 src={photoPreview}
                                 alt="Uploaded Photo"
-                                className="w-32 h-40 object-contain absolute inset-0"
+                                className="w-full h-full object-contain"
                             />
                         ) : (
                             <span className="text-sm">Upload Photo</span>
@@ -252,6 +252,7 @@ export default function IdCardForm() {
                             required
                         />
                     </label>
+
                 </div>
 
                 {/* ADDRESS ROW */}

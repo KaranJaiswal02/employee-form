@@ -154,10 +154,16 @@
   }
 }
 
-/* In globals.css */
 .force-light :where(*) {
   @apply text-black bg-white border-black;
 }
+
+.force-light input::placeholder,
+.force-light textarea::placeholder {
+  content: '';
+  color: transparent;
+}
+
 
 @page {
   size: A4;

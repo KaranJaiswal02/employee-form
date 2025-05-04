@@ -15,10 +15,10 @@ export default function IdcardForm({ data = DefaultIdCardFormData }: { data?: Id
 
   return (
     <>
-      <div className='print:hidden h-screen text-5xl flex justify-center items-end bg-white dark:bg-card text-black dark:text-white p-4 font-bold font-mono'>
+      {/* <div className='print:hidden h-screen text-5xl flex justify-center items-end bg-white dark:bg-card text-black dark:text-white p-4 font-bold font-mono'>
         Id card Form
-      </div>
-      <div className="hidden print:block force-light p-6 max-w-2xl mx-auto bg-white">
+      </div> */}
+      <div className="force-light p-6 max-w-2xl mx-auto bg-white">
         <IdCardForm />
       </div>
     </>
