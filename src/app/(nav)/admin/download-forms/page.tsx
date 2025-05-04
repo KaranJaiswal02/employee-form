@@ -95,7 +95,6 @@ export default function UserFormDownloadPage() {
                     "Content-Type": "application/json",
                     authorization: `Bearer ${token}`,
                     "omit-current-user": "false",
-                    "include-status": "true",
                 },
             });
             const data = await res.json();

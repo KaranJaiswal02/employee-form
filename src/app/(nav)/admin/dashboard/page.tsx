@@ -17,16 +17,16 @@ const dashboardOptions = [
         href: '/admin/edit-employee-details',
     },
     {
-        title: 'Download Meal Tickets',
-        icon: <FaFileDownload className="text-3xl text-white" />,
-        bgColor: 'bg-green-600 dark:bg-green-800',
-        href: '/admin/meal-ticket',
-    },
-    {
         title: 'Download Forms',
         icon: <FaClipboardList className="text-3xl text-white" />,
-        bgColor: 'bg-purple-600 dark:bg-purple-800',
+        bgColor: 'bg-green-600 dark:bg-green-800',
         href: '/admin/download-forms',
+    },
+    {
+        title: 'Update Password',
+        icon: <FaKey className="text-3xl text-white" />,
+        bgColor: 'bg-purple-600 dark:bg-purple-800',
+        href: '/admin/update-password',
     },
     {
         title: 'My Employment Forms',
@@ -34,18 +34,18 @@ const dashboardOptions = [
         bgColor: 'bg-yellow-500 dark:bg-yellow-700',
         href: '/forms/staff-joining',
     },
+    {
+        title: 'Download Meal Tickets',
+        icon: <FaFileDownload className="text-3xl text-white" />,
+        bgColor: 'bg-pink-600 dark:bg-pink-800',
+        href: '/admin/meal-ticket',
+    },
     // {
     //     title: 'Bulk Upload Users',
     //     icon: <FaUsers className="text-3xl text-white" />,
     //     bgColor: 'bg-zinc-800 dark:bg-zinc-600',
     //     href: '/admin/bulk-upload-users',
     // },
-    {
-        title: 'Update Password',
-        icon: <FaKey className="text-3xl text-white" />,
-        bgColor: 'bg-pink-600 dark:bg-pink-800',
-        href: '/admin/update-password',
-    },
 ];
 
 export default function Dashboard() {
@@ -55,7 +55,7 @@ export default function Dashboard() {
                 Admin Dashboard
             </h1>
 
-            <div className="max-w-6xl w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
+            <div className="max-w-6xl 2xl:max-w-7xl w-full grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6">
                 {dashboardOptions.map((option) => (
                     <Link
                         key={option.title}

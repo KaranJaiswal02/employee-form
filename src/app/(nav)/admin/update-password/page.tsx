@@ -28,7 +28,6 @@ export default function UserPasswordUpdatePage() {
                     "Content-Type": "application/json",
                     "authorization": `Bearer ${token}`,
                     "omit-current-user": "false",
-                    "include-status": "true",
                 },
             });
 
