@@ -44,7 +44,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900 text-gray-800 dark:text-white">
+    <div className="min-h-screen flex flex-col text-gray-800 dark:text-white">
       {/* Header with Toggle */}
       <header className="relative px-6 py-12 text-center bg-gradient-to-r from-blue-500 to-teal-500 dark:from-blue-700 dark:to-teal-700 text-white">
         <button
@@ -61,34 +61,41 @@ export default function HomePage() {
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           {role === "admin" && (<Link
             href="/admin/dashboard"
-            className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-blue-600 dark:bg-transparent border-3 border-blue-600 dark:border-blue-400 hover:bblue-700 dark:hover:bg-blue-600 dark:hover:text-white shadow transition"
+            className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-green-600 dark:bg-transparent border-3 border-green-600 dark:border-green-400 hover:bg-green-700 dark:hover:bg-green-600 dark:hover:text-white shadow transition"
           >
-            Go to Dashboard
+            View Dashboard
           </Link>)}
 
           {role !== "" && (<Link
             href="/forms/staff-joining"
-            className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-green-600 dark:bg-transparent border-3 border-green-600 dark:border-green-400 hover:bggreen-700 dark:hover:bg-green-600 dark:hover:text-white shadow transition"
+            className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-purple-600 dark:bg-transparent border-3 border-purple-600 dark:border-purple-400 hover:bg-purple-700 dark:hover:bg-purple-600 dark:hover:text-white shadow transition"
           >
-            Join Form
+            Fill Join Form
           </Link>)}
 
           {role === "" && (<Link
             href="/sign-in"
-            className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-purple-600 dark:bg-transparent border-3 border-purple-600 dark:border-purple-400 hover:bg-purple-700 dark:hover:bg-purple-600 dark:hover:text-white shadow transition"
+            className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-green-600 dark:bg-transparent border-3 border-green-600 dark:border-green-400 hover:bg-green-700 dark:hover:bg-green-600 dark:hover:text-white shadow transition"
           >
             Sign In
+          </Link>)}
+
+          {role === "" && (<Link
+            href="/sign-up"
+            className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-purple-600 dark:bg-transparent border-3 border-purple-600 dark:border-purple-400 hover:bg-purple-700 dark:hover:bg-purple-600 dark:hover:text-white shadow transition"
+          >
+            Sign Up
           </Link>)}
         </div>
 
       </header>
 
       {/* Features Section */}
-      <section className="px-6 py-12 max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-10">Key Features</h2>
+      <section className="px-8 py-12 max-w-6xl w-full mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-10">Key Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <div key={index} className={`rounded-xl shadow p-6 ${feature.bgColor} text-white`}>
+            <div key={index} className={`rounded-xl shadow py-6 px-8 ${feature.bgColor} hover:scale-105 transition-all duration-150 text-white`}>
               <div className="mb-4">{feature.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p>{feature.description}</p>

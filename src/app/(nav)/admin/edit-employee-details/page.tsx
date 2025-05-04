@@ -51,7 +51,7 @@ export default function AdminManagementPage() {
 
     useEffect(() => {
         fetchUsers();
-    }, []);
+    }, [setUsers]);
 
     useEffect(() => {
         const lowerSearch = search.toLowerCase();

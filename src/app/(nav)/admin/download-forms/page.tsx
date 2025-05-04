@@ -57,7 +57,7 @@ export default function UserFormDownloadPage() {
 
     useEffect(() => {
         fetchUsers();
-    }, []);
+    }, [setUsers]);
 
     const fetchUsers = async () => {
         if (users.length > 0) {

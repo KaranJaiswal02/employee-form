@@ -22,7 +22,7 @@ export default function Page() {
             name: formData1.name || "",
             address: formData1.perAddress || "",
         }));
-    }, [])
+    }, [setFormData, formData1]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
