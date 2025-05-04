@@ -4,9 +4,11 @@ import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import Loader from "@/components/Loader";
-import { Button } from "@/components/ui/button";
 import { usersData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { LuEraser } from "react-icons/lu";
+import { Button } from "@/components/ui/button";
 
 export default function AdminManagementPage() {
     const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);
@@ -17,7 +19,7 @@ export default function AdminManagementPage() {
     const [loading, setLoading] = useState(false);
 
     const fetchUsers = async () => {
-        if(users.length > 0) {
+        if (users.length > 0) {
             return
         }
         setLoading(true);
@@ -35,7 +37,7 @@ export default function AdminManagementPage() {
             const data = await res.json();
             if (data.success) {
                 setUsers(data.data);
-                if(data.data.length < 1) {
+                if (data.data.length < 1) {
                     toast.warning("No users found in the system")
                 }
                 setFilteredUsers(data.data);
@@ -117,7 +119,7 @@ export default function AdminManagementPage() {
                     Admin Management
                 </h1>
                 <p className="text-gray-600 dark:text-gray-400">
-                    <span className="font-semibold text-yellow-500">Important:</span> The role of the currently logged-in user cannot be modified.
+                    <span className="font-semibold text-yellow-600 dark:text-yellow-500">Important:</span> The role of the currently logged-in user cannot be modified.
                 </p>
                 {users.length === 0 && (
                     <p className="text-gray-600 dark:text-gray-400">
@@ -128,45 +130,53 @@ export default function AdminManagementPage() {
 
             {users.length > 0 && (<>
                 <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    {/* Search Input */}
                     <Input
                         type="text"
                         placeholder="Search by name or email..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-full md:w-1/2 bg-white dark:bg-neutral-800"
+                        className="w-full md:w-1/2 border rounded-md border-gray-500 dark:border-gray-800"
                         disabled={changingRole}
                     />
 
-                    <div className="flex gap-2">
+                    {/* Filters and Reset Button */}
+                    <div className="flex flex-col items-center justify-center sm:flex-row gap-2 w-full md:w-fit">
+                        {/* Role Filter */}
+                        <div className="border rounded-md border-gray-500 dark:border-gray-800">
+                            <Select
+                                value={roleFilter}
+                                onValueChange={(val: "all" | "admin" | "user") => setRoleFilter(val)}
+                                disabled={changingRole}
+                            >
+                                <SelectTrigger className="w-full cursor-pointer sm:w-[160px]">
+                                    <SelectValue placeholder="Select Role" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="all">All Roles</SelectItem>
+                                    <SelectItem value="admin">Admin</SelectItem>
+                                    <SelectItem value="user">User</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        {/* Reset Button */}
                         <Button
-                            variant={roleFilter === "admin" ? "default" : "secondary"}
-                            onClick={() => setRoleFilter("admin")}
-                            className="cursor-pointer"
+                            onClick={() => {
+                                setSearch('');
+                                setRoleFilter('all');
+                            }}
+                            className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 cursor-pointer flex items-center gap-2 bg-transparent"
                             disabled={changingRole}
                         >
-                            Show Only Admin
-                        </Button>
-                        <Button
-                            variant={roleFilter === "user" ? "default" : "secondary"}
-                            onClick={() => setRoleFilter("user")}
-                            className="cursor-pointer"
-                            disabled={changingRole}
-                        >
-                            Show Only Users
-                        </Button>
-                        <Button
-                            variant={roleFilter === "all" ? "default" : "secondary"}
-                            onClick={() => setRoleFilter("all")}
-                            className="cursor-pointer"
-                            disabled={changingRole}
-                        >
-                            Show All
+                            <LuEraser size={18} />
+                            <span>Reset</span>
                         </Button>
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white dark:bg-neutral-800 rounded-md shadow text-center">
+                <div className="overflow-x-auto rounded-md border dark:border-neutral-700">
+                    <table className="min-w-full bg-white dark:bg-neutral-900 rounded-md shadow text-center">
                         <thead>
                             <tr className="border-b dark:border-neutral-700">
                                 <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">

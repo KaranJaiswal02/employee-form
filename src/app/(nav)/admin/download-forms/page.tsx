@@ -5,10 +5,12 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Download, FileDown } from "lucide-react";
 import Loader from "@/components/Loader";
-import { bankMandateFormData, usersData, usersStatusData } from "@/hooks/Atoms";
+import { usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { convertToExcel } from "@/lib/excelGenerator";
 import { FaFileExcel } from "react-icons/fa";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { LuEraser } from "react-icons/lu";
 
 interface FormData {
     [key: string]: any;
@@ -44,7 +46,6 @@ const formLabelMap: Record<string, string> = {
 
 export default function UserFormDownloadPage() {
     const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
-    const [, setUsers1] = useAtom<IFetchedUser[]>(usersData);
     const [search, setSearch] = useState("");
     const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [userFormData, setUserFormData] = useState<Record<string, UserFormData>>({});
@@ -52,6 +53,7 @@ export default function UserFormDownloadPage() {
     const [loadingData, setLoadingData] = useState<boolean>(false);
     const [loadingUserId, setLoadingUserId] = useState<string | null>(null);
     const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user">("all");
+    const [statusFilter, setStatusFilter] = useState<"all" | "Completed" | "Pending">("all");
     const [loading, setLoading] = useState(false);
 
     const layouts = {
@@ -100,7 +102,6 @@ export default function UserFormDownloadPage() {
             console.log(data.data)
             if (data.success) {
                 setUsers(data.data);
-                setUsers1(data.data);
                 setFilteredUsers(data.data);
             } else {
                 toast.error(data.message);
@@ -177,10 +178,12 @@ export default function UserFormDownloadPage() {
                 user.email.toLowerCase().includes(lowerSearch);
             const matchesRole =
                 roleFilter === "all" || user.role === roleFilter;
-            return matchesSearch && matchesRole;
+            const matchesStatus =
+                statusFilter === "all" || user.status === statusFilter;
+            return matchesSearch && matchesRole && matchesStatus;
         });
         setFilteredUsers(filtered);
-    }, [search, users, roleFilter]);
+    }, [search, users, roleFilter, statusFilter]);
 
     return (
         <>
@@ -188,50 +191,90 @@ export default function UserFormDownloadPage() {
                 <Loader />
             ) :
                 (<div className="p-6 max-w-7xl mx-auto">
-                    <h1 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white">
-                        User Form Download
-                    </h1>
+                    <div className="mb-6">
+                        <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
+                            Download Employee Forms
+                        </h1>
+                        <p className="text-gray-600 dark:text-gray-400">
+                            <span className="font-semibold text-yellow-600 dark:text-yellow-500">Note:</span> Only users with submitted forms will have download options.
+                        </p>
+                        {users.length === 0 && (
+                            <p className="text-gray-600 dark:text-gray-400">
+                                <span className="font-semibold text-red-500">Notice:</span> No users found for form download.
+                            </p>
+                        )}
+                    </div>
+
 
                     <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                        {/* Search Input */}
                         <Input
                             type="text"
                             placeholder="Search by name or email..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="w-full md:w-1/2 bg-white dark:bg-neutral-800"
+                            className="w-full md:w-1/2 border rounded-md border-gray-500 dark:border-gray-800"
                             disabled={loadingData}
                         />
 
-                        <div className="flex gap-2">
+                        {/* Filters and Reset Button */}
+                        <div className="flex flex-col items-center justify-center sm:flex-row gap-2 w-full md:w-fit">
+                            {/* Role Filter */}
+                            <div className="border rounded-md border-gray-500 dark:border-gray-800">
+                                <Select
+                                    value={roleFilter}
+                                    onValueChange={(val: "all" | "admin" | "user") => setRoleFilter(val)}
+                                    disabled={loadingData}
+                                >
+                                    <SelectTrigger className="w-full cursor-pointer sm:w-[160px]">
+                                        <SelectValue placeholder="Select Role" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="all">All Roles</SelectItem>
+                                        <SelectItem value="admin">Admin</SelectItem>
+                                        <SelectItem value="user">User</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            {/* Status Filter */}
+                            <div className="border rounded-md border-gray-500 dark:border-gray-800">
+                                <Select
+                                    value={statusFilter}
+                                    onValueChange={(val: "all" | "Completed" | "Pending") => setStatusFilter(val)}
+                                    disabled={loadingData}
+                                >
+                                    <SelectTrigger className="w-full cursor-pointer sm:w-[160px]">
+                                        <SelectValue placeholder="Select Status" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="all">All Status</SelectItem>
+                                        <SelectItem value="Completed">Completed</SelectItem>
+                                        <SelectItem value="Pending">Pending</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            {/* Reset Button */}
                             <Button
-                                variant={roleFilter === "admin" ? "default" : "secondary"}
-                                onClick={() => setRoleFilter("admin")}
-                                className="cursor-pointer"
+                                onClick={() => {
+                                    setSearch('');
+                                    setRoleFilter('all');
+                                    setStatusFilter('all');
+                                }}
+                                className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 cursor-pointer flex items-center gap-2 bg-transparent"
                                 disabled={loadingData}
                             >
-                                Show Only Admin
-                            </Button>
-                            <Button
-                                variant={roleFilter === "user" ? "default" : "secondary"}
-                                onClick={() => setRoleFilter("user")}
-                                className="cursor-pointer"
-                                disabled={loadingData}
-                            >
-                                Show Only Users
-                            </Button>
-                            <Button
-                                variant={roleFilter === "all" ? "default" : "secondary"}
-                                onClick={() => setRoleFilter("all")}
-                                className="cursor-pointer"
-                                disabled={loadingData}
-                            >
-                                Show All
+                                <LuEraser size={18} />
+                                <span>Reset</span>
                             </Button>
                         </div>
                     </div>
 
-                    <div className="overflow-x-auto">
-                        <table className="min-w-full text-center bg-white dark:bg-neutral-800 rounded-md shadow">
+
+
+                    <div className="overflow-x-auto rounded-md border dark:border-neutral-700">
+                        <table className="min-w-full text-center bg-white dark:bg-neutral-900 rounded-md shadow">
                             <thead>
                                 <tr className="border-b dark:border-neutral-700">
                                     <th className="p-4 w-[200px] font-semibold text-gray-700 dark:text-gray-200">Name</th>
@@ -272,7 +315,7 @@ export default function UserFormDownloadPage() {
                                                             Download as Excel
                                                             <FaFileExcel className="ml-1 h-4 w-5" />
                                                         </Button>
-                                                    )} {fetchedUserId === user._id && isActive && data && !hasAnyForm(user._id) &&(
+                                                    )} {fetchedUserId === user._id && isActive && data && !hasAnyForm(user._id) && (
                                                         <p className="text-red-500 dark:text-red-600 px-5 my-1">
                                                             No forms data available.
                                                         </p>

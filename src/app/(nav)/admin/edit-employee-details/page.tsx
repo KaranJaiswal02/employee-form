@@ -4,14 +4,15 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import Loader from "@/components/Loader";
 import Link from "next/link";
-import { FaEdit, FaRegEdit } from "react-icons/fa";
-import { usersData, usersStatusData } from "@/hooks/Atoms";
+import { FaEdit } from "react-icons/fa";
+import { usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { LuEraser } from "react-icons/lu";
 
 export default function AdminManagementPage() {
     const [usersFromAtom, setUsersFromAtom] = useAtom<IFetchedUser[]>(usersStatusData);
-    const [, setUsers1] = useAtom<IFetchedUser[]>(usersData);
     const [users, setUsers] = useState<IFetchedUser[]>([]);
     const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [search, setSearch] = useState("");
@@ -39,7 +40,6 @@ export default function AdminManagementPage() {
             const data = await res.json();
             if (data.success) {
                 setUsersFromAtom(data.data);
-                setUsers1(data.data);
                 console.log(data.data);
                 const filtered = data.data.filter((user: IFetchedUser) => user.role === "user");
                 setUsers(filtered);
@@ -84,7 +84,7 @@ export default function AdminManagementPage() {
                     Edit Employee Details
                 </h1>
                 <p className="text-gray-600 dark:text-gray-400">
-                    <span className="font-semibold text-yellow-500">Important:</span> Only users with the "user" role can be edited. Admin accounts are not editable.
+                    <span className="font-semibold text-yellow-600 dark:text-yellow-500">Important:</span> Only users with the "user" role can be edited. Admin accounts are not editable.
                 </p>
                 {users.length === 0 && (
                     <p className="text-gray-600 dark:text-gray-400">
@@ -95,41 +95,51 @@ export default function AdminManagementPage() {
 
             {users.length > 0 && (<>
                 <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    {/* Search Input */}
                     <Input
                         type="text"
                         placeholder="Search by name or email..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        className="w-full md:w-1/2 bg-white dark:bg-neutral-800"
+                        className="w-full md:w-1/2 border rounded-md border-gray-500 dark:border-gray-800"
                     />
 
-                    <div className="flex gap-2">
+                    {/* Filters and Reset Button */}
+                    <div className="flex flex-col items-center justify-center sm:flex-row gap-2 w-full md:w-fit">
+
+                        {/* Status Filter */}
+                        <div className="border rounded-md border-gray-500 dark:border-gray-800">
+                            <Select
+                                value={statusFilter}
+                                onValueChange={(val: "all" | "Completed" | "Pending") => setStatusFilter(val)}
+                            >
+                                <SelectTrigger className="w-full cursor-pointer sm:w-[160px]">
+                                    <SelectValue placeholder="Select Status" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="all">All Status</SelectItem>
+                                    <SelectItem value="Completed">Completed</SelectItem>
+                                    <SelectItem value="Pending">Pending</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        {/* Reset Button */}
                         <Button
-                            variant={statusFilter === "Completed" ? "default" : "secondary"}
-                            onClick={() => setStatusFilter("Completed")}
-                            className="cursor-pointer"
+                            onClick={() => {
+                                setSearch('');
+                                setStatusFilter('all');
+                            }}
+                            className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 cursor-pointer flex items-center gap-2 bg-transparent"
                         >
-                            Show Only Completed
-                        </Button>
-                        <Button
-                            variant={statusFilter === "Pending" ? "default" : "secondary"}
-                            onClick={() => setStatusFilter("Pending")}
-                            className="cursor-pointer"
-                        >
-                            Show Only Pending
-                        </Button>
-                        <Button
-                            variant={statusFilter === "all" ? "default" : "secondary"}
-                            onClick={() => setStatusFilter("all")}
-                            className="cursor-pointer"
-                        >
-                            Show All
+                            <LuEraser size={18} />
+                            <span>Reset</span>
                         </Button>
                     </div>
                 </div>
 
-                <div className="overflow-x-auto">
-                    <table className="min-w-full text-center bg-white dark:bg-neutral-800 rounded-md shadow">
+                <div className="overflow-x-auto rounded-md border dark:border-neutral-700">
+                    <table className="min-w-full text-center bg-white dark:bg-neutral-900 rounded-md shadow">
                         <thead>
                             <tr className="border-b dark:border-neutral-700">
                                 <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">

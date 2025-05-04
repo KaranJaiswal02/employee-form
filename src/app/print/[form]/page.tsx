@@ -60,11 +60,13 @@ export default function PrintFormPage({ params }: { params: Promise<{ form: stri
     return (
         <div>
             <style>{`
-        @media print {
-            @page {
-                size: ${layout};
-            }
-        }`}</style>
+    @media print {
+      @page {
+        size: A4 ${layout}; /* layout can be 'portrait' or 'landscape' */
+        margin: 5mm;
+      }
+    }
+  `}</style>
             <FormComponent data={formData} />
         </div>
     )

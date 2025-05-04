@@ -19,7 +19,7 @@ export default function StaffJoining({ data = DefaultEmpFormData }: { data?: IEm
 
   return (
     <>
-      <div className='print:hidden h-screen text-5xl flex justify-center items-end bg-white dark:bg-card text-black dark:text-white p-4 font-bold font-mono'>
+      <div className='print:hidden h-screen text-xl md:text-5xl flex justify-center items-end bg-white dark:bg-card text-black dark:text-white p-4 font-bold font-mono'>
         Staff Joining Form
       </div>
       <div className="hidden print:block force-light p-6 max-w-4xl mx-auto bg-white text-black">

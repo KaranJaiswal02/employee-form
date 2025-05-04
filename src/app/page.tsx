@@ -49,7 +49,7 @@ export default function HomePage() {
       <header className="relative px-6 py-12 text-center bg-gradient-to-r from-blue-500 to-teal-500 dark:from-blue-700 dark:to-teal-700 text-white">
         <button
           onClick={toggleDarkMode}
-          className="absolute top-6 right-6 p-2 rounded-full bg-white text-blue-600 dark:bg-gray-800 dark:text-yellow-400 shadow-md hover:scale-105 transition cursor-pointer"
+          className="fixed top-6 right-6 p-3 rounded-full bg-white text-blue-600 dark:bg-gray-800 dark:text-yellow-400 shadow-md hover:scale-105 transition cursor-pointer"
           aria-label="Toggle Dark Mode"
         >
           {!isDarkMode ? <FaSun size={22} /> : <FaMoon size={22} />}
