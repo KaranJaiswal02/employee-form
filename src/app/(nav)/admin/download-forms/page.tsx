@@ -213,7 +213,6 @@ export default function UserFormDownloadPage() {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                             className="w-full md:w-1/2 border rounded-md border-gray-500 dark:border-gray-800"
-                            disabled={loadingData}
                         />
 
                         {/* Filters and Reset Button */}
@@ -223,7 +222,6 @@ export default function UserFormDownloadPage() {
                                 <Select
                                     value={roleFilter}
                                     onValueChange={(val: "all" | "admin" | "user") => setRoleFilter(val)}
-                                    disabled={loadingData}
                                 >
                                     <SelectTrigger className="w-full cursor-pointer sm:w-[160px]">
                                         <SelectValue placeholder="Select Role" />
@@ -241,7 +239,6 @@ export default function UserFormDownloadPage() {
                                 <Select
                                     value={statusFilter}
                                     onValueChange={(val: "all" | "Completed" | "Pending") => setStatusFilter(val)}
-                                    disabled={loadingData}
                                 >
                                     <SelectTrigger className="w-full cursor-pointer sm:w-[160px]">
                                         <SelectValue placeholder="Select Status" />

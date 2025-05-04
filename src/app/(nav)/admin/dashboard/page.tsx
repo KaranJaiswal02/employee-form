@@ -11,19 +11,19 @@ const dashboardOptions = [
         href: '/admin/admin-management',
     },
     {
-        title: 'Edit Employee Details',
+        title: 'Edit Employees Details',
         icon: <FaUserEdit className="text-3xl text-white" />,
         bgColor: 'bg-orange-600 dark:bg-orange-700/90',
         href: '/admin/edit-employee-details',
     },
     {
-        title: 'Download Forms',
+        title: 'Download Employees Forms',
         icon: <FaClipboardList className="text-3xl text-white" />,
         bgColor: 'bg-green-600 dark:bg-green-800',
         href: '/admin/download-forms',
     },
     {
-        title: 'Update Password',
+        title: 'Update Users Password',
         icon: <FaKey className="text-3xl text-white" />,
         bgColor: 'bg-purple-600 dark:bg-purple-800',
         href: '/admin/update-password',
@@ -54,7 +54,6 @@ export default function Dashboard() {
             <h1 className="text-3xl md:text-4xl bg- font-bold text-center mb-8 text-gray-800 dark:text-white">
                 Admin Dashboard
             </h1>
-
             <div className="max-w-6xl 2xl:max-w-7xl w-full grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6">
                 {dashboardOptions.map((option) => (
                     <Link

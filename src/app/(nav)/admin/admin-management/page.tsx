@@ -136,7 +136,6 @@ export default function AdminManagementPage() {
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         className="w-full md:w-1/2 border rounded-md border-gray-500 dark:border-gray-800"
-                        disabled={changingRole}
                     />
 
                     {/* Filters and Reset Button */}
@@ -146,7 +145,6 @@ export default function AdminManagementPage() {
                             <Select
                                 value={roleFilter}
                                 onValueChange={(val: "all" | "admin" | "user") => setRoleFilter(val)}
-                                disabled={changingRole}
                             >
                                 <SelectTrigger className="w-full cursor-pointer sm:w-[160px]">
                                     <SelectValue placeholder="Select Role" />
@@ -166,7 +164,6 @@ export default function AdminManagementPage() {
                                 setRoleFilter('all');
                             }}
                             className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 cursor-pointer flex items-center gap-2 bg-transparent"
-                            disabled={changingRole}
                         >
                             <LuEraser size={18} />
                             <span>Reset</span>
