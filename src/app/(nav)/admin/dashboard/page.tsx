@@ -41,10 +41,10 @@ const dashboardOptions = [
     //     href: '/admin/bulk-upload-users',
     // },
     {
-        title: 'Reset Password',
+        title: 'Update Password',
         icon: <FaKey className="text-3xl text-white" />,
         bgColor: 'bg-pink-600 dark:bg-pink-800',
-        href: '/admin/reset-password',
+        href: '/admin/update-password',
     },
 ];
 
