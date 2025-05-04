@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import Loader from "@/components/Loader";
 import Link from "next/link";
-import { FaRegEdit } from "react-icons/fa";
+import { FaEdit, FaRegEdit } from "react-icons/fa";
 import { usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 
@@ -94,9 +94,9 @@ export default function AdminManagementPage() {
                 </div>
 
                 <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white dark:bg-neutral-800 rounded-md shadow">
+                    <table className="min-w-full text-center bg-white dark:bg-neutral-800 rounded-md shadow">
                         <thead>
-                            <tr className="text-left border-b dark:border-neutral-700">
+                            <tr className="border-b dark:border-neutral-700">
                                 <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
                                     Name
                                 </th>
@@ -123,12 +123,12 @@ export default function AdminManagementPage() {
                                     <td className="p-4 text-gray-800 dark:text-gray-100">
                                     <span className={`${user.status === "Completed" ? "text-green-500 dark:text-green-600" : "text-red-500 dark:text-red-600"}`}>{user.status}</span>
                                     </td>
-                                    <td className="p-4">
+                                    <td className="p-4 flex justify-center items-center">
                                         <Link
                                             href={`/forms/staff-joining?id=${user._id}`}
-                                            className="text-blue-500 hover:underline cursor-pointer"
+                                            className="text-blue-500 cursor-pointer"
                                         >
-                                            <FaRegEdit size={20} />
+                                            <FaEdit size={23} className="m-0 p-0" />
                                         </Link>
                                     </td>
                                 </tr>

@@ -8,6 +8,7 @@ import Loader from "@/components/Loader";
 import { bankMandateFormData, usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { convertToExcel } from "@/lib/excelGenerator";
+import { FaFileExcel } from "react-icons/fa";
 
 interface FormData {
     [key: string]: any;
@@ -32,13 +33,13 @@ interface UserFormData {
 }
 
 const formLabelMap: Record<string, string> = {
-    bankMandateFormData: "Bank Mandate",
-    grauFormData: "Granulity",
+    bankMandateFormData: "Bank Mandate Form",
+    grauFormData: "Granulity Form",
     idCardFormData: "ID Card Form",
-    nominationForm1Data: "Nomination 1",
-    nominationForm2Data: "Nomination 2",
-    staffFamilyFormData: "Staff Family",
-    empFormData: "Employee",
+    nominationForm1Data: "Nomination Form 1",
+    nominationForm2Data: "Nomination Form 2",
+    staffFamilyFormData: "Staff Family Form",
+    empFormData: "Staff Joining Form",
 };
 
 export default function UserFormDownloadPage() {
@@ -164,7 +165,7 @@ export default function UserFormDownloadPage() {
         convertToExcel(excelData, `${userData.name.replace(/\s+/g, "_")}_forms.xlsx`);
         toast.success(`Downloaded Excel for ${userData.name}`);
     };
-    
+
 
     useEffect(() => {
         const lowerSearch = search.toLowerCase();
@@ -228,9 +229,9 @@ export default function UserFormDownloadPage() {
                     </div>
 
                     <div className="overflow-x-auto">
-                        <table className="min-w-full bg-white dark:bg-neutral-800 rounded-md shadow">
+                        <table className="min-w-full text-center bg-white dark:bg-neutral-800 rounded-md shadow">
                             <thead>
-                                <tr className="text-left border-b dark:border-neutral-700">
+                                <tr className="border-b dark:border-neutral-700">
                                     <th className="p-4 w-[200px] font-semibold text-gray-700 dark:text-gray-200">Name</th>
                                     <th className="p-4 w-[250px] font-semibold text-gray-700 dark:text-gray-200">Email</th>
                                     <th className="p-4 w-[250px] font-semibold text-gray-700 dark:text-gray-200">Role</th>
@@ -260,14 +261,28 @@ export default function UserFormDownloadPage() {
                                                     >
                                                         {loadingUserId === user._id ? "Loading..." : "Fetch Data"}
                                                     </Button>)}
+                                                    {fetchedUserId === user._id && isActive && data && hasAnyForm(user._id) && (
+                                                        <Button
+                                                            onClick={() => handleDownloadExcel(user._id)}
+                                                            className="bg-green-600 hover:bg-green-700 text-white cursor-pointer"
+                                                        >
+                                                            <Download className="mr-1 h-4 w-5" />
+                                                            Download as Excel
+                                                            <FaFileExcel className="ml-1 h-4 w-5" />
+                                                        </Button>
+                                                    )} {fetchedUserId === user._id && isActive && data && !hasAnyForm(user._id) &&(
+                                                        <p className="text-red-500 dark:text-red-600 px-5 my-1">
+                                                            No forms data available.
+                                                        </p>
+                                                    )}
                                                 </td>
                                             </tr>
 
-                                            {isActive && data && (
+                                            {isActive && data && hasAnyForm(user._id) && (
                                                 <tr className="border-t dark:border-neutral-700 bg-gray-50 dark:bg-neutral-900">
                                                     <td colSpan={5} className="p-4">
                                                         <div className="space-y-3">
-                                                            {hasAnyForm(user._id) ? (
+                                                            {/* {hasAnyForm(user._id) ? (
                                                                 <Button
                                                                     onClick={() => handleDownloadExcel(user._id)}
                                                                     className="bg-blue-600 hover:bg-blue-700 text-white cursor-pointer"
@@ -275,18 +290,18 @@ export default function UserFormDownloadPage() {
                                                                     <Download className="mr-2 h-4 w-5" />
                                                                     Download All as Excel
                                                                 </Button>
-                                                            ):(
+                                                            ) : (
                                                                 <p className="text-red-500 dark:text-red-600 px-5 my-1">
                                                                     No forms available for download.
                                                                 </p>
-                                                            )}
-                                                            <div className="flex flex-wrap gap-2">
+                                                            )} */}
+                                                            <div className="flex flex-wrap items-center justify-center gap-2">
                                                                 {Object.entries(data.forms).map(([key, value]) =>
                                                                     value ? (
                                                                         <button
                                                                             key={key}
                                                                             onClick={() => handleOpenAndPrint(key, value)}
-                                                                            className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm cursor-pointer"
+                                                                            className="flex items-center gap-2 px-3 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 text-sm cursor-pointer"
                                                                         >
                                                                             <FileDown className="h-4 w-4" />
                                                                             {formLabelMap[key] || key}

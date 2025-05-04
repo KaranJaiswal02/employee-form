@@ -166,9 +166,9 @@ export default function AdminManagementPage() {
                 </div>
 
                 <div className="overflow-x-auto">
-                    <table className="min-w-full bg-white dark:bg-neutral-800 rounded-md shadow">
+                    <table className="min-w-full bg-white dark:bg-neutral-800 rounded-md shadow text-center">
                         <thead>
-                            <tr className="text-left border-b dark:border-neutral-700">
+                            <tr className="border-b dark:border-neutral-700">
                                 <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
                                     Name
                                 </th>
