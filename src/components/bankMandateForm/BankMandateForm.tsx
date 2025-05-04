@@ -128,13 +128,13 @@ export default function BankMandateForm() {
                 <table className="w-full border border-black dark:border-white text-sm">
                     <tbody>
 
-                        <tr className="flex flex-col md:flex-row">
-                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">
+                        <tr className="flex flex-row">
+                            <td className="border border-black dark:border-white p-2 w-1/2 flex items-center justify-center">
                                 <label htmlFor="bankName" className="text-center w-full">
                                     Bank Name
                                 </label>
                             </td>
-                            <td className="border border-black dark:border-white p-2 md:w-1/2">
+                            <td className="border border-black dark:border-white p-2 w-1/2">
                                 <input
                                     id="bankName"
                                     type="text"
@@ -146,12 +146,12 @@ export default function BankMandateForm() {
                                 />
                             </td>
 
-                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">
+                            <td className="border border-black dark:border-white p-2 w-1/2 flex items-center justify-center">
                                 <label htmlFor="branchPlace" className="text-center w-full">
                                     Branch Place
                                 </label>
                             </td>
-                            <td className="border border-black dark:border-white p-2 md:w-1/2">
+                            <td className="border border-black dark:border-white p-2 w-1/2">
                                 <input
                                     id="branchPlace"
                                     type="text"
@@ -165,11 +165,11 @@ export default function BankMandateForm() {
                         </tr>
 
 
-                        <tr className="flex flex-col md:flex-row">
-                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">
+                        <tr className="flex flex-row">
+                            <td className="border border-black dark:border-white p-2 w-1/2 flex items-center justify-center">
                                 <label htmlFor="branchCity" className="text-center w-full">
                                     Branch City</label></td>
-                            <td className="border border-black dark:border-white p-2 md:w-1/2">
+                            <td className="border border-black dark:border-white p-2 w-1/2">
                                 <input
                                     id="branchCity"
                                     type="text"
@@ -180,10 +180,10 @@ export default function BankMandateForm() {
                                     required
                                 />
                             </td>
-                            <td className="border border-black dark:border-white p-2 md:w-1/2 flex items-center justify-center">
+                            <td className="border border-black dark:border-white p-2 w-1/2 flex items-center justify-center">
                                 <label htmlFor="pincode" className="text-center w-full">
                                     Pin Code</label></td>
-                            <td className="border border-black dark:border-white p-2 md:w-1/2">
+                            <td className="border border-black dark:border-white p-2 w-1/2">
                                 <input
                                     id="pincode"
                                     type="number"

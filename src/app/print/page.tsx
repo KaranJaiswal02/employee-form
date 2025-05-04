@@ -17,12 +17,12 @@ export default function page() {
     return (
         <div>
             <BankMandate />
-            <GratuityForm />
+            {/* <GratuityForm />
             <IdcardForm />
             <NominationForm1 />
             <NominationForm2 />
             <StaffFamily />
-            <StaffJoining />
+            <StaffJoining /> */}
             <div className="print:hidden flex justify-center mt-4">
                 <button onClick={handlePrint} className="bg-blue-500 text-white px-4 py-2 rounded">Print</button>
             </div>
