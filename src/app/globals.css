@@ -158,3 +158,8 @@
 .force-light :where(*) {
   @apply text-black bg-white border-black;
 }
+
+@page {
+  size: A4;
+  margin: 5mm;
+}
