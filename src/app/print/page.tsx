@@ -9,26 +9,8 @@ import {
     DefaultStaffFamilyFormData
 } from '@/hooks/defaultValue'
 
-const temp = {
-    name: 'cecece',
-    employeeCode: '',
-    category: '',
-    address: '',
-    email: '',
-    pan: '',
-    bankName: '',
-    branchPlace: '',
-    branchCity: '',
-    pincode: '',
-    accountType: '',
-    accountNumber: '',
-    ifscCode: '',
-    place: 'Bengaluru',
-    date: "",
-}
-
 const formButtons = [
-    { key: 'bankMandate', label: 'Print Bank Mandate', data: temp, layout: 'portrait' },
+    { key: 'bankMandate', label: 'Print Bank Mandate', data: DefaultBankMandateFormData, layout: 'portrait' },
     { key: 'gratuityForm', label: 'Print Gratuity Form', data: DefaultGrauFormData, layout: 'portrait' },
     { key: 'idCardForm', label: 'Print ID Card Form', data: DefaultIdCardFormData, layout: 'portrait' },
     { key: 'nominationForm1', label: 'Print Nomination Form 1', data: DefaultNominationForm1Data, layout: 'landscape' },

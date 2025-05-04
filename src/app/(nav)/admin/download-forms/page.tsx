@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Download, FileDown } from "lucide-react";
 import Loader from "@/components/Loader";
-import { usersStatusData } from "@/hooks/Atoms";
+import { bankMandateFormData, usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { convertToExcel } from "@/lib/excelGenerator";
 
@@ -46,11 +46,34 @@ export default function UserFormDownloadPage() {
     const [search, setSearch] = useState("");
     const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [userFormData, setUserFormData] = useState<Record<string, UserFormData>>({});
-    const [fetchedUserId, setFetchedUserId] = useState<string | null>(null);
+    const [fetchedUserId, setFetchedUserId] = useState<string>("");
     const [loadingData, setLoadingData] = useState<boolean>(false);
     const [loadingUserId, setLoadingUserId] = useState<string | null>(null);
     const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user">("all");
     const [loading, setLoading] = useState(false);
+
+    const layouts = {
+        bankMandateFormData: 'portrait',
+        grauFormData: 'portrait',
+        idCardFormData: 'portrait',
+        nominationForm1Data: 'landscape',
+        nominationForm2Data: 'landscape',
+        staffFamilyFormData: 'landscape',
+        empFormData: 'portrait',
+    }
+
+    const handleOpenAndPrint = (formKey: string, data: any) => {
+        const payload = {
+            formKey,
+            formData: data,
+            layout: layouts[formKey as keyof typeof layouts],
+            timestamp: Date.now(),
+        };
+        localStorage.setItem('printFormData', JSON.stringify(payload));
+        const url = `/print/${formKey}`
+        const printWindow = window.open(url, '_blank')
+        if (printWindow) printWindow.focus()
+    }
 
     useEffect(() => {
         fetchUsers();
@@ -97,8 +120,6 @@ export default function UserFormDownloadPage() {
                     "Content-Type": "application/json",
                     "authorization": `Bearer ${token}`,
                     "userid": userId,
-                    "omit-current-user": "false",
-                    "include-status": "true",
                 },
             });
 
@@ -262,16 +283,14 @@ export default function UserFormDownloadPage() {
                                                             <div className="flex flex-wrap gap-2">
                                                                 {Object.entries(data.forms).map(([key, value]) =>
                                                                     value ? (
-                                                                        <a
+                                                                        <button
                                                                             key={key}
-                                                                            href={`/download/${key}`}
-                                                                            target="_blank"
-                                                                            rel="noopener noreferrer"
-                                                                            className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm"
+                                                                            onClick={() => handleOpenAndPrint(key, value)}
+                                                                            className="flex items-center gap-2 px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm cursor-pointer"
                                                                         >
                                                                             <FileDown className="h-4 w-4" />
                                                                             {formLabelMap[key] || key}
-                                                                        </a>
+                                                                        </button>
                                                                     ) : null
                                                                 )}
                                                             </div>

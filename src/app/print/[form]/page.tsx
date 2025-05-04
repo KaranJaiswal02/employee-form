@@ -11,13 +11,13 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
 const formComponents: Record<string, any> = {
-    bankMandate: BankMandate,
-    gratuityForm: GratuityForm,
-    idCardForm: IdcardForm,
-    nominationForm1: NominationForm1,
-    nominationForm2: NominationForm2,
-    staffFamily: StaffFamily,
-    staffJoining: StaffJoining,
+    bankMandateFormData: BankMandate,
+    grauFormData: GratuityForm,
+    idCardFormData: IdcardForm,
+    nominationForm1Data: NominationForm1,
+    nominationForm2Data: NominationForm2,
+    staffFamilyFormData: StaffFamily,
+    empFormData: StaffJoining,
 }
 
 export default function PrintFormPage({ params }: { params: Promise<{ form: string }> }) {
