@@ -5,18 +5,24 @@ import { toast } from "sonner";
 import Loader from "@/components/Loader";
 import Link from "next/link";
 import { FaEdit, FaRegEdit } from "react-icons/fa";
-import { usersStatusData } from "@/hooks/Atoms";
+import { usersData, usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
+import { Button } from "@/components/ui/button";
 
 export default function AdminManagementPage() {
-    const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
+    const [usersFromAtom, setUsersFromAtom] = useAtom<IFetchedUser[]>(usersStatusData);
+    const [, setUsers1] = useAtom<IFetchedUser[]>(usersData);
+    const [users, setUsers] = useState<IFetchedUser[]>([]);
     const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false);
+    const [statusFilter, setStatusFilter] = useState<"all" | "Completed" | "Pending">("all");
 
     const fetchUsers = async () => {
-        if(users.length > 0) {
-            return
+        if (usersFromAtom.length > 0) {
+            const filteredUser = usersFromAtom.filter((user: IFetchedUser) => user.role === "user");
+            setUsers(filteredUser);
+            return;
         }
         setLoading(true);
         try {
@@ -25,15 +31,18 @@ export default function AdminManagementPage() {
                 headers: {
                     "Content-Type": "application/json",
                     "authorization": `Bearer ${token}`,
-                    "omit-current-user": "true",
+                    "omit-current-user": "false",
                     "include-status": "true",
                 },
             });
 
             const data = await res.json();
             if (data.success) {
-                setUsers(data.data);
-                const filtered = data.data.filter((user : IFetchedUser) => user.role === "user");
+                setUsersFromAtom(data.data);
+                setUsers1(data.data);
+                console.log(data.data);
+                const filtered = data.data.filter((user: IFetchedUser) => user.role === "user");
+                setUsers(filtered);
                 if (filtered.length < 1) {
                     toast.warning("No users found in the system")
                 }
@@ -59,10 +68,12 @@ export default function AdminManagementPage() {
             const matchesSearch =
                 user.name.toLowerCase().includes(lowerSearch) ||
                 user.email.toLowerCase().includes(lowerSearch);
-            return matchesSearch && user.role === "user";
+            const matchesStatus =
+                statusFilter === "all" || user.status === statusFilter;
+            return matchesSearch && matchesStatus;
         });
         setFilteredUsers(filtered);
-    }, [search]);
+    }, [search, statusFilter, users]);
 
     return loading ? (
         <Loader />
@@ -75,14 +86,14 @@ export default function AdminManagementPage() {
                 <p className="text-gray-600 dark:text-gray-400">
                     <span className="font-semibold text-yellow-500">Important:</span> Only users with the "user" role can be edited. Admin accounts are not editable.
                 </p>
-                {filteredUsers.length === 0 && (
+                {users.length === 0 && (
                     <p className="text-gray-600 dark:text-gray-400">
                         <span className="font-semibold text-red-500">Notice:</span> No users available for editing.
                     </p>
                 )}
             </div>
 
-            {filteredUsers.length > 0 && (<>
+            {users.length > 0 && (<>
                 <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <Input
                         type="text"
@@ -91,6 +102,30 @@ export default function AdminManagementPage() {
                         onChange={(e) => setSearch(e.target.value)}
                         className="w-full md:w-1/2 bg-white dark:bg-neutral-800"
                     />
+
+                    <div className="flex gap-2">
+                        <Button
+                            variant={statusFilter === "Completed" ? "default" : "secondary"}
+                            onClick={() => setStatusFilter("Completed")}
+                            className="cursor-pointer"
+                        >
+                            Show Only Completed
+                        </Button>
+                        <Button
+                            variant={statusFilter === "Pending" ? "default" : "secondary"}
+                            onClick={() => setStatusFilter("Pending")}
+                            className="cursor-pointer"
+                        >
+                            Show Only Pending
+                        </Button>
+                        <Button
+                            variant={statusFilter === "all" ? "default" : "secondary"}
+                            onClick={() => setStatusFilter("all")}
+                            className="cursor-pointer"
+                        >
+                            Show All
+                        </Button>
+                    </div>
                 </div>
 
                 <div className="overflow-x-auto">
@@ -102,6 +137,9 @@ export default function AdminManagementPage() {
                                 </th>
                                 <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
                                     Email
+                                </th>
+                                <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
+                                    Role
                                 </th>
                                 <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
                                     Status
@@ -121,7 +159,10 @@ export default function AdminManagementPage() {
                                         {user.email}
                                     </td>
                                     <td className="p-4 text-gray-800 dark:text-gray-100">
-                                    <span className={`${user.status === "Completed" ? "text-green-500 dark:text-green-600" : "text-red-500 dark:text-red-600"}`}>{user.status}</span>
+                                        {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+                                    </td>
+                                    <td className="p-4 text-gray-800 dark:text-gray-100">
+                                        <span className={`${user.status === "Completed" ? "text-green-500 dark:text-green-600" : "text-red-500 dark:text-red-600"}`}>{user.status}</span>
                                     </td>
                                     <td className="p-4 flex justify-center items-center">
                                         <Link

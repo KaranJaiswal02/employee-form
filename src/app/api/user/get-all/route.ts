@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
 
         const filter = omitCurrentUser ? { _id: { $ne: xUserId } } : {};
 
-        const rawUsers = await User.find(filter, { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }).lean();
+        const rawUsers = await User.find(filter, { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }).lean().sort({updatedAt: -1});
 
         const users = rawUsers.map((user: any) => {
             const {

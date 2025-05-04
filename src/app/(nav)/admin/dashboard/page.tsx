@@ -34,16 +34,16 @@ const dashboardOptions = [
         bgColor: 'bg-yellow-500 dark:bg-yellow-700',
         href: '/forms/staff-joining',
     },
-    {
-        title: 'Bulk Upload Users',
-        icon: <FaUsers className="text-3xl text-white" />,
-        bgColor: 'bg-pink-600 dark:bg-pink-800',
-        href: '/admin/bulk-upload-users',
-    },
+    // {
+    //     title: 'Bulk Upload Users',
+    //     icon: <FaUsers className="text-3xl text-white" />,
+    //     bgColor: 'bg-zinc-800 dark:bg-zinc-600',
+    //     href: '/admin/bulk-upload-users',
+    // },
     {
         title: 'Reset Password',
         icon: <FaKey className="text-3xl text-white" />,
-        bgColor: 'bg-zinc-800 dark:bg-zinc-600',
+        bgColor: 'bg-pink-600 dark:bg-pink-800',
         href: '/admin/reset-password',
     },
 ];

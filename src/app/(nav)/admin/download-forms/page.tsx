@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Download, FileDown } from "lucide-react";
 import Loader from "@/components/Loader";
-import { bankMandateFormData, usersStatusData } from "@/hooks/Atoms";
+import { bankMandateFormData, usersData, usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { convertToExcel } from "@/lib/excelGenerator";
 import { FaFileExcel } from "react-icons/fa";
@@ -44,6 +44,7 @@ const formLabelMap: Record<string, string> = {
 
 export default function UserFormDownloadPage() {
     const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
+    const [, setUsers1] = useAtom<IFetchedUser[]>(usersData);
     const [search, setSearch] = useState("");
     const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [userFormData, setUserFormData] = useState<Record<string, UserFormData>>({});
@@ -99,6 +100,7 @@ export default function UserFormDownloadPage() {
             console.log(data.data)
             if (data.success) {
                 setUsers(data.data);
+                setUsers1(data.data);
                 setFilteredUsers(data.data);
             } else {
                 toast.error(data.message);
@@ -249,7 +251,7 @@ export default function UserFormDownloadPage() {
                                             <tr className="border-t dark:border-neutral-700">
                                                 <td className="p-4 w-[200px]">{user.name}</td>
                                                 <td className="p-4 w-[250px]">{user.email}</td>
-                                                <td className="p-4 w-[250px]">{user.role}</td>
+                                                <td className="p-4 w-[250px]">{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</td>
                                                 <td className="p-4 w-[150px]">
                                                     <span className={`${user.status === "Completed" ? "text-green-500 dark:text-green-600" : "text-red-500 dark:text-red-600"}`}>{user.status}</span>
                                                 </td>
