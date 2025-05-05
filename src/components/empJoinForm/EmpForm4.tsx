@@ -144,7 +144,7 @@ export default function EmpForm4() {
                     <input
                         type="date"
                         className="border-b border-black dark:border-white w-[25%] focus:outline-none"
-                        value={formData.dateOfJoining.toString().split('T')[0]}
+                        value={formData.dateOfJoining?.toString().split('T')[0]}
                         id="dateOfJoining"
                         onChange={(e) => handleChange('dateOfJoining', e.target.value)}
                         required
@@ -193,7 +193,7 @@ export default function EmpForm4() {
                                     <input
                                         type="date"
                                         className="w-full outline-none px-2"
-                                        value={row.dob.toString().split('T')[0]}
+                                        value={row.dob?.toString().split('T')[0]}
                                         onChange={(e) => handleFamilyChange(index, 'dob', e.target.value)}
                                         required={index === 0}
                                     />
@@ -276,7 +276,7 @@ export default function EmpForm4() {
                                     <input
                                         type="date"
                                         className="w-full outline-none px-2"
-                                        value={row.dob.toString().split('T')[0]}
+                                        value={row.dob?.toString().split('T')[0]}
                                         onChange={(e) => handleNomineeChange(index, 'dob', e.target.value)}
                                         required={index === 0}
                                     />
@@ -320,7 +320,7 @@ export default function EmpForm4() {
                     Date: <input
                         type="date"
                         className="border-b border-black dark:border-white ml-2"
-                        value={formData.date.toString().split('T')[0]}
+                        value={formData.date?.toString().split('T')[0]}
                         onChange={(e) => handleChange('date', e.target.value)}
                         disabled={true}
                     />

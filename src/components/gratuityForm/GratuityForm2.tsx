@@ -127,7 +127,7 @@ export default function GratuityForm2() {
                         <input
                             id="dateofappointment"
                             type="date"
-                            value={formData.dateofappointment.toString().split('T')[0]}
+                            value={formData.dateofappointment?.toString().split('T')[0]}
                             onChange={handleChange}
                             required
                             className="border-b border-black dark:border-white inline-block ml-2 flex-1 max-w-[200px] focus:outline-none"
@@ -242,7 +242,7 @@ export default function GratuityForm2() {
 
                 </p>
                 <p className="mt-2">
-                    Date: <input id="date" type="date" value={formData.date.toString().split('T')[0]} onChange={handleDateChange}
+                    Date: <input id="date" type="date" value={formData.date?.toString().split('T')[0]} onChange={handleDateChange}
                         className=" border-black dark:border-white w-48 inline-block ml-2 focus:outline-none"
                         disabled={true}
                     />
@@ -301,7 +301,7 @@ export default function GratuityForm2() {
             <p>Date:
                 <input
                     type="date"
-                    value={formData.date.toString().split('T')[0]}
+                    value={formData.date?.toString().split('T')[0]}
                     disabled={true}
                     className=" border-black dark:border-white w-48 inline-block ml-2"
                 />
@@ -320,7 +320,7 @@ export default function GratuityForm2() {
                 Signature of the employer/Officer authorised:{" "}
                 <div className="border-b border-black dark:border-white w-60 inline-block mt-2 " />
             </div>
-            <p>Date: <input type="date" value={formData.date.toString().split('T')[0]} disabled className="border-b border-black dark:border-white w-48 inline-block ml-2 mt-2 mb-2 focus:outline-none " /></p>
+            <p>Date: <input type="date" value={formData.date?.toString().split('T')[0]} disabled className="border-b border-black dark:border-white w-48 inline-block ml-2 mt-2 mb-2 focus:outline-none " /></p>
             <div className="mt-2">
                 Name and address of the establishment or rubber stamp thereof:
                 {/* < div className="w-full mt-3 mb-5" >
@@ -349,7 +349,7 @@ export default function GratuityForm2() {
             </p>
             <p className="mt-2">
                 Date: <input type="date" 
-                value={formData.date.toString().split('T')[0]} 
+                value={formData.date?.toString().split('T')[0]} 
                 disabled 
                 className="focus:outline-none border-b border-black dark:border-white w-48 inline-block ml-2" />
             </p>

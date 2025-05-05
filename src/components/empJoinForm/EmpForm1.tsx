@@ -340,7 +340,7 @@ export default function EmpForm1() {
           <input
             type="date"
             id='date'
-            value={empFormData1.date.toString().split('T')[0]}
+            value={empFormData1.date?.toString().split('T')[0]}
             onChange={handleChange}
             className="w-40 focus:outline-none"
           />
@@ -355,7 +355,7 @@ export default function EmpForm1() {
       <div className="space-y-4">
         <p>Certified that Mr./Ms. <span className="underline">{empFormData1.name || "________________________"}</span> has joined on
           <span className="underline">
-            {empFormData1.dateOfJoining.toString().split('T')[0]}
+            {empFormData1.dateOfJoining?.toString().split('T')[0]}
           </span>
         </p>
         {/* </div>

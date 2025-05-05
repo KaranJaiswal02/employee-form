@@ -79,7 +79,7 @@ export default function StaffFamilyMembers() {
                             <input
                                 type="date"
                                 name="dob"
-                                value={formData.dob.toString().split('T')[0]}
+                                value={formData.dob?.toString().split('T')[0]}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
                                 disabled={true}
@@ -138,7 +138,7 @@ export default function StaffFamilyMembers() {
                             <input
                                 type="date"
                                 name="spouseDob"
-                                value={ formData.spouseDob.toString().split('T')[0]}
+                                value={ formData.spouseDob?.toString().split('T')[0]}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
                             />
@@ -189,7 +189,7 @@ export default function StaffFamilyMembers() {
                             <td className="p-2 border border-black dark:border-white">
                                 <input
                                     type="date"
-                                    value={child.dob.toString().split('T')[0]}
+                                    value={child.dob?.toString().split('T')[0]}
                                     onChange={(e) => handleChildChange(index, 'dob', e.target.value)}
                                     className="w-full focus:outline-none"
                                 />
@@ -230,7 +230,7 @@ export default function StaffFamilyMembers() {
                                 type="date"
                                 id="fatherDob"
                                 name="fatherDob"
-                                value={formData.fatherDob.toString().split('T')[0]}
+                                value={formData.fatherDob?.toString().split('T')[0]}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
                                 required
@@ -271,7 +271,7 @@ export default function StaffFamilyMembers() {
                                 type="date"
                                 id="motherDob"
                                 name="motherDob"
-                                value={formData.motherDob.toString().split('T')[0]}
+                                value={formData.motherDob?.toString().split('T')[0]}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
                             />
@@ -329,7 +329,7 @@ export default function StaffFamilyMembers() {
                     <input
                         type="date"
                         name="date"
-                        value={formData.date.toString().split('T')[0]}
+                        value={formData.date?.toString().split('T')[0]}
                         onChange={handleChange}
                         className="ml-2 p-1 focus:outline-none"
                         disabled={true}
