@@ -97,7 +97,7 @@ export default function RootLayout({
                                 </Link>
                             )}
                         </div>
-                        <Link href="/" className="hidden md:inline text-xl my-2 font-semibold text-gray-800 dark:text-white">
+                        <Link href="/home" className="hidden md:inline text-xl my-2 font-semibold text-gray-800 dark:text-white">
                             Employee Management
                         </Link>
                         <span className="md:hidden inline text-xl my-2 font-semibold text-gray-800 dark:text-white">

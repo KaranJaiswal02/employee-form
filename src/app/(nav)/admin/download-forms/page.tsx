@@ -263,7 +263,6 @@ export default function UserFormDownloadPage() {
                                     setStatusFilter('all');
                                 }}
                                 className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 cursor-pointer flex items-center gap-2 bg-transparent"
-                                disabled={loadingData}
                             >
                                 <LuEraser size={18} />
                                 <span>Reset</span>
