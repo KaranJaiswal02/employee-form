@@ -10,6 +10,7 @@ import { useAtom } from "jotai";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { LuEraser } from "react-icons/lu";
+import { TfiReload } from "react-icons/tfi";
 
 export default function AdminManagementPage() {
     const [usersFromAtom, setUsersFromAtom] = useAtom<IFetchedUser[]>(usersStatusData);
@@ -18,9 +19,10 @@ export default function AdminManagementPage() {
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(false);
     const [statusFilter, setStatusFilter] = useState<"all" | "Completed" | "Pending">("all");
+    const [reload, setReload] = useState(false);
 
     const fetchUsers = async () => {
-        if (usersFromAtom.length > 0) {
+        if (usersFromAtom.length > 0 && !reload) {
             const filteredUser = usersFromAtom.filter((user: IFetchedUser) => user.role === "user");
             setUsers(filteredUser);
             return;
@@ -47,7 +49,7 @@ export default function AdminManagementPage() {
                 }
                 setFilteredUsers(filtered);
             } else {
-                toast.error(data.message,{
+                toast.error(data.message, {
                     description: data.errors?.[0]
                 });
             }
@@ -61,7 +63,7 @@ export default function AdminManagementPage() {
 
     useEffect(() => {
         fetchUsers();
-    }, [setUsers]);
+    }, [setUsers, reload]);
 
     useEffect(() => {
         const lowerSearch = search.toLowerCase();
@@ -76,9 +78,7 @@ export default function AdminManagementPage() {
         setFilteredUsers(filtered);
     }, [search, statusFilter, users]);
 
-    return loading ? (
-        <Loader />
-    ) : (
+    return (
         <div className="p-6 max-w-7xl mx-auto">
             <div className="mb-6">
                 <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
@@ -97,13 +97,22 @@ export default function AdminManagementPage() {
             {users.length > 0 && (<>
                 <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     {/* Search Input */}
-                    <Input
-                        type="text"
-                        placeholder="Search by name or email..."
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        className="w-full md:w-1/2 border rounded-md border-gray-500 dark:border-gray-800"
-                    />
+                    <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-1/2">
+                        <Input
+                            type="text"
+                            placeholder="Search by name or email..."
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            className="w-full border rounded-md border-gray-500 dark:border-gray-800"
+                        />
+                        <Button
+                            className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 hover:bg-transparent cursor-pointer flex items-center gap-2 bg-transparent"
+                            onClick={() => setReload(!reload)}
+                        >
+                            <TfiReload />
+                            {/* Reload */}
+                        </Button>
+                    </div>
 
                     {/* Filters and Reset Button */}
                     <div className="flex flex-col items-center justify-center sm:flex-row gap-2 w-full md:w-fit">
@@ -131,7 +140,7 @@ export default function AdminManagementPage() {
                                 setSearch('');
                                 setStatusFilter('all');
                             }}
-                            className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 cursor-pointer flex items-center gap-2 bg-transparent"
+                            className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 hover:bg-transparent cursor-pointer flex items-center gap-2 bg-transparent"
                         >
                             <LuEraser size={18} />
                             <span>Reset</span>
@@ -140,9 +149,9 @@ export default function AdminManagementPage() {
                 </div>
 
                 <div className="overflow-x-auto rounded-md border dark:border-neutral-700">
-                    <table className="min-w-full text-center bg-white dark:bg-neutral-900 rounded-md shadow">
+                    <table className="min-w-full text-center bg-gray-100 dark:bg-neutral-900 rounded-md shadow">
                         <thead>
-                            <tr className="border-b dark:border-neutral-700">
+                            <tr className="border-b bg-white dark:bg-neutral-800 dark:border-neutral-700">
                                 <th className="p-4 font-semibold text-gray-700 dark:text-gray-200">
                                     Name
                                 </th>
@@ -158,7 +167,7 @@ export default function AdminManagementPage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredUsers.map((user) => (
+                            {!loading ? (filteredUsers.map((user) => (
                                 <tr key={user._id} className="border-t dark:border-neutral-700">
                                     <td className="p-4 text-gray-800 dark:text-gray-100">
                                         {user.name}
@@ -178,7 +187,13 @@ export default function AdminManagementPage() {
                                         </Link>
                                     </td>
                                 </tr>
-                            ))}
+                            ))) : (
+                                <tr>
+                                    <td colSpan={5} className="py-10 text-center">
+                                        <Loader loaderClass="md:w-28 w-10 md:h-28 h-10" />
+                                    </td>
+                                </tr>
+                            )}
                         </tbody>
                     </table>
                 </div>

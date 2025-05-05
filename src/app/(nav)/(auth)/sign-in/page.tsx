@@ -52,13 +52,13 @@ export default function LoginForm() {
                 console.log(res.data.data)
                 toast.success(res.data.message);
                 window.dispatchEvent(new Event("login"));
-                if(res.data.data.role === 'admin') {
+                if (res.data.data.role === 'admin') {
                     router.push('/admin/dashboard');
-                }else{
+                } else {
                     router.push('/forms/staff-joining');
                 }
             } else {
-                toast.error(res.data.message,{
+                toast.error(res.data.message, {
                     description: res.data.errors?.[0]
                 });
                 setErrors(res.data.errors || ['Login failed']);

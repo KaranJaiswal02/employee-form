@@ -31,28 +31,28 @@ export default function MealTicketPage() {
   });
   const [showGenerator, setShowGenerator] = useState(false);
 
-const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  const { name, value } = e.target;
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
 
-  setFormData(prev => {
-    if (name === "year") {
-      const year = parseInt(value) || currentYear;
-      const clampedYear = Math.max(currentYear, Math.min(currentYear + 2, year));
-      return { ...prev, year: clampedYear };
-    }
+    setFormData(prev => {
+      if (name === "year") {
+        const year = parseInt(value) || currentYear;
+        const clampedYear = Math.max(currentYear, Math.min(currentYear + 2, year));
+        return { ...prev, year: clampedYear };
+      }
 
-    if (name === "noOfDays") {
-      const parsed = parseInt(value);
-      const days = value === "" 
-        ? null 
-        : (!isNaN(parsed) && parsed >= 0 && parsed <= 31 ? parsed : prev.noOfDays);
-      return { ...prev, noOfDays: days };
-    }
-    
+      if (name === "noOfDays") {
+        const parsed = parseInt(value);
+        const days = value === ""
+          ? null
+          : (!isNaN(parsed) && parsed >= 0 && parsed <= 31 ? parsed : prev.noOfDays);
+        return { ...prev, noOfDays: days };
+      }
 
-    return { ...prev, [name]: value };
-  });
-};
+
+      return { ...prev, [name]: value };
+    });
+  };
 
 
   const handleMonthChange = (value: string) => {
@@ -146,8 +146,8 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
               </Button>
             </form>
           ) : (
-            <MealTicketGenerator 
-              name={formData.name} 
+            <MealTicketGenerator
+              name={formData.name}
               month={formData.month}
               year={formData.year}
               noOfDays={formData.noOfDays || 0}

@@ -11,6 +11,21 @@ export async function GET(req: NextRequest) {
         const xUserId = req.headers.get("x-userid");
         const role = req.headers.get("x-userrole");
         const omitCurrentUser = req.headers.get("omit-current-user") as string === "true";
+        // const size = parseInt(req.headers.get("size") as string) || 10;
+        // const page = parseInt(req.headers.get("page") as string) || 1;
+        // const size = parseInt(req.nextUrl.searchParams.get("size") || "0");
+        // const page = parseInt(req.nextUrl.searchParams.get("page") || "0");
+
+        if (!xUserId || !role) {
+            return NextResponse.json(
+                {
+                    success: false,
+                    message: "Unauthorized Access",
+                    errors: ["Missing authentication token"],
+                },
+                { status: 401 }
+            );
+        }
 
         if (role !== "admin") {
             return NextResponse.json(
@@ -25,7 +40,8 @@ export async function GET(req: NextRequest) {
 
         const filter = omitCurrentUser ? { _id: { $ne: xUserId } } : {};
 
-        const rawUsers = await User.find(filter, { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }).lean().sort({ updatedAt: -1 });
+        const rawUsers = await User.find(filter, { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }).lean().sort({ updatedAt: -1 })
+        // .skip((page - 1) * size).limit(size);
 
         const users = rawUsers.map((user: any) => {
             const {

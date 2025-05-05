@@ -60,7 +60,7 @@ export default function SignUpForm() {
                 window.dispatchEvent(new Event("login"));
                 router.push('/forms/staff-joining');
             } else {
-                toast.error(res.data.message,{
+                toast.error(res.data.message, {
                     description: res.data.errors?.[0]
                 });
                 setErrors(res.data.errors || ['Sign-Up failed']);

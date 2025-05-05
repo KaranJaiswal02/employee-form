@@ -138,7 +138,7 @@ export default function StaffFamilyMembers() {
                             <input
                                 type="date"
                                 name="spouseDob"
-                                value={ formData.spouseDob?.toString().split('T')[0]}
+                                value={formData.spouseDob?.toString().split('T')[0]}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
                             />
@@ -282,7 +282,7 @@ export default function StaffFamilyMembers() {
                         <td className="p-2 border border-black dark:border-white">8</td>
 
                         <td className="p-2 border border-black dark:border-white">
-                        <RequiredLabel><label htmlFor="mobileNumber">
+                            <RequiredLabel><label htmlFor="mobileNumber">
                                 MOBILE NUMBER
                             </label></RequiredLabel>
                         </td>

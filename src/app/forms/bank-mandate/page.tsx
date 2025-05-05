@@ -61,7 +61,7 @@ export default function Page() {
                 description: error.message || "An error occurred",
             });
         } finally {
-        setIsSubmitting(false);
+            setIsSubmitting(false);
         }
     };
 
