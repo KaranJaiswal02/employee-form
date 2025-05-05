@@ -22,6 +22,7 @@ export default function GratuityForm({ data = DefaultGrauFormData }: { data?: IG
 
       <div className="hidden print:block force-light p-6 max-w-4xl mx-auto bg-white">
         <GratuityForm1 />
+        <div className="page-break"></div>
         <GratuityForm2 />
       </div>
     </>

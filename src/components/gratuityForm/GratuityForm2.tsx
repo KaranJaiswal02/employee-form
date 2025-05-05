@@ -306,8 +306,8 @@ export default function GratuityForm2() {
                     className=" border-black dark:border-white w-48 inline-block ml-2"
                 />
             </p>
-
-            <hr className="my-6 border-black dark:border-white" />
+            <hr className="print:hidden my-6 border-black dark:border-white" />
+            <div className="page-break"></div>
             <h4 className="font-bold text-center">Certificate by the Employer</h4>
             <p>
                 Certified that the particulars of the above nomination have been verified and recorded in this establishment.

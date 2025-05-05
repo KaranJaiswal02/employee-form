@@ -189,7 +189,7 @@ export default function GratuityForm1() {
         + Add Row
       </button>
 
-      <hr className="my-6 border-black dark:border-white" />
+      <hr className="print:hidden my-6 border-black dark:border-white" />
     </div>
   );
 }

@@ -36,7 +36,7 @@ interface UserFormData {
 
 const formLabelMap: Record<string, string> = {
     bankMandateFormData: "Bank Mandate Form",
-    grauFormData: "Granulity Form",
+    grauFormData: "Gratuity Form",
     idCardFormData: "ID Card Form",
     nominationForm1Data: "Nomination Form 1",
     nominationForm2Data: "Nomination Form 2",

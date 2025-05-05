@@ -1,7 +1,6 @@
 import dbConnect from "@/lib/dbConnect";
 import { User } from "@/models/user";
 import { NextRequest, NextResponse } from "next/server";
-import bcrypt from "bcryptjs";
 import { hashPassword } from "@/lib/bcrypt";
 
 export async function PATCH(req: NextRequest) {
