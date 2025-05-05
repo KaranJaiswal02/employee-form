@@ -72,6 +72,7 @@ export default function Page() {
 
         <form onSubmit={handleSubmit} className="p-6 max-w-5xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
             <Nomination1 />
+            
             <Nomination2 />
             {errors.length > 0 && (
                 <div className="text-red-600 text-sm px-2 text-left">

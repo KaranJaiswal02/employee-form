@@ -284,19 +284,19 @@ export default function BankMandateForm() {
                         type="text"
                         onChange={handleChange}
                         value={formData.place}
-                        className=" border-black dark:border-white outline-none flex-1"
+                        className=" font-bold border-black dark:border-white outline-none flex-1"
                         required
                         disabled={true}
                     />
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 mb-5">
                     <label>Date:</label>
                     <input
                         id="date"
                         type="date"
                         onChange={handleChange}
                         value={formData.date.toString().split('T')[0]}
-                        className="border-b border-black dark:border-white outline-none"
+                        className=" border-black dark:border-white outline-none"
                         required
                         disabled={true}
                     />

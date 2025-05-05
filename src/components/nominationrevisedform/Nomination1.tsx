@@ -295,14 +295,14 @@ export default function EPFNominationForm() {
                                                 value={nominee.guardianName}
                                                 onChange={(e) => handleNomineeChange(index, 'guardianName', e.target.value)}
                                                 className="w-full outline-none border-b border-gray-300"
-                                                placeholder="Guardian Name"
+                                                placeholder="Guardian Name, else NA"
                                             />
                                             <input
                                                 type="text"
                                                 value={nominee.guardianAddress}
                                                 onChange={(e) => handleNomineeChange(index, 'guardianAddress', e.target.value)}
                                                 className="w-full outline-none"
-                                                placeholder="Guardian Address"
+                                                placeholder="Guardian Address, else NA"
                                             />
                                         </div>
                                     </td>

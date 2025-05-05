@@ -96,6 +96,7 @@ export default function IdCardForm() {
                                 onChange={handleInputChange}
                                 className="w-full text-md px-2 py-3 border-none focus:border-none"
                                 placeholder="Your Department"
+                                required
                             />
                         </div>
                     </div>

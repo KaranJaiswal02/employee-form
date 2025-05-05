@@ -22,7 +22,7 @@ export default function EmpForm1() {
         toast.warning("Age must be at least 18 years.");
         return;
       }
-      
+
       setEmpFormData1(prev => ({ ...prev, dob: value }));
       return;
     }
@@ -353,9 +353,26 @@ export default function EmpForm1() {
 
       {/* Certification */}
       <div className="space-y-4">
-        <p>Certified that Mr./Ms. <span className="underline">{empFormData1.name || "________________________"}</span> has joined on <span className="underline">
-          {empFormData1.dateOfJoining.toString().split('T')[0]}</span></p>
-          {/* </div></div>{empFormData1.dateOfJoining || "___________"}</span></p> */}
+        <p>Certified that Mr./Ms. <span className="underline">{empFormData1.name || "________________________"}</span> has joined on
+          <span className="underline">
+            {empFormData1.dateOfJoining.toString().split('T')[0]}
+          </span>
+        </p>
+        {/* </div>
+          {empFormData1.dateOfJoining || "___________"}
+          </div></span></p> */}
+        {/* <div className="space-y-4">
+          <p>
+            Certified that Mr./Ms. <span className="underline">{empFormData1.name || "________________________"}</span> has joined on
+            <span className="underline">
+              {empFormData1.dateOfJoining
+                ? new Date(empFormData1.dateOfJoining).toISOString().split('T')[0]
+                : "________________________"}
+                
+            </span>
+          </p>
+        </div> */}
+
         <div className="flex justify-between pt-7">
           <div className="w-48 border-t border-black text-center pt-2">
             Signature of Reporting In charge
@@ -365,6 +382,6 @@ export default function EmpForm1() {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }

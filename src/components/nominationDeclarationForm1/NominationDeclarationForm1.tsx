@@ -99,6 +99,7 @@ export default function NominationDeclarationForm1() {
                             value={formData.dob.toString().split('T')[0]}
                             onChange={handleChange}
                             className="flex-1 border-b-1 border-black dark:border-white px-2 py-1 focus:outline-none"
+                            disabled={true}
                         />
                     </div>
                     <div className="flex items-center gap-4">
@@ -140,7 +141,7 @@ export default function NominationDeclarationForm1() {
                                 value={formData.perAddress}
                                 onChange={handleChange}
                                 placeholder="Permanent Address"
-                                className="w-full border-b-1 border-black dark:border-white px-2 py-1 focus:outline-none"
+                                className="w-full   border-b-1 border-black dark:border-white px-2 py-1 focus:outline-none"
                                 rows={2}
                                 disabled={true}
                             />
@@ -320,10 +321,10 @@ export default function NominationDeclarationForm1() {
                         </div>
                     </div>
 
-                    <div className="text-right w-1/2 pr-6">
-                        <p className="font-semibold">Signature of the employer or other</p>
-                        <p>authorised officer of the establishment</p>
-                        <p>And designation</p>
+                    <div className="text-right w-1/2 pr-6 ">
+                        <p className="font-semibold mr-3">Signature of the employer or other</p>
+                        <p> authorised officer of the establishment</p>
+                        <div className='ml-3 mr-16 font-semibold'> <p>And designation</p></div>
                     </div>
                 </div>
 

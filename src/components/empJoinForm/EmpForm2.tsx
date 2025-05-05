@@ -121,6 +121,7 @@ export default function EmpForm2() {
                         onChange={handleChange}
                         className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         required
+                        disabled={true}
                     />
                 </div>
                 <div className="w-2/3">
@@ -181,6 +182,7 @@ export default function EmpForm2() {
                         id='bloodGroup'
                         value={formData.bloodGroup}
                         onChange={handleChange}
+                        placeholder='A+ / B+ / O+ / AB+/ etc'
                         className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         required
                     />
@@ -193,6 +195,7 @@ export default function EmpForm2() {
                         id='nationality'
                         value={formData.nationality}
                         onChange={handleChange}
+                        placeholder='Indian / Other'
                         className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
                         required
                     />

@@ -138,7 +138,7 @@ export default function StaffFamilyMembers() {
                             <input
                                 type="date"
                                 name="spouseDob"
-                                value={formData.spouseDob.toString().split('T')[0]}
+                                value={ formData.spouseDob.toString().split('T')[0]}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
                             />
