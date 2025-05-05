@@ -88,6 +88,8 @@ export default function UserFormDownloadPage() {
     const fetchUsers = async () => {
         if (users.length > 0 && !reload) return;
         setLoading(true);
+        setUserFormData({});
+        setFetchedUserId("");
         try {
             const token = localStorage.getItem("token");
             const res = await fetch("/api/user/get-all", {
