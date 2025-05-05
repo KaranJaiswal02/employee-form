@@ -23,35 +23,42 @@ export default function page() {
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const id = searchParams.get('id');
-    console.log(formData);
-    const response = await fetch("/api/forms/staff-joining", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "authorization": `Bearer ${localStorage.getItem("token")}`,
-        "userid": id as string,
-      },
-      body: JSON.stringify(formData),
-    });
-    const responseData = await response.json();
-    if (responseData.success) {
-      setFormStatus((prevStatus) => ({
-        ...prevStatus,
-        staff_joining: {
-          ...prevStatus.staff_joining,
-          status: "done",
+    try {
+      const id = searchParams.get('id');
+      console.log(formData);
+      const response = await fetch("/api/forms/staff-joining", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "authorization": `Bearer ${localStorage.getItem("token")}`,
+          "userid": id as string,
         },
-      }));
-      toast.success(responseData.message);
-      const params = id ? `?id=${id}` : '';
-      router.push(`/forms/idcard-form${params}`);
+        body: JSON.stringify(formData),
+      });
+      const responseData = await response.json();
+      if (responseData.success) {
+        setFormStatus((prevStatus) => ({
+          ...prevStatus,
+          staff_joining: {
+            ...prevStatus.staff_joining,
+            status: "done",
+          },
+        }));
+        toast.success(responseData.message);
+        const params = id ? `?id=${id}` : '';
+        router.push(`/forms/idcard-form${params}`);
+      }
+      else {
+        toast.error(responseData.message);
+        setErrors(responseData.errors);
+      }
+    } catch (error: any) {
+      toast.error("Error submitting form", {
+        description: error.message,
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-    else {
-      toast.error(responseData.message);
-      setErrors(responseData.errors);
-    }
-    setIsSubmitting(false);
   };
 
   return (
@@ -66,12 +73,12 @@ export default function page() {
       <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
       <EmpForm5 />
       {errors.length > 0 && (
-                <div className="text-red-600 text-sm px-2 text-left">
-                    {errors.map((err, index) => (
-                        <div key={index}>{err}</div>
-                    ))}
-                </div>
-            )}
+        <div className="text-red-600 text-sm px-2 text-left">
+          {errors.map((err, index) => (
+            <div key={index}>{err}</div>
+          ))}
+        </div>
+      )}
       <Button type='submit' disabled={isSubmitting} className="mt-6 w-full cursor-pointer">
         {isSubmitting ? "Submitting..." : "Submit"}
       </Button>

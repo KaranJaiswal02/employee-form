@@ -103,7 +103,9 @@ export default function UserFormDownloadPage() {
                 setUsers(data.data);
                 setFilteredUsers(data.data);
             } else {
-                toast.error(data.message);
+                toast.error(data.message,{
+                    description: data.errors?.[0] || "Error fetching users",
+                });
             }
         } catch (error: any) {
             toast.error("Error fetching users", {
@@ -135,8 +137,10 @@ export default function UserFormDownloadPage() {
                     description: data.errors?.[0] || "Error fetching form data",
                 });
             }
-        } catch (error) {
-            toast.error("Error fetching form data");
+        } catch (error : any) {
+            toast.error("Error fetching form data",{
+                description: error.message || "An error occurred",
+            });
         } finally {
             setLoadingData(false);
             setLoadingUserId(null);

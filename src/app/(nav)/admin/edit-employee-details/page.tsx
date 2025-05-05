@@ -47,7 +47,9 @@ export default function AdminManagementPage() {
                 }
                 setFilteredUsers(filtered);
             } else {
-                toast.error(data.message);
+                toast.error(data.message,{
+                    description: data.errors?.[0]
+                });
             }
         } catch (error: any) {
             toast.error("Error fetching users", {

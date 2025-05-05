@@ -41,7 +41,9 @@ export default function AdminManagementPage() {
                 }
                 setFilteredUsers(data.data);
             } else {
-                toast.error(data.message);
+                toast.error(data.message,{
+                    description: data.errors?.[0]
+                });
             }
         } catch (error: any) {
             toast.error("Error fetching users", {
@@ -84,10 +86,12 @@ export default function AdminManagementPage() {
                     description: data.errors?.[0] || "An error occurred",
                 });
             }
-        } catch (error) {
+        } catch (error : any) {
             setUsers(previousUsers);
             setFilteredUsers(previousUsers);
-            toast.error("Error toggling role");
+            toast.error("Error toggling role",{
+                description: error.message || "An error occurred",
+            });
         }
         setChangingRole(false);
     };

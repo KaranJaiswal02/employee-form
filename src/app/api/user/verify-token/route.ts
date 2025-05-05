@@ -10,8 +10,6 @@ export async function GET(req: NextRequest) {
     try {
         const xUserId = req.headers.get("x-userId");
         const xrole = req.headers.get("x-userRole");
-        // console.log("xUserId", xUserId);
-        // console.log("xrole", xrole);
 
         if (!xUserId || !xrole) {
             return NextResponse.json(

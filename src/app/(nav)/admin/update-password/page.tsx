@@ -37,10 +37,14 @@ export default function UserPasswordUpdatePage() {
                 setUsers(data.data);
                 setFilteredUsers(data.data);
             } else {
-                toast.error(data.message);
+                toast.error(data.message,{
+                    description: data.errors?.[0]
+                });
             }
         } catch (err: any) {
-            toast.error("Failed to fetch users", { description: err.message });
+            toast.error("Failed to fetch users",{
+                description: err.message || "An error occurred",
+            });
         }
         setLoading(false);
     };
@@ -66,10 +70,14 @@ export default function UserPasswordUpdatePage() {
                 toast.success("Password updated successfully");
                 setPasswordInputs((prev) => ({ ...prev, [userId]: "" }));
             } else {
-                toast.error(data.message);
+                toast.error(data.message,{
+                    description: data.errors?.[0]
+                });
             }
-        } catch (err) {
-            toast.error("Password update failed");
+        } catch (error : any) {
+            toast.error("Password update failed",{
+                description: error.message || "An error occurred",
+            });
         }
         setUpdating(false);
     };

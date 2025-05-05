@@ -16,7 +16,7 @@ export default function Page() {
     const [, setFormStatus] = useAtom(formStatusus);
     const searchParams = useSearchParams()
     const [isSubmitting, setIsSubmitting] = useState(false);
-        const [errors, setErrors] = useState<string[]>([]);
+    const [errors, setErrors] = useState<string[]>([]);
 
     useEffect(() => {
         console.log(formData.date)
@@ -37,42 +37,49 @@ export default function Page() {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setIsSubmitting(true);
-        const id = searchParams.get('id')
-        console.log(formData);
-        const response = await fetch("/api/forms/nomination-declaration-form2", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": `Bearer ${localStorage.getItem("token")}`,
-                "userid": id as string,
-            },
-            body: JSON.stringify(formData),
-        });
-        const responseData = await response.json();
-        if (responseData.success) {
-            setFormStatus((prevStatus) => ({
-                ...prevStatus,
-                nomination_declaration_form2: {
-                    ...prevStatus.nomination_declaration_form2,
-                    status: "done",
+        try {
+            const id = searchParams.get('id')
+            console.log(formData);
+            const response = await fetch("/api/forms/nomination-declaration-form2", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "authorization": `Bearer ${localStorage.getItem("token")}`,
+                    "userid": id as string,
                 },
-            }));
-            toast.success(responseData.message);
-            const params = id ? `?id=${id}` : '';
-            router.push(`/forms/thank-you${params}`);
+                body: JSON.stringify(formData),
+            });
+            const responseData = await response.json();
+            if (responseData.success) {
+                setFormStatus((prevStatus) => ({
+                    ...prevStatus,
+                    nomination_declaration_form2: {
+                        ...prevStatus.nomination_declaration_form2,
+                        status: "done",
+                    },
+                }));
+                toast.success(responseData.message);
+                const params = id ? `?id=${id}` : '';
+                router.push(`/forms/thank-you${params}`);
+            }
+            else {
+                toast.error(responseData.message);
+                setErrors(responseData.errors);
+            }
+        } catch (error: any) {
+            toast.error("Error submitting form", {
+                description: error.message || "An error occurred",
+            });
+        } finally {
+            setIsSubmitting(false);
         }
-        else {
-            toast.error(responseData.message);
-            setErrors(responseData.errors);
-        }
-        setIsSubmitting(false);
     };
 
     return (
 
         <form onSubmit={handleSubmit} className="p-6 max-w-5xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
             <Nomination1 />
-            
+
             <Nomination2 />
             {errors.length > 0 && (
                 <div className="text-red-600 text-sm px-2 text-left">
@@ -83,7 +90,7 @@ export default function Page() {
             )}
             <div className="flex justify-center mt-6">
                 <Button type="submit" disabled={isSubmitting} className='w-full cursor-pointer'>
-                {isSubmitting ? "Submitting..." : "Submit"}
+                    {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
             </div>
         </form>

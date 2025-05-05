@@ -15,7 +15,7 @@ export default function Page() {
     const searchParams = useSearchParams()
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
-//16-17 lagana hai sbmein
+    //16-17 lagana hai sbmein
     useEffect(() => {
         setFormData((prev) => ({
             ...prev,
@@ -26,37 +26,43 @@ export default function Page() {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsSubmitting(true);//upr niche
-        
-        const id = searchParams.get('id')
-        console.log(formData);
-        const response = await fetch("/api/forms/bank-mandate", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "authorization": `Bearer ${localStorage.getItem("token")}`,
-                "userid": id as string,
-            },
-            body: JSON.stringify(formData),
-        });
-        const responseData = await response.json();
-        if (responseData.success) {
-            setFormStatus((prevStatus) => ({
-                ...prevStatus,
-                bank_mandate: {
-                    ...prevStatus.bank_mandate,
-                    status: "done",
+        setIsSubmitting(true);
+        try {
+            const id = searchParams.get('id')
+            console.log(formData);
+            const response = await fetch("/api/forms/bank-mandate", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "authorization": `Bearer ${localStorage.getItem("token")}`,
+                    "userid": id as string,
                 },
-            }));
-            toast.success(responseData.message);
-            const params = id ? `?id=${id}` : '';
-            router.push(`/forms/nomination-declaration-form1${params}`);
-        }
-        else {
-            toast.error(responseData.message);
-            setErrors(responseData.errors);
-        }
+                body: JSON.stringify(formData),
+            });
+            const responseData = await response.json();
+            if (responseData.success) {
+                setFormStatus((prevStatus) => ({
+                    ...prevStatus,
+                    bank_mandate: {
+                        ...prevStatus.bank_mandate,
+                        status: "done",
+                    },
+                }));
+                toast.success(responseData.message);
+                const params = id ? `?id=${id}` : '';
+                router.push(`/forms/nomination-declaration-form1${params}`);
+            }
+            else {
+                toast.error(responseData.message);
+                setErrors(responseData.errors);
+            }
+        } catch (error: any) {
+            toast.error("Error submitting form", {
+                description: error.message || "An error occurred",
+            });
+        } finally {
         setIsSubmitting(false);
+        }
     };
 
     return (

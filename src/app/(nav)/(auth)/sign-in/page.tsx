@@ -58,11 +58,15 @@ export default function LoginForm() {
                     router.push('/forms/staff-joining');
                 }
             } else {
-                toast.error(res.data.message);
+                toast.error(res.data.message,{
+                    description: res.data.errors?.[0]
+                });
                 setErrors(res.data.errors || ['Login failed']);
             }
         } catch (err: any) {
-            setErrors(err.response?.data?.errors || ['Something went wrong']);
+            toast.error("Error logging in", {
+                description: err.message || "An error occurred",
+            });
         } finally {
             setLoading(false);
         }

@@ -40,36 +40,42 @@ export default function Page() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-
-    const id = searchParams.get('id')
-    console.log(formData);
-    const response = await fetch("/api/forms/nomination-declaration-form1", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "authorization": `Bearer ${localStorage.getItem("token")}`,
-        "userid": id as string,
-      },
-      body: JSON.stringify(formData),
-    });
-    const responseData = await response.json();
-    if (responseData.success) {
-      setFormStatus((prevStatus) => ({
-        ...prevStatus,
-        nomination_declaration_form1: {
-          ...prevStatus.nomination_declaration_form1,
-          status: "done",
+    try {
+      const id = searchParams.get('id')
+      console.log(formData);
+      const response = await fetch("/api/forms/nomination-declaration-form1", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "authorization": `Bearer ${localStorage.getItem("token")}`,
+          "userid": id as string,
         },
-      }));
-      toast.success(responseData.message);
-      const params = id ? `?id=${id}` : '';
-      router.push(`/forms/gratuity-form${params}`);
+        body: JSON.stringify(formData),
+      });
+      const responseData = await response.json();
+      if (responseData.success) {
+        setFormStatus((prevStatus) => ({
+          ...prevStatus,
+          nomination_declaration_form1: {
+            ...prevStatus.nomination_declaration_form1,
+            status: "done",
+          },
+        }));
+        toast.success(responseData.message);
+        const params = id ? `?id=${id}` : '';
+        router.push(`/forms/gratuity-form${params}`);
+      }
+      else {
+        toast.error(responseData.message);
+        setErrors(responseData.errors);
+      }
+    } catch (error: any) {
+      toast.error("Error submitting form", {
+        description: error.message || "An error occurred",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-    else {
-      toast.error(responseData.message);
-      setErrors(responseData.errors);
-    }
-    setIsSubmitting(false);
   };
 
   return (

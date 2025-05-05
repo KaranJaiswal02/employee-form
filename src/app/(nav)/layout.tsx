@@ -37,9 +37,11 @@ export default function RootLayout({
                 localStorage.removeItem("token");
                 router.push("/sign-in");
             }
-        } catch (error) {
+        } catch (error : any) {
             localStorage.removeItem("token");
-            toast.error("Error verifying token");
+            toast.error("Error verifying token", {
+                description: error.message || "An error occurred",
+            });
         }
     };
 
