@@ -63,9 +63,9 @@ export default function LoginForm() {
                 });
                 setErrors(res.data.errors || ['Login failed']);
             }
-        } catch (err: any) {
+        } catch (error: any) {
             toast.error("Error logging in", {
-                description: err.message || "An error occurred",
+                description: error.message || "An error occurred",
             });
         } finally {
             setLoading(false);

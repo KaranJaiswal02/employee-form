@@ -12,7 +12,7 @@ export default function NotFoundPage() {
                 </div>
                 <h1 className="text-4xl font-bold mb-4">404 - Page Not Found</h1>
                 <p className="text-lg text-muted-foreground mb-6">
-                    Oops! The page you're looking for doesn't exist or has been moved.
+                    Oops! The page you&rsquo;re looking for doesn&rsquo;t exist or has been moved.
                 </p>
                 <Link href="/" passHref>
                     <Button variant="default" className="cursor-pointer" size="lg">

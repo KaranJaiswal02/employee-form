@@ -80,7 +80,7 @@ export default function NominationDeclarationForm1() {
                         />
                     </div>
                     <div className="flex items-center gap-4">
-                        <label className="w-64 font-medium">2. Father's/Husband's Name:</label>
+                        <label className="w-64 font-medium">2. Father&rsquo;s/Husband&rsquo;s Name:</label>
                         <input
                             type="text"
                             name="fathersName"

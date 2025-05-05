@@ -59,7 +59,7 @@ export default function EmpForm1() {
           />
         </div>
         <div className="space-y-1">
-          <RequiredLabel><label htmlFor='fatherName' className="block font-medium"> Father's Name</label></RequiredLabel>
+          <RequiredLabel><label htmlFor='fatherName' className="block font-medium"> Father&rsquo;s Name</label></RequiredLabel>
           <input
             type="text"
             id="fatherName"

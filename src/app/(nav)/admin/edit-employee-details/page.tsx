@@ -85,7 +85,7 @@ export default function AdminManagementPage() {
                     Edit Employee Details
                 </h1>
                 <p className="text-gray-600 dark:text-gray-400">
-                    <span className="font-semibold text-yellow-600 dark:text-yellow-500">Important:</span> Only users with the "user" role can be edited. Admin accounts are not editable.
+                    <span className="font-semibold text-yellow-600 dark:text-yellow-500">Important:</span> Only users with the &#34;user&#34; role can be edited. Admin accounts are not editable.
                 </p>
                 {users.length === 0 && (
                     <p className="text-gray-600 dark:text-gray-400">

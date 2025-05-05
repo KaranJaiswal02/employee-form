@@ -313,7 +313,7 @@ export default function GratuityForm2() {
                 Certified that the particulars of the above nomination have been verified and recorded in this establishment.
             </p>
             <p>
-                Employer's Reference No., if any:{" "}
+                Employer&rsquo;s Reference No., if any:{" "}
                 <input type="text" className="border-b border-black dark:border-white w-60 inline-block focus:outline-none" />
             </p>
             <div className="mt-2">
@@ -345,7 +345,7 @@ export default function GratuityForm2() {
 
             <h4 className="font-bold text-center">Acknowledgement by the Employee</h4>
             <p>
-                Received the duplicate copy of nomination in Form 'F' filed by me and duly certified by the employer.
+                Received the duplicate copy of nomination in Form &rsquo;F&rsquo; filed by me and duly certified by the employer.
             </p>
             <p className="mt-2">
                 Date: <input type="date" 

@@ -44,7 +44,7 @@ export default function EPFNominationFormPart2() {
       {/* First Declaration */}
       <div className="mb-6">
         <div className="flex items-start gap-2 mb-4">
-          Certified that I have no family as defined in para 2 (vii) of the Employees' Family Pension Scheme 1995 and should I acquire a family hereafter I shall furnish Particulars thereon in the above form.
+          Certified that I have no family as defined in para 2 (vii) of the Employees&rsquo; Family Pension Scheme 1995 and should I acquire a family hereafter I shall furnish Particulars thereon in the above form.
         </div>
 
         <p className="mb-4">

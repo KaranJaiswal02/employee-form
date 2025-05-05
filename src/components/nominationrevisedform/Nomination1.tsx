@@ -142,7 +142,7 @@ export default function EPFNominationForm() {
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">2. Father's/Husband's Name:</label>
+                    <label className="w-full md:w-72">2. Father&rsquo;s/Husband&rsquo;s Name:</label>
                     <input
                         type="text"
                         name="fatherName"
@@ -233,7 +233,7 @@ export default function EPFNominationForm() {
                             <tr className="bg-neutral-100 dark:bg-neutral-800 print:bg-neutral-100">
                                 <th className="border border-black dark:border-white p-2">Name of the Nominee(s)</th>
                                 <th className="border border-black dark:border-white p-2">Address</th>
-                                <th className="border border-black dark:border-white p-2">Nominee's relationship with the member</th>
+                                <th className="border border-black dark:border-white p-2">Nominee&rsquo;s relationship with the member</th>
                                 <th className="border border-black dark:border-white p-2">Date of Birth</th>
                                 <th className="border border-black dark:border-white p-2">Total amount or share of accumulations in Provident Funds to be paid to each nominee</th>
                                 <th className="border border-black dark:border-white p-2">If the nominee is minor, name and address of the guardian who may receive the amount during the minority of the nominee</th>

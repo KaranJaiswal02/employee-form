@@ -2,7 +2,6 @@
 
 import { grauFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
-import RequiredLabel from "../RequiredLabel";
 
 export default function GratuityForm1() {
   const [formData, setFormData] = useAtom(grauFormData);
@@ -48,7 +47,7 @@ export default function GratuityForm1() {
       <h2 className="text-center text-base font-bold uppercase mb-2">
         Payment of Gratuity (Central) Rules
       </h2>
-      <h3 className="text-center font-semibold uppercase">Form 'F'</h3>
+      <h3 className="text-center font-semibold uppercase">Form &rsquo;F&rsquo;</h3>
       <p className="text-center italic text-xs mb-4">See sub-rule (1) of Rule 6</p>
       <h4 className="text-center font-semibold uppercase mb-4">Nomination</h4>
 
