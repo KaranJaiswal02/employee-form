@@ -144,6 +144,7 @@ export default function EmpForm5() {
                                         handleMemberChange(index, "name", e.target.value)
                                         
                                     }
+                                    required={index === 0}
                                 />
                             </td>
                             <td className="border border-black dark:border-white p-1">
@@ -163,6 +164,7 @@ export default function EmpForm5() {
                                     value={member.dob.toString().split('T')[0]}
                                     className="w-full outline-none"
                                     onChange={(e) => handleMemberChange(index, "dob", e.target.value)}
+                                    required={index === 0}
                                 />
                             </td>
                             <td className="border border-black dark:border-white p-1">
@@ -171,6 +173,7 @@ export default function EmpForm5() {
                                     value={member.age}
                                     className="w-full outline-none"
                                     onChange={(e) => handleMemberChange(index, "age", e.target.value)}
+                                    required={index === 0}
                                 />
                             </td>
                             <td className="border border-black dark:border-white p-1">
@@ -179,6 +182,7 @@ export default function EmpForm5() {
                                     value={member.amount}
                                     className="w-full outline-none"
                                     onChange={(e) => handleMemberChange(index, "amount", e.target.value)}
+                                    required={index === 0}
                                 />
                             </td>
                             <td className="border print:hidden border-black dark:border-white text-center">

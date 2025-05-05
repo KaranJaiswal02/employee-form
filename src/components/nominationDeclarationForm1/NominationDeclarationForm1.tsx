@@ -224,6 +224,7 @@ export default function NominationDeclarationForm1() {
                                             rows={1}
                                             className="w-full px-1 py-1 border border-gray-300 focus:outline-none"
                                             value={nominee.guardian}
+                                            placeholder='if not minor, write "N/A"'
                                             onChange={(e) => handleNomineeChange(index, "guardian", e.target.value)}
                                         />
                                     </td>

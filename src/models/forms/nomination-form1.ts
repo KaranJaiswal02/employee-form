@@ -25,27 +25,28 @@ export interface NominationForm1Model {
 }
 
 const NomineeSchema: Schema = new Schema({
-  name: { type: String, required: false },
-  address: { type: String, required: false },
-  relationship: { type: String, required: false },
-  dob: { type: Date, required: false },
-  share: { type: String, required: false },
-  guardian: { type: String, required: false },
+  name: { type: String, required: true },
+  address: { type: String, required: true },
+  relationship: { type: String, required: true },
+  dob: { type: Date, required: true },
+  share: { type: String, required: true },
+  guardian: { type: String, required: true },
 });
 
 const NominationForm1Schema: Schema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  name: { type: String, required: false },
-  fatherName: { type: String, required: false },
-  dob: { type: Date, required: false },
-  sex: { type: String, required: false },
-  maritalStatus: { type: String, required: false },
-  perAddress: { type: String, required: false },
-  currAddress: { type: String, required: false },
-  nominees: { type: [NomineeSchema], required: false },
+  name: { type: String, required: true },
+  fatherName: { type: String, required: true },
+  dob: { type: Date, required: true },
+  sex: { type: String, required: true },
+  maritalStatus: { type: String, required: true },
+  perAddress: { type: String, required: true },
+  currAddress: { type: String, required: true },
+  nominees: { type: [NomineeSchema], required: true },
   place: { type: String, required: false },
   date: { type: Date, required: false },
   establishmentAddress: { type: String, required: false },
+  // above 3 are the fields that have predefined values in the form and are not user input fields. 
 },
   {
     timestamps: true,
