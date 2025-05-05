@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaBriefcase, FaClipboardList, FaFileDownload, FaMoon, FaSun, FaUserEdit, FaUsersCog, FaUserShield } from "react-icons/fa";
+import { FaBriefcase, FaClipboardList, FaFileDownload, FaKey, FaMoon, FaSun, FaUserEdit, FaUsersCog, FaUserShield } from "react-icons/fa";
 
 export default function HomePage() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -58,7 +58,7 @@ export default function HomePage() {
         <p className="text-lg md:text-xl max-w-2xl mx-auto">
           A centralized platform to manage employee roles, forms, and administrative tools with ease.
         </p>
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
+        <div className="mt-8 flex flex-wrap justify-center gap-5 text-lg">
           {role === "admin" && (<Link
             href="/admin/dashboard"
             className="inline-block px-6 py-2 rounded-xl font-medium text-white bg-green-600 dark:bg-transparent border-3 border-green-600 dark:border-green-400 hover:bg-green-700 dark:hover:bg-green-600 dark:hover:text-white shadow transition"
@@ -91,21 +91,25 @@ export default function HomePage() {
       </header>
 
       {/* Features Section */}
-      <section className="px-8 py-12 max-w-6xl w-full mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-10">Key Features</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="px-4 sm:px-6 lg:px-8 py-12 max-w-7xl w-full mx-auto">
+        <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10">Key Features</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature, index) => (
-            <div key={index} className={`rounded-xl shadow py-6 px-8 ${feature.bgColor} hover:scale-105 transition-all duration-150 text-white`}>
+            <div
+              key={index}
+              className={`rounded-xl shadow-lg p-6 sm:p-8 ${feature.bgColor} hover:scale-[1.02] transition-transform duration-200 ease-in-out text-white`}
+            >
               <div className="mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p>{feature.description}</p>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2">{feature.title}</h3>
+              <p className="text-sm sm:text-base">{feature.description}</p>
             </div>
           ))}
         </div>
       </section>
 
+
       {/* Footer */}
-      <footer className="text-center py-6 border-t border-gray-200 dark:border-gray-700">
+      <footer className="text-center py-6 border-t border-gray-400/70 dark:border-gray-700">
         <p className="text-sm text-gray-600 dark:text-gray-400">
           &copy; {new Date().getFullYear()} Employee Management System. All rights reserved.
         </p>
@@ -137,7 +141,7 @@ const features = [
     title: 'My Employment Forms',
     icon: <FaBriefcase className="text-3xl" />,
     description: 'Submit personal employment-related forms directly.',
-    bgColor: 'bg-teal-600 dark:bg-teal-800',
+    bgColor: 'bg-teal-500 dark:bg-teal-800',
   },
   {
     title: 'Meal Ticket Generator',
@@ -146,9 +150,15 @@ const features = [
     bgColor: 'bg-yellow-500 dark:bg-yellow-700',
   },
   {
-    title: 'Bulk User Upload',
-    icon: <FaUsersCog className="text-3xl" />,
-    description: 'Quickly onboard multiple employees by uploading user data in bulk.',
-    bgColor: 'bg-orange-500 dark:bg-orange-700',
-  },
+    title: 'Update Multiple Passwords',
+    icon: <FaKey className="text-3xl" />,
+    description: 'Reset or update passwords for multiple users at once with ease.',
+    bgColor: 'bg-red-600 dark:bg-red-800',
+  }
+  // {
+  //   title: 'Bulk User Upload',
+  //   icon: <FaUsersCog className="text-3xl" />,
+  //   description: 'Quickly onboard multiple employees by uploading user data in bulk.',
+  //   bgColor: 'bg-orange-500 dark:bg-orange-700',
+  // },
 ];

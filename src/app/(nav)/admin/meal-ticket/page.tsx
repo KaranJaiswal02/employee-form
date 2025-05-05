@@ -14,9 +14,16 @@ import {
 } from "@/components/ui/select";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
+type formDataType = {
+  name: string;
+  month: string;
+  year: number;
+  noOfDays: number | null;
+};
+
 export default function MealTicketPage() {
   const currentYear = new Date().getFullYear();
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<formDataType>({
     name: "",
     month: "",
     year: currentYear,
@@ -24,15 +31,29 @@ export default function MealTicketPage() {
   });
   const [showGenerator, setShowGenerator] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: name === "noOfDays" || name === "year" 
-        ? Math.max(1, Math.min(name === "year" ? 2100 : 31, parseInt(value) || (name === "year" ? currentYear : 1))) 
-        : value
-    }));
-  };
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const { name, value } = e.target;
+
+  setFormData(prev => {
+    if (name === "year") {
+      const year = parseInt(value) || currentYear;
+      const clampedYear = Math.max(currentYear, Math.min(currentYear + 2, year));
+      return { ...prev, year: clampedYear };
+    }
+
+    if (name === "noOfDays") {
+      const parsed = parseInt(value);
+      const days = value === "" 
+        ? null 
+        : (!isNaN(parsed) && parsed >= 0 && parsed <= 31 ? parsed : prev.noOfDays);
+      return { ...prev, noOfDays: days };
+    }
+    
+
+    return { ...prev, [name]: value };
+  });
+};
+
 
   const handleMonthChange = (value: string) => {
     setFormData(prev => ({
@@ -101,8 +122,6 @@ export default function MealTicketPage() {
                     type="number"
                     id="year"
                     name="year"
-                    min="2000"
-                    max="2100"
                     value={formData.year}
                     onChange={handleChange}
                     required
@@ -116,7 +135,7 @@ export default function MealTicketPage() {
                   type="number"
                   id="noOfDays"
                   name="noOfDays"
-                  value={formData.noOfDays}
+                  value={formData.noOfDays || ""}
                   onChange={handleChange}
                   required
                 />
@@ -131,7 +150,7 @@ export default function MealTicketPage() {
               name={formData.name} 
               month={formData.month}
               year={formData.year}
-              noOfDays={formData.noOfDays}
+              noOfDays={formData.noOfDays || 0}
               onReset={() => setShowGenerator(false)}
             />
           )}
