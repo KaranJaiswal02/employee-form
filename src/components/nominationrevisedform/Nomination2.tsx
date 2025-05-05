@@ -160,7 +160,7 @@ export default function EPFNominationFormPart2() {
 
         <div className="mb-4">
           <p><b>Name & address of the Factory / Establishment:</b></p>
-          <div className='ml-1 mt-1'>
+          {/* <div className='ml-1 mt-1'>
             <textarea
               name="establishmentDetails"
               value={formData.establishmentDetails}
@@ -168,6 +168,14 @@ export default function EPFNominationFormPart2() {
               className=" border-b border-black dark:border-white outline-none w-full h-24 resize-none"
               placeholder="Enter establishment details here..."
             />
+          </div> */}
+          <div className="mb-4 mt-2">
+            <label className="font-small mb-2">
+              <p style={{ whiteSpace: 'pre-line' }}>
+                <b>{formData.establishmentDetails.split('\n')[0]}</b>
+                {"\n" + formData.establishmentDetails.split('\n').slice(1).join('\n')}
+              </p>
+            </label>
           </div>
         </div>
 
@@ -190,7 +198,7 @@ export default function EPFNominationFormPart2() {
               name="date"
               value={formData.date.toString().split('T')[0]}
               onChange={handleFieldChange}
-              className="border-b border-black dark:border-white outline-none"
+              className=" border-black dark:border-white outline-none"
               disabled
             />
           </div>

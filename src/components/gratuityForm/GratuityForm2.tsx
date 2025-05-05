@@ -323,14 +323,22 @@ export default function GratuityForm2() {
             <p>Date: <input type="date" value={formData.date.toString().split('T')[0]} disabled className="border-b border-black dark:border-white w-48 inline-block ml-2 mt-2 mb-2 focus:outline-none " /></p>
             <div className="mt-2">
                 Name and address of the establishment or rubber stamp thereof:
-                < div className="w-full mt-3 mb-5" >
+                {/* < div className="w-full mt-3 mb-5" >
                     <textarea
                         id="establishmentAddress"
                         rows={4}
                         className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
                         value={formData.establishmentAddress}
                         disabled />
-                </div>
+                </div> */}
+                <div className="mb-4 mt-2">
+                        <label className="font-small mb-2">
+                            <p style={{ whiteSpace: 'pre-line' }}>
+                                <b>{formData.establishmentAddress.split('\n')[0]}</b>
+                                {"\n" + formData.establishmentAddress.split('\n').slice(1).join('\n')}
+                            </p>
+                        </label>
+                    </div>
             </div>
 
             {/* <hr className="my-6 border-black dark:border-white" /> */}
@@ -340,7 +348,10 @@ export default function GratuityForm2() {
                 Received the duplicate copy of nomination in Form 'F' filed by me and duly certified by the employer.
             </p>
             <p className="mt-2">
-                Date: <input type="date" value={formData.date.toString().split('T')[0]} disabled className="focus:outline-none border-b border-black dark:border-white w-48 inline-block ml-2" />
+                Date: <input type="date" 
+                value={formData.date.toString().split('T')[0]} 
+                disabled 
+                className="focus:outline-none border-b border-black dark:border-white w-48 inline-block ml-2" />
             </p>
             <p className="text-right font-semibold mt-4">Signature of the Employee</p>
 
