@@ -126,7 +126,7 @@ export default function AdminManagementPage() {
                 <p className="text-gray-600 dark:text-gray-400">
                     <span className="font-semibold text-yellow-600 dark:text-yellow-500">Important:</span> The role of the currently logged-in user cannot be modified.
                 </p>
-                {users.length === 0 && (
+                {users.length === 0 && !loading && (
                     <p className="text-gray-600 dark:text-gray-400">
                         <span className="font-semibold text-red-500">Notice:</span> No users found in the system.
                     </p>

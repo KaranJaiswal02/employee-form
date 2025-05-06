@@ -10,6 +10,13 @@ import { MdOutlinePending } from "react-icons/md";
 import Loader from "@/components/Loader";
 import { IoIosArrowBack } from "react-icons/io";
 import { DefaultBankMandateFormData, DefaultEmpFormData, DefaultGrauFormData, DefaultIdCardFormData, DefaultNominationForm1Data, DefaultNominationForm2Data, DefaultStaffFamilyFormData } from "@/hooks/defaultValue";
+import { BankMandateFormData } from "@/models/forms/bank-mandate";
+import { IGratuityForm } from "@/models/forms/gratuity-form";
+import { IdCardFormData } from "@/models/forms/idcard-form";
+import { NominationForm1Model } from "@/models/forms/nomination-form1";
+import { NominationForm2Model } from "@/models/forms/nomination-form2";
+import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
+import { IEmpFormData } from "@/models/forms/staffjoin_form";
 
 export default function FormLayout({
     children,
@@ -27,28 +34,34 @@ export default function FormLayout({
     const [currentUserRole, setCurrentUserRole] = useState("user");
 
     //all forms
-    const [, setbankMandateFormData] = useAtom(bankMandateFormData);
-    const [, setGrauFormData] = useAtom(grauFormData);
-    const [, setIdCardFormData] = useAtom(idCardFormData);
-    const [, setNominstionForm1Data] = useAtom(nominationForm1Data);
-    const [, setNominstionForm2Data] = useAtom(nominationForm2Data);
-    const [, setStaffFamilyFormData] = useAtom(staffFamilyFormData);
-    const [, setEmpFormData] = useAtom(empFormData);
+    const [, setbankMandateFormData] = useAtom<BankMandateFormData>(bankMandateFormData);
+    const [, setGrauFormData] = useAtom<IGratuityForm>(grauFormData);
+    const [, setIdCardFormData] = useAtom<IdCardFormData>(idCardFormData);
+    const [, setNominstionForm1Data] = useAtom<NominationForm1Model>(nominationForm1Data);
+    const [, setNominstionForm2Data] = useAtom<NominationForm2Model>(nominationForm2Data);
+    const [, setStaffFamilyFormData] = useAtom<StaffFamilyFormData>(staffFamilyFormData);
+    const [, setEmpFormData] = useAtom<IEmpFormData>(empFormData);
 
     const setFormsData = (data: any) => {
-        const formMappings: { key: string; setter: (data: any) => void; statusKey: keyof typeof formStatus; defaultValue: any}[] = [
-            { key: 'bankMandateFormData', setter: setbankMandateFormData, statusKey: 'bank_mandate', defaultValue: DefaultBankMandateFormData },
-            { key: 'grauFormData', setter: setGrauFormData, statusKey: 'gratuity_form', defaultValue: DefaultGrauFormData },
-            { key: 'idCardFormData', setter: setIdCardFormData, statusKey: 'id_card', defaultValue: DefaultIdCardFormData },
-            { key: 'nominationForm1Data', setter: setNominstionForm1Data, statusKey: 'nomination_declaration_form1', defaultValue: DefaultNominationForm1Data },
-            { key: 'nominationForm2Data', setter: setNominstionForm2Data, statusKey: 'nomination_declaration_form2', defaultValue: DefaultNominationForm2Data },
-            { key: 'staffFamilyFormData', setter: setStaffFamilyFormData, statusKey: 'staff_family_members', defaultValue: DefaultStaffFamilyFormData },
-            { key: 'empFormData', setter: setEmpFormData, statusKey: 'staff_joining', defaultValue: DefaultEmpFormData },
-        ];
+        // Use a tuple array for type safety
+        const formMappings: [
+            key: string,
+            setter: (value: any) => void,
+            statusKey: keyof typeof formStatus,
+            defaultValue: any
+        ][] = [
+                ['bankMandateFormData', setbankMandateFormData, 'bank_mandate', DefaultBankMandateFormData],
+                ['grauFormData', setGrauFormData, 'gratuity_form', DefaultGrauFormData],
+                ['idCardFormData', setIdCardFormData, 'id_card', DefaultIdCardFormData],
+                ['nominationForm1Data', setNominstionForm1Data, 'nomination_declaration_form1', DefaultNominationForm1Data],
+                ['nominationForm2Data', setNominstionForm2Data, 'nomination_declaration_form2', DefaultNominationForm2Data],
+                ['staffFamilyFormData', setStaffFamilyFormData, 'staff_family_members', DefaultStaffFamilyFormData],
+                ['empFormData', setEmpFormData, 'staff_joining', DefaultEmpFormData],
+            ];
 
-        formMappings.forEach(({ key, setter, statusKey, defaultValue }) => {
+        formMappings.forEach(([key, setter, statusKey, defaultValue]) => {
             if (data[key]) {
-                setter(data[key]);
+                setter(data[key] as typeof defaultValue);
                 setFormStatus((prev) => ({
                     ...prev,
                     [statusKey]: {
@@ -56,8 +69,7 @@ export default function FormLayout({
                         status: 'done',
                     },
                 }));
-            }
-            else{
+            } else {
                 setter(defaultValue);
                 setFormStatus((prev) => ({
                     ...prev,

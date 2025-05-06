@@ -210,7 +210,7 @@ export default function UserFormDownloadPage() {
                     <p className="text-gray-600 dark:text-gray-400">
                         <span className="font-semibold text-yellow-600 dark:text-yellow-500">Note:</span> Only users with submitted forms will have download options.
                     </p>
-                    {users.length === 0 && (
+                    {users.length === 0 && !loading && (
                         <p className="text-gray-600 dark:text-gray-400">
                             <span className="font-semibold text-red-500">Notice:</span> No users found for form download.
                         </p>

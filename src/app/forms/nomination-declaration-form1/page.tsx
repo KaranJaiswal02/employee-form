@@ -8,14 +8,14 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from "react";
 import { toast } from 'sonner';
 
-interface Nominee {
-  name: string;
-  address: string;
-  relationship: string;
-  dob: string;
-  share: string;
-  guardian: string;
-}
+// interface Nominee {
+//   name: string;
+//   address: string;
+//   relationship: string;
+//   dob: string;
+//   share: string;
+//   guardian: string;
+// }
 
 export default function Page() {
   const router = useRouter()

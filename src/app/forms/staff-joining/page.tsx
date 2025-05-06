@@ -13,7 +13,7 @@ import { toast } from "sonner"
 import { useState } from 'react';
 import IError from '@/types/error';
 
-export default function page() {
+export default function Page() {
   const [formData] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
   const router = useRouter();

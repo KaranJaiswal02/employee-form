@@ -9,11 +9,11 @@ import StaffFamilyMembers from "@/components/staffFamilyMembers/StaffFamilyMembe
 import { calculateAge } from "@/lib/calculateAge";
 import IError from "@/types/error";
 
-type Child = {
-    name: string;
-    gender: string;
-    dob: string;
-};
+// type Child = {
+//     name: string;
+//     gender: string;
+//     dob: string;
+// };
 
 export default function Page() {
     const router = useRouter();
