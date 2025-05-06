@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { LuEraser } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { TfiReload } from "react-icons/tfi";
+import IFetchedUser from "@/types/fetchedUser";
 
 export default function AdminManagementPage() {
     const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);

@@ -12,6 +12,7 @@ import { FaFileExcel } from "react-icons/fa";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { LuEraser } from "react-icons/lu";
 import { TfiReload } from "react-icons/tfi";
+import IFetchedUser from "@/types/fetchedUser";
 
 interface FormData {
     [key: string]: any;

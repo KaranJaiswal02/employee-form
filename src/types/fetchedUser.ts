@@ -1,4 +1,4 @@
-interface IFetchedUser {
+export default interface IFetchedUser {
     _id: string;
     name: string;
     email: string;

@@ -16,7 +16,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
-import PasswordInput from "@/components/ui/PasswordInput";
+import PasswordInput from "@/components/ui/password-input";
 
 export default function SignUpForm() {
     const router = useRouter();

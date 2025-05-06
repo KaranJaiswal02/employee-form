@@ -8,9 +8,9 @@ import { toast } from "sonner";
 import Loader from "@/components/Loader";
 import { usersStatusData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
-import PasswordInput from "@/components/ui/PasswordInput";
+import PasswordInput from "@/components/ui/password-input";
 import { TfiReload } from "react-icons/tfi";
-import { set } from "mongoose";
+import IFetchedUser from "@/types/fetchedUser";
 
 export default function UserPasswordUpdatePage() {
     const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
@@ -176,27 +176,32 @@ export default function UserPasswordUpdatePage() {
                                 <td className="p-4 text-gray-800 dark:text-gray-100">{user.name}</td>
                                 <td className="p-4 text-gray-800 dark:text-gray-100">{user.email}</td>
                                 <td className="p-4 text-gray-800 dark:text-gray-100">{user.role}</td>
-                                <td className="p-4 flex items-center justify-center gap-2">
-                                    <PasswordInput
-                                        type="password"
-                                        value={passwordInputs[user._id] || ""}
-                                        onChange={(e) =>
-                                            setPasswordInputs((prev) => ({
-                                                ...prev,
-                                                [user._id]: e.target.value,
-                                            }))
-                                        }
-                                        placeholder="Enter here..."
-                                        className="w-48 border border-gray-400 dark:border-gray-700"
-                                        disabled={updating}
-                                    />
-                                    <Button
-                                        onClick={() => updatePassword(user._id)}
-                                        disabled={updating}
-                                        className="text-sm cursor-pointer"
-                                    >
-                                        Update
-                                    </Button>
+                                <td className="p-4">
+                                    <form onSubmit={e => {
+                                        e.preventDefault();
+                                        updatePassword(user._id)
+                                    }}
+                                        className="flex items-center justify-center gap-2">
+                                        <PasswordInput
+                                            value={passwordInputs[user._id] || ""}
+                                            onChange={(e) =>
+                                                setPasswordInputs((prev) => ({
+                                                    ...prev,
+                                                    [user._id]: e.target.value,
+                                                }))
+                                            }
+                                            placeholder="Enter here..."
+                                            className="w-48 border border-gray-400 dark:border-gray-700"
+                                            disabled={updating}
+                                        />
+                                        <Button
+                                            type="submit"
+                                            disabled={updating}
+                                            className="text-sm cursor-pointer"
+                                        >
+                                            Update
+                                        </Button>
+                                    </form>
                                 </td>
                             </tr>
                         ))) : (
