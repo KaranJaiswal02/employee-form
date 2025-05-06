@@ -172,7 +172,7 @@ export default function DeclarationForm1() {
                                     <input
                                         type="date"
                                         className="w-full px-1 py-1 border border-gray-300"
-                                        value={nominee.dob?.toString().split('T')[0]}
+                                        value={nominee.dob?.toString().split('T')[0] ?? ''}
                                         onChange={(e) => handleChange(index, "dob", e.target.value)}
                                     />
                                 </td>

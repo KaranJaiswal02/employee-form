@@ -1,7 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -129,7 +127,7 @@ export default function IdCardForm() {
                             <input
                                 id="dob"
                                 type="date"
-                                value={formData.dob?.toString().split('T')[0]}
+                                value={formData.dob?.toString().split('T')[0] ?? ''}
                                 onChange={handleInputChange}
                                 className="w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
                                 disabled={true}
@@ -148,7 +146,7 @@ export default function IdCardForm() {
                             <input
                                 id="dateOfJoining"
                                 type="date"
-                                value={formData.dateOfJoining?.toString().split('T')[0]}
+                                value={formData.dateOfJoining?.toString().split('T')[0] ?? ''}
                                 onChange={handleInputChange}
                                 className="w-full text-md px-2 py-3 border-none focus:border-none focus:ring-0"
                             />

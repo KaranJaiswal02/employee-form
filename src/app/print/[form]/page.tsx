@@ -10,7 +10,7 @@ import StaffJoining from '@/components/print/StaffJoining'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 
-const formComponents: Record<string, any> = {
+const formComponents = {
     bankMandateFormData: BankMandate,
     grauFormData: GratuityForm,
     idCardFormData: IdcardForm,
@@ -22,11 +22,11 @@ const formComponents: Record<string, any> = {
 
 export default function PrintFormPage({ params }: { params: Promise<{ form: string }> }) {
     const { form: formKey } = use(params)
-    const [formData, setFormData] = useState<any>(null)
+    const [formData, setFormData] = useState(null)
     const [layout, setLayout] = useState<'portrait' | 'landscape'>('portrait')
     const router = useRouter()
 
-    const FormComponent = formComponents[formKey]
+    const FormComponent = formComponents[formKey as keyof typeof formComponents]
 
     useEffect(() => {
         const stored = localStorage.getItem('printFormData');

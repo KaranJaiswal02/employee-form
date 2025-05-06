@@ -23,7 +23,7 @@ const flattenObject = (obj: any, parentKey = '', result: Record<string, any> = {
 };
 
 export const convertToExcel = (
-    formData: Record<string, any>,
+    formData: Record<string, object>,
     fileName: string = "form_data.xlsx"
 ) => {
     const workbook = XLSX.utils.book_new();
