@@ -5,7 +5,7 @@ import { empFormData, formStatusus, nominationForm1Data } from '@/hooks/Atoms';
 import IError from '@/types/error';
 import { useAtom } from 'jotai';
 import { useRouter, useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { toast } from 'sonner';
 
 // interface Nominee {
@@ -17,7 +17,7 @@ import { toast } from 'sonner';
 //   guardian: string;
 // }
 
-export default function Page() {
+function MyPage() {
   const router = useRouter()
   const [empFormData1] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
@@ -25,8 +25,10 @@ export default function Page() {
   const searchParams = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [id, setId] = useState<string | null>(null);
 
   useEffect(() => {
+    setId(searchParams.get('id'));
     setFormData((prev) => ({
       ...prev,
       name: empFormData1.name || "",
@@ -42,7 +44,6 @@ export default function Page() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const id = searchParams.get('id')
       console.log(formData);
       const response = await fetch("/api/forms/nomination-declaration-form1", {
         method: "POST",
@@ -71,7 +72,7 @@ export default function Page() {
         setErrors(responseData.errors);
       }
     } catch (err: unknown) {
-            const error = err as IError;
+      const error = err as IError;
       toast.error("Error submitting form", {
         description: error.message || "An error occurred",
       });
@@ -95,4 +96,12 @@ export default function Page() {
       </Button>
     </form>
   )
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <MyPage />
+    </Suspense>
+  );
 }

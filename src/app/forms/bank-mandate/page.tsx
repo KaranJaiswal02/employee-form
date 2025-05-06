@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { bankMandateFormData, empFormData, formStatusus } from '@/hooks/Atoms';
@@ -8,7 +8,7 @@ import { toast } from "sonner"
 import BankMandateForm from '@/components/bankMandateForm/BankMandateForm';
 import IError from '@/types/error';
 
-export default function Page() {
+function BankMandate() {
     const router = useRouter();
     const [formData, setFormData] = useAtom(bankMandateFormData);
     const [formData1] = useAtom(empFormData);
@@ -16,8 +16,10 @@ export default function Page() {
     const searchParams = useSearchParams()
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
+    const [id, setId] = useState<string | null>(null);
     //16-17 lagana hai sbmein
     useEffect(() => {
+        setId(searchParams.get('id'));
         setFormData((prev) => ({
             ...prev,
             name: formData1.name || "",
@@ -29,7 +31,6 @@ export default function Page() {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            const id = searchParams.get('id')
             console.log(formData);
             const response = await fetch("/api/forms/bank-mandate", {
                 method: "POST",
@@ -85,5 +86,13 @@ export default function Page() {
                 </Button>
             </div>
         </form >
+    );
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<p>Loading...</p>}>
+            <BankMandate />
+        </Suspense>
     );
 }

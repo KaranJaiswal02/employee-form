@@ -5,12 +5,12 @@ import { Button } from "@/components/ui/button";
 import { useAtom } from "jotai";
 import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, nominationForm2Data } from '@/hooks/Atoms';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { toast } from 'sonner';
 import { useState } from 'react';
 import IError from '@/types/error';
 
-export default function Page() {
+function MyPage() {
     const router = useRouter();
     const [formData, setFormData] = useAtom(nominationForm2Data);
     const [formData1] = useAtom(empFormData);
@@ -18,9 +18,11 @@ export default function Page() {
     const searchParams = useSearchParams()
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
+    const [id, setId] = useState<string | null>(null);
 
     useEffect(() => {
         console.log(formData.date)
+        setId(searchParams.get('id'));
         setFormData((prev) => ({
             ...prev,
             address: formData1.perAddress || "",
@@ -39,7 +41,6 @@ export default function Page() {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            const id = searchParams.get('id')
             console.log(formData);
             const response = await fetch("/api/forms/nomination-declaration-form2", {
                 method: "POST",
@@ -96,5 +97,13 @@ export default function Page() {
                 </Button>
             </div>
         </form>
+    );
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<p>Loading...</p>}>
+            <MyPage />
+        </Suspense>
     );
 }

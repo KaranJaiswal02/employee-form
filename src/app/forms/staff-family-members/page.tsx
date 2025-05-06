@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
@@ -15,7 +15,7 @@ import IError from "@/types/error";
 //     dob: string;
 // };
 
-export default function Page() {
+function MyPage() {
     const router = useRouter();
     const [formData, setFormData] = useAtom(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
@@ -23,8 +23,10 @@ export default function Page() {
     const searchParams = useSearchParams()
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
+    const [id, setId] = useState<string | null>(null);
 
     useEffect(() => {
+        setId(searchParams.get('id'));
         setFormData((prev) => ({
             ...prev,
             name: form1data.name || "",
@@ -38,7 +40,6 @@ export default function Page() {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            const id = searchParams.get('id')
             console.log(formData);
             const response = await fetch("/api/forms/staff-family-members", {
                 method: "POST",
@@ -92,5 +93,13 @@ export default function Page() {
                 </Button>
             </div>
         </form>
+    );
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<p>Loading...</p>}>
+            <MyPage />
+        </Suspense>
     );
 }

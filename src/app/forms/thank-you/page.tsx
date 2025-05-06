@@ -3,19 +3,23 @@ import { formStatusus } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import React from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
-export default function Page() {
+function MyPage() {
   const [formStatus] = useAtom(formStatusus);
   const searchParams = useSearchParams()
-  const id = searchParams.get('id');
-  const params = id ? `?id=${id}` : '';
+  const [params, setParams] = useState<string>('');
+
+  useEffect(() => {
+    const id = searchParams.get('id');
+    setParams(id ? `?id=${id}` : '');
+  }, [searchParams]);
 
   const incompleteForms = Object.values(formStatus).filter(form => form.status !== 'done');
   const allFormsCompleted = incompleteForms.length === 0;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen px-4 py-10 text-center">
+    <div className="flex flex-col items-center justify-center h-full px-4 py-10 text-center">
       <div className="max-w-2xl w-full bg-white dark:bg-neutral-800 shadow-md rounded-xl p-6 md:p-10">
 
         {allFormsCompleted ? (
@@ -47,5 +51,13 @@ export default function Page() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <MyPage />
+    </Suspense>
   );
 }

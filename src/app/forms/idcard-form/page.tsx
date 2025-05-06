@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, idCardFormData } from "@/hooks/Atoms";
@@ -8,7 +8,7 @@ import { toast } from "sonner";
 import IdCardForm from "@/components/idCardForm/IdCardForm";
 import IError from "@/types/error";
 
-export default function Page() {
+function MyPage() {
   const router = useRouter();
   const [formData, setFormData] = useAtom(idCardFormData);
   const [empFormData1] = useAtom(empFormData);
@@ -16,8 +16,10 @@ export default function Page() {
   const searchParams = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [id, setId] = useState<string | null>(null);
 
   useEffect(() => {
+    setId(searchParams.get('id'));
     setFormData((prev) => ({
       ...prev,
       name: empFormData1.name || "",
@@ -32,7 +34,6 @@ export default function Page() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const id = searchParams.get('id')
       console.log(formData);
       const response = await fetch("/api/forms/idcard-form", {
         method: "POST",
@@ -61,7 +62,7 @@ export default function Page() {
         setErrors(responseData.errors);
       }
     } catch (err: unknown) {
-            const error = err as IError;
+      const error = err as IError;
       toast.error("Error submitting form", {
         description: error.message || "An error occurred",
       });
@@ -90,5 +91,13 @@ export default function Page() {
         </Button>
       </div>
     </form>
+  );
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <MyPage />
+    </Suspense>
   );
 }

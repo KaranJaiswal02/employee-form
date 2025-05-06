@@ -8,24 +8,28 @@ import { Button } from '@/components/ui/button';
 import { empFormData, formStatusus } from '@/hooks/Atoms'
 import { useAtom } from 'jotai'
 import { useRouter, useSearchParams } from 'next/navigation';
-import React from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { toast } from "sonner"
 import { useState } from 'react';
 import IError from '@/types/error';
 
-export default function Page() {
+function MyPage() {
   const [formData] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
   const router = useRouter();
   const searchParams = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [id, setId] = useState<string | null>(null);
+
+  useEffect(() => {
+    setId(searchParams.get('id'));
+  }, []);
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const id = searchParams.get('id');
       console.log(formData);
       const response = await fetch("/api/forms/staff-joining", {
         method: "POST",
@@ -54,7 +58,7 @@ export default function Page() {
         setErrors(responseData.errors);
       }
     } catch (err: unknown) {
-            const error = err as IError;
+      const error = err as IError;
       toast.error("Error submitting form", {
         description: error.message,
       });
@@ -86,4 +90,12 @@ export default function Page() {
       </Button>
     </form>
   )
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <MyPage />
+    </Suspense>
+  );
 }
