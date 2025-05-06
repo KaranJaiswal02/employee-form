@@ -1,5 +1,4 @@
 import { Document, Schema, Types, model, models } from "mongoose";
-import { turborepoTraceAccess } from "next/dist/build/turborepo-access-trace";
 
 export interface IdCardFormData {
   userId?: Types.ObjectId;

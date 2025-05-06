@@ -11,6 +11,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
 import { toast } from "sonner"
 import { useState } from 'react';
+import IError from '@/types/error';
 
 export default function page() {
   const [formData] = useAtom(empFormData);
@@ -52,7 +53,8 @@ export default function page() {
         toast.error(responseData.message);
         setErrors(responseData.errors);
       }
-    } catch (error: any) {
+    } catch (err: unknown) {
+            const error = err as IError;
       toast.error("Error submitting form", {
         description: error.message,
       });

@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { LuEraser } from "react-icons/lu";
 import { TfiReload } from "react-icons/tfi";
 import IFetchedUser from "@/types/fetchedUser";
+import IError from "@/types/error";
 
 export default function AdminManagementPage() {
     const [usersFromAtom, setUsersFromAtom] = useAtom<IFetchedUser[]>(usersStatusData);
@@ -54,7 +55,8 @@ export default function AdminManagementPage() {
                     description: data.errors?.[0]
                 });
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error fetching users", {
                 description: error.message || "An error occurred",
             });

@@ -6,6 +6,7 @@ import { empFormData, formStatusus, idCardFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { toast } from "sonner";
 import IdCardForm from "@/components/idCardForm/IdCardForm";
+import IError from "@/types/error";
 
 export default function Page() {
   const router = useRouter();
@@ -59,7 +60,8 @@ export default function Page() {
         toast.error(responseData.message);
         setErrors(responseData.errors);
       }
-    } catch (error: any) {
+    } catch (err: unknown) {
+            const error = err as IError;
       toast.error("Error submitting form", {
         description: error.message || "An error occurred",
       });

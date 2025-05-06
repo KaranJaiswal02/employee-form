@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { LuEraser } from "react-icons/lu";
 import { TfiReload } from "react-icons/tfi";
 import IFetchedUser from "@/types/fetchedUser";
+import IError from "@/types/error";
 
 interface FormData {
     [key: string]: any;
@@ -110,7 +111,8 @@ export default function UserFormDownloadPage() {
                     description: data.errors?.[0] || "Error fetching users",
                 });
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error fetching users", {
                 description: error.message || "An error occurred",
             });
@@ -147,7 +149,8 @@ export default function UserFormDownloadPage() {
                     description: data.errors?.[0] || "Error fetching form data",
                 });
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error fetching form data", {
                 description: error.message || "An error occurred",
             });

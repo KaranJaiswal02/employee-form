@@ -7,6 +7,7 @@ import { useAtom } from "jotai";
 import { toast } from "sonner";
 import StaffFamilyMembers from "@/components/staffFamilyMembers/StaffFamilyMembers";
 import { calculateAge } from "@/lib/calculateAge";
+import IError from "@/types/error";
 
 type Child = {
     name: string;
@@ -65,7 +66,8 @@ export default function Page() {
                 toast.error(responseData.message);
                 setErrors(responseData.errors);
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error submitting form", {
                 description: error.message || "An error occurred",
             });

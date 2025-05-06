@@ -8,6 +8,7 @@ import { empFormData, formStatusus, nominationForm2Data } from '@/hooks/Atoms';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import IError from '@/types/error';
 
 export default function Page() {
     const router = useRouter();
@@ -66,7 +67,8 @@ export default function Page() {
                 toast.error(responseData.message);
                 setErrors(responseData.errors);
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error submitting form", {
                 description: error.message || "An error occurred",
             });

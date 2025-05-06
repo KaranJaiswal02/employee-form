@@ -11,6 +11,7 @@ import { useAtom } from "jotai";
 import PasswordInput from "@/components/ui/password-input";
 import { TfiReload } from "react-icons/tfi";
 import IFetchedUser from "@/types/fetchedUser";
+import IError from "@/types/error";
 
 export default function UserPasswordUpdatePage() {
     const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
@@ -77,9 +78,10 @@ export default function UserPasswordUpdatePage() {
                     description: data.errors?.[0]
                 });
             }
-        } catch (error: any) {
+        } catch (error: unknown) {
+            const err = error as IError;
             toast.error("Password update failed", {
-                description: error.message || "An error occurred",
+                description: err.message || "An error occurred",
             });
         }
         setUpdating(false);

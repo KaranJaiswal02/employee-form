@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document, model, models, Types } from 'mongoose';
+import { Schema, Document, model, models, Types } from 'mongoose';
 
 interface Child {
   name: string;

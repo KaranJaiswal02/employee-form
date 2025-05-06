@@ -8,6 +8,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import IError from '@/types/error';
 
 
 export default function Page() {
@@ -62,7 +63,8 @@ export default function Page() {
         setErrors(responseData.errors);
 
       }
-    } catch (error: any) {
+    } catch (err: unknown) {
+            const error = err as IError;
       toast.error("Error submitting form", {
         description: error.message || "An error occurred",
       });

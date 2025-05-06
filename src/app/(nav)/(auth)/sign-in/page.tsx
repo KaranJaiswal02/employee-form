@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
 import PasswordInput from "@/components/ui/password-input";
+import IError from "@/types/error";
 
 export default function LoginForm() {
     const router = useRouter();
@@ -63,7 +64,8 @@ export default function LoginForm() {
                 });
                 setErrors(res.data.errors || ['Login failed']);
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error logging in", {
                 description: error.message || "An error occurred",
             });

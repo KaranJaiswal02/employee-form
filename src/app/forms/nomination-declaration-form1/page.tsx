@@ -2,6 +2,7 @@
 import NominationDeclarationForm1 from '@/components/nominationDeclarationForm1/NominationDeclarationForm1';
 import { Button } from '@/components/ui/button'
 import { empFormData, formStatusus, nominationForm1Data } from '@/hooks/Atoms';
+import IError from '@/types/error';
 import { useAtom } from 'jotai';
 import { useRouter, useSearchParams } from 'next/navigation'
 import React, { useEffect, useState } from "react";
@@ -69,7 +70,8 @@ export default function Page() {
         toast.error(responseData.message);
         setErrors(responseData.errors);
       }
-    } catch (error: any) {
+    } catch (err: unknown) {
+            const error = err as IError;
       toast.error("Error submitting form", {
         description: error.message || "An error occurred",
       });

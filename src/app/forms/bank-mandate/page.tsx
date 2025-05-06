@@ -6,6 +6,7 @@ import { bankMandateFormData, empFormData, formStatusus } from '@/hooks/Atoms';
 import { Button } from '@/components/ui/button';
 import { toast } from "sonner"
 import BankMandateForm from '@/components/bankMandateForm/BankMandateForm';
+import IError from '@/types/error';
 
 export default function Page() {
     const router = useRouter();
@@ -56,7 +57,8 @@ export default function Page() {
                 toast.error(responseData.message);
                 setErrors(responseData.errors);
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error submitting form", {
                 description: error.message || "An error occurred",
             });

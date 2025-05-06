@@ -11,6 +11,7 @@ import { LuEraser } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { TfiReload } from "react-icons/tfi";
 import IFetchedUser from "@/types/fetchedUser";
+import IError from "@/types/error";
 
 export default function AdminManagementPage() {
     const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);
@@ -46,7 +47,8 @@ export default function AdminManagementPage() {
                     description: data.errors?.[0]
                 });
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error fetching users", {
                 description: error.message || "An error occurred",
             });
@@ -87,7 +89,8 @@ export default function AdminManagementPage() {
                     description: data.errors?.[0] || "An error occurred",
                 });
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             setUsers(previousUsers);
             setFilteredUsers(previousUsers);
             toast.error("Error toggling role", {
