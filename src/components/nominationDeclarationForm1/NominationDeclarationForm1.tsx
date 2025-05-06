@@ -257,6 +257,9 @@ export default function NominationDeclarationForm1() {
                 </div>
             </div>
             <div className="mt-4 mb-4 h-[1px] w-3/4 bg-black mx-auto"></div>
+            
+            <div className="print:hidden page-break h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+            <div className="page-break"></div>
             <div>
                 {/* Certification Statements */}
                 <ol className="list-decimal space-y-2 ml-6">

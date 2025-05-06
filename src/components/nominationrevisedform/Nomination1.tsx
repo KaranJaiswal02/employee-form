@@ -106,7 +106,7 @@ export default function EPFNominationForm() {
             {/* Personal Information Section */}
             <div className="space-y-4 mb-6">
                 <div className="flex flex-col md:flex-row gap-4" >
-                    <label className="w-full md:w-72 uppercase ">1. Name (IN BLOCK LETTERS):</label>
+                    <label className="w-full md:w-72 uppercase  font-semibold">1. Name (IN BLOCK LETTERS):</label>
                     <div className="flex-1 grid grid-cols-3 gap-4">
                         <input
                             type="text"
@@ -142,79 +142,87 @@ export default function EPFNominationForm() {
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">2. Father&rsquo;s/Husband&rsquo;s Name:</label>
-                    <input
-                        type="text"
-                        name="fatherName"
-                        value={formData.fatherName}
-                        onChange={handleChange}
-                        className="border-b border-black dark:border-white outline-none"
-                        placeholder="Father's/Husband's Name"
-                        required
-                        // disabled={true}
-                    />
-                </div>
-                <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">3. Date of Birth:</label>
-                    <input
-                        type="date"
-                        name="dob"
-                        value={formData.dob?.toString().split('T')[0]}
-                        onChange={handleChange}
-                        className="flex-1 border-b border-black dark:border-white outline-none"
-                        required
-                        disabled={true}
-                    />
-                </div>
+                    {/* Father's/Husband's Name */}
+                    <div className="flex flex-col md:flex-row gap-4 md:w-130">
+                        <label className="w-full md:w-72 font-semibold">2. Father&rsquo;s/Husband&rsquo;s Name:</label>
+                        <input
+                            type="text"
+                            name="fatherName"
+                            value={formData.fatherName}
+                            onChange={handleChange}
+                            className="border-b border-black dark:border-white outline-none flex-1 max-w-60"
+                            placeholder="Father's/Husband's Name"
+                            required
+                        />
+                    </div>
 
-                <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">4. Account No:</label>
-                    <input
-                        type="text"
-                        name="accountNo"
-                        value={formData.accountNumber}
-                        onChange={handleChange}
-                        className="flex-1 border-b border-black dark:border-white outline-none"
-                        required
-                        disabled={true}
-                    />
-                </div>
-
-                <div className="flex flex-col md:flex-row gap-4">
-                    <label htmlFor='sex' className="w-full md:w-72">5. Sex:</label>
-                    <div className="flex-1 flex gap-6">
-                            <input
-                                type="text"
-                                name="sex"
-                                id='sex'
-                                value={formData.sex}
-                                onChange={handleChange}
-                                className="flex-1 border-b border-black dark:border-white outline-none"
-                                disabled={true}
-                            />
+                    {/* Date of Birth */}
+                    <div className="flex flex-col md:flex-row gap-4 md:w-1/3 ml-8">
+                        <label className="w-full md:w-32 font-semibold">3. Date of Birth:</label>
+                        <input
+                            type="date"
+                            name="dob"
+                            value={formData.dob?.toString().split('T')[0]}
+                            onChange={handleChange}
+                            className="border-b border-black dark:border-white outline-none flex-1"
+                            required
+                            disabled={true}
+                        />
                     </div>
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">6. Marital Status:</label>
-                    <input
-                        type="text"
-                        name="maritalStatus"
-                        value={formData.maritalStatus}
-                        onChange={handleChange}
-                        className="flex-1 border-b border-black dark:border-white outline-none"
-                        required
-                        disabled={true}
-                    />
+                    {/* Account Number */}
+                    <div className="flex flex-col md:flex-row gap-2 md:w-80">
+                        <label className="text-sm md:w-35 mt-1 font-semibold">4. Account No:</label>
+                        <input
+                            type="text"
+                            name="accountNo"
+                            value={formData.accountNumber}
+                            onChange={handleChange}
+                            className="flex-1 border-b border-black dark:border-white outline-none"
+                            required
+                            disabled={true}
+                        />
+                    </div>
+
+                    {/* Sex */}
+                    <div className="flex flex-col md:flex-row gap-2 md:w-50">
+                        <label htmlFor="sex" className="text-sm md:w-16 ml-6 mt-1 font-semibold">5. Sex:</label>
+                        <input
+                            type="text"
+                            name="sex"
+                            id="sex"
+                            value={formData.sex}
+                            onChange={handleChange}
+                            className="flex-1 border-b border-black dark:border-white outline-none max w-20"
+                            disabled={true}
+                        />
+                    </div>
+
+                    {/* Marital Status */}
+                    <div className="flex flex-col md:flex-row gap-2 md:w-80">
+                        <label className="text-sm md:w-36 mt-1 font-semibold ml-4">6. Marital Status:</label>
+                        <input
+                            type="text"
+                            name="maritalStatus"
+                            value={formData.maritalStatus}
+                            onChange={handleChange}
+                            className="flex-1 border-b border-black dark:border-white outline-none w-30"
+                            required
+                            disabled={true}
+                        />
+                    </div>
                 </div>
 
+
                 <div className="flex flex-col md:flex-row gap-4">
-                    <label className="w-full md:w-72">7. Address (Permanent/Temporary):</label>
+                    <label className="w-full md:w-72 font-semibold">7. Address (Permanent/Temporary):</label>
                     <textarea
                         name="address"
                         value={formData.address}
                         onChange={handleChange}
-                        className="flex-1 border-b border-black dark:border-white outline-none h-16"
+                        className="flex-1 border-b border-black dark:border-white outline-none h-10"
                         required
                     />
                 </div>
@@ -366,6 +374,10 @@ export default function EPFNominationForm() {
                     </div>
                 </div>
             </div>
+
+            <div className="print:hidden page-break h-[2px] w-3/4 bg-neutral-600 mx-auto my-8">
+            </div>
+            <div className="page-break"></div>
 
             {/* Part B - EPS Family Details */}
             <div className="mb-8">
