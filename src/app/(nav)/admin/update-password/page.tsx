@@ -45,9 +45,10 @@ export default function UserPasswordUpdatePage() {
                     description: data.errors?.[0]
                 });
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Failed to fetch users", {
-                description: err.message || "An error occurred",
+                description: error.message || "An error occurred",
             });
         }
         setLoading(false);

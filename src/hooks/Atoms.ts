@@ -1,5 +1,6 @@
 import { atom } from 'jotai';
 import { DefaultBankMandateFormData, DefaultEmpFormData, DefaultFormStatusus, DefaultGrauFormData, DefaultIdCardFormData, DefaultNominationForm1Data, DefaultNominationForm2Data, DefaultStaffFamilyFormData } from './defaultValue';
+import IFetchedUser from '@/types/fetchedUser';
 
 export const empFormData = atom(DefaultEmpFormData)
 export const grauFormData = atom(DefaultGrauFormData)

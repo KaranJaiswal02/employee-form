@@ -56,7 +56,7 @@ export default function AdminManagementPage() {
         setLoading(false);
     };
 
-    const toggleRole = async (userId: string, name: string) => {
+    const toggleRole = async (userId: string) => {
         setChangingRole(true);
         const previousUsers = [...users];
 
@@ -214,7 +214,7 @@ export default function AdminManagementPage() {
                                         <Switch
                                             checked={user.role === "admin"}
                                             onCheckedChange={() =>
-                                                toggleRole(user._id, user.name)
+                                                toggleRole(user._id)
                                             }
                                             className="cursor-pointer"
                                             disabled={changingRole}

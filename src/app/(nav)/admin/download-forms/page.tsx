@@ -14,10 +14,13 @@ import { LuEraser } from "react-icons/lu";
 import { TfiReload } from "react-icons/tfi";
 import IFetchedUser from "@/types/fetchedUser";
 import IError from "@/types/error";
-
-interface FormData {
-    [key: string]: any;
-}
+import { BankMandateFormData } from "@/models/forms/bank-mandate";
+import { IGratuityForm } from "@/models/forms/gratuity-form";
+import { IdCardFormData } from "@/models/forms/idcard-form";
+import { NominationForm1Model } from "@/models/forms/nomination-form1";
+import { NominationForm2Model } from "@/models/forms/nomination-form2";
+import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
+import { IEmpFormData } from "@/models/forms/staffjoin_form";
 
 interface UserFormData {
     name: string;
@@ -27,13 +30,13 @@ interface UserFormData {
     currentUserRole: string;
     currentUserName: string;
     forms: {
-        bankMandateFormData?: FormData;
-        grauFormData?: FormData;
-        idCardFormData?: FormData;
-        nominationForm1Data?: FormData;
-        nominationForm2Data?: FormData;
-        staffFamilyFormData?: FormData;
-        empFormData?: FormData;
+        bankMandateFormData?: BankMandateFormData;
+        grauFormData?: IGratuityForm;
+        idCardFormData?: IdCardFormData;
+        nominationForm1Data?: NominationForm1Model;
+        nominationForm2Data?: NominationForm2Model;
+        staffFamilyFormData?: StaffFamilyFormData;
+        empFormData?: IEmpFormData;
     };
 }
 
@@ -70,7 +73,7 @@ export default function UserFormDownloadPage() {
         empFormData: 'portrait',
     }
 
-    const handleOpenAndPrint = (formKey: string, data: any) => {
+    const handleOpenAndPrint = (formKey: string, data: object) => {
         const payload = {
             formKey,
             formData: data,
@@ -171,16 +174,25 @@ export default function UserFormDownloadPage() {
             toast.error("No form data available to download");
             return;
         }
-        const excelData = {
-            ...userData.forms.bankMandateFormData,
-            ...userData.forms.grauFormData,
-            ...userData.forms.idCardFormData,
-            ...userData.forms.nominationForm1Data,
-            ...userData.forms.nominationForm2Data,
-            ...userData.forms.staffFamilyFormData,
-            ...userData.forms.empFormData,
+        const data = {
+            bankMandateFormData: userData.forms.bankMandateFormData || {},
+            grauFormData: userData.forms.grauFormData || {},
+            idCardFormData: userData.forms.idCardFormData || {},
+            nominationForm1Data: userData.forms.nominationForm1Data || {},
+            nominationForm2Data: userData.forms.nominationForm2Data || {},
+            staffFamilyFormData: userData.forms.staffFamilyFormData || {},
+            empFormData: userData.forms.empFormData || {},
         }
-        console.log(excelData)
+
+        const excelData = {
+            ...data.bankMandateFormData,
+            ...data.grauFormData,
+            ...data.idCardFormData,
+            ...data.nominationForm1Data,
+            ...data.nominationForm2Data,
+            ...data.staffFamilyFormData,
+            ...data.empFormData,
+        }
         convertToExcel(excelData, `${userData.name.replace(/\s+/g, "_")}_forms.xlsx`);
         toast.success(`Downloaded Excel for ${userData.name}`);
     };

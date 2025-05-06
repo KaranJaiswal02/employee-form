@@ -1,7 +1,7 @@
 // Dashboard.tsx
 'use client';
 import Link from 'next/link';
-import { FaUserShield, FaFileDownload, FaUserEdit, FaClipboardList, FaBriefcase, FaUsers, FaKey } from 'react-icons/fa';
+import { FaUserShield, FaFileDownload, FaUserEdit, FaClipboardList, FaBriefcase, FaKey } from 'react-icons/fa';
 
 const dashboardOptions = [
     {
