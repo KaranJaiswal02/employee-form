@@ -16,9 +16,9 @@ function BankMandate() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
     const [id, setId] = useState<string | null>(null);
+    const searchParams = useSearchParams()
     //16-17 lagana hai sbmein
     useEffect(() => {
-        const searchParams = useSearchParams()
         setId(searchParams.get('id'));
         setFormData((prev) => ({
             ...prev,
