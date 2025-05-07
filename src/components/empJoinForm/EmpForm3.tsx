@@ -66,7 +66,7 @@ export default function EmpForm3() {
     return (
 
 
-        <div className="p-6 space-y-6 text-sm font-sans">
+        <div className="p-6 space-y-1 text-sm font-sans">
             {/* EDUCATIONAL QUALIFICATION */}
             <h2 className="font-bold uppercase">
                 <RequiredLabel>Educational Qualification<div className="italic">(Start from highest qualification)</div></RequiredLabel>
@@ -169,7 +169,7 @@ export default function EmpForm3() {
             </button>
 
             {/* EXTRA-CURRICULAR ACTIVITIES */}
-            <h2 className="font-bold uppercase my-4">
+            <h2 className="font-bold uppercase my-1 mt-3">
                 Extra-Curricular Activities <span className="italic">(Give details, achievements, etc)</span>
             </h2>
             <div className="border border-black dark:border-white p-4 rounded-md space-y-2">
@@ -253,12 +253,12 @@ export default function EmpForm3() {
             </div>
 
             <div>
-                <RequiredLabel><label htmlFor="convictionDetails" className="font-semibold block">
+                <RequiredLabel><label htmlFor="convictionDetails" className="font-bold block">
                     Have you been convicted by any court? If yes, please give details:
                 </label></RequiredLabel>
                 <textarea
                     id="convictionDetails"
-                    className="w-full border border-black dark:border-white mt-2 p-2 focus:outline-none"
+                    className="w-full border border-black dark:border-white mt-1 p-1 focus:outline-none"
                     rows={3}
                     value={formData.convictionDetails}
                     onChange={(e) => handleChange("convictionDetails", e.target.value)}
@@ -274,20 +274,20 @@ export default function EmpForm3() {
             </p>
 
             <div className="flex justify-between mt-4">
-                <div>
+                <div className="font-semibold">
                     DATE:{" "}
                     <input
                         type="date"
-                        className="border-b border-black dark:border-white inline-block"
+                        className=" border-black dark:border-white inline-block"
                         value={formData.date?.toString().split('T')[0] ?? ''}
                         onChange={(e) => handleChange("date", e.target.value)}
                         disabled={true}
                     />
                 </div>
-                <div className=" border-black dark:border-white inline-block w-40">
-                    <p>PLACE:<b> Bengaluru</b></p>
+                <div className=" border-black dark:border-white inline-block font-semibold w-40">
+                    <p>PLACE: Bengaluru</p>
                 </div>
-                <div className="text-right">
+                <div className="text-right font-semibold">
                     ______________________ <br />
                     SIGNATURE
                 </div>
