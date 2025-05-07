@@ -100,7 +100,10 @@ export default function EmpForm4() {
 
     return (
         <div>
-            <div className="text-right text-sm font-semibold mb-2">Annexure 3</div>
+            <div className="flex justify-between items-start mb-1">
+        <img src="/assets/images/logo.png" alt="Company Logo" className="h-8 brightness-100 dark:brightness-150" />
+        <span className="font-semibold">Annexure3</span>
+      </div>
             <h2 className="text-center font-bold underline text-lg mb-6">
                 FAMILY DECLARATION FORM
             </h2>
