@@ -1,57 +1,95 @@
-'use client';
-import { formStatusus } from '@/hooks/Atoms';
-import { useAtom } from 'jotai';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useState } from 'react';
+"use client";
+import EmpForm1 from '@/components/empJoinForm/EmpForm1'
+import EmpForm2 from '@/components/empJoinForm/EmpForm2'
+import EmpForm3 from '@/components/empJoinForm/EmpForm3'
+import EmpForm4 from '@/components/empJoinForm/EmpForm4'
+import EmpForm5 from '@/components/empJoinForm/EmpForm5'
+import { Button } from '@/components/ui/button';
+import { empFormData, formStatusus } from '@/hooks/Atoms'
+import { useAtom } from 'jotai'
+import { useRouter, useSearchParams } from 'next/navigation';
+import React, { Suspense, useEffect } from 'react'
+import { toast } from "sonner"
+import { useState } from 'react';
+import IError from '@/types/error';
 
 function MyPage() {
-  const [formStatus] = useAtom(formStatusus);
-  const searchParams = useSearchParams()
-  const [params, setParams] = useState<string>('');
-
+  const [formData] = useAtom(empFormData);
+  const [, setFormStatus] = useAtom(formStatusus);
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
+  const [id, setId] = useState<string | null>(null);
+  
   useEffect(() => {
-    const id = searchParams.get('id');
-    setParams(id ? `?id=${id}` : '');
-  }, [searchParams]);
+    const searchParams = useSearchParams()
+    setId(searchParams.get('id'));
+  }, []);
 
-  const incompleteForms = Object.values(formStatus).filter(form => form.status !== 'done');
-  const allFormsCompleted = incompleteForms.length === 0;
+  const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      console.log(formData);
+      const response = await fetch("/api/forms/staff-joining", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "authorization": `Bearer ${localStorage.getItem("token")}`,
+          "userid": id as string,
+        },
+        body: JSON.stringify(formData),
+      });
+      const responseData = await response.json();
+      if (responseData.success) {
+        setFormStatus((prevStatus) => ({
+          ...prevStatus,
+          staff_joining: {
+            ...prevStatus.staff_joining,
+            status: "done",
+          },
+        }));
+        toast.success(responseData.message);
+        const params = id ? `?id=${id}` : '';
+        router.push(`/forms/idcard-form${params}`);
+      }
+      else {
+        toast.error(responseData.message);
+        setErrors(responseData.errors);
+      }
+    } catch (err: unknown) {
+      const error = err as IError;
+      toast.error("Error submitting form", {
+        description: error.message,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center h-full px-4 py-10 text-center">
-      <div className="max-w-2xl w-full bg-white dark:bg-neutral-800 shadow-md rounded-xl p-6 md:p-10">
-
-        {allFormsCompleted ? (
-          <>
-            <h1 className="text-3xl md:text-4xl font-bold text-green-600 mb-4">Thank You!</h1>
-            <p className="text-gray-700 dark:text-gray-200 text-lg md:text-xl mb-2">
-              Your submission has been received successfully.
-            </p>
-            <p className="text-gray-600 dark:text-gray-300 text-base md:text-lg">
-              We appreciate your time and effort.
-            </p>
-          </>
-        ) : (
-          <>
-            <p className="text-lg md:text-2xl mb-4">
-              Please complete the following form{incompleteForms.length > 1 ? 's' : ''} before submitting:
-            </p>
-            <ul className="space-y-2">
-              {incompleteForms.map((form, index) => (
-                <li
-                  key={index}
-                  className="text-red-500 font-semibold text-base md:text-lg hover:underline cursor-pointer"
-                >
-                  <Link href={`/forms${form.url}${params}`}>{form.name}</Link>
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-      </div>
-    </div>
-  );
+    <form onSubmit={submitForm} className="p-6 max-w-4xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
+      <EmpForm1 />
+      <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+      <EmpForm2 />
+      <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+      <EmpForm3 />
+      <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+      <EmpForm4 />
+      <div className="h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+      <EmpForm5 />
+      {errors.length > 0 && (
+        <div className="text-red-600 text-sm px-2 text-left">
+          {errors.map((err, index) => (
+            <div key={index}>{err}</div>
+          ))}
+        </div>
+      )}
+      <Button type='submit' disabled={isSubmitting} className="mt-6 w-full cursor-pointer">
+        {isSubmitting ? "Submitting..." : "Submit"}
+      </Button>
+    </form>
+  )
 }
 
 export default function Page() {

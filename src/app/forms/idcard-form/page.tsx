@@ -13,10 +13,10 @@ function MyPage() {
   const [formData, setFormData] = useAtom(idCardFormData);
   const [empFormData1] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
-  const searchParams = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
   const [id, setId] = useState<string | null>(null);
+  const searchParams = useSearchParams()
 
   useEffect(() => {
     setId(searchParams.get('id'));

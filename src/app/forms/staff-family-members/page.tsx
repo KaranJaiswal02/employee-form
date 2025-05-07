@@ -20,12 +20,12 @@ function MyPage() {
     const [formData, setFormData] = useAtom(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
     const [, setFormStatus] = useAtom(formStatusus);
-    const searchParams = useSearchParams()
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
     const [id, setId] = useState<string | null>(null);
-
+    
     useEffect(() => {
+        const searchParams = useSearchParams()
         setId(searchParams.get('id'));
         setFormData((prev) => ({
             ...prev,

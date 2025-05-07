@@ -22,12 +22,12 @@ function MyPage() {
   const [empFormData1] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
   const [formData, setFormData] = useAtom(nominationForm1Data);
-  const searchParams = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
   const [id, setId] = useState<string | null>(null);
-
+  
   useEffect(() => {
+    const searchParams = useSearchParams()
     setId(searchParams.get('id'));
     setFormData((prev) => ({
       ...prev,
