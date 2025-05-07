@@ -7,6 +7,8 @@ import { useAtom } from "jotai";
 import { toast } from "sonner";
 import StaffFamilyMembers from "@/components/staffFamilyMembers/StaffFamilyMembers";
 import { calculateAge } from "@/lib/calculateAge";
+import IError from "@/types/error";
+
 
 type Child = {
     name: string;

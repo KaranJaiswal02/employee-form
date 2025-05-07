@@ -11,6 +11,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import React from 'react'
 import { toast } from "sonner"
 import { useState } from 'react';
+import IError from '@/types/error';
+
 
 export default function page() {
   const [formData] = useAtom(empFormData);
