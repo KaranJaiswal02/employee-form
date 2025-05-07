@@ -3,14 +3,15 @@ import GratuityForm1 from '@/components/gratuityForm/GratuityForm1'
 import GratuityForm2 from '@/components/gratuityForm/GratuityForm2'
 import { empFormData, formStatusus, grauFormData, nominationForm1Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
-import React, { useEffect } from 'react'
+import React, { Suspense, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { useState } from 'react';
+import IError from '@/types/error';
 
 
-export default function Page() {
+function MyPage() {
   const router = useRouter()
   const [formData, setFormData] = useAtom(grauFormData);
   const [empFormData1] = useAtom(empFormData);
@@ -19,8 +20,10 @@ export default function Page() {
   const searchParams = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [id, setId] = useState<string | null>(null);
 
   useEffect(() => {
+    setId(searchParams.get('id'));
     setFormData(prev => ({
       ...prev,
       name: empFormData1.name || "",
@@ -33,7 +36,6 @@ export default function Page() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const id = searchParams.get('id')
       console.log(formData);
       const response = await fetch("/api/forms/gratuity-form", {
         method: "POST",
@@ -62,7 +64,8 @@ export default function Page() {
         setErrors(responseData.errors);
 
       }
-    } catch (error: any) {
+    } catch (err: unknown) {
+      const error = err as IError;
       toast.error("Error submitting form", {
         description: error.message || "An error occurred",
       });
@@ -89,4 +92,12 @@ export default function Page() {
       </div>
     </form>
   )
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <MyPage />
+    </Suspense>
+  );
 }

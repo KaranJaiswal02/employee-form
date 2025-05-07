@@ -148,7 +148,7 @@ export default function EmpForm2() {
                         type="date"
                         name="dob"
                         id='dob'
-                        value={formData.dob?.toString().split('T')[0]}
+                        value={formData.dob?.toString().split('T')[0] ?? ''}
                         disabled={true}
                         onChange={handleChange}
                         className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none"
@@ -417,7 +417,7 @@ export default function EmpForm2() {
                                 type="date"
                                 name="spouseDob"
                                 id='spouseDob'
-                                value={formData.spouseDob?.toString().split('T')[0]}
+                                value={formData.spouseDob?.toString().split('T')[0] ?? ''}
                                 onChange={handleChange}
                                 className="w-full border-b border-black dark:border-white focus:outline-none"
                                 required
@@ -429,7 +429,7 @@ export default function EmpForm2() {
                                 type="date"
                                 name="anniversaryDate"
                                 id='anniversaryDate'
-                                value={formData.anniversaryDate?.toString().split('T')[0]}
+                                value={formData.anniversaryDate?.toString().split('T')[0] ?? ''}
                                 onChange={handleChange}
                                 className="w-full border-b border-black dark:border-white focus:outline-none"
                                 required

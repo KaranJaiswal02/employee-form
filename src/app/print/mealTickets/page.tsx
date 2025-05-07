@@ -2,8 +2,15 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+interface MealTicketData {
+    name: string;
+    month: string;
+    year: string;
+    noOfDays: number;
+}
+
 export default function MealTicketPrintPage() {
-    const [data, setData] = useState<any>(null);
+    const [data, setData] = useState<MealTicketData | null>();
     const router = useRouter();
 
     useEffect(() => {

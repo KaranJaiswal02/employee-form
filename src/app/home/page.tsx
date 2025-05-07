@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaBriefcase, FaClipboardList, FaFileDownload, FaKey, FaMoon, FaSun, FaUserEdit, FaUsersCog, FaUserShield } from "react-icons/fa";
+import { FaBriefcase, FaClipboardList, FaFileDownload, FaKey, FaMoon, FaSun, FaUserEdit, FaUserShield } from "react-icons/fa";
 
 export default function HomePage() {
     const [isDarkMode, setIsDarkMode] = useState(false);
@@ -22,7 +22,7 @@ export default function HomePage() {
             } else {
                 localStorage.removeItem("token");
             }
-        } catch (error) {
+        } catch {
             localStorage.removeItem("token");
         }
     };

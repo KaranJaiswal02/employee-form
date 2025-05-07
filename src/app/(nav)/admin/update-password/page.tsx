@@ -11,6 +11,7 @@ import { useAtom } from "jotai";
 import PasswordInput from "@/components/ui/password-input";
 import { TfiReload } from "react-icons/tfi";
 import IFetchedUser from "@/types/fetchedUser";
+import IError from "@/types/error";
 
 export default function UserPasswordUpdatePage() {
     const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
@@ -44,9 +45,10 @@ export default function UserPasswordUpdatePage() {
                     description: data.errors?.[0]
                 });
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Failed to fetch users", {
-                description: err.message || "An error occurred",
+                description: error.message || "An error occurred",
             });
         }
         setLoading(false);
@@ -77,9 +79,10 @@ export default function UserPasswordUpdatePage() {
                     description: data.errors?.[0]
                 });
             }
-        } catch (error: any) {
+        } catch (error: unknown) {
+            const err = error as IError;
             toast.error("Password update failed", {
-                description: error.message || "An error occurred",
+                description: err.message || "An error occurred",
             });
         }
         setUpdating(false);
@@ -110,6 +113,11 @@ export default function UserPasswordUpdatePage() {
                 <p className="text-gray-600 dark:text-gray-400">
                     <span className="font-semibold text-yellow-600 dark:text-yellow-500">Note:</span> Only available for user accounts. Admins should reset their own password.
                 </p>
+                {users.length === 0 && !loading && (
+                    <p className="text-gray-600 dark:text-gray-400">
+                        <span className="font-semibold text-red-500">Notice:</span> No users available for editing.
+                    </p>
+                )}
             </div>
 
             <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">

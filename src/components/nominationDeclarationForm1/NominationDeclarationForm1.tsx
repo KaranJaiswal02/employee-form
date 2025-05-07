@@ -96,7 +96,7 @@ export default function NominationDeclarationForm1() {
                         <input
                             type="date"
                             name="dob"
-                            value={formData.dob?.toString().split('T')[0]}
+                            value={formData.dob?.toString().split('T')[0] ?? ''}
                             onChange={handleChange}
                             className="flex-1 border-b-1 border-black dark:border-white px-2 py-1 focus:outline-none"
                             disabled={true}
@@ -208,7 +208,7 @@ export default function NominationDeclarationForm1() {
                                         <input
                                             type="date"
                                             className="w-full px-1 py-1 border border-gray-300 focus:outline-none"
-                                            value={nominee.dob?.toString().split('T')[0]}
+                                            value={nominee.dob?.toString().split('T')[0] ?? ''}
                                             onChange={(e) => handleNomineeChange(index, "dob", e.target.value)}
                                         />
                                     </td>
@@ -316,7 +316,7 @@ export default function NominationDeclarationForm1() {
                             <input
                                 type="date"
                                 name="date"
-                                value={formData.date?.toString().split('T')[0]}
+                                value={formData.date?.toString().split('T')[0] ?? ''}
                                 onChange={handleChange}
                                 className="flex-1  border-black dark:border-white px-2 focus:outline-none"
                                 disabled={true}

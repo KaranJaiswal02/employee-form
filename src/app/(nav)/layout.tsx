@@ -6,6 +6,7 @@ import { FiLogOut } from "react-icons/fi";
 import { IoIosArrowBack } from "react-icons/io";
 import { toast } from "sonner";
 import { IoMoon, IoSunny } from "react-icons/io5";
+import IError from "@/types/error";
 
 export default function RootLayout({
     children,
@@ -37,7 +38,8 @@ export default function RootLayout({
                 localStorage.removeItem("token");
                 router.push("/sign-in");
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             localStorage.removeItem("token");
             toast.error("Error verifying token", {
                 description: error.message || "An error occurred",

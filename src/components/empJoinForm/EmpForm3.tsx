@@ -277,7 +277,7 @@ export default function EmpForm3() {
                     <input
                         type="date"
                         className="border-b border-black dark:border-white inline-block"
-                        value={formData.date?.toString().split('T')[0]}
+                        value={formData.date?.toString().split('T')[0] ?? ''}
                         onChange={(e) => handleChange("date", e.target.value)}
                         disabled={true}
                     />

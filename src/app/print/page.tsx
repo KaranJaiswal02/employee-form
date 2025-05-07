@@ -20,7 +20,7 @@ const formButtons = [
 ]
 
 export default function PrintPage() {
-    const handleOpenAndPrint = (formKey: string, data: any, layout: string) => {
+    const handleOpenAndPrint = (formKey: string, data: object, layout: string) => {
         const payload = {
             formKey,
             formData: data,

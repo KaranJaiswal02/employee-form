@@ -11,6 +11,7 @@ import { LuEraser } from "react-icons/lu";
 import { Button } from "@/components/ui/button";
 import { TfiReload } from "react-icons/tfi";
 import IFetchedUser from "@/types/fetchedUser";
+import IError from "@/types/error";
 
 export default function AdminManagementPage() {
     const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);
@@ -46,7 +47,8 @@ export default function AdminManagementPage() {
                     description: data.errors?.[0]
                 });
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error fetching users", {
                 description: error.message || "An error occurred",
             });
@@ -54,7 +56,7 @@ export default function AdminManagementPage() {
         setLoading(false);
     };
 
-    const toggleRole = async (userId: string, name: string) => {
+    const toggleRole = async (userId: string) => {
         setChangingRole(true);
         const previousUsers = [...users];
 
@@ -87,7 +89,8 @@ export default function AdminManagementPage() {
                     description: data.errors?.[0] || "An error occurred",
                 });
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             setUsers(previousUsers);
             setFilteredUsers(previousUsers);
             toast.error("Error toggling role", {
@@ -123,7 +126,7 @@ export default function AdminManagementPage() {
                 <p className="text-gray-600 dark:text-gray-400">
                     <span className="font-semibold text-yellow-600 dark:text-yellow-500">Important:</span> The role of the currently logged-in user cannot be modified.
                 </p>
-                {users.length === 0 && (
+                {users.length === 0 && !loading && (
                     <p className="text-gray-600 dark:text-gray-400">
                         <span className="font-semibold text-red-500">Notice:</span> No users found in the system.
                     </p>
@@ -211,7 +214,7 @@ export default function AdminManagementPage() {
                                         <Switch
                                             checked={user.role === "admin"}
                                             onCheckedChange={() =>
-                                                toggleRole(user._id, user.name)
+                                                toggleRole(user._id)
                                             }
                                             className="cursor-pointer"
                                             disabled={changingRole}

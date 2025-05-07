@@ -10,6 +10,13 @@ import { MdOutlinePending } from "react-icons/md";
 import Loader from "@/components/Loader";
 import { IoIosArrowBack } from "react-icons/io";
 import { DefaultBankMandateFormData, DefaultEmpFormData, DefaultGrauFormData, DefaultIdCardFormData, DefaultNominationForm1Data, DefaultNominationForm2Data, DefaultStaffFamilyFormData } from "@/hooks/defaultValue";
+import { BankMandateFormData } from "@/models/forms/bank-mandate";
+import { IGratuityForm } from "@/models/forms/gratuity-form";
+import { IdCardFormData } from "@/models/forms/idcard-form";
+import { NominationForm1Model } from "@/models/forms/nomination-form1";
+import { NominationForm2Model } from "@/models/forms/nomination-form2";
+import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
+import { IEmpFormData } from "@/models/forms/staffjoin_form";
 
 export default function FormLayout({
     children,
@@ -27,48 +34,147 @@ export default function FormLayout({
     const [currentUserRole, setCurrentUserRole] = useState("user");
 
     //all forms
-    const [, setbankMandateFormData] = useAtom(bankMandateFormData);
-    const [, setGrauFormData] = useAtom(grauFormData);
-    const [, setIdCardFormData] = useAtom(idCardFormData);
-    const [, setNominstionForm1Data] = useAtom(nominationForm1Data);
-    const [, setNominstionForm2Data] = useAtom(nominationForm2Data);
-    const [, setStaffFamilyFormData] = useAtom(staffFamilyFormData);
-    const [, setEmpFormData] = useAtom(empFormData);
+    const [, setbankMandateFormData] = useAtom<BankMandateFormData>(bankMandateFormData);
+    const [, setGrauFormData] = useAtom<IGratuityForm>(grauFormData);
+    const [, setIdCardFormData] = useAtom<IdCardFormData>(idCardFormData);
+    const [, setNominstionForm1Data] = useAtom<NominationForm1Model>(nominationForm1Data);
+    const [, setNominstionForm2Data] = useAtom<NominationForm2Model>(nominationForm2Data);
+    const [, setStaffFamilyFormData] = useAtom<StaffFamilyFormData>(staffFamilyFormData);
+    const [, setEmpFormData] = useAtom<IEmpFormData>(empFormData);
 
-    const setFormsData = (data: any) => {
-        const formMappings: { key: string; setter: (data: any) => void; statusKey: keyof typeof formStatus; defaultValue: any}[] = [
-            { key: 'bankMandateFormData', setter: setbankMandateFormData, statusKey: 'bank_mandate', defaultValue: DefaultBankMandateFormData },
-            { key: 'grauFormData', setter: setGrauFormData, statusKey: 'gratuity_form', defaultValue: DefaultGrauFormData },
-            { key: 'idCardFormData', setter: setIdCardFormData, statusKey: 'id_card', defaultValue: DefaultIdCardFormData },
-            { key: 'nominationForm1Data', setter: setNominstionForm1Data, statusKey: 'nomination_declaration_form1', defaultValue: DefaultNominationForm1Data },
-            { key: 'nominationForm2Data', setter: setNominstionForm2Data, statusKey: 'nomination_declaration_form2', defaultValue: DefaultNominationForm2Data },
-            { key: 'staffFamilyFormData', setter: setStaffFamilyFormData, statusKey: 'staff_family_members', defaultValue: DefaultStaffFamilyFormData },
-            { key: 'empFormData', setter: setEmpFormData, statusKey: 'staff_joining', defaultValue: DefaultEmpFormData },
-        ];
+    const setFormsData = (data: Partial<{
+        bankMandateFormData: BankMandateFormData;
+        grauFormData: IGratuityForm;
+        idCardFormData: IdCardFormData;
+        nominationForm1Data: NominationForm1Model;
+        nominationForm2Data: NominationForm2Model;
+        staffFamilyFormData: StaffFamilyFormData;
+        empFormData: IEmpFormData;
+    }>) => {
+        if (data.bankMandateFormData) {
+            setbankMandateFormData(data.bankMandateFormData);
+            setFormStatus((prev) => ({
+                ...prev,
+                bank_mandate: { ...prev.bank_mandate, status: 'done' },
+            }));
+        } else {
+            setbankMandateFormData(DefaultBankMandateFormData);
+            setFormStatus((prev) => ({
+                ...prev,
+                bank_mandate: { ...prev.bank_mandate, status: 'pending' },
+            }));
+        }
 
-        formMappings.forEach(({ key, setter, statusKey, defaultValue }) => {
-            if (data[key]) {
-                setter(data[key]);
-                setFormStatus((prev) => ({
-                    ...prev,
-                    [statusKey]: {
-                        ...prev[statusKey],
-                        status: 'done',
-                    },
-                }));
-            }
-            else{
-                setter(defaultValue);
-                setFormStatus((prev) => ({
-                    ...prev,
-                    [statusKey]: {
-                        ...prev[statusKey],
-                        status: 'pending',
-                    },
-                }));
-            }
-        });
+        if (data.grauFormData) {
+            setGrauFormData(data.grauFormData);
+            setFormStatus((prev) => ({
+                ...prev,
+                gratuity_form: { ...prev.gratuity_form, status: 'done' },
+            }));
+        } else {
+            setGrauFormData(DefaultGrauFormData);
+            setFormStatus((prev) => ({
+                ...prev,
+                gratuity_form: { ...prev.gratuity_form, status: 'pending' },
+            }));
+        }
+
+        if (data.idCardFormData) {
+            setIdCardFormData(data.idCardFormData);
+            setFormStatus((prev) => ({
+                ...prev,
+                id_card: { ...prev.id_card, status: 'done' },
+            }));
+        } else {
+            setIdCardFormData(DefaultIdCardFormData);
+            setFormStatus((prev) => ({
+                ...prev,
+                id_card: { ...prev.id_card, status: 'pending' },
+            }));
+        }
+
+        if (data.nominationForm1Data) {
+            setNominstionForm1Data(data.nominationForm1Data);
+            setFormStatus((prev) => ({
+                ...prev,
+                nomination_declaration_form1: {
+                    ...prev.nomination_declaration_form1,
+                    status: 'done',
+                },
+            }));
+        } else {
+            setNominstionForm1Data(DefaultNominationForm1Data);
+            setFormStatus((prev) => ({
+                ...prev,
+                nomination_declaration_form1: {
+                    ...prev.nomination_declaration_form1,
+                    status: 'pending',
+                },
+            }));
+        }
+
+        if (data.nominationForm2Data) {
+            setNominstionForm2Data(data.nominationForm2Data);
+            setFormStatus((prev) => ({
+                ...prev,
+                nomination_declaration_form2: {
+                    ...prev.nomination_declaration_form2,
+                    status: 'done',
+                },
+            }));
+        } else {
+            setNominstionForm2Data(DefaultNominationForm2Data);
+            setFormStatus((prev) => ({
+                ...prev,
+                nomination_declaration_form2: {
+                    ...prev.nomination_declaration_form2,
+                    status: 'pending',
+                },
+            }));
+        }
+
+        if (data.staffFamilyFormData) {
+            setStaffFamilyFormData(data.staffFamilyFormData);
+            setFormStatus((prev) => ({
+                ...prev,
+                staff_family_members: {
+                    ...prev.staff_family_members,
+                    status: 'done',
+                },
+            }));
+        } else {
+            setStaffFamilyFormData(DefaultStaffFamilyFormData);
+            setFormStatus((prev) => ({
+                ...prev,
+                staff_family_members: {
+                    ...prev.staff_family_members,
+                    status: 'pending',
+                },
+            }));
+        }
+
+        if (data.empFormData) {
+            setEmpFormData(data.empFormData);
+            setFormStatus((prev) => ({
+                ...prev,
+                staff_joining: {
+                    ...prev.staff_joining,
+                    status: 'done',
+                },
+            }));
+        } else {
+            setEmpFormData(DefaultEmpFormData);
+            setFormStatus((prev) => ({
+                ...prev,
+                staff_joining: {
+                    ...prev.staff_joining,
+                    status: 'pending',
+                },
+            }));
+        }
     };
+
+
 
     const init = async () => {
         setIsLoading(true);

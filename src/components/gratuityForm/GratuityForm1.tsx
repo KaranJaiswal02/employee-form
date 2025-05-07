@@ -96,11 +96,10 @@ export default function GratuityForm1() {
           I have excluded my husband from my family by a notice dated{" "}
           <input
             type="date"
-            value={formData.noticedate?.toString().split('T')[0]}
+            value={formData.noticedate?.toString().split('T')[0] ?? ''} 
             className="border-b border-black dark:border-white w-40 inline-block focus:outline-none"
             onChange={handleChange}
             name="noticedate"
-            
           />{" "}
           to the controlling authority in terms of the provison to clause (h) of Section 2 of the
           said Act.

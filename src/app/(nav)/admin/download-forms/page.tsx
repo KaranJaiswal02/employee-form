@@ -13,10 +13,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { LuEraser } from "react-icons/lu";
 import { TfiReload } from "react-icons/tfi";
 import IFetchedUser from "@/types/fetchedUser";
-
-interface FormData {
-    [key: string]: any;
-}
+import IError from "@/types/error";
+import { BankMandateFormData } from "@/models/forms/bank-mandate";
+import { IGratuityForm } from "@/models/forms/gratuity-form";
+import { IdCardFormData } from "@/models/forms/idcard-form";
+import { NominationForm1Model } from "@/models/forms/nomination-form1";
+import { NominationForm2Model } from "@/models/forms/nomination-form2";
+import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
+import { IEmpFormData } from "@/models/forms/staffjoin_form";
 
 interface UserFormData {
     name: string;
@@ -26,13 +30,13 @@ interface UserFormData {
     currentUserRole: string;
     currentUserName: string;
     forms: {
-        bankMandateFormData?: FormData;
-        grauFormData?: FormData;
-        idCardFormData?: FormData;
-        nominationForm1Data?: FormData;
-        nominationForm2Data?: FormData;
-        staffFamilyFormData?: FormData;
-        empFormData?: FormData;
+        bankMandateFormData?: BankMandateFormData;
+        grauFormData?: IGratuityForm;
+        idCardFormData?: IdCardFormData;
+        nominationForm1Data?: NominationForm1Model;
+        nominationForm2Data?: NominationForm2Model;
+        staffFamilyFormData?: StaffFamilyFormData;
+        empFormData?: IEmpFormData;
     };
 }
 
@@ -69,7 +73,7 @@ export default function UserFormDownloadPage() {
         empFormData: 'portrait',
     }
 
-    const handleOpenAndPrint = (formKey: string, data: any) => {
+    const handleOpenAndPrint = (formKey: string, data: object) => {
         const payload = {
             formKey,
             formData: data,
@@ -110,7 +114,8 @@ export default function UserFormDownloadPage() {
                     description: data.errors?.[0] || "Error fetching users",
                 });
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error fetching users", {
                 description: error.message || "An error occurred",
             });
@@ -147,7 +152,8 @@ export default function UserFormDownloadPage() {
                     description: data.errors?.[0] || "Error fetching form data",
                 });
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error fetching form data", {
                 description: error.message || "An error occurred",
             });
@@ -168,16 +174,25 @@ export default function UserFormDownloadPage() {
             toast.error("No form data available to download");
             return;
         }
-        const excelData = {
-            ...userData.forms.bankMandateFormData,
-            ...userData.forms.grauFormData,
-            ...userData.forms.idCardFormData,
-            ...userData.forms.nominationForm1Data,
-            ...userData.forms.nominationForm2Data,
-            ...userData.forms.staffFamilyFormData,
-            ...userData.forms.empFormData,
+        const data = {
+            bankMandateFormData: userData.forms.bankMandateFormData || {},
+            grauFormData: userData.forms.grauFormData || {},
+            idCardFormData: userData.forms.idCardFormData || {},
+            nominationForm1Data: userData.forms.nominationForm1Data || {},
+            nominationForm2Data: userData.forms.nominationForm2Data || {},
+            staffFamilyFormData: userData.forms.staffFamilyFormData || {},
+            empFormData: userData.forms.empFormData || {},
         }
-        console.log(excelData)
+
+        const excelData = {
+            ...data.bankMandateFormData,
+            ...data.grauFormData,
+            ...data.idCardFormData,
+            ...data.nominationForm1Data,
+            ...data.nominationForm2Data,
+            ...data.staffFamilyFormData,
+            ...data.empFormData,
+        }
         convertToExcel(excelData, `${userData.name.replace(/\s+/g, "_")}_forms.xlsx`);
         toast.success(`Downloaded Excel for ${userData.name}`);
     };
@@ -207,7 +222,7 @@ export default function UserFormDownloadPage() {
                     <p className="text-gray-600 dark:text-gray-400">
                         <span className="font-semibold text-yellow-600 dark:text-yellow-500">Note:</span> Only users with submitted forms will have download options.
                     </p>
-                    {users.length === 0 && (
+                    {users.length === 0 && !loading && (
                         <p className="text-gray-600 dark:text-gray-400">
                             <span className="font-semibold text-red-500">Notice:</span> No users found for form download.
                         </p>

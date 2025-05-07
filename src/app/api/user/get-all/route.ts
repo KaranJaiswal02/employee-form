@@ -3,6 +3,39 @@ import { User } from "@/models/user";
 import { NextRequest, NextResponse } from "next/server";
 import mongoose from "mongoose";
 import IAPIResponse from "@/types/responseType";
+import { BankMandateFormData } from "@/models/forms/bank-mandate";
+import { IGratuityForm } from "@/models/forms/gratuity-form";
+import { IdCardFormData } from "@/models/forms/idcard-form";
+import { NominationForm1Model } from "@/models/forms/nomination-form1";
+import { NominationForm2Model } from "@/models/forms/nomination-form2";
+import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
+import { IEmpFormData } from "@/models/forms/staffjoin_form";
+
+interface UserFormData {
+    _id: string;
+    name: string;
+    email: string;
+    role: string;
+    bankMandateForm?: BankMandateFormData;
+    gratuityForm?: IGratuityForm;
+    idCardForm?: IdCardFormData;
+    nominationForm1?: NominationForm1Model;
+    nominationForm2?: NominationForm2Model;
+    familyDetailsForm?: StaffFamilyFormData;
+    staffJoiningForm?: IEmpFormData;
+    [key: string]: unknown;
+}
+
+interface UserWithStatus extends Omit<UserFormData,
+    'bankMandateForm' |
+    'gratuityForm' |
+    'idCardForm' |
+    'nominationForm1' |
+    'nominationForm2' |
+    'familyDetailsForm' |
+    'staffJoiningForm'> {
+    status: "Completed" | "Pending";
+}
 
 export async function GET(req: NextRequest) {
     await dbConnect();
@@ -10,7 +43,7 @@ export async function GET(req: NextRequest) {
     try {
         const xUserId = req.headers.get("x-userid");
         const role = req.headers.get("x-userrole");
-        const omitCurrentUser = req.headers.get("omit-current-user") as string === "true";
+        const omitCurrentUser = req.headers.get("omit-current-user") === "true";
         // const size = parseInt(req.headers.get("size") as string) || 10;
         // const page = parseInt(req.headers.get("page") as string) || 1;
         // const size = parseInt(req.nextUrl.searchParams.get("size") || "0");
@@ -40,10 +73,17 @@ export async function GET(req: NextRequest) {
 
         const filter = omitCurrentUser ? { _id: { $ne: xUserId } } : {};
 
-        const rawUsers = await User.find(filter, { password: 0, __v: 0, createdAt: 0, updatedAt: 0 }).lean().sort({ updatedAt: -1 })
-        // .skip((page - 1) * size).limit(size);
+        const rawUsers = (await User.find(filter, {
+            password: 0,
+            __v: 0,
+            createdAt: 0,
+            updatedAt: 0,
+        })
+            .lean()
+            .sort({ updatedAt: -1 })) as unknown as UserFormData[];
+            // .skip((page - 1) * size).limit(size);
 
-        const users = rawUsers.map((user: any) => {
+        const users: UserWithStatus[] = rawUsers.map((user) => {
             const {
                 bankMandateForm,
                 gratuityForm,
@@ -55,23 +95,20 @@ export async function GET(req: NextRequest) {
                 ...rest
             } = user;
 
-            const userWithStatus = {
+            const isCompleted =
+                !!bankMandateForm &&
+                !!gratuityForm &&
+                !!idCardForm &&
+                !!nominationForm1 &&
+                !!nominationForm2 &&
+                !!familyDetailsForm &&
+                !!staffJoiningForm;
+
+            return {
                 ...rest,
                 _id: user._id,
+                status: isCompleted ? "Completed" : "Pending",
             };
-
-            const isCompleted =
-                bankMandateForm &&
-                gratuityForm &&
-                idCardForm &&
-                nominationForm1 &&
-                nominationForm2 &&
-                familyDetailsForm &&
-                staffJoiningForm;
-
-            userWithStatus["status"] = isCompleted ? "Completed" : "Pending";
-
-            return userWithStatus;
         });
 
         const response: IAPIResponse = {
@@ -82,7 +119,6 @@ export async function GET(req: NextRequest) {
         };
 
         return NextResponse.json(response, { status: 200 });
-
     } catch (error) {
         console.error("Error in GET /users/all:", error);
 

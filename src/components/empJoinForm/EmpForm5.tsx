@@ -161,7 +161,7 @@ export default function EmpForm5() {
                             <td className="border border-black dark:border-white p-1">
                                 <input
                                     type="date"
-                                    value={member.dob?.toString().split('T')[0]}
+                                    value={member.dob?.toString().split('T')[0] ?? ''}
                                     className="w-full outline-none"
                                     onChange={(e) => handleMemberChange(index, "dob", e.target.value)}
                                     required={index === 0}
@@ -216,7 +216,7 @@ export default function EmpForm5() {
                     <input
                         type="date"
                         name="date"
-                        value={formData.date?.toString().split('T')[0]}
+                        value={formData.date?.toString().split('T')[0] ?? ''}
                         onChange={handleEmployeeInfoChange}
                         disabled={true}
                         className="border-b border-black dark:border-white outline-none ml-2"

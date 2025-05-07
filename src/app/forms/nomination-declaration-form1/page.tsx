@@ -2,21 +2,22 @@
 import NominationDeclarationForm1 from '@/components/nominationDeclarationForm1/NominationDeclarationForm1';
 import { Button } from '@/components/ui/button'
 import { empFormData, formStatusus, nominationForm1Data } from '@/hooks/Atoms';
+import IError from '@/types/error';
 import { useAtom } from 'jotai';
 import { useRouter, useSearchParams } from 'next/navigation'
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { toast } from 'sonner';
 
-interface Nominee {
-  name: string;
-  address: string;
-  relationship: string;
-  dob: string;
-  share: string;
-  guardian: string;
-}
+// interface Nominee {
+//   name: string;
+//   address: string;
+//   relationship: string;
+//   dob: string;
+//   share: string;
+//   guardian: string;
+// }
 
-export default function Page() {
+function MyPage() {
   const router = useRouter()
   const [empFormData1] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
@@ -24,8 +25,10 @@ export default function Page() {
   const searchParams = useSearchParams()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const [id, setId] = useState<string | null>(null);
 
   useEffect(() => {
+    setId(searchParams.get('id'));
     setFormData((prev) => ({
       ...prev,
       name: empFormData1.name || "",
@@ -41,7 +44,6 @@ export default function Page() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      const id = searchParams.get('id')
       console.log(formData);
       const response = await fetch("/api/forms/nomination-declaration-form1", {
         method: "POST",
@@ -69,7 +71,8 @@ export default function Page() {
         toast.error(responseData.message);
         setErrors(responseData.errors);
       }
-    } catch (error: any) {
+    } catch (err: unknown) {
+      const error = err as IError;
       toast.error("Error submitting form", {
         description: error.message || "An error occurred",
       });
@@ -93,4 +96,12 @@ export default function Page() {
       </Button>
     </form>
   )
+}
+
+export default function Page() {
+  return (
+    <Suspense fallback={<p>Loading...</p>}>
+      <MyPage />
+    </Suspense>
+  );
 }

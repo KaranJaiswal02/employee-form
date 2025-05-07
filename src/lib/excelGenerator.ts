@@ -1,29 +1,40 @@
 import * as XLSX from 'xlsx';
 import { getReadableKeyName } from './readableKeys';
 
-const flattenObject = (obj: any, parentKey = '', result: Record<string, any> = {}) => {
+type FlattenedObject = Record<string, string | number | boolean | null | undefined>;
+
+const flattenObject = (
+    obj: unknown,
+    parentKey = '',
+    result: FlattenedObject = {}
+): FlattenedObject => {
+    if (typeof obj !== 'object' || obj === null) return result;
+
     for (const [key, value] of Object.entries(obj)) {
         const newKey = parentKey ? `${parentKey}.${key}` : key;
 
         if (Array.isArray(value)) {
             value.forEach((item, index) => {
+                const arrayKey = `${newKey}[${index}]`;
                 if (typeof item === 'object' && item !== null) {
-                    flattenObject(item, `${newKey}[${index}]`, result);
+                    flattenObject(item, arrayKey, result);
                 } else {
-                    result[`${newKey}[${index}]`] = item;
+                    result[arrayKey] = item as string | number | boolean | null | undefined;
                 }
             });
         } else if (typeof value === 'object' && value !== null) {
             flattenObject(value, newKey, result);
         } else {
-            result[newKey] = value;
+            result[newKey] = value as string | number | boolean | null | undefined;
         }
     }
+
     return result;
 };
 
+
 export const convertToExcel = (
-    formData: Record<string, any>,
+    formData: Record<string, object>,
     fileName: string = "form_data.xlsx"
 ) => {
     const workbook = XLSX.utils.book_new();

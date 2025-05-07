@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
@@ -9,14 +9,13 @@ import StaffFamilyMembers from "@/components/staffFamilyMembers/StaffFamilyMembe
 import { calculateAge } from "@/lib/calculateAge";
 import IError from "@/types/error";
 
+// type Child = {
+//     name: string;
+//     gender: string;
+//     dob: string;
+// };
 
-type Child = {
-    name: string;
-    gender: string;
-    dob: string;
-};
-
-export default function Page() {
+function MyPage() {
     const router = useRouter();
     const [formData, setFormData] = useAtom(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
@@ -24,14 +23,16 @@ export default function Page() {
     const searchParams = useSearchParams()
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
+    const [id, setId] = useState<string | null>(null);
 
     useEffect(() => {
+        setId(searchParams.get('id'));
         setFormData((prev) => ({
             ...prev,
             name: form1data.name || "",
             dob: form1data.dob || "",
             department: form1data.department || "",
-            age: calculateAge(form1data.dob?.toString().split('T')[0]) || 0,
+            age: calculateAge(form1data.dob?.toString().split('T')[0] ?? '') || 0,
         }));
     }, []);
 
@@ -39,7 +40,6 @@ export default function Page() {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            const id = searchParams.get('id')
             console.log(formData);
             const response = await fetch("/api/forms/staff-family-members", {
                 method: "POST",
@@ -67,7 +67,8 @@ export default function Page() {
                 toast.error(responseData.message);
                 setErrors(responseData.errors);
             }
-        } catch (error: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error submitting form", {
                 description: error.message || "An error occurred",
             });
@@ -92,5 +93,13 @@ export default function Page() {
                 </Button>
             </div>
         </form>
+    );
+}
+
+export default function Page() {
+    return (
+        <Suspense fallback={<p>Loading...</p>}>
+            <MyPage />
+        </Suspense>
     );
 }

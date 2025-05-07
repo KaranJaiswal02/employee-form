@@ -3,8 +3,6 @@ import { Input } from "@/components/ui/input";
 import { HiEye, HiEyeOff } from "react-icons/hi";
 import clsx from "clsx";
 
-interface PasswordInputProps extends InputHTMLAttributes<HTMLInputElement> {}
-
 export default function PasswordInput({
     className,
     placeholder = "********",
@@ -12,7 +10,7 @@ export default function PasswordInput({
     value,
     onChange,
     ...rest
-}: PasswordInputProps) {
+}: InputHTMLAttributes<HTMLInputElement>) {
     const [showPassword, setShowPassword] = useState(false);
 
     return (

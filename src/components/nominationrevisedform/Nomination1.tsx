@@ -162,7 +162,7 @@ export default function EPFNominationForm() {
                         <input
                             type="date"
                             name="dob"
-                            value={formData.dob?.toString().split('T')[0]}
+                            value={formData.dob?.toString().split('T')[0] ?? ''}
                             onChange={handleChange}
                             className="border-b border-black dark:border-white outline-none flex-1"
                             required
@@ -281,7 +281,7 @@ export default function EPFNominationForm() {
                                     <td className="border border-black dark:border-white p-1">
                                         <input
                                             type="date"
-                                            value={nominee.dob?.toString().split('T')[0]}
+                                            value={nominee.dob?.toString().split('T')[0] ?? ''}
                                             onChange={(e) => handleNomineeChange(index, 'dob', e.target.value)}
                                             className="w-full outline-none"
                                             required

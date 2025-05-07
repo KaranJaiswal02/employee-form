@@ -1,4 +1,3 @@
-import bcrypt from 'bcryptjs';
 import dbConnect from '@/lib/dbConnect';
 import { User } from '@/models/user';
 import { signJwt } from '@/lib/jwt';

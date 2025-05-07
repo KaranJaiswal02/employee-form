@@ -17,6 +17,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
 import PasswordInput from "@/components/ui/password-input";
+import IError from "@/types/error";
 
 export default function SignUpForm() {
     const router = useRouter();
@@ -65,9 +66,10 @@ export default function SignUpForm() {
                 });
                 setErrors(res.data.errors || ['Sign-Up failed']);
             }
-        } catch (err: any) {
+        } catch (err: unknown) {
+            const error = err as IError;
             toast.error("Error signing up", {
-                description: err.message || "An error occurred",
+                description: error.message || "An error occurred",
             });
         } finally {
             setLoading(false);
