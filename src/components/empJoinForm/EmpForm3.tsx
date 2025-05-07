@@ -64,6 +64,8 @@ export default function EmpForm3() {
     };
 
     return (
+
+
         <div className="p-6 space-y-6 text-sm font-sans">
             {/* EDUCATIONAL QUALIFICATION */}
             <h2 className="font-bold uppercase">
@@ -283,13 +285,14 @@ export default function EmpForm3() {
                     />
                 </div>
                 <div className=" border-black dark:border-white inline-block w-40">
-                    <p>PLACE:<b> Bengaluru</b></p>                   
+                    <p>PLACE:<b> Bengaluru</b></p>
                 </div>
                 <div className="text-right">
                     ______________________ <br />
-                            SIGNATURE
+                    SIGNATURE
                 </div>
             </div>
         </div>
+
     );
 }

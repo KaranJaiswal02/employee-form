@@ -41,12 +41,18 @@ export default function EmpForm1() {
 
   return (
     <div className="">
-      <h1 className="text-2xl font-bold text-center mb-6">JOINING REPORT</h1>
-      <h6 className="text-1.5xl font-bold text-center mb-6">Employee Basic Info</h6>
 
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="space-y-1">
-          <RequiredLabel><label htmlFor='name' className="block font-medium">Employee Name </label></RequiredLabel>
+      <div className="flex justify-between items-start mb-1">
+        <img src="/assets/images/logo.png" alt="Company Logo" className="h-8 brightness-100 dark:brightness-150" />
+        <span className="font-semibold">Annexure1</span>
+      </div>
+
+      <h1 className="text-2xl font-bold text-center mb-4 underline">JOINING REPORT</h1>
+      {/* <h6 className="text-1.5xl font-bold text-center mb-6">Employee Basic Info</h6> */}
+
+      <div className="grid grid-cols-3 gap-4 mb-1">
+        <div className="space-y-0.5">
+          <RequiredLabel><label htmlFor='name' className="block font-semibold">Employee Name </label></RequiredLabel>
           <input
             type="text"
             id="name"
@@ -56,8 +62,8 @@ export default function EmpForm1() {
             required
           />
         </div>
-        <div className="space-y-1">
-          <RequiredLabel><label htmlFor='fatherName' className="block font-medium"> Father&rsquo;s Name</label></RequiredLabel>
+        <div className="space-y-0.5">
+          <RequiredLabel><label htmlFor='fatherName' className="block font-semibold"> Father&rsquo;s Name</label></RequiredLabel>
           <input
             type="text"
             id="fatherName"
@@ -67,8 +73,8 @@ export default function EmpForm1() {
             required
           />
         </div>
-        <div className="space-y-1">
-          <RequiredLabel><label htmlFor='designation' className="block font-medium">Designation</label></RequiredLabel>
+        <div className="space-y-0.5">
+          <RequiredLabel><label htmlFor='designation' className="block font-semibold">Designation</label></RequiredLabel>
           <input
             type="text"
             id="designation"
@@ -84,8 +90,8 @@ export default function EmpForm1() {
       <div className="mb-6">
 
         <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="space-y-1">
-            <RequiredLabel> <label htmlFor='dob' className="block">Date of Birth </label></RequiredLabel>
+          <div className="space-y-0.5">
+            <RequiredLabel> <label htmlFor='dob' className="block font-semibold">Date of Birth </label></RequiredLabel>
             <input
               type="date"
               id="dob"
@@ -98,13 +104,13 @@ export default function EmpForm1() {
 
         </div>
 
-        <h3 className="font-bold mb-2"> Address for Correspondence</h3>
+        <h3 className="font-bold mb-1"> Address for Correspondence</h3>
 
         {/* Current Address */}
         <div className="mb-2">
-          <RequiredLabel><label htmlFor='currAddress' className="block font-medium mb-1">Current Address:</label></RequiredLabel>
+          <RequiredLabel><label htmlFor='currAddress' className="block font-semibold mb-1">Current Address:</label></RequiredLabel>
           <textarea
-            rows={2}
+            rows={1}
             id="currAddress"
             value={empFormData1.currAddress}
             className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
@@ -113,14 +119,14 @@ export default function EmpForm1() {
           />
         </div>
 
-        <div className="grid grid-cols-3 gap-4 mb-2">
+        <div className="grid grid-cols-3 gap-4 mb-0.5">
           <input
             type="text"
             id="district"
             value={empFormData1.district}
             placeholder="Dist."
             onChange={handleChange}
-            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+            className="w-full border-b-1 border-black dark:border-white pb-0 focus:outline-none mr-2"
             required
           />
           <input
@@ -143,14 +149,14 @@ export default function EmpForm1() {
           />
         </div>
         <div className="flex flex-wrap cols-2 gap-4">
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2 font-semibold">
             <span>Tel: STD Code:</span>
             <input
               type="text"
               id="currstdcode"
               value={empFormData1.currstdcode}
               onChange={handleChange}
-              className="w-20 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+              className="w-20 border-b-1 border-black dark:border-white pb-0 focus:outline-none mr-2"
 
             />
             <RequiredLabel><label htmlFor='currcontactNumber' className='font-small'>Number:</label></RequiredLabel>
@@ -159,15 +165,15 @@ export default function EmpForm1() {
               id="currcontactNumber"
               value={empFormData1.currcontactNumber}
               onChange={handleChange}
-              className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+              className="w-full flex-1 border-b-1 border-black dark:border-white pb-0 focus:outline-none mr-2"
               required
             />
           </div>
         </div>
 
-        <RequiredLabel> <label htmlFor='sameAsCurrent' className="block font-medium mb-1">Permanent Address:</label></RequiredLabel>
+        <RequiredLabel> <label htmlFor='sameAsCurrent' className="block font-medium mt-1 mb-1">Permanent Address:</label></RequiredLabel>
         {/* Same as Current Address Checkbox */}
-        <div className="flex items-center gap-2 mb-2">
+        <div className="flex items-center gap-2 mb-1">
           <Checkbox id="sameAsCurrent" checked={isChecked} onCheckedChange={handleCheckboxChange} />
           <Label htmlFor="sameAsCurrent" className="text-sm">Same as Current Address</Label>
         </div>
@@ -176,7 +182,7 @@ export default function EmpForm1() {
         {!isChecked && (<div>
           <div className="mb-2">
             <textarea
-              rows={2}
+              rows={1}
               id="perAddress"
               value={empFormData1.perAddress}
               onChange={handleChange}
@@ -186,14 +192,14 @@ export default function EmpForm1() {
             />
           </div>
 
-          <div className="grid grid-cols-3 gap-4 mb-2">
+          <div className="grid grid-cols-3 gap-4 mb-0.5">
             <input
               type="text"
               id="perDistrict"
               value={empFormData1.perDistrict}
               placeholder="Dist."
               onChange={handleChange}
-              className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+              className="w-full border-b-1 border-black dark:border-white pb-0 focus:outline-none mr-2"
               disabled={isChecked}
               required
             />
@@ -203,7 +209,7 @@ export default function EmpForm1() {
               value={empFormData1.perState}
               placeholder="State"
               onChange={handleChange}
-              className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+              className="w-full border-b-1 border-black dark:border-white pb-0 focus:outline-none mr-2"
               disabled={isChecked}
               required
             />
@@ -213,7 +219,7 @@ export default function EmpForm1() {
               value={empFormData1.perPincode}
               placeholder="PIN"
               onChange={handleChange}
-              className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+              className="w-full border-b-1 border-black dark:border-white pb-0 focus:outline-none mr-2"
               disabled={isChecked}
               required
             />
@@ -221,7 +227,7 @@ export default function EmpForm1() {
 
 
           <div className="flex flex-wrap cols-2 gap-4">
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2 font-semibold">
               <span>Tel: STD Code:</span>
               <input
                 type="text"
@@ -250,52 +256,56 @@ export default function EmpForm1() {
         </div>)}
       </div>
 
-      {/* Company Details */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="col-span-2 flex items-center gap-2">
-          <RequiredLabel><label htmlFor="companyName" className="block font-small">
-            Company Name:
-          </label></RequiredLabel>
+      <div className="flex flex-wrap gap-4 mb-2">
+        <div className="flex items-center gap-2 flex-1 min-w-[350px]">
+          <RequiredLabel>
+            <label htmlFor="companyName" className="block font-semibold">
+              Company Name:
+            </label>
+          </RequiredLabel>
           <input
             type="text"
             id="companyName"
             value={empFormData1.companyName}
             onChange={handleChange}
-            className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+            className="w-[210px] border-b border-black dark:border-white pb-0 focus:outline-none"
             required
           />
         </div>
 
-        <div className="flex items-center gap-2">
-          <RequiredLabel><label htmlFor="companylocation" className="font-small">
-            Location:
-          </label></RequiredLabel>
+        <div className="flex items-center gap-2 flex-1 min-w-[180px]">
+          <RequiredLabel>
+            <label htmlFor="companylocation" className="font-semibold">
+              Location:
+            </label>
+          </RequiredLabel>
           <input
             type="text"
             id="companylocation"
             value={empFormData1.companylocation}
             onChange={handleChange}
-            className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+            className="w-full border-b border-black dark:border-white pb-0 focus:outline-none"
             required
           />
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-1 min-w-[70px] font-semibold">
           <span>Deptt:</span>
           <input
             type='text'
             id='department'
             value={empFormData1.department}
             onChange={handleChange}
-            className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+            className="w-full border-b border-black dark:border-white pb-0 focus:outline-none"
           />
         </div>
       </div>
 
+
       {/* Bank Details */}
       <div className="grid grid-cols-2 gap-4 mb-6">
         <div className="flex items-center gap-2">
-          <RequiredLabel><label htmlFor='accountNumber' className='font-small'>Bank A/c No:</label></RequiredLabel>
+          <RequiredLabel><label htmlFor='accountNumber' className='font-semibold'>Bank A/c No:</label></RequiredLabel>
           <input
             type='text'
             id='accountNumber'
@@ -306,7 +316,7 @@ export default function EmpForm1() {
           />
         </div>
         <div className="flex items-center gap-2">
-          <RequiredLabel><label htmlFor='bankName' className='font-small'>Bank Name :</label></RequiredLabel>
+          <RequiredLabel><label htmlFor='bankName' className='font-semibold'>Bank Name :</label></RequiredLabel>
           <input
             type='text'
             id='bankName'
@@ -320,8 +330,8 @@ export default function EmpForm1() {
 
       {/* Documents Section */}
       <div className="mb-6">
-        <h3 className="font-bold mb-2">Documents to be attached:</h3>
-        <ul className="list-disc pl-5 space-y-1">
+        <h3 className="font-bold mb-1">Documents to be attached:</h3>
+        <ul className="list-disc pl-5 space-y-0">
           <li>Photocopy of Educational Certificates</li>
           <li>Experience Certificate/Relieving Letter from Previous Employer</li>
           <li>Two Photographs</li>
@@ -332,7 +342,7 @@ export default function EmpForm1() {
       </div>
 
       {/* Signature Section */}
-      <div className="flex justify-between mb-6">
+      <div className="flex justify-between font-semibold mb-3">
         <div className="flex items-center gap-2">
           <span>Date:</span>
           <input
@@ -350,7 +360,7 @@ export default function EmpForm1() {
       </div>
 
       {/* Certification */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         <p>Certified that Mr./Ms. <span className="underline">{empFormData1.name || "________________________"}</span> has joined on
           <span className="underline">
             {empFormData1.dateOfJoining?.toString().split('T')[0] ?? ''}
@@ -371,11 +381,11 @@ export default function EmpForm1() {
           </p>
         </div> */}
 
-        <div className="flex justify-between pt-7">
-          <div className="w-48 border-t border-black text-center pt-2">
+        <div className="flex justify-between pt-7 font-semibold">
+          <div className="w-48 border-t dark:border-white border-black text-center pt-0">
             Signature of Reporting In charge
           </div>
-          <div className="w-48 border-t border-black text-center pt-2">
+          <div className="w-48 border-t dark:border-white border-black text-center pt-2">
             HR Department
           </div>
         </div>
