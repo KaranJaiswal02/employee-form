@@ -8,23 +8,23 @@ import { Button } from '@/components/ui/button';
 import { empFormData, formStatusus } from '@/hooks/Atoms'
 import { useAtom } from 'jotai'
 import { useRouter, useSearchParams } from 'next/navigation';
-import React, { Suspense, useEffect } from 'react'
+import { useEffect } from 'react'
 import { toast } from "sonner"
 import { useState } from 'react';
 import IError from '@/types/error';
 
-function MyPage() {
+export default function MyPage() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [id, setId] = useState<string | null>(null);
   const [formData] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
-  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
-  const [id, setId] = useState<string | null>(null);
-  const searchParams = useSearchParams()
 
   useEffect(() => {
     setId(searchParams.get('id'));
-  }, []);
+  }, [searchParams]);
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -90,12 +90,4 @@ function MyPage() {
       </Button>
     </form>
   )
-}
-
-export default function Page() {
-  return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <MyPage />
-    </Suspense>
-  );
 }

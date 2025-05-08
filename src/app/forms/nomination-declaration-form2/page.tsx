@@ -5,20 +5,19 @@ import { Button } from "@/components/ui/button";
 import { useAtom } from "jotai";
 import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, nominationForm2Data } from '@/hooks/Atoms';
-import { Suspense, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
-import { useState } from 'react';
 import IError from '@/types/error';
 
-function MyPage() {
+export default function MyPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const [id, setId] = useState<string | null>(null);
     const [formData, setFormData] = useAtom(nominationForm2Data);
     const [formData1] = useAtom(empFormData);
     const [, setFormStatus] = useAtom(formStatusus);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
-    const [id, setId] = useState<string | null>(null);
-    const searchParams = useSearchParams()
 
     useEffect(() => {
         setId(searchParams.get('id'));
@@ -34,7 +33,7 @@ function MyPage() {
             maritalStatus: formData1.maritalStatus || "",
             sex: formData1.sex || "",
         }));
-    }, [])
+    }, [formData1, setFormData]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -78,10 +77,8 @@ function MyPage() {
     };
 
     return (
-
-        <form onSubmit={handleSubmit} className="p-6 max-w-5xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
+        <form onSubmit={handleSubmit} className="p-6 max-w-4xl mx-auto bg-white dark:bg-card border shadow-md rounded-lg">
             <Nomination1 />
-
             <Nomination2 />
             {errors.length > 0 && (
                 <div className="text-red-600 text-sm px-2 text-left">
@@ -96,13 +93,5 @@ function MyPage() {
                 </Button>
             </div>
         </form>
-    );
-}
-
-export default function Page() {
-    return (
-        <Suspense fallback={<p>Loading...</p>}>
-            <MyPage />
-        </Suspense>
     );
 }

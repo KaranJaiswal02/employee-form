@@ -67,8 +67,8 @@ export default function UserFormDownloadPage() {
         bankMandateFormData: 'portrait',
         grauFormData: 'portrait',
         idCardFormData: 'portrait',
-        nominationForm1Data: 'landscape',
-        nominationForm2Data: 'landscape',
+        nominationForm1Data: 'portrait',
+        nominationForm2Data: 'portrait',
         staffFamilyFormData: 'landscape',
         empFormData: 'portrait',
     }

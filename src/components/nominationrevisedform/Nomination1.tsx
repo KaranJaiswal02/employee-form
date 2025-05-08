@@ -106,7 +106,7 @@ export default function EPFNominationForm() {
             {/* Personal Information Section */}
             <div className="space-y-1.5 mb-6">
                 <div className="flex flex-col md:flex-row gap-4" >
-                    <label className="w-full md:w-72 uppercase mt-1 font-semibold">1. Name (IN BLOCK LETTERS):</label>
+                    <label className="w-full md:w-56 uppercase mt-1 font-semibold">1. Name (IN BLOCK LETTERS):</label>
                     <div className="flex-1 grid grid-cols-3 gap-4">
                         <input
                             type="text"
@@ -141,10 +141,10 @@ export default function EPFNominationForm() {
                     </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex flex-col md:flex-row md:justify-between">
                     {/* Father's/Husband's Name */}
-                    <div className="flex flex-col md:flex-row gap-4 md:w-130">
-                        <label className="w-full md:w-72 mt-1 font-semibold">2. Father&rsquo;s/Husband&rsquo;s Name:</label>
+                    <div className="flex flex-col md:flex-row gap-4 md:w-120">
+                        <label className="w-full md:w-56 mt-1 font-semibold">2. Father&rsquo;s/Husband&rsquo;s Name:</label>
                         <input
                             type="text"
                             name="fatherName"
@@ -220,9 +220,10 @@ export default function EPFNominationForm() {
                     <label className="w-full md:w-72 mt-1 font-semibold">7. Address (Permanent/Temporary):</label>
                     <textarea
                         name="address"
+                        rows={3}
                         value={formData.address}
                         onChange={handleChange}
-                        className="flex-1 border-b border-black dark:border-white outline-none h-7"
+                        className="flex-1 border-b border-black dark:border-white outline-none"
                         required
                     />
                 </div>
@@ -231,7 +232,7 @@ export default function EPFNominationForm() {
             {/* Part A - EPF Nomination */}
             <div className="mb-6">
                 <h3 className="font-bold mb-0.5">PART – A (EPF)</h3>
-                <p className="mb-0.25">
+                <p className="mb-3">
                     I hereby nominate the person(s)/cancel the nomination made by me previously and nominate the person(s) mentioned below to receive the amount standing to my credit in the Employees Provident Fund, in the event of my death.
                 </p>
 

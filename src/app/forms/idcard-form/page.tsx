@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, idCardFormData } from "@/hooks/Atoms";
@@ -8,15 +8,15 @@ import { toast } from "sonner";
 import IdCardForm from "@/components/idCardForm/IdCardForm";
 import IError from "@/types/error";
 
-function MyPage() {
+export default function IDCard() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const [id, setId] = useState<string | null>(null);
   const [formData, setFormData] = useAtom(idCardFormData);
   const [empFormData1] = useAtom(empFormData);
   const [, setFormStatus] = useAtom(formStatusus);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
-  const [id, setId] = useState<string | null>(null);
-  const searchParams = useSearchParams()
 
   useEffect(() => {
     setId(searchParams.get('id'));
@@ -26,9 +26,8 @@ function MyPage() {
       fatherName: empFormData1.fatherName || "",
       designation: empFormData1.designation || "",
       dob: empFormData1.dob || "",
-      // currAddress: empFormData1.currAddress || "",
     }));
-  }, []);
+  }, [empFormData1, setFormData, searchParams]);
 
   const submitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -91,13 +90,5 @@ function MyPage() {
         </Button>
       </div>
     </form>
-  );
-}
-
-export default function Page() {
-  return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <MyPage />
-    </Suspense>
   );
 }
