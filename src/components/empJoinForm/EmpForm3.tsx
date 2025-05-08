@@ -217,7 +217,7 @@ export default function EmpForm3() {
                     Name, address and telephone of two references{" "}
                     <span className="italic">(Other than relatives) </span>
                 </strong>
-                <div className="border border-black dark:border-white p-4 cornered-md space-y-2">
+                <div className="border border-black dark:border-white p-4 rounded-md cornered-md space-y-2">
                     <div className="grid grid-cols-2 gap-4 mt-2">
                         {formData.references.map((ref, idx) => (
                             <div key={idx}>
@@ -258,7 +258,7 @@ export default function EmpForm3() {
                 </label></RequiredLabel>
                 <textarea
                     id="convictionDetails"
-                    className="w-full border border-black dark:border-white mt-1 p-1 focus:outline-none"
+                    className="w-full border rounded-md border-black dark:border-white mt-1 p-2 focus:outline-none"
                     rows={3}
                     value={formData.convictionDetails}
                     onChange={(e) => handleChange("convictionDetails", e.target.value)}

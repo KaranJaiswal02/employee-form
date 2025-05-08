@@ -82,7 +82,7 @@ export default function MyPage() {
           ))}
         </div>
       )}
-      <Button type="submit" disabled={isSubmitting} className=' cursor-pointer'>
+      <Button type="submit" disabled={isSubmitting} className='w-full cursor-pointer'>
         {isSubmitting ? "Submitting..." : "Submit"}
       </Button>
     </form>

@@ -41,7 +41,7 @@ export default function EPFNominationFormPart2() {
 
   return (
     <div>
-      <div className="max-w-4xl mx-auto p-4 md:p-8 border border-black dark:border-white text-sm">
+      <div className="max-w-4xl mx-auto mb-4 rounded-md p-4 md:p-8 border border-black dark:border-white text-sm">
         {/* First Declaration */}
         <div className="mb-6">
           <div className="flex items-start gap-2 mb-4">
@@ -124,9 +124,9 @@ export default function EPFNominationFormPart2() {
       </div>
 
       {/* Employer Certificate */}
-      <div className="print:hidden page-break h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
+      {/* <div className="print:hidden page-break h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div> */}
       <div className="page-break"></div>
-      <div className="max-w-4xl mx-auto p-4 md:p-8 border border-black dark:border-white text-sm mt-2">       
+      <div className="max-w-4xl mx-auto p-4 md:p-8 rounded-md border border-black dark:border-white text-sm mt-2">       
           <h3 className="font-bold text-center mb-4">CERTIFICATE BY EMPLOYER</h3>
           <p className="mb-4">
             Certified that the above declaration and nomination has been signed / thumb impressed before me by Shri / Smt./ Miss

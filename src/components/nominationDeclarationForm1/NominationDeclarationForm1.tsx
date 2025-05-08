@@ -55,7 +55,7 @@ export default function NominationDeclarationForm1() {
 
     return (
         <div className='flex flex-col items-center justify-center'>
-            <div className="max-w-4xl p-2 md:p-4 border border-black dark:border-white text-sm mt-2 mb-2">
+            <div className="max-w-4xl p-2 md:p-4 border rounded-md border-black dark:border-white text-sm mt-2 mb-2">
                 <div>
                     {/* Form Header */}
                     <div className="text-center">
@@ -266,7 +266,7 @@ export default function NominationDeclarationForm1() {
                 </div>
             </div>
 
-            <div className="max-w-4xl p-4 md:p-2 border border-black dark:border-white text-sm mt-2 mb-2">
+            <div className="max-w-4xl rounded-md p-4 md:p-2 border border-black dark:border-white text-sm mt-2 mb-2">
 
                 <div className="print:hidden page-break h-[2px] w-3/4 bg-neutral-600 mx-auto my-8"></div>
                 <div className="page-break"></div>
