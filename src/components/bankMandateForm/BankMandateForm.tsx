@@ -21,7 +21,7 @@ export default function BankMandateForm() {
         <>
             <div className="flex justify-between items-start mb-4">
                 <img src="/assets/images/logo.png" alt="Company Logo" className="h-8 brightness-100 dark:brightness-150" />
-                <span className="font-semibold">Annexure</span>
+                {/* <span className="font-semibold">Annexure</span> */}
             </div>
 
             <h2 className="text-center font-bold underline mb-6">BANK MANDATE FORM FOR ELECTRONIC PAYMENT</h2>
@@ -35,14 +35,14 @@ export default function BankMandateForm() {
             </div>
 
             <div className="mb-4">
-                <p className="font-semibold">Sub: Authorization for credit of salary through NEFT/RTGS</p>
+                <p className="font-semibold ml-6">Sub: Authorization for credit of salary through NEFT/RTGS</p>
             </div>
 
             <div className="space-y-3 mb-4">
 
                 <div className="flex flex-col sm:flex-row">
-                    <label htmlFor="name" className="w-72">
-                        1. Name
+                    <label htmlFor="name" className="w-72 font-semibold">
+                        1. Name :
                     </label>
                     <input
                         id="name"
@@ -56,8 +56,8 @@ export default function BankMandateForm() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row">
-                    <label htmlFor="employeeCode" className="w-72">
-                        2. Employee Code
+                    <label htmlFor="employeeCode" className="w-72 font-semibold">
+                        2. Employee Code :
                     </label>
                     <input
                         id="employeeCode"
@@ -70,8 +70,8 @@ export default function BankMandateForm() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row">
-                    <label htmlFor="category" className="w-72">
-                        3. Category(CT/DT/STAFF)
+                    <label htmlFor="category" className="w-72 font-semibold">
+                        3. Category(CT/DT/STAFF) :
                     </label>
                     <input
                         id="category"
@@ -85,8 +85,8 @@ export default function BankMandateForm() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row">
-                    <label htmlFor="address" className="w-72">
-                        4. Address
+                    <label htmlFor="address" className="w-72 font-semibold">
+                        4. Address :
                     </label>
                     <textarea
                         id="address"
@@ -98,7 +98,7 @@ export default function BankMandateForm() {
                     />
                 </div>
                 <div className="flex flex-col sm:flex-row">
-                    <RequiredLabel className="w-72"><label htmlFor="email">5. Email Id</label></RequiredLabel>
+                    <RequiredLabel className="w-72 font-semibold"><label htmlFor="email">5. Email Id :</label></RequiredLabel>
                     <input
                         id="email"
                         type="email"
@@ -110,7 +110,7 @@ export default function BankMandateForm() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row">
-                    <RequiredLabel className="w-72"><label htmlFor="pan">6. Permanent Account Number</label></RequiredLabel>
+                    <RequiredLabel className="w-72 font-semibold"><label htmlFor="pan">6. Permanent Account Number :</label></RequiredLabel>
                     <input
                         id="pan"
                         type="text"
@@ -122,7 +122,7 @@ export default function BankMandateForm() {
                 </div>
             </div>
 
-            <p className="mb-2"><RequiredLabel>7. Particulars of bank:</RequiredLabel></p>
+            <p className="mb-2 font-semibold"><RequiredLabel>7. Particulars of bank :</RequiredLabel></p>
 
             <div className="overflow-x-auto">
                 <table className="w-full border border-black dark:border-white text-sm">
@@ -130,7 +130,7 @@ export default function BankMandateForm() {
 
                         <tr className="flex flex-col md:flex-row print:flex-row">
                             <td className="border border-black dark:border-white p-2 md:w-1/2 print:w-1/2 flex items-center justify-center">
-                                <label htmlFor="bankName" className="text-center w-full">
+                                <label htmlFor="bankName" className="text-center w-full font-semibold">
                                     Bank Name
                                 </label>
                             </td>
@@ -147,7 +147,7 @@ export default function BankMandateForm() {
                             </td>
 
                             <td className="border border-black dark:border-white p-2 md:w-1/2 print:w-1/2 flex items-center justify-center">
-                                <label htmlFor="branchPlace" className="text-center w-full">
+                                <label htmlFor="branchPlace" className="text-center w-full font-semibold">
                                     Branch Place
                                 </label>
                             </td>
@@ -167,7 +167,7 @@ export default function BankMandateForm() {
 
                         <tr className="flex flex-col md:flex-row print:flex-row">
                             <td className="border border-black dark:border-white p-2 md:w-1/2 print:w-1/2 flex items-center justify-center">
-                                <label htmlFor="branchCity" className="text-center w-full">
+                                <label htmlFor="branchCity" className="text-center w-full font-semibold">
                                     Branch City</label></td>
                             <td className="border border-black dark:border-white p-2 md:w-1/2 print:w-1/2">
                                 <input
@@ -181,7 +181,7 @@ export default function BankMandateForm() {
                                 />
                             </td>
                             <td className="border border-black dark:border-white p-2 md:w-1/2 print:w-1/2 flex items-center justify-center">
-                                <label htmlFor="pincode" className="text-center w-full">
+                                <label htmlFor="pincode" className="text-center w-full font-semibold">
                                     Pin Code</label></td>
                             <td className="border border-black dark:border-white p-2 md:w-1/2 print:w-1/2">
                                 <input
@@ -198,8 +198,8 @@ export default function BankMandateForm() {
 
                         <tr>
                             <td className="border border-black dark:border-white p-2" colSpan={4}>
-                                <div className="flex flex-wrap items-center justify-center gap-4">
-                                    <span><RequiredLabel>Account Type:</RequiredLabel></span>
+                                <div className="flex flex-wrap items-center justify-center gap-4 font-semibold">
+                                    <span><RequiredLabel>Account Type :</RequiredLabel></span>
                                     <label className="flex items-center">
                                         <input
                                             type="radio"
@@ -229,8 +229,8 @@ export default function BankMandateForm() {
                         
                         <tr>
                             <td className="border border-black dark:border-white p-2" colSpan={4}>
-                                <RequiredLabel> <label htmlFor="accountNumber" className="block">
-                                    Account Number (as appearing in the cheque book):
+                                <RequiredLabel> <label htmlFor="accountNumber" className="block font-semibold">
+                                    Account Number (as appearing in the cheque book) :
                                 </label></RequiredLabel>
                                 <input
                                     id="accountNumber"
@@ -246,8 +246,8 @@ export default function BankMandateForm() {
 
                         <tr>
                             <td className="border border-black dark:border-white p-2" colSpan={4}>
-                                <RequiredLabel><label htmlFor="ifscCode" className="block">
-                                    IFSC Code:
+                                <RequiredLabel><label htmlFor="ifscCode" className="block font-semibold">
+                                    IFSC Code :
                                 </label></RequiredLabel>
                                 <input
                                     id="ifscCode"
@@ -289,7 +289,7 @@ export default function BankMandateForm() {
                         disabled={true}
                     />
                 </div>
-                <div className="flex items-center gap-2 mb-5">
+                <div className="flex items-center gap-2 mb-5 font-semibold">
                     <label>Date:</label>
                     <input
                         id="date"

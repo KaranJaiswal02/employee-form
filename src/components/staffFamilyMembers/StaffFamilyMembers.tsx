@@ -34,19 +34,22 @@ export default function StaffFamilyMembers() {
             <table className="w-full border border-black dark:border-white text-left text-sm">
                 <tbody>
                     <tr className="border border-black dark:border-white">
-                        <td className="p-2 border border-black dark:border-white">1</td>
-                        <td className="p-2 border border-black dark:border-white">EMP. NO</td>
+                        <td className="p-2 border border-black dark:border-white ">1</td>
+                        <td className="p-2 border border-black dark:border-white  font-semibold">
+                        <label htmlFor="empNo">EMP. NO</label>
+                        </td>
                         <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="text"
                                 name="empNo"
+                                id="empNo"
                                 value={formData.empNo}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
                                 placeholder="Employee Number"
                             />
                         </td>
-                        <td className="p-2 border border-black dark:border-white">Emp. Name</td>
+                        <td className="p-2 border border-black dark:border-white font-semibold">Emp. Name</td>
                         <td className="p-2 border border-black dark:border-white" colSpan={4}>
                             <input
                                 type="text"
@@ -62,7 +65,7 @@ export default function StaffFamilyMembers() {
 
                     <tr className="border border-black dark:border-white">
                         <td></td>
-                        <td className="p-2 border border-black dark:border-white">DEPARTMENT</td>
+                        <td className="p-2 border border-black dark:border-white font-semibold">DEPARTMENT</td>
                         <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="text"
@@ -74,7 +77,7 @@ export default function StaffFamilyMembers() {
                                 disabled={true}
                             />
                         </td>
-                        <td className="p-2 border border-black dark:border-white">DOB</td>
+                        <td className="p-2 border border-black dark:border-white font-semibold">DOB</td>
                         <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="date"
@@ -85,7 +88,7 @@ export default function StaffFamilyMembers() {
                                 disabled={true}
                             />
                         </td>
-                        <td className="p-2 border border-black dark:border-white">AGE</td>
+                        <td className="p-2 border border-black dark:border-white font-semibold">AGE</td>
                         <td className="p-2 border border-black dark:border-white">
                             <input
                                 type="number"
@@ -100,7 +103,7 @@ export default function StaffFamilyMembers() {
                     </tr>
                     <tr className="border border-black dark:border-white">
                         <td></td>
-                        <td className="p-2 border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white font-semibold">
                             <RequiredLabel><label htmlFor="maritalStatus">
                                 MARITAL STATUS
                             </label>
@@ -122,22 +125,27 @@ export default function StaffFamilyMembers() {
 
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">2</td>
-                        <td className="p-2 border border-black dark:border-white">SPOUSE NAME</td>
+                        <td className="p-2 border border-black dark:border-white font-semibold">
+                        <label htmlFor="spouseName">SPOUSE NAME</label></td>
                         <td className="p-2 border border-black dark:border-white" colSpan={2}>
                             <input
                                 type="text"
                                 name="spouseName"
+                                id="spouseName"
+                                
                                 value={formData.spouseName}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
                                 placeholder="Spouse Name"
                             />
                         </td>
-                        <td className="p-2 border border-black dark:border-white">DOB</td>
+                        <td className="p-2 border border-black dark:border-white font-semibold">
+                            <label htmlFor="spouseDob">DOB</label></td>
                         <td className="p-2 border border-black dark:border-white" colSpan={2}>
                             <input
                                 type="date"
                                 name="spouseDob"
+                                id="spouseDob"
                                 value={formData.spouseDob?.toString().split('T')[0] ?? ''}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
@@ -147,11 +155,13 @@ export default function StaffFamilyMembers() {
 
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">3</td>
-                        <td className="p-2 border border-black dark:border-white">NO. OF CHILD</td>
+                        <td className="p-2 border border-black dark:border-white font-semibold">
+                            <label htmlFor="numOfChildren">NO. OF CHILD</label></td>
                         <td className="p-2 border border-black dark:border-white" colSpan={5}>
                             <input
                                 type="number"
                                 name="numOfChildren"
+                                id="numOfChildren"
                                 value={formData.numOfChildren}
                                 onChange={handleChange}
                                 className="w-full focus:outline-none"
@@ -163,7 +173,7 @@ export default function StaffFamilyMembers() {
                     {formData.children.map((child, index) => (
                         <tr key={index} className="border border-black dark:border-white">
                             <td className="p-2 border border-black dark:border-white">{index + 4}</td>
-                            <td className="p-2 border border-black dark:border-white">CHILD.{index + 1} NAME</td>
+                            <td className="p-2 border border-black dark:border-white font-semibold">CHILD.{index + 1} NAME</td>
                             <td className="p-2 border border-black dark:border-white">
                                 <input
                                     type="text"
@@ -173,7 +183,7 @@ export default function StaffFamilyMembers() {
                                     placeholder={`Child ${index + 1} Name`}
                                 />
                             </td>
-                            <td className="p-2 border border-black dark:border-white">GENDER</td>
+                            <td className="p-2 border border-black dark:border-white font-semibold">GENDER</td>
                             <td className="p-2 border border-black dark:border-white">
                                 <select
                                     value={child.gender}
@@ -185,7 +195,7 @@ export default function StaffFamilyMembers() {
                                     <option value="Female">Female</option>
                                 </select>
                             </td>
-                            <td className="p-2 border border-black dark:border-white">DOB</td>
+                            <td className="p-2 border border-black dark:border-white font-semibold">DOB</td>
                             <td className="p-2 border border-black dark:border-white">
                                 <input
                                     type="date"
@@ -200,7 +210,7 @@ export default function StaffFamilyMembers() {
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">6</td>
 
-                        <td className="p-2 border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white font-semibold">
                             <RequiredLabel><label htmlFor="fatherName">
                                 FATHER NAME / FATHER-IN-LAW
                             </label></RequiredLabel>
@@ -219,7 +229,7 @@ export default function StaffFamilyMembers() {
                             />
                         </td>
 
-                        <td className="p-2 border border-black dark:border-white focus:outline-none">
+                        <td className="p-2 border border-black dark:border-white focus:outline-none font-semibold">
                             <RequiredLabel><label htmlFor="fatherDob">
                                 DOB
                             </label></RequiredLabel>
@@ -241,7 +251,7 @@ export default function StaffFamilyMembers() {
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">7</td>
 
-                        <td className="p-2 border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white font-semibold">
                             <RequiredLabel><label htmlFor="motherName">
                                 MOTHER NAME / MOTHER-IN-LAW
                             </label></RequiredLabel>
@@ -260,7 +270,7 @@ export default function StaffFamilyMembers() {
                             />
                         </td>
 
-                        <td className="p-2 border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white font-semibold">
                             <RequiredLabel> <label htmlFor="motherDob">
                                 DOB
                             </label></RequiredLabel>
@@ -281,7 +291,7 @@ export default function StaffFamilyMembers() {
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">8</td>
 
-                        <td className="p-2 border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white font-semibold">
                             <RequiredLabel><label htmlFor="mobileNumber">
                                 MOBILE NUMBER
                             </label></RequiredLabel>
@@ -303,7 +313,7 @@ export default function StaffFamilyMembers() {
                     <tr className="border border-black dark:border-white">
                         <td className="p-2 border border-black dark:border-white">9</td>
 
-                        <td className="p-2 border border-black dark:border-white">
+                        <td className="p-2 border border-black dark:border-white font-semibold">
                             <label htmlFor="address">
                                 <RequiredLabel>ADDRESS</RequiredLabel>
                             </label>
@@ -331,7 +341,7 @@ export default function StaffFamilyMembers() {
                         name="date"
                         value={formData.date?.toString().split('T')[0] ?? ''}
                         onChange={handleChange}
-                        className="ml-2 p-1 focus:outline-none"
+                        className="ml-2 p-1 focus:outline-none font-semibold"
                         disabled={true}
                     />
                 </div>
