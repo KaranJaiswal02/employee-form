@@ -44,7 +44,7 @@ export default function GratuityForm2() {
                                 className="border-b border-black dark:border-white inline-block ml-2 flex-1 min-w-0 focus:outline-none"
                             />
                         </label>
-                    </li>
+                    </li>   
 
                     {/* Sex */}
                     <li className="flex">
@@ -229,7 +229,7 @@ export default function GratuityForm2() {
             </ol>
 
             <hr className="mt-4 my-1 border-black dark:border-white" />
-            <div className="mt-2">
+            <div className="mt-1">
                 <p>
                     Place:
                     <input
@@ -242,7 +242,7 @@ export default function GratuityForm2() {
                     />
                 </p>
                 {/* Flex row for Date and Signature */}
-                <div className="flex items-center justify-between mt-6">
+                <div className="flex items-center justify-between mt-4">
                     <p>
                         Date:
                         <input
@@ -260,12 +260,12 @@ export default function GratuityForm2() {
                 </div>
             </div>
 
-            <hr className="my-2 border-black dark:border-white" />
+            <hr className="my-1 border-black dark:border-white" />
 
             <h4 className="font-bold text-center">Declaration by Witnesses</h4>
             <p>Nomination signed/thumb-impressed before me</p>
             <p>Name in full and Full address of witnesses. </p>
-            <div className="grid grid-cols-2 gap-4 mt-2">
+            <div className="grid grid-cols-2 gap-4 mt-1">
                 <ol className="pl-5 space-y-4 list-decimal">
                     <li className=" flex items-center gap-2">
                         <span className="w-6 text-right mr-2">{1}.</span>
@@ -312,7 +312,7 @@ export default function GratuityForm2() {
                 </div>
             </div>
 
-            <p className="mt-4">Place:
+            <p className="mt-3">Place:
                 <input type="text"
                     value={formData.place}
                     disabled={true}
@@ -324,18 +324,21 @@ export default function GratuityForm2() {
                     type="date"
                     value={formData.date?.toString().split('T')[0] ?? ''}
                     disabled={true}
-                    className=" border-black dark:border-white w-48 inline-block ml-2"
+                    className=" font-semibold border-black dark:border-white w-48 inline-block ml-2"
                 />
             </p>
-            <hr className="print:hidden my-2 border-black dark:border-white" />
-            <div className="page-break"></div>
+            <hr className="my-1 border-black dark:border-white" />
+            {/* <div className="page-break"></div> */}
+            {/* <hr className="my-1 border-black dark:border-white" /> */}
             <h4 className="font-bold text-center">Certificate by the Employer</h4>
             <p>
                 Certified that the particulars of the above nomination have been verified and recorded in this establishment.
             </p>
             <p>
                 Employer&rsquo;s Reference No., if any:{" "}
-                <input type="text" className="border-b border-black dark:border-white w-40 inline-block focus:outline-none" />
+                <input type="text" 
+                className="border-b border-black dark:border-white w-40 inline-block focus:outline-none" 
+                />
             </p>
             {/* <div className="mt-2">
                 Signature of the employer/Officer authorised:{" "}
@@ -346,25 +349,25 @@ export default function GratuityForm2() {
             focus:outline-none " 
             />
             </p> */}
-            <div className="flex justify-between mb-2">
-                <div className="flex items-center gap-2">
+            <div className="flex justify-between mb-1">
+                <div className="flex items-center gap-2 font-semibold">
                     <label>Date:</label>
                     <input
                         type="date"
                         name="subscriberDate"
                         value={formData.date?.toString().split('T')[0] ?? ''}
                         // onChange={handleFieldChange}
-                        className="font-bold border-black dark:border-white outline-none"
+                        className=" border-black dark:border-white outline-none"
                         disabled
                     />
                 </div>
-                <div className="w-64 border-t border-black dark:border-white text-center pt-2 mt-8">
+                <div className="w-64 border-t border-black dark:border-white text-center pt-0 mt-6">
                     Signature or thumb impression of the subscriber
                 </div>
             </div>
-            <div className="mt-1">
+            <div className="mt-0.5">
                 Name and address of the establishment or rubber stamp thereof:
-                <div className="mb-4 mt-2">
+                <div className="mb-0.5 mt-0">
                     <label className="font-small mb-2">
                         <p style={{ whiteSpace: 'pre-line' }}>
                             <b>{formData.establishmentAddress.split('\n')[0]}</b>
@@ -374,25 +377,25 @@ export default function GratuityForm2() {
                 </div>
             </div>
 
-            <hr className="my-2 border-black dark:border-white" />
+            <hr className="my-1 border-black dark:border-white" />
 
             <h4 className="font-bold text-center">Acknowledgement by the Employee</h4>
             <p>
                 Received the duplicate copy of nomination in Form &rsquo;F&rsquo; filed by me and duly certified by the employer.
             </p>
-            <p className="mt-2">
+            <p className="mt-1 font-semibold">
                 Date: <input type="date"
                     value={formData.date?.toString().split('T')[0] ?? ''}
                     disabled
-                    className="focus:outline-none border-b border-black dark:border-white w-48 inline-block ml-2" />
+                    className="focus:outline-none  border-black dark:border-white w-48 inline-block ml-2" />
             </p>
-            <p className="text-right font-semibold mt-4">Signature of the Employee</p>
+            <p className="text-right font-semibold mt-3">Signature of the Employee</p>
 
             {/* <hr className="my-6 border-black dark:border-white" /> */}
 
-            <p className="text-xs italic mt-4">
+            {/* <p className="text-xs italic mt-3">
                 Note.—Strike out the words/paragraphs not applicable.
-            </p>
+            </p> */}
         </div>
     );
 }
