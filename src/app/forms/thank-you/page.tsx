@@ -1,5 +1,6 @@
 'use client';
 import { formStatusus } from '@/hooks/Atoms';
+import { FormStatus } from '@/types/formStatus';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
@@ -9,10 +10,10 @@ export default function MyPage() {
   const [formStatus] = useAtom(formStatusus);
   const searchParams = useSearchParams();
   const [params, setParams] = useState<string | null>(null);
-  const [incompleteForms, setIncompleteForms] = useState<any[]>([]);
+  const [incompleteForms, setIncompleteForms] = useState<FormStatus[]>([]);
 
   useEffect(() => {
-    setIncompleteForms(Object.values(formStatus).filter(form => form.status !== 'done'))
+    setIncompleteForms(Object.values(formStatus).filter(form => form.status !== 'done') as FormStatus[]);
     const id = searchParams.get('id');
     setParams(id ? `?id=${id}` : '');
   }, [searchParams]);
