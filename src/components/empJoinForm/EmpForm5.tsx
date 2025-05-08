@@ -104,7 +104,7 @@ export default function EmpForm5() {
 
                     <div className="w-1 flex items-end gap-2 mb-4">
                         <label htmlFor="department" className=" font-semibold whitespace-nowrap">
-                            <RequiredLabel>Deptt:</RequiredLabel>
+                            <RequiredLabel>Dept:</RequiredLabel>
                         </label>
                         <input
                             type="text"
@@ -224,10 +224,10 @@ export default function EmpForm5() {
                             value={formData.date?.toString().split('T')[0] ?? ''}
                             onChange={handleEmployeeInfoChange}
                             disabled={true}
-                            className="border-b border-black dark:border-white outline-none ml-2"
+                            className=" border-black dark:border-white outline-none ml-2 font-semibold"
                         />
                     </div>
-                    <div className="text-right font-semibold">
+                    <div className="text-center font-semibold border-t border-black dark:border-white w-[220px] ">
                         Signature of Employee
                     </div>
                 </div>

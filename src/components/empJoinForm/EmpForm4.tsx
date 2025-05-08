@@ -110,7 +110,7 @@ export default function EmpForm4() {
 
             <div className="space-y-4 text-sm">
                 <div className="flex justify-between">
-                    <label className="w-1/3">Name of the Company</label>
+                    <label className="w-1/3 font-semibold">Name of the Company</label>
                     <input
                         type="text"
                         className="border-b border-black dark:border-white flex-grow ml-4"
@@ -121,7 +121,7 @@ export default function EmpForm4() {
                 </div>
 
                 <div className="flex justify-between">
-                    <label className="w-1/3">Employee Name</label>
+                    <label className="w-1/3 font-semibold">Employee Name</label>
                     <input
                         type="text"
                         className="border-b border-black dark:border-white flex-grow ml-4"
@@ -132,7 +132,7 @@ export default function EmpForm4() {
                 </div>
 
                 <div className="flex justify-between items-center">
-                    <label htmlFor="designation" className="w-1/5">Designation</label>
+                    <label htmlFor="designation" className="w-1/5 font-semibold">Designation</label>
                     <input
                         type="text"
                         className="border-b border-black dark:border-white w-[30%] ml-4 focus:outline-none"
@@ -142,7 +142,7 @@ export default function EmpForm4() {
                         required
                         disabled={true}
                     />
-                    <RequiredLabel> <label htmlFor="dateOfJoining" className="ml-4">Date of Joining</label></RequiredLabel>
+                    <RequiredLabel> <label htmlFor="dateOfJoining" className="ml-4 font-semibold">Date of Joining</label></RequiredLabel>
                     <input
                         type="date"
                         className="border-b border-black dark:border-white w-[25%] focus:outline-none"
@@ -235,7 +235,7 @@ export default function EmpForm4() {
             </div>
 
             {/* Nominee Declaration */}
-            <p className="mt-6 text-sm">
+            <p className="mt-6 text-sm ">
                 I hereby nominate the following person(s) to receive any amount payable to me by the company in case
                 of my death:
             </p>
@@ -318,10 +318,10 @@ export default function EmpForm4() {
 
             {/* Footer */}
             <div className="mt-8 flex justify-between items-end">
-                <div>
+                <div className="font-semibold">
                     Date: <input
                         type="date"
-                        className="border-b border-black dark:border-white ml-2"
+                        className=" border-black dark:border-white ml-2"
                         value={formData.date?.toString().split('T')[0] ?? ''}
                         onChange={(e) => handleChange('date', e.target.value)}
                         disabled={true}
@@ -329,7 +329,7 @@ export default function EmpForm4() {
                 </div>
                 <div className="text-right">
                     <div className="border-t border-black dark:border-white w-64 mx-auto mt-6"></div>
-                    <div className="text-sm text-center">(Signature of the employee)</div>
+                    <div className="text-sm text-center font-semibold">(Signature of Employee)</div>
                 </div>
             </div>
         </div>
