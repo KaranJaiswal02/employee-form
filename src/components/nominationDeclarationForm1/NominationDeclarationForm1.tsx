@@ -328,7 +328,7 @@ export default function NominationDeclarationForm1() {
                                     name="date"
                                     value={formData.date?.toString().split('T')[0] ?? ''}
                                     onChange={handleChange}
-                                    className="flex-1 font-semibold border-black dark:border-white px-2 focus:outline-none"
+                                    className="flex-1  border-black dark:border-white px-2 focus:outline-none"
                                     disabled={true}
                                 />
                             </div>
