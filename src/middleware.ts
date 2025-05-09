@@ -10,14 +10,14 @@ export async function middleware(req: NextRequest) {
     // Only run on protected routes
     if (protectedRoutes.some(route => pathname.startsWith(route))) {
         const authHeader = req.headers.get('authorization');
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        const token = authHeader ? authHeader.split(' ')[1] : null;
+        if (!authHeader || !authHeader.startsWith('Bearer ') || !token) {
             return NextResponse.json(
                 { success: false, message: 'Unauthorized', errors: ['Missing or invalid token'] },
                 { status: 401 }
             );
         }
 
-        const token = authHeader.split(' ')[1];
         const decoded = await verifyJwt(token);
 
         if (!decoded) {
