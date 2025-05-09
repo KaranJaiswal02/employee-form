@@ -3,7 +3,7 @@ import { bankMandateFormData, empFormData, formStatusus, grauFormData, idCardFor
 import { useAtom } from "jotai";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { FiLogOut } from "react-icons/fi";
 import { IoCheckmarkDoneCircleOutline, IoMoon, IoSunny } from "react-icons/io5";
 import { MdOutlinePending } from "react-icons/md";
@@ -233,7 +233,7 @@ export default function FormLayout({
     };
 
     return (
-        <Suspense fallback={<Loader />}>
+        <div>
             <div className="flex">
                 {isLoading ? (
                     <aside className="fixed top-0 left-0 w-80 h-screen bg-white dark:bg-card border shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between overflow-auto">
@@ -315,6 +315,6 @@ export default function FormLayout({
                     {isLoading ? (<Loader />) : (children)}
                 </main>
             </div>
-        </Suspense>
+        </div>
     );
 }

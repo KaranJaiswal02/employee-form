@@ -1,23 +1,23 @@
 "use client";
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAtom } from 'jotai';
 import { bankMandateFormData, empFormData, formStatusus } from '@/hooks/Atoms';
 import { Button } from '@/components/ui/button';
-import { toast } from "sonner"
+import { toast } from "sonner";
 import BankMandateForm from '@/components/bankMandateForm/BankMandateForm';
 import IError from '@/types/error';
 
-function BankMandate() {
+export default function BankMandate() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const [id, setId] = useState<string | null>(null);
     const [formData, setFormData] = useAtom(bankMandateFormData);
     const [formData1] = useAtom(empFormData);
     const [, setFormStatus] = useAtom(formStatusus);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
-    const [id, setId] = useState<string | null>(null);
-    const searchParams = useSearchParams()
-    //16-17 lagana hai sbmein
+
     useEffect(() => {
         setId(searchParams.get('id'));
         setFormData((prev) => ({
@@ -25,7 +25,7 @@ function BankMandate() {
             name: formData1.name || "",
             address: formData1.perAddress || "",
         }));
-    }, [setFormData, formData1]);
+    }, [setFormData, formData1, searchParams]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -85,14 +85,6 @@ function BankMandate() {
                     {isSubmitting ? "Submitting..." : "Submit"}
                 </Button>
             </div>
-        </form >
-    );
-}
-
-export default function Page() {
-    return (
-        <Suspense fallback={<p>Loading...</p>}>
-            <BankMandate />
-        </Suspense>
+        </form>
     );
 }

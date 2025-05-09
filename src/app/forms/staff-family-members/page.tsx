@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import React, { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { empFormData, formStatusus, staffFamilyFormData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
@@ -9,21 +9,15 @@ import StaffFamilyMembers from "@/components/staffFamilyMembers/StaffFamilyMembe
 import { calculateAge } from "@/lib/calculateAge";
 import IError from "@/types/error";
 
-// type Child = {
-//     name: string;
-//     gender: string;
-//     dob: string;
-// };
-
-function MyPage() {
+export default function MyPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    const [id, setId] = useState<string | null>(null);
     const [formData, setFormData] = useAtom(staffFamilyFormData);
     const [form1data] = useAtom(empFormData);
     const [, setFormStatus] = useAtom(formStatusus);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [errors, setErrors] = useState<string[]>([]);
-    const [id, setId] = useState<string | null>(null);
-    const searchParams = useSearchParams()
 
     useEffect(() => {
         setId(searchParams.get('id'));
@@ -34,7 +28,7 @@ function MyPage() {
             department: form1data.department || "",
             age: calculateAge(form1data.dob?.toString().split('T')[0] ?? '') || 0,
         }));
-    }, []);
+    }, [form1data, setFormData]);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -93,13 +87,5 @@ function MyPage() {
                 </Button>
             </div>
         </form>
-    );
-}
-
-export default function Page() {
-    return (
-        <Suspense fallback={<p>Loading...</p>}>
-            <MyPage />
-        </Suspense>
     );
 }

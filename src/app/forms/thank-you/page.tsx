@@ -1,27 +1,27 @@
 'use client';
 import { formStatusus } from '@/hooks/Atoms';
+import { FormStatus } from '@/types/formStatus';
 import { useAtom } from 'jotai';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function MyPage() {
+export default function MyPage() {
   const [formStatus] = useAtom(formStatusus);
-  const [params, setParams] = React.useState<string | null>(null);
-  const searchParams = useSearchParams()
+  const searchParams = useSearchParams();
+  const [params, setParams] = useState<string | null>(null);
+  const [incompleteForms, setIncompleteForms] = useState<FormStatus[]>([]);
+
   useEffect(() => {
+    setIncompleteForms(Object.values(formStatus).filter(form => form.status !== 'done') as FormStatus[]);
     const id = searchParams.get('id');
     setParams(id ? `?id=${id}` : '');
-  }, [])
-
-  const incompleteForms = Object.values(formStatus).filter(form => form.status !== 'done');
-  const allFormsCompleted = incompleteForms.length === 0;
+  }, [searchParams]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen px-4 py-10 text-center">
       <div className="max-w-2xl w-full bg-white dark:bg-neutral-800 shadow-md rounded-xl p-6 md:p-10">
-
-        {allFormsCompleted ? (
+        {incompleteForms.length === 0 ? (
           <>
             <h1 className="text-3xl md:text-4xl font-bold text-green-600 mb-4">Thank You!</h1>
             <p className="text-gray-700 dark:text-gray-200 text-lg md:text-xl mb-2">
@@ -50,13 +50,5 @@ function MyPage() {
         )}
       </div>
     </div>
-  );
-}
-
-export default function Page() {
-  return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <MyPage />
-    </Suspense>
   );
 }

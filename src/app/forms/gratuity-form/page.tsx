@@ -1,26 +1,24 @@
 "use client";
-import GratuityForm1 from '@/components/gratuityForm/GratuityForm1'
-import GratuityForm2 from '@/components/gratuityForm/GratuityForm2'
+import GratuityForm1 from '@/components/gratuityForm/GratuityForm1';
+import GratuityForm2 from '@/components/gratuityForm/GratuityForm2';
 import { empFormData, formStatusus, grauFormData, nominationForm1Data } from '@/hooks/Atoms';
 import { useAtom } from 'jotai';
-import React, { Suspense, useEffect } from 'react'
+import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { useState } from 'react';
 import IError from '@/types/error';
 
-
-function MyPage() {
-  const router = useRouter()
+export default function MyPage() {
+  const router = useRouter();
   const [formData, setFormData] = useAtom(grauFormData);
   const [empFormData1] = useAtom(empFormData);
   const [nominationform1] = useAtom(nominationForm1Data);
   const [, setFormStatus] = useAtom(formStatusus);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
+  const searchParams = useSearchParams();
   const [id, setId] = useState<string | null>(null);
-  const searchParams = useSearchParams()
 
   useEffect(() => {
     setId(searchParams.get('id'));
@@ -29,8 +27,8 @@ function MyPage() {
       name: empFormData1.name || "",
       department: empFormData1.department || "",
       marriagestatus: nominationform1.maritalStatus || "",
-    }))
-  }, [])
+    }));
+  }, [empFormData1, nominationform1, setFormData, searchParams]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -62,7 +60,6 @@ function MyPage() {
       else {
         toast.error(responseData.message);
         setErrors(responseData.errors);
-
       }
     } catch (err: unknown) {
       const error = err as IError;
@@ -91,13 +88,5 @@ function MyPage() {
         </Button>
       </div>
     </form>
-  )
-}
-
-export default function Page() {
-  return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <MyPage />
-    </Suspense>
   );
 }

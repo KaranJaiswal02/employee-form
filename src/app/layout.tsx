@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "sonner";
 import ThemeWrapper from "@/components/ThemeWrapper"; // You’ll create this
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Employee Forms",
@@ -19,8 +20,10 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="bg-neutral-200 dark:bg-neutral-950 text-gray-900 font-sans antialiased dark:text-gray-200">
         <ThemeWrapper>
+          <Suspense fallback={<p>Loading...</p>}>
           {children}
           <Toaster richColors closeButton />
+          </Suspense>
         </ThemeWrapper>
       </body>
     </html>
