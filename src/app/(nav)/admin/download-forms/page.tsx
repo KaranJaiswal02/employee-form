@@ -21,6 +21,7 @@ import { NominationForm1Model } from "@/models/forms/nomination-form1";
 import { NominationForm2Model } from "@/models/forms/nomination-form2";
 import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
 import { IEmpFormData } from "@/models/forms/staffjoin_form";
+import { set } from "mongoose";
 
 interface UserFormData {
     name: string;
@@ -60,7 +61,7 @@ export default function UserFormDownloadPage() {
     const [loadingUserId, setLoadingUserId] = useState<string | null>(null);
     const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user">("all");
     const [statusFilter, setStatusFilter] = useState<"all" | "Completed" | "Pending">("all");
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [reload, setReload] = useState(false);
 
     const layouts = {
@@ -91,8 +92,10 @@ export default function UserFormDownloadPage() {
     }, [setUsers, reload]);
 
     const fetchUsers = async () => {
-        if (users.length > 0 && !reload) return;
-        setLoading(true);
+        if (users.length > 0 && !reload){
+            setLoading(false);
+            return;
+        }
         setUserFormData({});
         setFetchedUserId("");
         try {

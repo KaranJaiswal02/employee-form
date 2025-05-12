@@ -19,13 +19,15 @@ export default function UserPasswordUpdatePage() {
     const [search, setSearch] = useState("");
     const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user">("all");
     const [passwordInputs, setPasswordInputs] = useState<{ [userId: string]: string }>({});
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [updating, setUpdating] = useState(false);
     const [reload, setReload] = useState(false);
 
     const fetchUsers = async () => {
-        if (users.length > 0 && !reload) return;
-        setLoading(true);
+        if (users.length > 0 && !reload){
+            setLoading(false);
+            return;
+        }
         try {
             const token = localStorage.getItem("token");
             const res = await fetch("/api/user/get-all", {
