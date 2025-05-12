@@ -50,7 +50,7 @@ export default function EmpForm1() {
       <h1 className="text-2xl font-bold text-center mb-4 underline">JOINING REPORT</h1>
       {/* <h6 className="text-1.5xl font-bold text-center mb-6">Employee Basic Info</h6> */}
 
-      <div className="grid grid-cols-3 gap-4 mb-1">
+      {/* <div className="grid grid-cols-3 gap-4 mb-1">
         <div className="space-y-0.5">
           <RequiredLabel><label htmlFor='name' className="block font-semibold">Employee Name </label></RequiredLabel>
           <input
@@ -84,12 +84,12 @@ export default function EmpForm1() {
             required
           />
         </div>
-      </div>
+      </div> */}
 
       {/* Address Section */}
       <div className="mb-6">
 
-        <div className="grid grid-cols-2 gap-4 mb-4">
+        {/* <div className="grid grid-cols-2 gap-4 mb-4">
           <div className="space-y-0.5">
             <RequiredLabel> <label htmlFor='dob' className="block font-semibold">Date of Birth </label></RequiredLabel>
             <input
@@ -102,7 +102,82 @@ export default function EmpForm1() {
             />
           </div>
 
+        </div> */}
+        <div className="flex gap-4">
+          {/* Left 70% section for inputs */}
+          <div className="w-[70%] space-y-4">
+            {/* Line 1: Employee Name and Father's Name */}
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <RequiredLabel>
+                  <label htmlFor="name" className="font-semibold block mb-1">Employee Name</label>
+                </RequiredLabel>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={empFormData1.name}
+                  onChange={handleChange}
+                  className="w-full border-b border-black dark:border-white focus:outline-none pb-1"
+                  required
+                />
+              </div>
+              <div className="w-1/2">
+                <RequiredLabel>
+                  <label htmlFor="fatherName" className="font-semibold block mb-1">Father's Name</label>
+                </RequiredLabel>
+                <input
+                  type="text"
+                  id="fatherName"
+                  name="fatherName"
+                  value={empFormData1.fatherName}
+                  onChange={handleChange}
+                  className="w-full border-b border-black dark:border-white focus:outline-none pb-1"
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Line 2: Designation and DOB */}
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <RequiredLabel>
+                  <label htmlFor="designation" className="font-semibold block mb-1">Designation</label>
+                </RequiredLabel>
+                <input
+                  type="text"
+                  id="designation"
+                  name="designation"
+                  value={empFormData1.designation}
+                  onChange={handleChange}
+                  className="w-full border-b border-black dark:border-white focus:outline-none pb-1"
+                  required
+                />
+              </div>
+              <div className="w-1/2">
+                <RequiredLabel>
+                  <label htmlFor="dob" className="font-semibold block mb-1">Date of Birth</label>
+                </RequiredLabel>
+                <input
+                  type="date"
+                  id="dob"
+                  name="dob"
+                  value={empFormData1.dob.toString().split("T")[0]}
+                  onChange={handleChange}
+                  className="w-full border-b border-black dark:border-white focus:outline-none pb-1"
+                  required
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Right 30% section for Photo */}
+          <div className="w-[20%] ml-12 flex justify-center items-start border border-dashed border-gray-400 p-2">
+            {/* Replace below div with actual image input or preview if needed */}
+            <div className="text-center mt-10  text-sm text-gray-500">Photo Placeholder</div>
+          </div>
         </div>
+
 
         <h3 className="font-bold mb-1"> Address for Correspondence</h3>
 
