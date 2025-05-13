@@ -124,7 +124,7 @@ export default function EmpForm1() {
               </div>
               <div className="w-1/2">
                 <RequiredLabel>
-                  <label htmlFor="fatherName" className="font-semibold block mb-1">Father&rsquos Name</label>
+                  <label htmlFor="fatherName" className="font-semibold block mb-1">Father&rsquo;s Name</label>
                 </RequiredLabel>
                 <input
                   type="text"
