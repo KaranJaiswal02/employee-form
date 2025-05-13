@@ -231,7 +231,7 @@ export default function EmpForm1() {
               id="currstdcode"
               value={empFormData1.currstdcode}
               onChange={handleChange}
-              className="w-20 border-b-1 border-black dark:border-white pb-0 focus:outline-none mr-2"
+              className="w-20 border-b-1 border-black font-normal dark:border-white pb-0 focus:outline-none mr-2"
 
             />
             <RequiredLabel><label htmlFor='currcontactNumber' className='font-small'>Number:</label></RequiredLabel>
@@ -240,7 +240,7 @@ export default function EmpForm1() {
               id="currcontactNumber"
               value={empFormData1.currcontactNumber}
               onChange={handleChange}
-              className="w-full flex-1 border-b-1 border-black dark:border-white pb-0 focus:outline-none mr-2"
+              className="w-full flex-1 border-b-1 border-black dark:border-white pb-0 font-normal focus:outline-none mr-2"
               required
             />
           </div>
@@ -309,7 +309,7 @@ export default function EmpForm1() {
                 id="perstdcode"
                 value={empFormData1.perstdcode}
                 onChange={handleChange}
-                className="w-20 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+                className="w-20 border-b-1 border-black dark:border-white pb-1 font-normal focus:outline-none mr-2"
                 disabled={isChecked}
               />
 
@@ -321,7 +321,7 @@ export default function EmpForm1() {
                 id="percontactNumber"
                 value={empFormData1.percontactNumber}
                 onChange={handleChange}
-                className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
+                className="w-full flex-1 border-b-1 border-black dark:border-white pb-1 font-normal focus:outline-none mr-2"
                 disabled={isChecked}
                 required
               />
@@ -365,13 +365,13 @@ export default function EmpForm1() {
         </div>
 
         <div className="flex items-center gap-2 flex-1 min-w-[70px] font-semibold">
-          <span>Deptt:</span>
+          <span>Dept:</span>
           <input
             type='text'
             id='department'
             value={empFormData1.department}
             onChange={handleChange}
-            className="w-full border-b border-black dark:border-white pb-0 focus:outline-none"
+            className="w-full border-b border-black font-normal dark:border-white pb-0 focus:outline-none"
           />
         </div>
       </div>
