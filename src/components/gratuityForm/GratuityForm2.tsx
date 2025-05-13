@@ -145,7 +145,7 @@ export default function GratuityForm2() {
                                         type="text"
                                         value={formData.building}
                                         onChange={handleChange}
-                                        className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                        className="border-b border-black dark:border-white w-40 font-normal inline-block ml-1 focus:outline-none"
                                         required
                                     />
                                 </label>
@@ -157,7 +157,7 @@ export default function GratuityForm2() {
                                         type="text"
                                         value={formData.village}
                                         onChange={handleChange}
-                                        className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                        className="border-b border-black dark:border-white w-40 font-normal inline-block ml-1 focus:outline-none"
                                     />
                                 </label>
 
@@ -168,7 +168,7 @@ export default function GratuityForm2() {
                                         type="text"
                                         value={formData.thana}
                                         onChange={handleChange}
-                                        className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                        className="border-b border-black dark:border-white w-40 font-normal inline-block ml-1 focus:outline-none"
                                         required
                                     />
                                 </label>
@@ -180,7 +180,7 @@ export default function GratuityForm2() {
                                         type="text"
                                         value={formData.subdivision}
                                         onChange={handleChange}
-                                        className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                        className="border-b border-black dark:border-white w-40 font-normal inline-block ml-1 focus:outline-none"
                                     />
                                 </label>
                             </div>
@@ -193,7 +193,7 @@ export default function GratuityForm2() {
                                         type="text"
                                         value={formData.postoffice}
                                         onChange={handleChange}
-                                        className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                        className="border-b border-black dark:border-white w-40 font-normal inline-block ml-1 focus:outline-none"
                                         required
                                     />
                                 </label>
@@ -205,7 +205,7 @@ export default function GratuityForm2() {
                                         type="text"
                                         value={formData.district}
                                         onChange={handleChange}
-                                        className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                        className="border-b border-black dark:border-white w-40 inline-block ml-1 font-normal focus:outline-none"
                                         required
                                     />
                                 </label>
@@ -217,7 +217,7 @@ export default function GratuityForm2() {
                                         type="text"
                                         value={formData.state}
                                         onChange={handleChange}
-                                        className="border-b border-black dark:border-white w-40 inline-block ml-1 focus:outline-none"
+                                        className="border-b border-black dark:border-white w-40 inline-block ml-1 font-normal focus:outline-none"
                                         required
                                     />
                                 </label>
