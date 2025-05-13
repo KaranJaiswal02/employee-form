@@ -60,7 +60,7 @@ export default function UserFormDownloadPage() {
     const [loadingUserId, setLoadingUserId] = useState<string | null>(null);
     const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user">("all");
     const [statusFilter, setStatusFilter] = useState<"all" | "Completed" | "Pending">("all");
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [reload, setReload] = useState(false);
 
     const layouts = {
@@ -91,8 +91,10 @@ export default function UserFormDownloadPage() {
     }, [setUsers, reload]);
 
     const fetchUsers = async () => {
-        if (users.length > 0 && !reload) return;
-        setLoading(true);
+        if (users.length > 0 && !reload){
+            setLoading(false);
+            return;
+        }
         setUserFormData({});
         setFetchedUserId("");
         try {

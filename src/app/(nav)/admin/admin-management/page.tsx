@@ -19,12 +19,14 @@ export default function AdminManagementPage() {
     const [search, setSearch] = useState("");
     const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user">("all");
     const [changingRole, setChangingRole] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [reload, setReload] = useState(false);
 
     const fetchUsers = async () => {
-        if (users.length > 0 && !reload) return;
-        setLoading(true);
+        if (users.length > 0 && !reload){
+            setLoading(false);
+            return;
+        }
         try {
             const token = localStorage.getItem("token");
             const res = await fetch("/api/user/get-all", {
@@ -133,7 +135,6 @@ export default function AdminManagementPage() {
                 )}
             </div>
 
-            {users.length > 0 && (<>
                 <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     {/* Search Input */}
                     <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-1/2">
@@ -231,7 +232,6 @@ export default function AdminManagementPage() {
                         </tbody>
                     </table>
                 </div>
-            </>)}
         </div>
     );
 }
