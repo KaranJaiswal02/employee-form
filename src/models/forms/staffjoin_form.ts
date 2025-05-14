@@ -101,6 +101,7 @@ export interface IEmpFormData {
     code: string;
     grade: string;
     members: Member[];
+    photo: string | null;
 }
 
 const ReferenceSchema = new Schema<Reference>({
@@ -192,6 +193,7 @@ const EmpFormDataSchema = new Schema({
     pfNominee2Name: { type: String, required: false },
     pfNominee3Percent: { type: String, required: false },
     pfNominee3Name: { type: String, required: false },
+    photo: { type: String, default: null , required: true },
     education: {
         type: [[String]],
         required: true,

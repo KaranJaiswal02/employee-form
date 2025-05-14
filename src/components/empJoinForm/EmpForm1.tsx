@@ -7,10 +7,16 @@ import { Label } from '../ui/label'
 import { Checkbox } from '../ui/checkbox'
 import { toast } from 'sonner'
 import { calculateAge } from '@/lib/calculateAge'
+import { useEffect } from 'react'
 
 export default function EmpForm1() {
   const [empFormData1, setEmpFormData1] = useAtom(empFormData);
   const [isChecked, setIsChecked] = useState(false);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    setPhotoPreview(empFormData1.photo || null);
+  }, [empFormData1.photo]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target as HTMLInputElement;
@@ -27,6 +33,19 @@ export default function EmpForm1() {
     setEmpFormData1(prev => ({ ...prev, [id]: value }));
     if (isChecked) {
       setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode, perstdcode: empFormData1.currstdcode, percontactNumber: empFormData1.currcontactNumber }));
+    }
+  };
+  const handlePhotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      // Convert image to base64
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setPhotoPreview(base64String);
+        setEmpFormData1((prev) => ({ ...prev, photo: base64String }));
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -103,7 +122,7 @@ export default function EmpForm1() {
           </div>
 
         </div> */}
-        <div className="flex gap-4">
+        <div className="flex gap-6">
           {/* Left 70% section for inputs */}
           <div className="w-[70%] space-y-4">
             {/* Line 1: Employee Name and Father's Name */}
@@ -171,10 +190,26 @@ export default function EmpForm1() {
             </div>
           </div>
 
-          {/* Right 30% section for Photo */}
-          <div className="w-[20%] ml-12 flex justify-center items-start border border-dashed border-gray-400 p-2">
-            {/* Replace below div with actual image input or preview if needed */}
-            <div className="text-center mt-10  text-sm text-gray-500">Photo Placeholder</div>
+          {/* section for Photo */}
+          <div className="row-span-9 border border-black dark:border-white flex items-center ml-6 justify-center">
+            <label className="w-32 h-40 border-2 border-gray-400 text-center flex items-center justify-center text-xs cursor-pointer relative overflow-hidden">
+              {photoPreview ? (
+                <img
+                  src={photoPreview}
+                  alt="Uploaded Photo"
+                  className="w-full h-full object-contain"
+                />
+              ) : (
+                <span className="text-sm">Upload Photo</span>
+              )}
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handlePhotoChange}
+                className="opacity-0 absolute inset-0 cursor-pointer"
+                required
+              />
+            </label>
           </div>
         </div>
 
