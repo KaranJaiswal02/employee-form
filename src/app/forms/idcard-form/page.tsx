@@ -26,6 +26,7 @@ export default function IDCard() {
       fatherName: empFormData1.fatherName || "",
       designation: empFormData1.designation || "",
       dob: empFormData1.dob || "",
+      photo: empFormData1.photo || "",
     }));
   }, [empFormData1, setFormData, searchParams]);
 

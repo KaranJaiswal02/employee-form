@@ -53,13 +53,13 @@ export default function RootLayout({
             setIsDarkMode(isDark);
         }
         const token = localStorage.getItem("token");
+        console.log(token)
         if (!token) {
             router.push("/sign-in");
+            return;
         }
         verifyToken(token as string);
-        if (token) {
-            setLoggedIn(true);
-        }
+        setLoggedIn(true);
         const handleLogin = () => {
             const token = localStorage.getItem("token");
             if (token) {

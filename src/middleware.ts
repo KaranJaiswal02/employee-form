@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { verifyJwt } from '@/lib/jwt';
 
 export async function middleware(req: NextRequest) {
-    const protectedRoutes = ['/api/forms','/api/user'];
+    const protectedRoutes = ['/api/forms', '/api/user'];
 
     const { pathname } = req.nextUrl;
 
@@ -11,7 +11,7 @@ export async function middleware(req: NextRequest) {
     if (protectedRoutes.some(route => pathname.startsWith(route))) {
         const authHeader = req.headers.get('authorization');
         const token = authHeader ? authHeader.split(' ')[1] : null;
-        if (!authHeader || !authHeader.startsWith('Bearer ') || !token) {
+        if (!authHeader || !authHeader.startsWith('Bearer ') || !token || token==="null") {
             return NextResponse.json(
                 { success: false, message: 'Unauthorized', errors: ['Missing or invalid token'] },
                 { status: 401 }
@@ -38,5 +38,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-    matcher: ['/api/forms/:path*','/api/user/:path*'],
+    matcher: ['/api/forms/:path*', '/api/user/:path*'],
 };

@@ -12,11 +12,6 @@ import { useEffect } from 'react'
 export default function EmpForm1() {
   const [empFormData1, setEmpFormData1] = useAtom(empFormData);
   const [isChecked, setIsChecked] = useState(false);
-  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
-
-  useEffect(() => {
-    setPhotoPreview(empFormData1.photo || null);
-  }, [empFormData1.photo]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target as HTMLInputElement;
@@ -42,7 +37,6 @@ export default function EmpForm1() {
       const reader = new FileReader();
       reader.onloadend = () => {
         const base64String = reader.result as string;
-        setPhotoPreview(base64String);
         setEmpFormData1((prev) => ({ ...prev, photo: base64String }));
       };
       reader.readAsDataURL(file);
@@ -191,13 +185,13 @@ export default function EmpForm1() {
           </div>
 
           {/* section for Photo */}
-          <div className="row-span-9 border border-black dark:border-white flex items-center ml-6 justify-center">
+          <div className="row-span-9 flex items-center ml-12 justify-center">
             <label className="w-32 h-40 border-2 border-gray-400 text-center flex items-center justify-center text-xs cursor-pointer relative overflow-hidden">
-              {photoPreview ? (
+              {empFormData1.photo ? (
                 <img
-                  src={photoPreview}
+                  src={empFormData1.photo || ""}
                   alt="Uploaded Photo"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-cover"
                 />
               ) : (
                 <span className="text-sm">Upload Photo</span>

@@ -33,7 +33,7 @@ export default function HomePage() {
             setIsDarkMode(isDark);
         }
         const token = localStorage.getItem("token");
-        verifyToken(token as string);
+        if (token) verifyToken(token as string);
     }, []);
 
     const toggleDarkMode = () => {

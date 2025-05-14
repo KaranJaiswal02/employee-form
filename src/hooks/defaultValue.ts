@@ -72,7 +72,7 @@ export const DefaultEmpFormData: IEmpFormData = {
     ncc: "",
     hobbies: "",
     knowsSomeone: "",
-    photo: null as string | null,
+    photo: null,
     references: [
         { name: "", address: "", phone: "" },
         { name: "", address: "", phone: "" }

@@ -12,31 +12,12 @@ import { useAtom } from "jotai";
 
 export default function IdCardForm() {
     const [formData, setFormData] = useAtom(idCardFormData);
-    const [photoPreview, setPhotoPreview] = useState<string | null>(null);
-
-    useEffect(() => {
-        setPhotoPreview(formData.photo || null);
-    }, [formData.photo]);
 
     const handleInputChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         const { id, value } = e.target;
         setFormData((prev) => ({ ...prev, [id]: value }));
-    };
-
-    const handlePhotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            // Convert image to base64
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const base64String = reader.result as string;
-                setPhotoPreview(base64String);
-                setFormData((prev) => ({ ...prev, photo: base64String }));
-            };
-            reader.readAsDataURL(file);
-        }
     };
 
     return (
@@ -234,11 +215,11 @@ export default function IdCardForm() {
                 {/* PHOTO COLUMN */}
                 <div className="row-span-9 border border-black dark:border-white flex items-center justify-center">
                     <label className="w-32 h-40 border-2 border-gray-400 text-center flex items-center justify-center text-xs cursor-pointer relative overflow-hidden">
-                        {photoPreview ? (
+                        {formData.photo ? (
                             <img
-                                src={photoPreview}
+                                src={formData.photo || ""}
                                 alt="Uploaded Photo"
-                                className="w-full h-full object-contain"
+                                className="w-full h-full object-cover"
                             />
                         ) : (
                             <span className="text-sm">Upload Photo</span>
@@ -246,8 +227,8 @@ export default function IdCardForm() {
                         <input
                             type="file"
                             accept="image/*"
-                            onChange={handlePhotoChange}
                             className="opacity-0 absolute inset-0 cursor-pointer"
+                            disabled={true}
                             required
                         />
                     </label>
