@@ -8,8 +8,8 @@ export default function Page() {
     router.push('/home')
   }, [router])
   return (
-    <div>
-
+    <div className='flex text-5xl items-center justify-center h-screen'>
+      Loading
     </div>
   )
 }
