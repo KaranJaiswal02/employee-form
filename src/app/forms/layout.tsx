@@ -260,7 +260,7 @@ export default function FormLayout({
                     <button
                         onClick={() => setIsCollapsed(!isCollapsed)}
                         className={`fixed top-4 ${isCollapsed ? "left-12" : "left-76"
-                            } z-50 bg-neutral-300 dark:bg-neutral-700 p-1 rounded-full shadow hover:opacity-80 transition-all duration-300 cursor-pointer`}
+                            } z-50 bg-neutral-300 border-4 border-neutral-200 dark:border-neutral-950 dark:bg-neutral-700 p-2 rounded-full hover:opacity-80 transition-all duration-300 cursor-pointer`}
                     >
                         {isCollapsed ? <AiOutlineMenuUnfold size={30} /> : <AiOutlineMenuFold size={30} />}
                     </button>
