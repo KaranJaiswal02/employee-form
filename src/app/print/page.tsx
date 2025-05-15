@@ -13,8 +13,8 @@ const formButtons = [
     { key: 'bankMandateFormData', label: 'Print Bank Mandate', data: DefaultBankMandateFormData, layout: 'portrait' },
     { key: 'grauFormData', label: 'Print Gratuity Form', data: DefaultGrauFormData, layout: 'portrait' },
     { key: 'idCardFormData', label: 'Print ID Card Form', data: DefaultIdCardFormData, layout: 'portrait' },
-    { key: 'nominationForm1Data', label: 'Print Nomination Form 1', data: DefaultNominationForm1Data, layout: 'landscape' },
-    { key: 'nominationForm2Data', label: 'Print Nomination Form 2', data: DefaultNominationForm2Data, layout: 'landscape' },
+    { key: 'nominationForm1Data', label: 'Print Nomination Form 1', data: DefaultNominationForm1Data, layout: 'portrait' },
+    { key: 'nominationForm2Data', label: 'Print Nomination Form 2', data: DefaultNominationForm2Data, layout: 'portrait' },
     { key: 'staffFamilyFormData', label: 'Print Staff Family', data: DefaultStaffFamilyFormData, layout: 'landscape' },
     { key: 'empFormData', label: 'Print Staff Joining Form', data: DefaultEmpFormData, layout: 'portrait' },
 ]

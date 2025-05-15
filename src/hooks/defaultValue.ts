@@ -7,6 +7,7 @@ import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
 import { IEmpFormData } from "@/models/forms/staffjoin_form";
 
 const currentDate = new Date().toISOString().split('T')[0];
+const establishmentAddress = "SL AP Private Limited\nBrigade Opus, 4th Floor\nMunicipal No. 70/401, Survey No. 44/1 and 44/4 Kodigehalli Main Road, Hebbal,\nBengaluru Urban, Karnataka 560092"
 
 export const DefaultEmpFormData: IEmpFormData = {
     name: "",
@@ -122,7 +123,7 @@ export const DefaultGrauFormData: IGratuityForm = {
     date: currentDate,
     witness1name: "",
     witness2name: "",
-    establishmentAddress: "SL AP Private Limited\n Brigade Opus, 4th Floor\n Municipal No. 70/401, Survey No. 44/1 and 44/4 Kodigehalli Main Road, Hebbal,\n Bengaluru Urban, Karnataka 560092",
+    establishmentAddress: establishmentAddress,
 }
 
 export const DefaultNominationForm1Data: NominationForm1Model = {
@@ -138,7 +139,7 @@ export const DefaultNominationForm1Data: NominationForm1Model = {
     ],
     place: "Bengaluru",
     date: currentDate,
-    establishmentAddress: "SL AP Private Limited\n Brigade Opus, 4th Floor\n Municipal No. 70/401, Survey No. 44/1 and 44/4 Kodigehalli Main Road, Hebbal,\n Bengaluru Urban, Karnataka 560092"
+    establishmentAddress: establishmentAddress,
 };
 
 export const DefaultNominationForm2Data: NominationForm2Model = {
@@ -168,7 +169,7 @@ export const DefaultNominationForm2Data: NominationForm2Model = {
     },
     subscriberDate: currentDate,
     employerDate: currentDate,
-    establishmentDetails: "SL AP Private Limited\n Brigade Opus, 4th Floor\n Municipal No. 70/401, Survey No. 44/1 and 44/4 Kodigehalli Main Road, Hebbal,\n Bengaluru Urban, Karnataka 560092",
+    establishmentDetails: establishmentAddress,
     place: 'Bengaluru',
     date: currentDate,
 }

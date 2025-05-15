@@ -155,22 +155,24 @@ export default function EPFNominationFormPart2() {
                 disabled
               />
             </div>
-            <div className="w-64 border-t border-black dark:border-white text-center pt-2 mt-4">
+            <div className="w-64 border-t border-black dark:border-white text-center pt-2 mt-4 print:mt-8">
               Signature of the employer or other authorised officer of the establishment
             </div>
           </div>
 
           <div className="mb-4">
             <p><b>Name & address of the Factory / Establishment:</b></p>
-            {/* <div className='ml-1 mt-1'>
+            <div className='ml-1'>
             <textarea
               name="establishmentDetails"
               value={formData.establishmentDetails}
               onChange={handleFieldChange}
-              className=" border-b border-black dark:border-white outline-none w-full h-24 resize-none"
+              disabled={true}
+              rows={4}
+              className="border-b border-black dark:border-white outline-none w-full resize-none py-1"
               placeholder="Enter establishment details here..."
             />
-          </div> */}
+          </div>
             <div className="mb-4 mt-2">
               <label className="font-small mb-2">
                 <p style={{ whiteSpace: 'pre-line' }}>

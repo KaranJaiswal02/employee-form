@@ -105,8 +105,8 @@ export default function EPFNominationForm() {
 
             {/* Personal Information Section */}
             <div className="space-y-1.5 mb-6">
-                <div className="flex flex-col md:flex-row gap-4" >
-                    <label className="w-full md:w-56 uppercase mt-1 font-semibold">1. Name (IN BLOCK LETTERS):</label>
+                <div className="flex flex-row gap-4" >
+                    <label className="md:w-56 uppercase mt-1 font-semibold">1. Name (IN BLOCK LETTERS):</label>
                     <div className="flex-1 grid grid-cols-3 gap-4">
                         <input
                             type="text"
@@ -141,10 +141,10 @@ export default function EPFNominationForm() {
                     </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row md:justify-between">
+                <div className="flex flex-row justify-between">
                     {/* Father's/Husband's Name */}
-                    <div className="flex flex-col md:flex-row gap-4 md:w-120">
-                        <label className="w-full md:w-56 mt-1 font-semibold">2. Father&rsquo;s/Husband&rsquo;s Name:</label>
+                    <div className="flex flex-row gap-4 md:w-120">
+                        <label className="md:w-56 mt-1 font-semibold">2. Father&rsquo;s/Husband&rsquo;s Name:</label>
                         <input
                             type="text"
                             name="fatherName"
@@ -157,8 +157,8 @@ export default function EPFNominationForm() {
                     </div>
 
                     {/* Date of Birth */}
-                    <div className="flex flex-col md:flex-row gap-4 md:w-1/3 ml-8">
-                        <label className="w-full md:w-32 font-semibold">3. Date of Birth:</label>
+                    <div className="flex flex-row gap-4 md:w-1/3">
+                        <label className="md:w-32 font-semibold">3. Date of Birth:</label>
                         <input
                             type="date"
                             name="dob"
@@ -171,9 +171,9 @@ export default function EPFNominationForm() {
                     </div>
                 </div>
 
-                <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex flex-row justify-between gap-4 mt-1">
                     {/* Account Number */}
-                    <div className="flex flex-col md:flex-row gap-2 md:w-80">
+                    <div className="flex flex-row gap-2 md:w-80">
                         <label className="text-sm md:w-35 mt-1 font-semibold">4. Account No:</label>
                         <input
                             type="text"
@@ -187,8 +187,8 @@ export default function EPFNominationForm() {
                     </div>
 
                     {/* Sex */}
-                    <div className="flex flex-col md:flex-row gap-2 md:w-50">
-                        <label htmlFor="sex" className="text-sm md:w-16 ml-6 mt-1 font-semibold">5. Sex:</label>
+                    <div className="flex flex-row gap-2 md:w-50">
+                        <label htmlFor="sex" className="text-sm md:w-16 mt-1 font-semibold">5. Sex:</label>
                         <input
                             type="text"
                             name="sex"
@@ -201,8 +201,8 @@ export default function EPFNominationForm() {
                     </div>
 
                     {/* Marital Status */}
-                    <div className="flex flex-col md:flex-row gap-2 md:w-80">
-                        <label className="text-sm md:w-36 mt-1 font-semibold ml-4">6. Marital Status:</label>
+                    <div className="flex flex-row gap-2 md:w-80">
+                        <label className="text-sm md:w-36 mt-1 font-semibold">6. Marital Status:</label>
                         <input
                             type="text"
                             name="maritalStatus"
@@ -216,7 +216,7 @@ export default function EPFNominationForm() {
                 </div>
 
 
-                <div className="flex flex-col md:flex-row gap-4">
+                <div className="flex flex-col md:flex-row gap-1 md:gap-4">
                     <label className="w-full md:w-72 mt-1 font-semibold">7. Address (Permanent/Temporary):</label>
                     <textarea
                         name="address"
