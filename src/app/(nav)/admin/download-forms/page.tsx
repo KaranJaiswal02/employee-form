@@ -91,7 +91,7 @@ export default function UserFormDownloadPage() {
     }, [setUsers, reload]);
 
     const fetchUsers = async () => {
-        if (users.length > 0 && !reload){
+        if (users.length > 0 && !reload) {
             setLoading(false);
             return;
         }
@@ -234,7 +234,7 @@ export default function UserFormDownloadPage() {
 
                 <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     {/* Search Input */}
-                    <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-1/2">
+                    <div className="flex flex-row items-center gap-2 w-full md:w-1/2">
                         <Input
                             type="text"
                             placeholder="Search by name or email..."
@@ -253,14 +253,14 @@ export default function UserFormDownloadPage() {
 
 
                     {/* Filters and Reset Button */}
-                    <div className="flex flex-col items-center justify-center sm:flex-row gap-2 w-full md:w-fit">
+                    <div className="flex flex-row flex-wrap md:flex-nowrap items-center justify-center gap-2 w-full md:w-fit">
                         {/* Role Filter */}
                         <div className="border rounded-md border-gray-500 dark:border-gray-800">
                             <Select
                                 value={roleFilter}
                                 onValueChange={(val: "all" | "admin" | "user") => setRoleFilter(val)}
                             >
-                                <SelectTrigger className="w-full cursor-pointer sm:w-[160px]">
+                                <SelectTrigger className="w-full cursor-pointer md:w-[160px]">
                                     <SelectValue placeholder="Select Role" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -277,7 +277,7 @@ export default function UserFormDownloadPage() {
                                 value={statusFilter}
                                 onValueChange={(val: "all" | "Completed" | "Pending") => setStatusFilter(val)}
                             >
-                                <SelectTrigger className="w-full cursor-pointer sm:w-[160px]">
+                                <SelectTrigger className="w-full cursor-pointer md:w-[160px]">
                                     <SelectValue placeholder="Select Status" />
                                 </SelectTrigger>
                                 <SelectContent>

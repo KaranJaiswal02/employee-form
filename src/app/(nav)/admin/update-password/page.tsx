@@ -123,7 +123,7 @@ export default function UserPasswordUpdatePage() {
             </div>
 
             <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-1/2">
+                <div className="flex flex-row items-center gap-2 w-full md:w-1/2">
                     <Input
                         type="text"
                         placeholder="Search by name or email..."
@@ -140,7 +140,7 @@ export default function UserPasswordUpdatePage() {
                     </Button>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-2 w-full md:w-fit">
+                <div className="flex flex-row flex-wrap md:flex-nowrap items-center justify-center gap-2 w-full md:w-fit">
                     <div className="border rounded-md border-gray-500 dark:border-gray-800">
                         <Select
                             value={roleFilter}

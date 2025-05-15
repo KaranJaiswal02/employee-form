@@ -99,7 +99,7 @@ export default function AdminManagementPage() {
 
             <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 {/* Search Input */}
-                <div className="flex flex-col sm:flex-row items-center gap-2 w-full md:w-1/2">
+                <div className="flex flex-row items-center gap-2 w-full md:w-1/2">
                     <Input
                         type="text"
                         placeholder="Search by name or email..."
@@ -117,7 +117,7 @@ export default function AdminManagementPage() {
                 </div>
 
                 {/* Filters and Reset Button */}
-                <div className="flex flex-col items-center justify-center sm:flex-row gap-2 w-full md:w-fit">
+                <div className="flex flex-row flex-wrap md:flex-nowrap items-center justify-center gap-2 w-full md:w-fit">
 
                     {/* Status Filter */}
                     <div className="border rounded-md border-gray-500 dark:border-gray-800">
