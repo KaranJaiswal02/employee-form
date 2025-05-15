@@ -260,14 +260,14 @@ export default function FormLayout({
                     <button
                         onClick={() => setIsCollapsed(!isCollapsed)}
                         className={`fixed top-4 ${isCollapsed ? "left-12" : "left-76"
-                            } z-50 bg-neutral-300 border-4 border-neutral-200 dark:border-neutral-950 dark:bg-neutral-700 p-2 rounded-full hover:opacity-80 transition-all duration-300 cursor-pointer`}
+                            } z-50 bg-gray-300 border-4 border-neutral-200 dark:border-neutral-950 dark:bg-gray-700 p-2 rounded-full hover:opacity-80 transition-all duration-300 cursor-pointer`}
                     >
                         {isCollapsed ? <AiOutlineMenuUnfold size={30} /> : <AiOutlineMenuFold size={30} />}
                     </button>
 
                     <aside
                         className={`fixed top-0 left-0 h-full ${isCollapsed ? "w-16" : "w-80"
-                            } bg-white dark:bg-card border shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between overflow-auto transition-all duration-300`}
+                            } bg-white dark:bg-card shadow-md border-r py-6 px-3 flex flex-col justify-between overflow-auto transition-all duration-300`}
                     >
                         {isLoading ? (
                             <div className="flex items-center justify-center h-full">
@@ -290,7 +290,7 @@ export default function FormLayout({
                                                 >
                                                     <IoIosArrowBack
                                                         size={32}
-                                                        className="p-1 bg-neutral-300 dark:bg-neutral-700 rounded-full"
+                                                        className="p-1 bg-gray-300 dark:bg-gray-700 rounded-full"
                                                     />
                                                 </Link>
                                             )}
@@ -347,7 +347,7 @@ export default function FormLayout({
                                         onClick={toggleDarkMode}
                                         className={`flex items-center justify-center space-x-3 cursor-pointer ${isCollapsed ? "" : "pr-4"}`}
                                     >
-                                        <span className="text-gray-800 dark:text-gray-200 font-medium p-2 rounded-full bg-neutral-200 dark:bg-neutral-700 hover:opacity-80 transition duration-200">
+                                        <span className="text-gray-800 dark:text-gray-200 font-medium p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:opacity-80 transition duration-200">
                                             {isDarkMode ? <IoMoon size={22} /> : <IoSunny size={22} />}
                                         </span>
                                         {!isCollapsed && (

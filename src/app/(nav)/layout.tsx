@@ -95,7 +95,7 @@ export default function RootLayout({
                         <div className="w-6">
                             {pathname.startsWith("/admin") && pathname !== "/admin/dashboard" && (
                                 <Link href="/admin/dashboard" className="text-gray-800 dark:text-white hover:opacity-80">
-                                    <IoIosArrowBack size={32} className="p-1 bg-neutral-300 dark:bg-neutral-700 rounded-full" />
+                                    <IoIosArrowBack size={32} className="p-1 bg-gray-300 dark:bg-gray-700 rounded-full" />
                                 </Link>
                             )}
                         </div>
@@ -118,7 +118,7 @@ export default function RootLayout({
                                         }`}
                                 ></span>
                             </button> */}
-                            <span className="text-gray-800 dark:text-gray-200 font-medium p-2 rounded-full bg-neutral-200 dark:bg-neutral-700 hover:opacity-80 transition duration-200">
+                            <span className="text-gray-800 dark:text-gray-200 font-medium p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:opacity-80 transition duration-200">
                                 {isDarkMode ? <IoMoon size={22} /> : <IoSunny size={22} />}
                             </span>
                             <span className="hidden md:inline text-gray-800 dark:text-gray-200 font-medium">
