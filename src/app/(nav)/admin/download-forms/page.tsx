@@ -95,6 +95,7 @@ export default function UserFormDownloadPage() {
             setLoading(false);
             return;
         }
+        setLoading(true);
         setUserFormData({});
         setFetchedUserId("");
         try {
@@ -244,7 +245,7 @@ export default function UserFormDownloadPage() {
                         />
                         <Button
                             className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 hover:bg-transparent cursor-pointer flex items-center gap-2 bg-transparent"
-                            onClick={() => setReload(!reload)}
+                            onClick={() => setReload(true)}
                         >
                             <TfiReload />
                             {/* Reload */}

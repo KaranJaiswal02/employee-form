@@ -30,6 +30,7 @@ export default function AdminManagementPage() {
             setLoading(false);
             return;
         }
+        setLoading(true);
         try {
             const token = localStorage.getItem("token");
             const res = await fetch("/api/user/get-all", {
@@ -61,6 +62,7 @@ export default function AdminManagementPage() {
                 description: error.message || "An error occurred",
             });
         }
+        setReload(false);
         setLoading(false);
     };
 
@@ -109,7 +111,7 @@ export default function AdminManagementPage() {
                     />
                     <Button
                         className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 hover:bg-transparent cursor-pointer flex items-center gap-2 bg-transparent"
-                        onClick={() => setReload(!reload)}
+                        onClick={() => setReload(true)}
                     >
                         <TfiReload />
                         {/* Reload */}
