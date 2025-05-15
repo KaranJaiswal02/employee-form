@@ -15,7 +15,7 @@ export default function GratuityForm({ data = DefaultGrauFormData }: { data?: IG
   }, [data, setFormData]);
 
   return (
-    <>
+    <div className="w-full dark">
       <div className='print:hidden h-screen text-xl md:text-5xl flex justify-center items-end bg-white dark:bg-card text-black dark:text-white p-4 font-bold font-mono'>
         Gratuity Form
       </div>
@@ -25,6 +25,6 @@ export default function GratuityForm({ data = DefaultGrauFormData }: { data?: IG
         <div className="page-break"></div>
         <GratuityForm2 />
       </div>
-    </>
+    </div>
   )
 }

@@ -227,7 +227,7 @@ export default function EmpForm5() {
                             className=" border-black dark:border-white outline-none ml-2 font-semibold"
                         />
                     </div>
-                    <div className="text-center font-semibold border-t border-black dark:border-white w-[220px] ">
+                    <div className="text-center font-semibold border-t print:mt-6 border-black dark:border-white w-[220px] ">
                         Signature of Employee
                     </div>
                 </div>

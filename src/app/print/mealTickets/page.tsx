@@ -46,7 +46,7 @@ export default function MealTicketPrintPage() {
     const { name, month, year, fromDay, toDay } = data;
 
     return (
-        <div className="w-full">
+        <div className="w-full dark">
             <div className="print:hidden h-screen text-xl md:text-3xl xl:text-5xl flex justify-center items-end bg-white dark:bg-card text-black dark:text-white p-4 font-bold font-mono">
                 Meal Tickets for {name} - {month} {year}
             </div>

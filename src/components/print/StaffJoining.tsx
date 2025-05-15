@@ -18,7 +18,7 @@ export default function StaffJoining({ data = DefaultEmpFormData }: { data?: IEm
   }, [data, setFormData]);
 
   return (
-    <>
+    <div className="w-full dark">
       <div className='print:hidden h-screen text-xl md:text-5xl flex justify-center items-end bg-white dark:bg-card text-black dark:text-white p-4 font-bold font-mono'>
         Staff Joining Form
       </div>
@@ -38,6 +38,6 @@ export default function StaffJoining({ data = DefaultEmpFormData }: { data?: IEm
         <EmpForm5 />
         <div className="print:hidden flex justify-end mt-4"></div>
       </div>
-    </>
+    </div>
   )
 }

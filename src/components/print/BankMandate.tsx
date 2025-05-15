@@ -14,7 +14,7 @@ export default function BankMandate({ data = DefaultBankMandateFormData }: { dat
     }, [data, setFormData]);
 
     return (
-        <>
+        <div className="w-full dark">
             <div className='print:hidden h-screen text-xl md:text-5xl flex justify-center items-end bg-white dark:bg-card text-black dark:text-white p-4 font-bold font-mono'>
                 Bank Mandate Form
             </div>
@@ -23,6 +23,6 @@ export default function BankMandate({ data = DefaultBankMandateFormData }: { dat
                 <div className="print:hidden flex justify-end mt-4">
                 </div>
             </div >
-        </>
+        </div>
     );
 }

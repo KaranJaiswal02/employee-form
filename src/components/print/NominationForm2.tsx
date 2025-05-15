@@ -14,7 +14,7 @@ export default function NominationForm2({ data = DefaultNominationForm2Data }: {
         setFormData(data);
     }, [data, setFormData]);
     return (
-        <>
+        <div className="w-full dark">
             <div className='print:hidden h-screen text-xl md:text-5xl flex justify-center items-end bg-white dark:bg-card text-black dark:text-white p-4 font-bold font-mono'>
                 Nomination & Declaration Form2
             </div>
@@ -22,6 +22,6 @@ export default function NominationForm2({ data = DefaultNominationForm2Data }: {
                 <Nomination1 />
                 <Nomination2 />
             </div>
-        </>
+        </div>
     );
 }
