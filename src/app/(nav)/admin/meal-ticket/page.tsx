@@ -13,12 +13,14 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { toast } from "sonner";
 
 type formDataType = {
   name: string;
   month: string;
   year: number;
-  noOfDays: number | null;
+  fromDay: number | null;
+  toDay: number | null;
 };
 
 export default function MealTicketPage() {
@@ -27,8 +29,10 @@ export default function MealTicketPage() {
     name: "",
     month: "",
     year: currentYear,
-    noOfDays: 20,
+    fromDay: 1,
+    toDay: 20,
   });
+
   const [showGenerator, setShowGenerator] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,19 +45,17 @@ export default function MealTicketPage() {
         return { ...prev, year: clampedYear };
       }
 
-      if (name === "noOfDays") {
+      if (name === "fromDay" || name === "toDay") {
         const parsed = parseInt(value);
-        const days = value === ""
+        const validDay = value === ""
           ? null
-          : (!isNaN(parsed) && parsed >= 0 && parsed <= 31 ? parsed : prev.noOfDays);
-        return { ...prev, noOfDays: days };
+          : (!isNaN(parsed) && parsed >= 1 && parsed <= 31 ? parsed : prev[name]);
+        return { ...prev, [name]: validDay };
       }
-
 
       return { ...prev, [name]: value };
     });
   };
-
 
   const handleMonthChange = (value: string) => {
     setFormData(prev => ({
@@ -64,7 +66,12 @@ export default function MealTicketPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.month) {
+    const { name, month, fromDay, toDay } = formData;
+
+    if (!name || !month || fromDay === null || toDay === null || fromDay > toDay) {
+      toast.warning("Please fill all fields correctly.",{
+        description: "From Day must be less than or equal to To Day."
+      });
       return;
     }
     setShowGenerator(true);
@@ -105,7 +112,7 @@ export default function MealTicketPage() {
                     onValueChange={handleMonthChange}
                     required
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select month" />
                     </SelectTrigger>
                     <SelectContent>
@@ -129,16 +136,32 @@ export default function MealTicketPage() {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="noOfDays">Number of Days (1-31)</Label>
-                <Input
-                  type="number"
-                  id="noOfDays"
-                  name="noOfDays"
-                  value={formData.noOfDays || ""}
-                  onChange={handleChange}
-                  required
-                />
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="fromDay">From Day (1-31)</Label>
+                  <Input
+                    type="number"
+                    id="fromDay"
+                    name="fromDay"
+                    value={formData.fromDay ?? ""}
+                    max={31}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="toDay">To Day (1-31)</Label>
+                  <Input
+                    type="number"
+                    id="toDay"
+                    name="toDay"
+                    value={formData.toDay ?? ""}
+                    max={31}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
               </div>
 
               <Button type="submit" className="w-full cursor-pointer">
@@ -150,7 +173,8 @@ export default function MealTicketPage() {
               name={formData.name}
               month={formData.month}
               year={formData.year}
-              noOfDays={formData.noOfDays || 0}
+              fromDay={formData.fromDay ?? 1}
+              toDay={formData.toDay ?? 1}
               onReset={() => setShowGenerator(false)}
             />
           )}

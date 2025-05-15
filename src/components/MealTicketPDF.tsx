@@ -5,7 +5,8 @@ import { Button } from "./ui/button";
 type MealTicketGeneratorProps = {
   name: string;
   month: string;
-  noOfDays: number;
+  fromDay: number;
+  toDay: number;
   year?: number;
   onReset?: () => void;
 };
@@ -14,14 +15,15 @@ export default function MealTicketGenerator({
   name,
   month,
   year = new Date().getFullYear(),
-  noOfDays,
+  fromDay,
+  toDay,
   onReset
 }: MealTicketGeneratorProps) {
 
   const handlePrint = () => {
     const payload = {
       formKey: 'mealTickets',
-      formData: { name, month, year, noOfDays },
+      formData: { name, month, year, fromDay, toDay },
       layout: 'portrait',
       timestamp: Date.now(),
     };
@@ -57,8 +59,12 @@ export default function MealTicketGenerator({
               <td className="px-6 py-4">{year}</td>
             </tr>
             <tr>
-              <td className="px-6 py-4 font-medium">No. of tickets</td>
-              <td className="px-6 py-4">{noOfDays}</td>
+              <td className="px-6 py-4 font-medium">From Day</td>
+              <td className="px-6 py-4">{fromDay}</td>
+            </tr>
+            <tr>
+              <td className="px-6 py-4 font-medium">To Day</td>
+              <td className="px-6 py-4">{toDay}</td>
             </tr>
           </tbody>
         </table>
