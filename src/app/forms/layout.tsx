@@ -286,7 +286,7 @@ export default function FormLayout({
                                                             ? "/admin/edit-employee-details"
                                                             : "/admin/dashboard"
                                                     }
-                                                    className="text-gray-800 dark:text-white hover:opacity-80"
+                                                    className={`text-gray-800 dark:text-white hover:opacity-80 mr-1 ${isCollapsed ? "fixed top-6 left-4" : ""}`}
                                                 >
                                                     <IoIosArrowBack
                                                         size={32}
@@ -294,7 +294,7 @@ export default function FormLayout({
                                                     />
                                                 </Link>
                                             )}
-                                            <span>📋{name ? name : "Form Progress"}</span>
+                                            <span className="truncate">📋{name ? name : "Form Progress"}</span>
                                         </h2>
                                     )}
 
@@ -341,7 +341,7 @@ export default function FormLayout({
                                 </div>
 
                                 {/* Bottom Section */}
-                                <div className="mt-6 space-y-4">
+                                <div className="mt-6 space-y-4 overflow-hidden">
                                     {/* Dark Mode Toggle */}
                                     <div
                                         onClick={toggleDarkMode}
@@ -360,7 +360,7 @@ export default function FormLayout({
                                     {/* Logout Button */}
                                     <button
                                         onClick={handleLogout}
-                                        className={`w-full flex items-center justify-center gap-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium shadow-md transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer ${isCollapsed ? "justify-center px-1 py-2" : "px-4 py-2"}`}
+                                        className={`w-full flex over items-center justify-center gap-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-medium shadow-md transition-all duration-200 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-red-500 cursor-pointer ${isCollapsed ? "justify-center px-1 py-2" : "px-4 py-2"}`}
                                     >
                                         <FiLogOut className="text-xl" />
                                         {!isCollapsed && <span className="pr-4">Logout</span>}
