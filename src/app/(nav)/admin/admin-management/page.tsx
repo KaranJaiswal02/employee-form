@@ -225,7 +225,7 @@ export default function AdminManagementPage() {
                             ))) : (
                                 <tr>
                                     <td colSpan={5} className="py-10 text-center">
-                                        <Loader loaderClass="md:w-28 w-10 md:h-28 h-10" />
+                                        <Loader loaderClass="md:w-28 w-10 md:h-28 h-10 border-[0.5rem] md:border-[1rem]" />
                                     </td>
                                 </tr>
                             )}

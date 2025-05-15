@@ -238,7 +238,7 @@ export default function FormLayout({
                 {isLoading ? (
                     <aside className="fixed top-0 left-0 w-80 h-screen bg-white dark:bg-card border shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between overflow-auto">
                         <div className="flex items-center justify-center h-full">
-                            <Loader loaderClass="md:w-24 w-10 md:h-24 h-10" />
+                            <Loader loaderClass="md:w-24 w-16 md:h-24 h-16 border-[0.7rem]" />
                         </div>
                     </aside>
                 ) : (<aside className="fixed top-0 left-0 w-80 h-screen bg-white dark:bg-card border shadow-md border-r border-gray-200 dark:border-gray-800 py-6 px-3 flex flex-col justify-between overflow-auto">
