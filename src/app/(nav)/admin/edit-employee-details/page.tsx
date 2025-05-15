@@ -92,11 +92,11 @@ export default function AdminManagementPage() {
                 <p className="text-gray-600 dark:text-gray-400">
                     <span className="font-semibold text-yellow-600 dark:text-yellow-500">Important:</span> Only users with the &#34;user&#34; role can be edited. Admin accounts are not editable.
                 </p>
-                {!loading && users.length === 0 && (
+                {/* {!loading && users.length === 0 && (
                     <p className="text-gray-600 dark:text-gray-400">
                         <span className="font-semibold text-red-500">Notice:</span> No users available for editing.
                     </p>
-                )}
+                )} */}
             </div>
 
             <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
