@@ -21,6 +21,7 @@ import { NominationForm1Model } from "@/models/forms/nomination-form1";
 import { NominationForm2Model } from "@/models/forms/nomination-form2";
 import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
 import { IEmpFormData } from "@/models/forms/staffjoin_form";
+import Link from "next/link";
 
 interface UserFormData {
     name: string;
@@ -222,16 +223,16 @@ export default function UserFormDownloadPage() {
                     <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
                         Download Employee Forms
                     </h1>
-                    <p className="text-gray-600 dark:text-gray-400">
-                        <span className="font-semibold text-yellow-600 dark:text-yellow-500">Note:</span> Only users with submitted forms will have download options.
+                    <p className="text-gray-700 dark:text-gray-300">
+                        <span className="font-semibold text-yellow-600 dark:text-yellow-400">Note:</span> Download options are available only for users who have submitted their forms.
                     </p>
-                    {/* {users.length === 0 && !loading && (
-                        <p className="text-gray-600 dark:text-gray-400">
-                            <span className="font-semibold text-red-500">Notice:</span> No users found for form download.
-                        </p>
-                    )} */}
+                    <p className="text-gray-700 dark:text-gray-300">
+                        <span className="font-semibold text-blue-600 dark:text-blue-400">Tip:</span> Want a blank form instead?&nbsp;
+                        <Link href="/print" target="_blank" className="underline hover:text-blue-700 dark:hover:text-blue-300">
+                            Click here to open and print blank templates.
+                        </Link>
+                    </p>
                 </div>
-
 
                 <div className="mb-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     {/* Search Input */}
