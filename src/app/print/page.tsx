@@ -102,10 +102,12 @@ export default function DownloadBlankFormsPage() {
 
     return (
         <div className="h-screen px-6 py-10">
-            <div className="max-w-4xl mx-auto text-center space-y-6">
-                <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Download Blank Forms</h1>
+            <div className="max-w-4xl mx-auto text-center space-y-2">
+                <h1 className="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white">
+                    Download Blank Templates
+                </h1>
                 <p className="text-muted-foreground text-lg">
-                    Generate and print pre-filled form templates instantly.
+                    Quickly generate and print ready-to-fill employee form templates with just a click.
                 </p>
             </div>
             <button

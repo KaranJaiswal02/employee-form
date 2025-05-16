@@ -51,7 +51,7 @@ const dashboardOptions = [
 export default function Dashboard() {
     return (
         <div className="h-full w-full flex flex-col items-center justify-start p-6">
-            <h1 className="text-3xl md:text-4xl bg- font-bold text-center mb-8 text-gray-800 dark:text-white">
+            <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 dark:text-white">
                 Admin Dashboard
             </h1>
             <div className="max-w-6xl 2xl:max-w-7xl w-full grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6">
