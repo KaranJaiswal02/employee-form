@@ -32,10 +32,16 @@ export default function RootLayout({
                 if (data.data.role === "admin" && !pathname.startsWith("/admin")) {
                     router.push("/admin/dashboard");
                 } else if (data.data.role === "user") {
+                    toast.error("Unauthorized access", {
+                        description: "You do not have permission to access this page",
+                    });
                     router.push("/forms/staff-joining");
                 }
             } else if (!data.success) {
                 localStorage.removeItem("token");
+                toast.error("Token expired", {
+                    description: "Please sign in again",
+                });
                 router.push("/sign-in");
             }
         } catch (err: unknown) {
