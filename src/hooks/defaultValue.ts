@@ -14,7 +14,7 @@ export const DefaultCurrentUserData : ICurrentUser = {
     id: "",
     name: "",
     email: "",
-    role: "",
+    role: null,
 }
 
 export const DefaultEmpFormData: IEmpFormData = {
