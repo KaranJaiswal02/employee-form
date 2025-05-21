@@ -351,7 +351,7 @@ export default function FormLayout({
                                             {isDarkMode ? <IoMoon size={22} /> : <IoSunny size={22} />}
                                         </span>
                                         {!isCollapsed && (
-                                            <span className="text-gray-800 dark:text-gray-200 font-medium">
+                                            <span className="text-gray-800 dark:text-gray-200 font-medium truncate">
                                                 {isDarkMode ? "Dark Mode" : "Light Mode"}
                                             </span>
                                         )}
