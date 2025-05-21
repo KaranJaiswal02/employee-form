@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { LuEraser } from "react-icons/lu";
 import { toast } from "sonner";
 import Loader from "@/components/Loader";
-import { usersStatusData } from "@/hooks/Atoms";
+import { usersData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import PasswordInput from "@/components/ui/password-input";
 import { TfiReload } from "react-icons/tfi";
@@ -14,17 +14,16 @@ import IFetchedUser from "@/types/fetchedUser";
 import IError from "@/types/error";
 
 export default function UserPasswordUpdatePage() {
-    const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
+    const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);
     const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [search, setSearch] = useState("");
     const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user">("all");
     const [passwordInputs, setPasswordInputs] = useState<{ [userId: string]: string }>({});
     const [loading, setLoading] = useState(true);
     const [updating, setUpdating] = useState(false);
-    const [reload, setReload] = useState(false);
 
-    const fetchUsers = async () => {
-        if (users.length > 0 && !reload){
+    const fetchUsers = async (forceReload = false) => {
+        if (users.length > 0 && !forceReload) {
             setLoading(false);
             return;
         }
@@ -54,7 +53,6 @@ export default function UserPasswordUpdatePage() {
                 description: error.message || "An error occurred",
             });
         }
-        setReload(false);
         setLoading(false);
     };
 
@@ -94,7 +92,7 @@ export default function UserPasswordUpdatePage() {
 
     useEffect(() => {
         fetchUsers();
-    }, [setUsers, reload]);
+    }, [setUsers]);
 
     useEffect(() => {
         const lowerSearch = search.toLowerCase();
@@ -135,7 +133,7 @@ export default function UserPasswordUpdatePage() {
                     />
                     <Button
                         className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 hover:bg-transparent cursor-pointer flex items-center gap-2 bg-transparent"
-                        onClick={() => setReload(true)}
+                        onClick={() => fetchUsers(true)}
                     >
                         <TfiReload />
                         {/* Reload */}

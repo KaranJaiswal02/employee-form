@@ -18,6 +18,8 @@ import Link from "next/link";
 import { toast } from "sonner";
 import PasswordInput from "@/components/ui/password-input";
 import IError from "@/types/error";
+import { useAtom } from "jotai";
+import { currentUserData } from "@/hooks/Atoms";
 
 export default function SignUpForm() {
     const router = useRouter();
@@ -28,6 +30,7 @@ export default function SignUpForm() {
         confirmPassword: '',
     });
     const [loading, setLoading] = useState(false);
+    const [, setCurrentUser] = useAtom(currentUserData);
     const [errors, setErrors] = useState<string[]>([]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,6 +60,12 @@ export default function SignUpForm() {
 
             if (res.data.success) {
                 localStorage.setItem('token', res.data.data.token);
+                setCurrentUser({
+                    id: res.data.data.user.id,
+                    name: res.data.data.user.name,
+                    email: res.data.data.user.email,
+                    role: res.data.data.role,
+                });
                 toast.success(res.data.message);
                 window.dispatchEvent(new Event("login"));
                 router.push('/forms/staff-joining');

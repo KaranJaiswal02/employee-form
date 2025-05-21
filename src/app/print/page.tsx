@@ -2,6 +2,7 @@
 
 import Loader from '@/components/Loader'
 import { Button } from '@/components/ui/button'
+import { currentUserData } from '@/hooks/Atoms'
 import {
     DefaultBankMandateFormData,
     DefaultEmpFormData,
@@ -12,6 +13,7 @@ import {
     DefaultStaffFamilyFormData,
 } from '@/hooks/defaultValue'
 import IError from '@/types/error'
+import { useAtom } from 'jotai'
 import { FileText } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -32,6 +34,7 @@ export default function DownloadBlankFormsPage() {
     const router = useRouter()
     const [loading, setLoading] = useState(true)
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [, setCurrentUser] = useAtom(currentUserData);
     const handleOpenAndPrint = (formKey: string, data: object, layout: string) => {
         const payload = {
             formKey,

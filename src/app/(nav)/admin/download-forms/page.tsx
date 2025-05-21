@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { Download, FileDown } from "lucide-react";
 import Loader from "@/components/Loader";
-import { usersStatusData } from "@/hooks/Atoms";
+import { usersData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { convertToExcel } from "@/lib/excelGenerator";
 import { FaFileExcel } from "react-icons/fa";
@@ -52,7 +52,7 @@ const formLabelMap: Record<string, string> = {
 };
 
 export default function UserFormDownloadPage() {
-    const [users, setUsers] = useAtom<IFetchedUser[]>(usersStatusData);
+    const [users, setUsers] = useAtom<IFetchedUser[]>(usersData);
     const [search, setSearch] = useState("");
     const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [userFormData, setUserFormData] = useState<Record<string, UserFormData>>({});
@@ -62,7 +62,6 @@ export default function UserFormDownloadPage() {
     const [roleFilter, setRoleFilter] = useState<"all" | "admin" | "user">("all");
     const [statusFilter, setStatusFilter] = useState<"all" | "Completed" | "Pending">("all");
     const [loading, setLoading] = useState(true);
-    const [reload, setReload] = useState(false);
 
     const layouts = {
         bankMandateFormData: 'portrait',
@@ -89,10 +88,10 @@ export default function UserFormDownloadPage() {
 
     useEffect(() => {
         fetchUsers();
-    }, [setUsers, reload]);
+    }, [setUsers]);
 
-    const fetchUsers = async () => {
-        if (users.length > 0 && !reload) {
+    const fetchUsers = async (forceReload = false) => {
+        if (users.length > 0 && !forceReload) {
             setLoading(false);
             return;
         }
@@ -125,7 +124,6 @@ export default function UserFormDownloadPage() {
             });
         }
         setLoading(false);
-        setReload(false);
     };
 
     const handleFetchData = async (userId: string) => {
@@ -246,7 +244,7 @@ export default function UserFormDownloadPage() {
                         />
                         <Button
                             className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 hover:bg-transparent cursor-pointer flex items-center gap-2 bg-transparent"
-                            onClick={() => setReload(true)}
+                            onClick={() => fetchUsers(true)}
                         >
                             <TfiReload />
                             {/* Reload */}

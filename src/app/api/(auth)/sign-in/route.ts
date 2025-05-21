@@ -39,10 +39,12 @@ export async function POST(req: NextRequest) {
             errors: [],
             data: {
                 token,
-                role : user.role,
-                id : user._id,
-                name: user.name,
-                email: user.email,
+                user: {
+                    role: user.role,
+                    id: user._id,
+                    name: user.name,
+                    email: user.email,
+                },
             },
         };
 

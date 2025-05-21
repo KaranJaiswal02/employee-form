@@ -14,4 +14,3 @@ export const staffFamilyFormData = atom(DefaultStaffFamilyFormData)
 
 export const formStatusus = atom(DefaultFormStatusus)
 export const usersData = atom<IFetchedUser[]>([])
-export const usersStatusData = atom<IFetchedUser[]>([])

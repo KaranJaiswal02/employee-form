@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import Loader from "@/components/Loader";
 import Link from "next/link";
 import { FaEdit } from "react-icons/fa";
-import { usersStatusData } from "@/hooks/Atoms";
+import { usersData } from "@/hooks/Atoms";
 import { useAtom } from "jotai";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
@@ -15,22 +15,24 @@ import IFetchedUser from "@/types/fetchedUser";
 import IError from "@/types/error";
 
 export default function AdminManagementPage() {
-    const [usersFromAtom, setUsersFromAtom] = useAtom<IFetchedUser[]>(usersStatusData);
+    const [usersFromAtom, setUsersFromAtom] = useAtom<IFetchedUser[]>(usersData);
     const [users, setUsers] = useState<IFetchedUser[]>([]);
     const [filteredUsers, setFilteredUsers] = useState<IFetchedUser[]>([]);
     const [search, setSearch] = useState("");
     const [loading, setLoading] = useState(true);
     const [statusFilter, setStatusFilter] = useState<"all" | "Completed" | "Pending">("all");
-    const [reload, setReload] = useState(false);
 
-    const fetchUsers = async () => {
-        if (usersFromAtom.length > 0 && !reload) {
-            const filteredUser = usersFromAtom.filter((user: IFetchedUser) => user.role === "user");
-            setUsers(filteredUser);
+    const fetchUsers = async (forceReload = false) => {
+        setLoading(true);
+
+        const cached = usersFromAtom.filter(user => user.role === "user");
+        if (cached.length > 0 && !forceReload) {
+            setUsers(cached);
+            setFilteredUsers(cached);
             setLoading(false);
             return;
         }
-        setLoading(true);
+
         try {
             const token = localStorage.getItem("token");
             const res = await fetch("/api/user/get-all", {
@@ -43,14 +45,16 @@ export default function AdminManagementPage() {
 
             const data = await res.json();
             if (data.success) {
-                setUsersFromAtom(data.data);
-                console.log(data.data);
-                const filtered = data.data.filter((user: IFetchedUser) => user.role === "user");
+                const allUsers: IFetchedUser[] = data.data;
+                setUsersFromAtom(allUsers);
+
+                const filtered = allUsers.filter(user => user.role === "user");
                 setUsers(filtered);
-                if (filtered.length < 1) {
-                    toast.warning("No users found in the system")
-                }
                 setFilteredUsers(filtered);
+
+                if (filtered.length === 0) {
+                    toast.warning("No users found in the system");
+                }
             } else {
                 toast.error(data.message, {
                     description: data.errors?.[0]
@@ -61,18 +65,19 @@ export default function AdminManagementPage() {
             toast.error("Error fetching users", {
                 description: error.message || "An error occurred",
             });
+        } finally {
+            setLoading(false);
         }
-        setReload(false);
-        setLoading(false);
     };
 
     useEffect(() => {
         fetchUsers();
-    }, [setUsers, reload]);
+    }, []); // no need for setUsers or reload in deps
 
     useEffect(() => {
         const lowerSearch = search.toLowerCase();
-        const filtered = users.filter((user) => {
+
+        const filtered = users.filter(user => {
             const matchesSearch =
                 user.name.toLowerCase().includes(lowerSearch) ||
                 user.email.toLowerCase().includes(lowerSearch);
@@ -80,8 +85,10 @@ export default function AdminManagementPage() {
                 statusFilter === "all" || user.status === statusFilter;
             return matchesSearch && matchesStatus;
         });
+
         setFilteredUsers(filtered);
     }, [search, statusFilter, users]);
+
 
     return (
         <div className="p-6 max-w-7xl mx-auto">
@@ -111,7 +118,7 @@ export default function AdminManagementPage() {
                     />
                     <Button
                         className="px-4 py-2 border-1 dark:border-2 dark:bg-card border-neutral-500 dark:border-neutral-700 rounded-md text-sm text-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800 hover:bg-transparent cursor-pointer flex items-center gap-2 bg-transparent"
-                        onClick={() => setReload(true)}
+                        onClick={() => fetchUsers(true)}
                     >
                         <TfiReload />
                         {/* Reload */}

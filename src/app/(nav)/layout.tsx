@@ -7,6 +7,8 @@ import { IoIosArrowBack } from "react-icons/io";
 import { toast } from "sonner";
 import { IoMoon, IoSunny } from "react-icons/io5";
 import IError from "@/types/error";
+import { currentUserData } from "@/hooks/Atoms";
+import { useAtom } from "jotai";
 
 export default function RootLayout({
     children,
@@ -15,6 +17,7 @@ export default function RootLayout({
 }>) {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [loggedIn, setLoggedIn] = useState(false);
+    const [currentUser, setCurrentUser] = useAtom(currentUserData);
     const router = useRouter();
     const pathname = usePathname();
 
@@ -29,20 +32,14 @@ export default function RootLayout({
             });
             const data = await res.json();
             if (data.success) {
-                if (data.data.role === "admin" && !pathname.startsWith("/admin")) {
-                    router.push("/admin/dashboard");
-                } else if (data.data.role === "user") {
-                    toast.error("Unauthorized access", {
-                        description: "You do not have permission to access this page",
-                    });
-                    router.push("/forms/staff-joining");
-                }
-            } else if (!data.success) {
+                return data.data;
+            } else {
                 localStorage.removeItem("token");
                 toast.error("Token expired", {
                     description: "Please sign in again",
                 });
                 router.push("/sign-in");
+                return null;
             }
         } catch (err: unknown) {
             const error = err as IError;
@@ -50,6 +47,29 @@ export default function RootLayout({
             toast.error("Error verifying token", {
                 description: error.message || "An error occurred",
             });
+            router.push("/sign-in");
+            return null;
+        }
+    };
+
+    const handleAccess = async (token: string) => {
+        let user = currentUser;
+
+        if (!currentUser || !currentUser.id) {
+            const verifiedUser = await verifyToken(token);
+            if (!verifiedUser) return;
+
+            setCurrentUser(verifiedUser);
+            user = verifiedUser;
+        }
+
+        if (user.role === "admin" && !pathname.startsWith("/admin")) {
+            router.push("/admin/dashboard");
+        } else if (user.role === "user" && pathname.startsWith("/admin")) {
+            toast.error("Unauthorized access", {
+                description: "You do not have permission to access this page",
+            });
+            router.push("/forms/staff-joining");
         }
     };
 
@@ -58,20 +78,23 @@ export default function RootLayout({
             const isDark = document.documentElement.classList.contains("dark");
             setIsDarkMode(isDark);
         }
+
         const token = localStorage.getItem("token");
-        console.log(token)
         if (!token) {
             router.push("/sign-in");
             return;
         }
-        verifyToken(token as string);
+
+        handleAccess(token);
         setLoggedIn(true);
+
         const handleLogin = () => {
             const token = localStorage.getItem("token");
             if (token) {
                 setLoggedIn(true);
             }
         };
+
         window.addEventListener("login", handleLogin);
         return () => {
             window.removeEventListener("login", handleLogin);

@@ -46,10 +46,12 @@ export async function POST(req: NextRequest) {
             errors: [],
             data: {
                 token,
-                role: newUser.role,
-                id: newUser._id,
-                name: newUser.name,
-                email: newUser.email,
+                user: {
+                    role: newUser.role,
+                    id: newUser._id,
+                    name: newUser.name,
+                    email: newUser.email,
+                },
             },
         };
         return NextResponse.json(response, { status: 201 });
