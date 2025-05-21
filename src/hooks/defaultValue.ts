@@ -5,9 +5,17 @@ import { NominationForm1Model } from "@/models/forms/nomination-form1";
 import { NominationForm2Model } from "@/models/forms/nomination-form2";
 import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
 import { IEmpFormData } from "@/models/forms/staffjoin_form";
+import ICurrentUser from "@/types/currentUser";
 
 const currentDate = new Date().toISOString().split('T')[0];
 const establishmentAddress = "SL AP Private Limited\nBrigade Opus, 4th Floor\nMunicipal No. 70/401, Survey No. 44/1 and 44/4 Kodigehalli Main Road, Hebbal,\nBengaluru Urban, Karnataka 560092"
+
+export const DefaultCurrentUserData : ICurrentUser = {
+    id: "",
+    name: "",
+    email: "",
+    role: "",
+}
 
 export const DefaultEmpFormData: IEmpFormData = {
     name: "",
