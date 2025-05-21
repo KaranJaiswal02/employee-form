@@ -12,7 +12,7 @@ export default function RootLayout({
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            router.push('/forms/staff-joining');
+            router.push('/admin/dashboard');
         }
     }, []);
     return (
