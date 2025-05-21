@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
             password: hashedPassword,
         });
 
-        const token = signJwt({ id: newUser._id ,role : newUser.role}, '7d');
+        const token = signJwt({ id: newUser._id, role: newUser.role }, '7d');
 
         const response: IAPIResponse = {
             success: true,
@@ -46,7 +46,10 @@ export async function POST(req: NextRequest) {
             errors: [],
             data: {
                 token,
-                role : newUser.role,
+                role: newUser.role,
+                id: newUser._id,
+                name: newUser.name,
+                email: newUser.email,
             },
         };
         return NextResponse.json(response, { status: 201 });

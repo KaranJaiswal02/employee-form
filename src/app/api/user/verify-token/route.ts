@@ -40,6 +40,7 @@ export async function GET(req: NextRequest) {
             message: "User found successfully",
             errors: [],
             data: {
+                id: user._id,
                 name: user.name,
                 email: user.email,
                 role: user.role,
