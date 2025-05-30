@@ -54,7 +54,7 @@ export default function Dashboard() {
             <h1 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800 dark:text-white">
                 Admin Dashboard
             </h1>
-            <div className="max-w-6xl 2xl:max-w-7xl w-full grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-3 gap-6">
+            <div className="max-w-6xl 2xl:max-w-7xl w-full grid grid-cols-1 sm:grid-cols-2 3xl:grid-cols-3 gap-6">
                 {dashboardOptions.map((option) => (
                     <Link
                         key={option.title}

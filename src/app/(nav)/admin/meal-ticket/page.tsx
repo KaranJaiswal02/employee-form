@@ -1,87 +1,83 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import MealTicketGenerator from "@/components/MealTicketPDF";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+} from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Label } from '@/components/ui/label';
 import {
   Select,
-  SelectContent,
-  SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { toast } from "sonner";
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select';
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from '@/components/ui/radio-group';
+import { useState } from 'react';
+import MealTicketGenerator from '@/components/MealTicketPDF';
 
-type formDataType = {
-  name: string;
-  month: string;
-  year: number;
-  fromDay: number | null;
-  toDay: number | null;
-};
+const months = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
 
-export default function MealTicketPage() {
-  const currentYear = new Date().getFullYear();
-  const [formData, setFormData] = useState<formDataType>({
-    name: "",
-    month: "",
-    year: currentYear,
-    fromDay: 1,
-    toDay: 20,
-  });
+const currentYear = new Date().getFullYear();
+const currentMonth = new Date().toLocaleString('default', { month: 'long' });
 
+export default function MealTicketForm() {
+  const [inputMethod, setInputMethod] = useState<'manual' | 'csv'>('manual');
   const [showGenerator, setShowGenerator] = useState(false);
+  const [formData, setFormData] = useState({
+    rawNames: '',
+    names: [] as string[],
+    month: currentMonth,
+    year: currentYear,
+    fromDay: '1',
+    toDay: '20',
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    setFormData(prev => {
-      if (name === "year") {
-        const year = parseInt(value) || currentYear;
-        const clampedYear = Math.max(currentYear, Math.min(currentYear + 2, year));
-        return { ...prev, year: clampedYear };
-      }
-
-      if (name === "fromDay" || name === "toDay") {
-        const parsed = parseInt(value);
-        const validDay = value === ""
-          ? null
-          : (!isNaN(parsed) && parsed >= 1 && parsed <= 31 ? parsed : prev[name]);
-        return { ...prev, [name]: validDay };
-      }
-
-      return { ...prev, [name]: value };
-    });
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleMonthChange = (value: string) => {
-    setFormData(prev => ({
-      ...prev,
-      month: value
-    }));
+  const handleCSVUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = event => {
+      const text = event.target?.result as string;
+      const lines = text.split(/\r?\n/).filter(Boolean).map(line => line.trim());
+      setFormData(prev => ({
+        ...prev,
+        names: lines,
+        rawNames: lines.join(', '),
+      }));
+    };
+    reader.readAsText(file);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { name, month, fromDay, toDay } = formData;
-
-    if (!name || !month || fromDay === null || toDay === null || fromDay > toDay) {
-      toast.warning("Please fill all fields correctly.",{
-        description: "From Day must be less than or equal to To Day."
-      });
-      return;
+    if (inputMethod === 'manual') {
+      const names = formData.rawNames.split(',').map(n => n.trim()).filter(Boolean);
+      setFormData(prev => ({ ...prev, names }));
     }
     setShowGenerator(true);
   };
 
-  const months = [
-    "January", "February", "March", "April",
-    "May", "June", "July", "August",
-    "September", "October", "November", "December"
-  ];
+  const handleMonthChange = (value: string) => {
+    setFormData(prev => ({ ...prev, month: value }));
+  };
 
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8">
@@ -93,31 +89,60 @@ export default function MealTicketPage() {
           {!showGenerator ? (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Employee Name</Label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="Enter employee name"
-                />
+                <Label>Input Method</Label>
+                <RadioGroup
+                  value={inputMethod}
+                  onValueChange={val => setInputMethod(val as 'manual' | 'csv')}
+                  className="flex gap-4"
+                >
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="manual" id="manual" />
+                    <Label htmlFor="manual">Enter names manually</Label>
+                  </div>
+                  <div className="flex items-center space-x-2">
+                    <RadioGroupItem value="csv" id="csv" />
+                    <Label htmlFor="csv">Upload CSV</Label>
+                  </div>
+                </RadioGroup>
               </div>
+
+              {inputMethod === 'manual' && (
+                <div className="space-y-2">
+                  <Label htmlFor="rawNames">Employee Names (comma separated)</Label>
+                  <Input
+                    id="rawNames"
+                    name="rawNames"
+                    value={formData.rawNames}
+                    onChange={handleChange}
+                    required
+                    placeholder="e.g. Alice, Bob, Charlie"
+                  />
+                </div>
+              )}
+              {inputMethod === 'csv' && (
+                <div className="space-y-2">
+                  <Label htmlFor="csvUpload">Upload CSV</Label>
+                  <Input
+                    type="file"
+                    accept=".csv"
+                    onChange={handleCSVUpload}
+                    required
+                  />
+                </div>
+              )}
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
                   <Label htmlFor="month">Month</Label>
-                  <Select
-                    value={formData.month}
-                    onValueChange={handleMonthChange}
-                    required
-                  >
+                  <Select value={formData.month} onValueChange={handleMonthChange} required>
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select month" />
                     </SelectTrigger>
                     <SelectContent>
                       {months.map(month => (
-                        <SelectItem key={month} value={month}>{month}</SelectItem>
+                        <SelectItem key={month} value={month}>
+                          {month}
+                        </SelectItem>
                       ))}
                     </SelectContent>
                   </Select>
@@ -130,7 +155,13 @@ export default function MealTicketPage() {
                     id="year"
                     name="year"
                     value={formData.year}
-                    onChange={handleChange}
+                    onChange={e => {
+                      const year = parseInt(e.target.value) || currentYear;
+                      setFormData(prev => ({
+                        ...prev,
+                        year: Math.max(currentYear, Math.min(currentYear + 2, year)),
+                      }));
+                    }}
                     required
                   />
                 </div>
@@ -143,9 +174,9 @@ export default function MealTicketPage() {
                     type="number"
                     id="fromDay"
                     name="fromDay"
-                    value={formData.fromDay ?? ""}
-                    max={31}
+                    value={formData.fromDay}
                     onChange={handleChange}
+                    max={31}
                     required
                   />
                 </div>
@@ -156,9 +187,9 @@ export default function MealTicketPage() {
                     type="number"
                     id="toDay"
                     name="toDay"
-                    value={formData.toDay ?? ""}
-                    max={31}
+                    value={formData.toDay}
                     onChange={handleChange}
+                    max={31}
                     required
                   />
                 </div>
@@ -169,14 +200,16 @@ export default function MealTicketPage() {
               </Button>
             </form>
           ) : (
-            <MealTicketGenerator
-              name={formData.name}
-              month={formData.month}
-              year={formData.year}
-              fromDay={formData.fromDay ?? 1}
-              toDay={formData.toDay ?? 1}
-              onReset={() => setShowGenerator(false)}
-            />
+            <div className="space-y-4">
+                <MealTicketGenerator
+                  names={formData.names}
+                  month={formData.month}
+                  year={formData.year}
+                  fromDay={parseInt(formData.fromDay)}
+                  toDay={parseInt(formData.toDay)}
+                  onReset={() => setShowGenerator(false)}
+                />
+            </div>
           )}
         </CardContent>
       </Card>

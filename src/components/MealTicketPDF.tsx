@@ -3,7 +3,7 @@
 import { Button } from "./ui/button";
 
 type MealTicketGeneratorProps = {
-  name: string;
+  names: string | string[];  // <-- Allow array or string
   month: string;
   fromDay: number;
   toDay: number;
@@ -12,18 +12,24 @@ type MealTicketGeneratorProps = {
 };
 
 export default function MealTicketGenerator({
-  name,
+  names,
   month,
   year = new Date().getFullYear(),
   fromDay,
   toDay,
-  onReset
+  onReset,
 }: MealTicketGeneratorProps) {
+  
+  const displayName = Array.isArray(names)
+    ? names.length === 1
+      ? names[0]
+      : `${names.length} people`
+    : names;
 
   const handlePrint = () => {
     const payload = {
       formKey: 'mealTickets',
-      formData: { name, month, year, fromDay, toDay },
+      formData: { names, month, year, fromDay, toDay },
       layout: 'portrait',
       timestamp: Date.now(),
     };
@@ -33,7 +39,6 @@ export default function MealTicketGenerator({
     const printWindow = window.open(url, '_blank');
     if (printWindow) printWindow.focus();
   };
-
 
   return (
     <div className="space-y-6">
@@ -47,8 +52,8 @@ export default function MealTicketGenerator({
           </thead>
           <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
             <tr>
-              <td className="px-4 py-2 font-medium">Name</td>
-              <td className="px-4 py-2">{name}</td>
+              <td className="px-4 py-2 font-medium">{names.length < 2 ? "Name" : "Total"}</td>
+              <td className="px-4 py-2">{displayName}</td>
             </tr>
             <tr>
               <td className="px-4 py-2 font-medium">Month</td>
