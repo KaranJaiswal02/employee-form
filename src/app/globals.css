@@ -162,6 +162,11 @@ input[type=password]::-ms-clear {
   display: none;
 }
 
+::placeholder {
+  color: gray;
+  opacity: 0.7;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -189,7 +194,6 @@ input[type=password]::-ms-clear {
     page-break-before: always;
   }
 }
-
 
 @page {
   size: A4;
