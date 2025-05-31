@@ -194,7 +194,7 @@ export default function FormLayout({
     //     init();
     // }, []);
 
-    const updateTarget = useCallback((e : any) => {
+    const updateTarget = useCallback((e: any) => {
         if (e.matches) {
             setIsCollapsed(true);
         } else {
@@ -204,14 +204,14 @@ export default function FormLayout({
 
     useEffect(() => {
         const media = window.matchMedia(`(max-width: 720px)`);
-        media.addEventListener("change",updateTarget);
+        media.addEventListener("change", updateTarget);
 
         if (media.matches) {
             setIsCollapsed(true);
         }
         init();
 
-        return () => media.removeEventListener("change",updateTarget);
+        return () => media.removeEventListener("change", updateTarget);
     }, []);
 
     const toggleDarkMode = () => {
@@ -270,8 +270,8 @@ export default function FormLayout({
                             } bg-white dark:bg-card shadow-md border-r py-6 px-3 flex flex-col justify-between overflow-auto transition-all duration-300`}
                     >
                         {isLoading ? (
-                            <div className="flex items-center justify-center h-full">
-                                <Loader loaderClass="md:w-24 w-16 md:h-24 h-16 border-[0.7rem]" />
+                            <div className="flex items-center justify-center h-full overflow-hidden">
+                                {!isCollapsed && <Loader loaderClass="md:w-24 w-16 md:h-24 h-16 border-[0.7rem]" />}
                             </div>
                         ) : (
                             <>
@@ -307,16 +307,16 @@ export default function FormLayout({
                                                     <Link
                                                         href={`/forms${form.url}${paramsData}`}
                                                         className={`flex items-center space-x-3 p-2 rounded-lg transition-colors duration-200 ${isActive
-                                                                ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold"
-                                                                : form.status === "done"
-                                                                    ? "bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800"
-                                                                    : "hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                                                            ? "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold"
+                                                            : form.status === "done"
+                                                                ? "bg-green-100 dark:bg-green-900 hover:bg-green-200 dark:hover:bg-green-800"
+                                                                : "hover:bg-neutral-100 dark:hover:bg-neutral-800"
                                                             }`}
                                                     >
                                                         <span
                                                             className={`text-2xl ${form.status === "done"
-                                                                    ? "text-green-500 dark:text-green-400"
-                                                                    : "text-gray-400 dark:text-gray-500"
+                                                                ? "text-green-500 dark:text-green-400"
+                                                                : "text-gray-400 dark:text-gray-500"
                                                                 }`}
                                                         >
                                                             {form.status === "done" ? (
