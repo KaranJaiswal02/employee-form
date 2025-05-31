@@ -32,7 +32,7 @@ export default function MealTicketPrintPage() {
                 window.print();
                 localStorage.removeItem(LOCAL_STORAGE_KEY);
                 window.close();
-            }, 1000);
+            }, 500);
 
             return () => clearTimeout(printTimeout);
         } catch (err) {
