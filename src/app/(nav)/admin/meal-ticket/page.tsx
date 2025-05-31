@@ -100,7 +100,8 @@ export default function MealTicketForm() {
                     <Label htmlFor="manual">Enter names manually</Label>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <RadioGroupItem value="csv" id="csv" />
+                    <RadioGroupItem value="csv"
+                      id="csv" />
                     <Label htmlFor="csv">Upload CSV</Label>
                   </div>
                 </RadioGroup>
@@ -119,17 +120,15 @@ export default function MealTicketForm() {
                   />
                 </div>
               )}
-              {inputMethod === 'csv' && (
-                <div className="space-y-2">
-                  <Label htmlFor="csvUpload">Upload CSV</Label>
-                  <Input
-                    type="file"
-                    accept=".csv"
-                    onChange={handleCSVUpload}
-                    required
-                  />
-                </div>
-              )}
+              <div className={`space-y-2 ${inputMethod === 'csv' ? '' : 'hidden'}`}>
+                <Label htmlFor="csvUpload">Upload CSV</Label>
+                <Input
+                  type="file"
+                  accept=".csv"
+                  onChange={handleCSVUpload}
+                  required
+                />
+              </div>
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
@@ -201,14 +200,14 @@ export default function MealTicketForm() {
             </form>
           ) : (
             <div className="space-y-4">
-                <MealTicketGenerator
-                  names={formData.names}
-                  month={formData.month}
-                  year={formData.year}
-                  fromDay={parseInt(formData.fromDay)}
-                  toDay={parseInt(formData.toDay)}
-                  onReset={() => setShowGenerator(false)}
-                />
+              <MealTicketGenerator
+                names={formData.names}
+                month={formData.month}
+                year={formData.year}
+                fromDay={parseInt(formData.fromDay)}
+                toDay={parseInt(formData.toDay)}
+                onReset={() => setShowGenerator(false)}
+              />
             </div>
           )}
         </CardContent>

@@ -30,18 +30,29 @@ export default function EmpForm1() {
       setEmpFormData1(prev => ({ ...prev, perAddress: empFormData1.currAddress, perDistrict: empFormData1.district, perState: empFormData1.state, perPincode: empFormData1.pincode, perstdcode: empFormData1.currstdcode, percontactNumber: empFormData1.currcontactNumber }));
     }
   };
+
   const handlePhotoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      // Convert image to base64
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        setEmpFormData1((prev) => ({ ...prev, photo: base64String }));
-      };
-      reader.readAsDataURL(file);
+    if (!file) return;
+
+    const fileSizeKB = file.size / 1024;
+
+    if (fileSizeKB < 50 || fileSizeKB > 500) {
+      toast.error("Invalid Photo Size", {
+        description: "Please upload a photo between 50 KB and 500 KB.",
+      });
+      e.target.value = '';
+      return;
     }
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      setEmpFormData1((prev) => ({ ...prev, photo: base64String }));
+    };
+    reader.readAsDataURL(file);
   };
+
 
   const handleCheckboxChange = () => {
     if (isChecked) {
