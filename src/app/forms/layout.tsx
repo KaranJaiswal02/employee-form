@@ -259,14 +259,14 @@ export default function FormLayout({
                     {/* Collapse Button - placed outside aside to avoid overlapping icons */}
                     <button
                         onClick={() => setIsCollapsed(!isCollapsed)}
-                        className={`fixed top-4 ${isCollapsed ? "left-12" : "left-76"
+                        className={`fixed top-4 ${isCollapsed ? "left-12" : "left-78"
                             } z-50 bg-gray-300 border-4 border-neutral-200 dark:border-neutral-950 dark:bg-gray-700 p-2 rounded-full hover:opacity-80 transition-all duration-300 cursor-pointer`}
                     >
                         {isCollapsed ? <AiOutlineMenuUnfold size={30} /> : <AiOutlineMenuFold size={30} />}
                     </button>
 
                     <aside
-                        className={`fixed top-0 left-0 h-full ${isCollapsed ? "w-16" : "w-80"
+                        className={`fixed top-0 left-0 h-full ${isCollapsed ? "w-16" : "w-82"
                             } bg-white dark:bg-card shadow-md border-r py-6 px-3 flex flex-col justify-between overflow-auto transition-all duration-300`}
                     >
                         {isLoading ? (
@@ -371,7 +371,7 @@ export default function FormLayout({
                     </aside>
                 </>
 
-                <main className={`flex-1 ${isCollapsed ? "ml-16" : "ml-80"} transition-all duration-300 px-4 py-4 min-h-screen space-y-20`}>
+                <main className={`flex-1 ${isCollapsed ? "ml-16" : "ml-82"} transition-all duration-300 px-4 py-4 min-h-screen space-y-20`}>
                     {isLoading ? (<Loader />) : (children)}
                 </main>
             </div>
