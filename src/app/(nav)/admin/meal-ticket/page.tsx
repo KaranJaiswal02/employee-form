@@ -22,6 +22,7 @@ import {
 } from '@/components/ui/radio-group';
 import { useState } from 'react';
 import MealTicketGenerator from '@/components/MealTicketPDF';
+import { toast } from 'sonner';
 
 const months = [
   'January', 'February', 'March', 'April', 'May', 'June',
@@ -68,6 +69,12 @@ export default function MealTicketForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!formData.rawNames.length) {
+      toast.error('Required names missing', {
+        description: 'Please enter names manually or upload a CSV file.'
+      });
+      return;
+    }
     if (inputMethod === 'manual') {
       const names = formData.rawNames.split(',').map(n => n.trim()).filter(Boolean);
       setFormData(prev => ({ ...prev, names }));
@@ -106,27 +113,22 @@ export default function MealTicketForm() {
                   </div>
                 </RadioGroup>
               </div>
-
-              {inputMethod === 'manual' && (
-                <div className="space-y-2">
-                  <Label htmlFor="rawNames">Employee Names (comma separated)</Label>
-                  <Input
-                    id="rawNames"
-                    name="rawNames"
-                    value={formData.rawNames}
-                    onChange={handleChange}
-                    required
-                    placeholder="e.g. Alice, Bob, Charlie"
-                  />
-                </div>
-              )}
+              <div className={`space-y-2 ${inputMethod === 'manual' ? '' : 'hidden'}`}>
+                <Label htmlFor="rawNames">Employee Names (comma separated)</Label>
+                <Input
+                  id="rawNames"
+                  name="rawNames"
+                  value={formData.rawNames}
+                  onChange={handleChange}
+                  placeholder="e.g. Alice, Bob, Charlie"
+                />
+              </div>
               <div className={`space-y-2 ${inputMethod === 'csv' ? '' : 'hidden'}`}>
                 <Label htmlFor="csvUpload">Upload CSV</Label>
                 <Input
                   type="file"
                   accept=".csv"
                   onChange={handleCSVUpload}
-                  required
                 />
               </div>
 

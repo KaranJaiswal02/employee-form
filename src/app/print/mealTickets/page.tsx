@@ -74,7 +74,7 @@ export default function MealTicketPrintPage() {
                             )
                         })}
                     </div>
-                    <div className="page-break"></div>
+                    {index + 1 < names.length && <div className="page-break"></div>}
                 </div>
             ))}
         </div>
