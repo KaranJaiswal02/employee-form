@@ -226,7 +226,7 @@ export default function UserFormDownloadPage() {
                     </p>
                     <p className="text-gray-700 dark:text-gray-300">
                         <span className="font-semibold text-blue-600 dark:text-blue-400">Tip:</span> Want a blank form instead?&nbsp;
-                        <Link href="/print" target="_blank" className="underline hover:text-blue-700 dark:hover:text-blue-300">
+                        <Link href="/print" target="_blank" className="underline pl-1 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-500">
                             Click here to print blank templates.
                         </Link>
                     </p>
