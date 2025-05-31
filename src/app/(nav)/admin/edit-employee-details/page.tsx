@@ -25,8 +25,8 @@ export default function AdminManagementPage() {
     const fetchUsers = async (forceReload = false) => {
         setLoading(true);
 
-        const cached = usersFromAtom.filter(user => user.role === "user");
-        if (cached.length > 0 && !forceReload) {
+        if (usersFromAtom.length > 0 && !forceReload) {
+            const cached = usersFromAtom.filter(user => user.role === "user");
             setUsers(cached);
             setFilteredUsers(cached);
             setLoading(false);
