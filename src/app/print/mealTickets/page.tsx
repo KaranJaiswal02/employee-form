@@ -69,7 +69,7 @@ export default function MealTicketPrintPage() {
                                         />
                                     </div>
                                     <div className="text-center text-xs font-semibold text-gray-800 my-1">{name}</div>
-                                    <div className="text-center text-xs text-gray-600">{month} {year}</div>
+                                    <div className="text-center text-sm font-bold text-gray-600">{month} {year}</div>
                                 </div>
                             )
                         })}

@@ -3,7 +3,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "sonner";
-import ThemeWrapper from "@/components/ThemeWrapper"; // You’ll create this
+import ThemeWrapper from "@/components/ThemeWrapper"; 
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
