@@ -29,8 +29,16 @@ const months = [
   'July', 'August', 'September', 'October', 'November', 'December',
 ];
 
-const currentYear = new Date().getFullYear();
-const currentMonth = new Date().toLocaleString('default', { month: 'long' });
+const now = new Date();
+const getRequiredMonth = () => {
+  if (now.getDate() < 5) {
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  } else {
+    return new Date(now.getFullYear(), now.getMonth() + 1, 1);
+  }
+}
+const currentYear = now.getFullYear();
+const monthName = getRequiredMonth().toLocaleString('default', { month: 'long' });
 
 export default function MealTicketForm() {
   const [inputMethod, setInputMethod] = useState<'manual' | 'csv'>('manual');
@@ -38,7 +46,7 @@ export default function MealTicketForm() {
   const [formData, setFormData] = useState({
     rawNames: '',
     names: [] as string[],
-    month: currentMonth,
+    month: monthName,
     year: currentYear,
     fromDay: '1',
     toDay: '20',
