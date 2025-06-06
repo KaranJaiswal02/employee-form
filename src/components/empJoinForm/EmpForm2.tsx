@@ -13,7 +13,7 @@ export default function EmpForm2() {
             return;
         }
         setFormData(prev => ({ ...prev, [name]: value }));
-        console.log(formData)
+        // console.log(formData)
     };
 
     const maritialStatusChange = (value: string) => {

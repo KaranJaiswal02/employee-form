@@ -35,7 +35,7 @@ export default function MyPage() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      console.log(formData);
+      // console.log(formData);
       const response = await fetch("/api/forms/nomination-declaration-form1", {
         method: "POST",
         headers: {

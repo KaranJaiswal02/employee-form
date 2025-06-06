@@ -9,7 +9,7 @@ export default function BankMandateForm() {
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
         setFormData(prev => ({ ...prev, [id]: value }));
-        console.log(formData)
+        // console.log(formData)
     };
 
     const handleRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {

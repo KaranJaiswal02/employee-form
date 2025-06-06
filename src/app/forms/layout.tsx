@@ -18,6 +18,7 @@ import { NominationForm2Model } from "@/models/forms/nomination-form2";
 import { StaffFamilyFormData } from "@/models/forms/staff-family-members";
 import { IEmpFormData } from "@/models/forms/staffjoin_form";
 import { AiOutlineMenuFold, AiOutlineMenuUnfold } from "react-icons/ai";
+import { toast } from "sonner";
 
 export default function FormLayout({
     children,
@@ -241,14 +242,18 @@ export default function FormLayout({
             const data = await response.json();
             if (data.success) {
                 setName(data.data?.name || "");
-                console.log(data.data?.currentUserRole)
+                // console.log(data.data?.currentUserRole)
                 setCurrentUserRole(data.data?.currentUserRole || "user");
                 setFormsData(data.data.forms);
             } else {
-                console.log(data.message);
+                toast.error(data.message, {
+                    description: data.errors?.[0] || "Internal server error",
+                });
             }
         } catch (error) {
-            console.log("Error fetching form data:", error);
+            toast.error("Error fetching form data", {
+                description: (error as Error).message || "An error occurred while fetching form data",
+            });
         }
     };
 

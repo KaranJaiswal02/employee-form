@@ -63,7 +63,7 @@ export default function MealTicketPrintPage() {
                                     <div className="absolute top-1 right-2 text-sm font-semibold">#{ticketNo}</div>
                                     <div className="flex justify-center h-12">
                                         <img
-                                            src="/assets/images/SL India Software Center copy.png"
+                                            src="/assets/images/SL India Software Center.png"
                                             alt="Logo"
                                             className="w-40 object-contain"
                                         />

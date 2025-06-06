@@ -34,7 +34,7 @@ export default function MyPage() {
     e.preventDefault();
     setIsSubmitting(true);
     try {
-      console.log(formData);
+      // console.log(formData);
       const response = await fetch("/api/forms/gratuity-form", {
         method: "POST",
         headers: {
