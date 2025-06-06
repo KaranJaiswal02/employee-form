@@ -54,7 +54,7 @@ export default function HomePage() {
                 >
                     {!isDarkMode ? <FaSun size={22} /> : <FaMoon size={22} />}
                 </button>
-                <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to Employee Management Portal</h1>
+                <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to Work Zone System</h1>
                 <p className="text-lg md:text-xl max-w-2xl mx-auto">
                     A centralized platform to manage employee roles, forms, and administrative tools with ease.
                 </p>

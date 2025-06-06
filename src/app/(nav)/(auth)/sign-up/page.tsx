@@ -1,5 +1,4 @@
 'use client'
-
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -123,7 +122,6 @@ export default function SignUpForm() {
                                 <Label htmlFor="password">Password</Label>
                                 <PasswordInput
                                     id="password"
-                                    type="password"
                                     placeholder="********"
                                     required
                                     value={formData.password}
@@ -134,7 +132,6 @@ export default function SignUpForm() {
                                 <Label htmlFor="confirmPassword">Confirm Password</Label>
                                 <PasswordInput
                                     id="confirmPassword"
-                                    type="password"
                                     placeholder="********"
                                     required
                                     value={formData.confirmPassword}

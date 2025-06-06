@@ -20,7 +20,7 @@ export default function PasswordInput({
                 placeholder={placeholder}
                 required={required}
                 minLength={8} // Enforce minimum password length
-                className={clsx("pr-10", className)}
+                className={clsx("pr-10", className)}    
                 value={value}
                 onChange={onChange}
                 {...rest}

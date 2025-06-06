@@ -79,6 +79,8 @@ export default function RootLayout({
             setIsDarkMode(isDark);
         }
 
+        if (pathname === "/sign-in" || pathname === "/sign-up") return;
+
         const token = localStorage.getItem("token");
         if (!token) {
             router.push("/sign-in");
@@ -99,7 +101,7 @@ export default function RootLayout({
         return () => {
             window.removeEventListener("login", handleLogin);
         };
-    }, []);
+    }, [pathname]);
 
     const toggleDarkMode = () => {
         if (typeof window !== "undefined") {
