@@ -6,35 +6,39 @@ services:
     ports:
       - '3000:3000'
     environment:
-      - MONGODB_URI=mongodb://mongo:27018/mydatabase
-      - JWT_SECRET=3f5a850916b36f48de33a273c51de97f7f64491f184f47a0ddd753650f64a47eb81ecdd5645b657ce6e90d6f75c90c9b091ecc81f115e7a24cc299c67b7a21e8e48ce7eca08214e6e93616fa3e86f492a23f28c303ff57323bf6b872fdc48e1f3edc995ec977ad6346a507ca6db56b43e5320e4a9ee235cf6bdd36712066fa37
-      - ADMIN_EMAIL=admin@example.com
-      - ADMIN_PASSWORD=admin123
+      MONGODB_URI: mongodb://root:password@mongo:27017/mydatabase?authSource=admin
+      JWT_SECRET: 3f5a850916b36f48de33a273c51de97f7f64491f184f47a0ddd753650f64a47eb81ecdd5645b657ce6e90d6f75c90c9b091ecc81f115e7a24cc299c67b7a21e8e48ce7eca08214e6e93616fa3e86f492a23f28c303ff57323bf6b872fdc48e1f3edc995ec977ad6346a507ca6db56b43e5320e4a9ee235cf6bdd36712066fa37
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_PASSWORD: admin123
     depends_on:
       - mongo
 
   mongo:
     image: mongo:latest
     ports:
-      - "27018:27017"
+      - "27017:27017"
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
       - mongo-data:/data/db
 
-  mongo-express:
-    image: mongo-express
-    container_name: mongo_express
-    restart: unless-stopped
-    ports:
-      - '8081:8081'
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=mongo
-      - ME_CONFIG_MONGODB_PORT=27018
-      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
-      - ME_CONFIG_BASICAUTH_USERNAME=root
-      - ME_CONFIG_BASICAUTH_PASSWORD=password
+  # mongo-express:
+  #   image: mongo-express
+  #   container_name: mongo_express
+  #   restart: unless-stopped
+  #   ports:
+  #     - '8081:8081'
+  #   environment:
+  #     ME_CONFIG_MONGODB_SERVER: mongo
+  #     ME_CONFIG_MONGODB_PORT: 27017
+  #     ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+  #     ME_CONFIG_BASICAUTH_USERNAME: root
+  #     ME_CONFIG_BASICAUTH_PASSWORD: password
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: password
+  #   depends_on:
+  #     - mongo
 
 volumes:
   mongo-data:
