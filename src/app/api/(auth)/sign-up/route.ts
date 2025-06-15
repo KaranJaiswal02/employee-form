@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
         };
         return NextResponse.json(response, { status: 201 });
     } catch (error) {
-        console.error('[Signup Error]', error);
+        console.log('[Signup Error]', error);
 
         const response: IAPIResponse = {
             success: false,

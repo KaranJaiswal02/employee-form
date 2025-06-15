@@ -103,7 +103,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(response, { status: 200 });
 
     } catch (error) {
-        console.error("Error in GET /user-forms:", error);
+        console.log("Error in GET /user-forms:", error);
 
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];

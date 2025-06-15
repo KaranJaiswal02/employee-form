@@ -57,7 +57,7 @@ export async function PATCH(req: NextRequest) {
             { status: 200 }
         );
     } catch (error) {
-        console.error("Error updating password:", error);
+        console.log("Error updating password:", error);
         return NextResponse.json(
             {
                 success: false,

@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
         };
         return NextResponse.json(response, { status: 200 });
     } catch (error) {
-        console.error("Error in POST /empjoin-form:", error);
+        console.log("Error in POST /empjoin-form:", error);
 
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];

@@ -73,7 +73,7 @@ export async function PATCH(req: NextRequest) {
         return NextResponse.json(response, { status: 200 });
 
     } catch (error) {
-        console.error("Error in PATCH /users/toggle-role:", error);
+        console.log("Error in PATCH /users/toggle-role:", error);
 
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];

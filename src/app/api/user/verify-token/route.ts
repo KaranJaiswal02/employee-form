@@ -50,7 +50,7 @@ export async function GET(req: NextRequest) {
         return NextResponse.json(response, { status: 200 });
 
     } catch (error) {
-        console.error("Error in GET /verify-token:", error);
+        console.log("Error in GET /verify-token:", error);
 
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];

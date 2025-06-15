@@ -64,7 +64,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json(response, { status: 200 });
 
     } catch (error) {
-        console.error("Error in POST /staff-family-members:", error);
+        console.log("Error in POST /staff-family-members:", error);
 
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];

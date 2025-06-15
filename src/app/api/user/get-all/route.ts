@@ -120,7 +120,7 @@ export async function GET(req: NextRequest) {
 
         return NextResponse.json(response, { status: 200 });
     } catch (error) {
-        console.error("Error in GET /users/all:", error);
+        console.log("Error in GET /users/all:", error);
 
         let errorMessage = "Internal Server Error";
         let errorDetails = ["An unexpected error occurred"];

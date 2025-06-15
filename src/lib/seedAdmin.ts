@@ -8,7 +8,7 @@ export async function seedAdmin() : Promise<string> {
     const adminEmail = process.env.ADMIN_EMAIL || "";
     const adminPassword = process.env.ADMIN_PASSWORD || "admin123";
     if (!adminEmail || !adminPassword) {
-        console.error("Admin email or password not set in environment variables.");
+        console.log("Admin email or password not set in environment variables.");
         return "Admin email or password not set in environment variables.";
     }    
 
