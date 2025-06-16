@@ -22,11 +22,11 @@ export default function IDCard() {
     setId(searchParams.get('id'));
     setFormData((prev) => ({
       ...prev,
-      name: empFormData1.name || "",
-      fatherName: empFormData1.fatherName || "",
-      designation: empFormData1.designation || "",
-      dob: empFormData1.dob || "",
-      photo: empFormData1.photo || "",
+      name: empFormData1.name || formData.name,
+      fatherName: empFormData1.fatherName || formData.fatherName,
+      designation: empFormData1.designation || formData.designation,
+      dob: empFormData1.dob || formData.dob,
+      photo: empFormData1.photo || formData.photo,
     }));
   }, [empFormData1, setFormData, searchParams]);
 

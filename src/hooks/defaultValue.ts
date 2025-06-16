@@ -87,7 +87,7 @@ export const DefaultEmpFormData: IEmpFormData = {
         { name: "", address: "", phone: "" }
     ],
     convictionDetails: "",
-    place: "",
+    place: "Bengaluru",
     familyMembers: [{ name: "", relationship: "", dob: "", age: "" }],
     nominees: [{ name: "", relationship: "", dob: "", percentage: "" }],
     code: "",

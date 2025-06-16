@@ -22,8 +22,8 @@ export default function BankMandate() {
         setId(searchParams.get('id'));
         setFormData((prev) => ({
             ...prev,
-            name: formData1.name || "",
-            address: formData1.perAddress || "",
+            name: formData1.name || formData.name,
+            address: formData1.perAddress || formData.address,
         }));
     }, [setFormData, formData1, searchParams]);
 

@@ -24,9 +24,9 @@ export default function MyPage() {
     setId(searchParams.get('id'));
     setFormData(prev => ({
       ...prev,
-      name: empFormData1.name || "",
-      department: empFormData1.department || "",
-      marriagestatus: nominationform1.maritalStatus || "",
+      name: empFormData1.name || formData.name,
+      department: empFormData1.department || formData.department,
+      marriagestatus: nominationform1.maritalStatus || formData.marriagestatus,
     }));
   }, [empFormData1, nominationform1, setFormData, searchParams]);
 

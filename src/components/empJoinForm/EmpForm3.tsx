@@ -285,7 +285,7 @@ export default function EmpForm3() {
                     />
                 </div>
                 <div className=" border-black dark:border-white inline-block font-semibold w-40">
-                    <p>PLACE: Bengaluru</p>
+                    <p>Place: {formData.place}</p>
                 </div>
                 <div className="text-right font-semibold">
                     ______________________ <br />

@@ -23,15 +23,15 @@ export default function MyPage() {
         setId(searchParams.get('id'));
         setFormData((prev) => ({
             ...prev,
-            address: formData1.perAddress || "",
-            accountNumber: formData1.accountNumber || "",
-            fathersName: formData1.fatherName || "",
-            dob: formData1.dob || "",
-            firstName: formData1.name || "",
-            surname: formData1.surname || "",
-            middleName: formData1.middleName || "",
-            maritalStatus: formData1.maritalStatus || "",
-            sex: formData1.sex || "",
+            address: formData1.perAddress || formData.address,
+            accountNumber: formData1.accountNumber || formData.accountNumber,
+            fathersName: formData1.fatherName || formData.fatherName,
+            dob: formData1.dob || formData.dob,
+            firstName: formData1.name || formData.firstName,
+            surname: formData1.surname || formData.surname,
+            middleName: formData1.middleName || formData.middleName,
+            maritalStatus: formData1.maritalStatus || formData.maritalStatus,
+            sex: formData1.sex || formData.sex,
         }));
     }, [formData1, setFormData]);
 

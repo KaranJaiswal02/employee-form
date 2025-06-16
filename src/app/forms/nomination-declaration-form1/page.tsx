@@ -22,12 +22,12 @@ export default function MyPage() {
     setId(searchParams.get('id'));
     setFormData((prev) => ({
       ...prev,
-      name: empFormData1.name || "",
-      fatherName: empFormData1.fatherName || "",
-      dob: empFormData1.dob || "",
-      currAddress: empFormData1.currAddress || "",
-      perAddress: empFormData1.perAddress || "",
-      maritalStatus: empFormData1.maritalStatus || "",
+      name: empFormData1.name || formData.name,
+      fatherName: empFormData1.fatherName || formData.fatherName,
+      dob: empFormData1.dob || formData.dob,
+      currAddress: empFormData1.currAddress || formData.currAddress,
+      perAddress: empFormData1.perAddress || formData.perAddress,
+      maritalStatus: empFormData1.maritalStatus || formData.maritalStatus,
     }));
   }, [empFormData1, setFormData, searchParams]);
 

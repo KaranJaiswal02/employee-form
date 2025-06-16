@@ -23,9 +23,9 @@ export default function MyPage() {
         setId(searchParams.get('id'));
         setFormData((prev) => ({
             ...prev,
-            name: form1data.name || "",
-            dob: form1data.dob || "",
-            department: form1data.department || "",
+            name: form1data.name || formData.name,
+            dob: form1data.dob || formData.dob,
+            department: form1data.department || formData.department,
             age: calculateAge(form1data.dob?.toString().split('T')[0] ?? '') || 0,
         }));
     }, [form1data, setFormData]);
