@@ -110,7 +110,7 @@ export default function HomePage() {
 
             {/* Footer */}
             <footer className="text-center py-6 border-t border-gray-400/70 dark:border-gray-700">
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-xl text-gray-600 dark:text-gray-400">
                     &copy; {new Date().getFullYear()} SL India Software Centre. All rights reserved.
                 </p>
             </footer>
