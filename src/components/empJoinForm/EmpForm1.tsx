@@ -212,7 +212,7 @@ export default function EmpForm1() {
                 accept="image/*"
                 onChange={handlePhotoChange}
                 className="opacity-0 absolute inset-0 cursor-pointer"
-                required
+                required={!empFormData1.photo}
               />
             </label>
           </div>
