@@ -72,61 +72,10 @@ export default function EmpForm1() {
       </div>
 
       <h1 className="text-2xl font-bold text-center mb-4 underline">JOINING REPORT</h1>
-      {/* <h6 className="text-1.5xl font-bold text-center mb-6">Employee Basic Info</h6> */}
-
-      {/* <div className="grid grid-cols-3 gap-4 mb-1">
-        <div className="space-y-0.5">
-          <RequiredLabel><label htmlFor='name' className="block font-semibold">Employee Name </label></RequiredLabel>
-          <input
-            type="text"
-            id="name"
-            value={empFormData1.name}
-            onChange={handleChange}
-            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
-            required
-          />
-        </div>
-        <div className="space-y-0.5">
-          <RequiredLabel><label htmlFor='fatherName' className="block font-semibold"> Father&rsquo;s Name</label></RequiredLabel>
-          <input
-            type="text"
-            id="fatherName"
-            value={empFormData1.fatherName}
-            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
-            onChange={handleChange}
-            required
-          />
-        </div>
-        <div className="space-y-0.5">
-          <RequiredLabel><label htmlFor='designation' className="block font-semibold">Designation</label></RequiredLabel>
-          <input
-            type="text"
-            id="designation"
-            value={empFormData1.designation}
-            className="w-full border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
-            onChange={handleChange}
-            required
-          />
-        </div>
-      </div> */}
 
       {/* Address Section */}
       <div className="mb-6">
 
-        {/* <div className="grid grid-cols-2 gap-4 mb-4">
-          <div className="space-y-0.5">
-            <RequiredLabel> <label htmlFor='dob' className="block font-semibold">Date of Birth </label></RequiredLabel>
-            <input
-              type="date"
-              id="dob"
-              value={empFormData1.dob.toString().split("T")[0]}
-              onChange={handleChange}
-              className="border-b-1 border-black dark:border-white pb-1 focus:outline-none mr-2"
-              required
-            />
-          </div>
-
-        </div> */}
         <div className="flex gap-6">
           {/* Left 70% section for inputs */}
           <div className="w-[70%] space-y-4">
